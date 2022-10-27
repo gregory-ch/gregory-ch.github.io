@@ -11,30 +11,45 @@ redirect_from:
 
 Education
 ======
-* B.S. in GitHub, GitHub University, 2012
-* M.S. in Jekyll, GitHub University, 2014
-* Ph.D in Version Control Theory, GitHub University, 2018 (expected)
+* B.S. Managment, Novosibirsk state university (NSU), 2014
+* M.S. Financial management, Novosibirsk state university (NSU), 2016
+* Ph.D in Economics, Higher school of economics (HSE), 2022 
 
 Work experience
 ======
-* Summer 2015: Research Assistant
-  * Github University
-  * Duties included: Tagging issues
-  * Supervisor: Professor Git
+* 2022 — 2023: Guest researcher
+  * University of Tuebingen, Department of Computer Science
+  * Hosting Professor: Setareh Maghsudi
 
-* Fall 2015: Research Assistant
+* 2020 Oct — 2021 Sep: Guest researcher
+  * Guest researcher
+  * Hosting Professor: Oliver Kirchkamp 
+
+* 2016 — 2022: Research Assistant
+  * HSE laboratory research for experimental and behavioural economics
+  * Supervisor: Alexis Belianin
+
+* 2018 Dec — 2019 Mar: Guest researcher
+  * University Heidelberg, Alfred-Weber institute,  Economic Theory II
+  * Hosting Professor: Joerg Oechssler
+
+* 2018 Dec — 2019 Mar: Research Assistant
   * Github University
-  * Duties included: Merging pull requests
   * Supervisor: Professor Hub
+
+* 2016 Feb — 2016 Jul: Intern
+  * NSU laboratory epistemology and ontology of rationality
+  * Supervisor: Alexandr Khlebalin
   
-Skills
+
+<!-- Skills
 ======
 * Skill 1
 * Skill 2
   * Sub-skill 2.1
   * Sub-skill 2.2
   * Sub-skill 2.3
-* Skill 3
+* Skill 3 -->
 
 Publications
 ======
@@ -54,6 +69,7 @@ Teaching
     {% include archive-single-cv.html %}
   {% endfor %}</ul>
   
-Service and leadership
+<!-- Service and leadership
 ======
-* Currently signed in to 43 different slack teams
+* Currently signed in to 43 different slack teams -->
+CV: [Pdf version](https://gregory-ch.github.io/files/CV.pdf)
