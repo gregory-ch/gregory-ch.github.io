@@ -63,13 +63,13 @@ Talks
     {% include archive-single-talk-cv.html %}
   {% endfor %}</ul>
   
-Teaching
+<!-- Teaching
 ======
   <ul>{% for post in site.teaching %}
     {% include archive-single-cv.html %}
   {% endfor %}</ul>
-  
+   -->
 <!-- Service and leadership
 ======
 * Currently signed in to 43 different slack teams -->
-CV: [Pdf version](https://gregory-ch.github.io/files/CV.pdf)
+CV: [Pdf version](https://gregory-ch.home/files/CV.pdf)
