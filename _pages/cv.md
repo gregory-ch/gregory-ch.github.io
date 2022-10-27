@@ -7,7 +7,7 @@ redirect_from:
   - /resume
 ---
 
-{% include base_path %}
+CV: [pdf](https://gregory-ch.home/files/CV.pdf)
 
 Education
 ======
@@ -72,4 +72,3 @@ Talks
 <!-- Service and leadership
 ======
 * Currently signed in to 43 different slack teams -->
-CV: [Pdf version](https://gregory-ch.home/files/CV.pdf)
