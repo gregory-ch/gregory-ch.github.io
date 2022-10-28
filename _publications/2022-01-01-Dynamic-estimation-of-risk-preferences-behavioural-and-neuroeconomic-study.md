@@ -7,4 +7,4 @@ pubtype: 'conference'
 venue: 'In the proceedings of 2022 Ural-Siberian Conference on Computational Technologies in Cognitive Science, Genomics and Biomedicine (CSGB)'
 citation: ' G. Chernov,  P. Rydich,  K. Ladonovskaya,  A. Belianin, &quot;Dynamic estimation of risk preferences: behavioural and neuroeconomic study.&quot; In the proceedings of 2022 Ural-Siberian Conference on Computational Technologies in Cognitive Science, Genomics and Biomedicine (CSGB), 2022.'
 ---
-You can [try demo](https://ej.hse.ru/data/2020/12/21/1343632103/Чернов.pdf) of application design. For app control use arrows (<- and -> choose sector; ↓ to confirm choice).
+You can [try demo](https://belab.herokuapp.com/demo/motion_risk_task) of application design. For app control use arrows (<- and -> choose sector; ↓ to confirm choice).
