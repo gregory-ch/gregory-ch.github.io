@@ -7,7 +7,7 @@ redirect_from:
   - /resume
 ---
 
-CV: [pdf](https://gregory-ch.home/files/CV.pdf)
+[in pdf version](https://gregory-ch.home/files/CV.pdf)
 
 Education
 ======

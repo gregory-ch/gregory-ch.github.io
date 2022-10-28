@@ -3,6 +3,7 @@ title: "Evaluation of Econometric Models of Adaptive Learning by Predictive Meas
 collection: publications
 # permalink: /publication/2020-01-01-Evaluation-of-Econometric-Models-of-Adaptive-Learning-by-Predictive-Measures
 date: 2020-01-01
+pubtype: 'journal'
 venue: 'Available at SSRN'
 citation: ' G. Chernov,  I. Susin,  S. Cheparuhin, &quot;Evaluation of Econometric Models of Adaptive Learning by Predictive Measures.&quot; Available at SSRN, 2020.'
 ---
