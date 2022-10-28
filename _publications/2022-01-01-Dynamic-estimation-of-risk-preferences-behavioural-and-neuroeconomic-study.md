@@ -1,9 +1,10 @@
 ---
 title: "Dynamic estimation of risk preferences: behavioural and neuroeconomic study"
 collection: publications
-# permalink: /publication/2022-01-01-Dynamic-estimation-of-risk-preferences-behavioural-and-neuroeconomic-study
+permalink: /publication/2022-01-01-Dynamic-estimation-of-risk-preferences-behavioural-and-neuroeconomic-study
 date: 2022-01-01
+pubtype: 'conference'
 venue: 'In the proceedings of 2022 Ural-Siberian Conference on Computational Technologies in Cognitive Science, Genomics and Biomedicine (CSGB)'
 citation: ' G. Chernov,  P. Rydich,  K. Ladonovskaya,  A. Belianin, &quot;Dynamic estimation of risk preferences: behavioural and neuroeconomic study.&quot; In the proceedings of 2022 Ural-Siberian Conference on Computational Technologies in Cognitive Science, Genomics and Biomedicine (CSGB), 2022.'
 ---
-<!-- Use [Google Scholar](https://scholar.google.com/scholar?q=Dynamic+estimation+of+risk+preferences:+behavioural+and+neuroeconomic+study){:target="_blank"} for full citation -->
+You can [try demo](https://ej.hse.ru/data/2020/12/21/1343632103/Чернов.pdf) of application design. For app control use arrows (<- and -> choose sector; ↓ to confirm choice).
