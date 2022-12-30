@@ -34,8 +34,8 @@ Work experience
   * Hosting Professor: Joerg Oechssler
 
 * 2018 Dec — 2019 Mar: Research Assistant
-  * Github University
-  * Supervisor: Professor Hub
+  * Heidelberg University
+  * Supervisor: Joerg Oechssler
 
 * 2016 Feb — 2016 Jul: Intern
   * NSU laboratory epistemology and ontology of rationality
