@@ -122,6 +122,7 @@ include:
   - .htaccess
   - _pages
   - files
+  - _postsrus
 exclude:
   - "*.sublime-project"
   - "*.sublime-workspace"
@@ -191,6 +192,17 @@ collections:
 
 # Defaults
 defaults:
+  # _postsrus
+  - scope:
+      path: ""
+      type: posts
+    values:
+      layout: single
+      author_profile: true
+      read_time: true
+      comments: true
+      share: true
+      related: true
   # _posts
   - scope:
       path: ""
