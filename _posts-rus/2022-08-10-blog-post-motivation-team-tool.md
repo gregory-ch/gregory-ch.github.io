@@ -1,7 +1,7 @@
 ---
 title: 'Прижизненный эпикриз мотивации в командах'
 date: 2022-08-10
-permalink: /postsrus/motivation-team-tool/
+permalink: /posts-rus/motivation-team-tool/
 tags:
   - teamwork
   - effectiveness 
