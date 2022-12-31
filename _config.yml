@@ -122,7 +122,6 @@ include:
   - .htaccess
   - _pages
   - files
-  - _postsrus
 exclude:
   - "*.sublime-project"
   - "*.sublime-workspace"
