@@ -5,7 +5,6 @@ permalink: /posts/postsrus/motivation-team-tool/
 tags:
   - teamwork
   - effectiveness 
-  - tools
   - rus
 ---
 
