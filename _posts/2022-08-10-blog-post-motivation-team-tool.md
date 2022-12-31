@@ -6,6 +6,7 @@ tags:
   - teamwork
   - effectiveness 
   - tools
+  - rus
 ---
 
 ![alt text](https://gregory-ch.github.io/files/)
