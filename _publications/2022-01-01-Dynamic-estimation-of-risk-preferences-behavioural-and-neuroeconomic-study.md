@@ -1,10 +1,10 @@
 ---
-title: "Dynamic estimation of risk preferences: behavioural and neuroeconomic study"
+title: "Dynamic estimation of risk preferences: behavioral and neuroeconomic study"
 collection: publications
-permalink: /publication/2022-01-01-Dynamic-estimation-of-risk-preferences-behavioural-and-neuroeconomic-study
-date: 2022-01-01
+permalink: https://ieeexplore.ieee.org/abstract/document/10017070
+date: 2022-11-13
 pubtype: 'conference'
 venue: 'In the proceedings of 2022 Ural-Siberian Conference on Computational Technologies in Cognitive Science, Genomics and Biomedicine (CSGB)'
-citation: ' G. Chernov,  P. Rydich,  K. Ladonovskaya,  A. Belianin, &quot;Dynamic estimation of risk preferences: behavioural and neuroeconomic study.&quot; In the proceedings of 2022 Ural-Siberian Conference on Computational Technologies in Cognitive Science, Genomics and Biomedicine (CSGB), 2022.'
+citation: 'Chernov, Georgy, et al. "Dynamic estimation of risk preferences: behavioral and neuroeconomic study." 2022 IEEE International Multi-Conference on Engineering, Computer and Information Sciences (SIBIRCON). IEEE, 2022.'
 ---
-You can [try demo](https://belab.herokuapp.com/demo/motion_risk_task) of application design. For app control use arrows (<- and -> choose sector; ↓ to confirm choice).
+<!-- You can [try demo](https://belab.herokuapp.com/demo/motion_risk_task) of application design. For app control use arrows (<- and -> choose sector; ↓ to confirm choice). -->

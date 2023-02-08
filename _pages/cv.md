@@ -17,6 +17,10 @@ Education
 
 Work experience
 ======
+* 2022 — 2023: Postdoctoral research fellow (remote)
+  * HSE Campus in St. Petersburg, Center for Market Studies and Spatial Economics
+  * Supervisor: Sergey Kokovin
+
 * 2022 — 2023: Guest researcher
   * University of Tuebingen, Department of Computer Science
   * Hosting Professor: Setareh Maghsudi
