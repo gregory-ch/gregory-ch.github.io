@@ -14,7 +14,7 @@ tags:
 
 # Contents
 
-[Popular:](#_Toc141027536)
+[Popular](#Popular)
 
 [Behavioral economics](#_Toc141027537)
 
@@ -42,7 +42,7 @@ tags:
 
 [Общий комментарий (чего нет):](#_Toc141027549)
 
-# Popular:
+# Popular
 
 - Ariely, Dan. Predictably irrational. New York: HarperCollins, 2009. Рус. пер. Ариели, Дэн. Предсказуемая иррациональность. Манн, Иванов, и Фербер. 2010.
 
