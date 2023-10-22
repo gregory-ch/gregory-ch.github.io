@@ -1,7 +1,7 @@
 ---
 title: 'List of Causal Libraries'
 date: 2023-10-22
-permalink: /posts/postsrus/causal-libs/
+permalink: /posts/causal-libs/
 tags:
   - eng
   - lists
