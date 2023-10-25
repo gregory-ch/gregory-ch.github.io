@@ -1,5 +1,5 @@
 ---
-title: "Learning in repeated asymmetric games: an experiment"
+title: "How we identify cause-effect relationships given evidence: an exploratory study"
 collection: publications
 # permalink: https://conference.hse.ru/files/download_file_ex?id=08B7D7DA-A6F7-4806-84B7-70BA64B7CC8D&hash=E2F6F19C2CC318C5C24DEE3AFE053B94
 date: 2023-06-10
