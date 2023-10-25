@@ -1,5 +1,5 @@
 ---
-title: "How we identify cause-effect relationships given evidence: an exploratory study"
+title: "How We identify cause-effect relationships given evidence: An exploratory study"
 collection: "publications"
 permalink: "/publication/2023-06-10-data-to-dgp"
 date: 2023-06-10
