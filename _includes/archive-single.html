@@ -26,7 +26,7 @@
       </div>
     {% endif %}
 
-    {% elsif post.collection == 'publications' %}
+    {% if post.collection == 'publications' %}
     <h4 class="archive__item-title" itemprop="headline">
       {% if post.link %}
         <a href="">{{ title }},{{ post.venue }}</a> <a href="{{ post.permalink }}" rel="permalink"><i class="fa fa-link" aria-hidden="true" title="permalink"></i><span class="sr-only">Permalink</span></a>
