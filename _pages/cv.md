@@ -17,9 +17,9 @@ Education
 
 Work experience
 ======
-2023 — 2024: Guest researcher
-* Max Planck Institute for Biological Cybernetics
-* Hosting Professor: Peter Dayan
+* 2023 — 2024: Guest researcher
+  * Max Planck Institute for Biological Cybernetics
+  * Hosting Professor: Peter Dayan
 
 * 2023 — 2024: Postdoctoral research fellow (remote)
   * HSE Campus in St. Petersburg, Center for Market Studies and Spatial Economics
