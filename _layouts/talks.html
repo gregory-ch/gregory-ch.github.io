@@ -1,0 +1,36 @@
+---
+layout: default
+---
+
+<div id="main" role="main">
+  {% include sidebar.html %}
+
+  <div class="archive">
+    {% if page.title %}
+      <h1 class="page__title">{{ page.title }}</h1>
+    {% endif %}
+
+    <div class="talks-section">
+      {% for post in site.talks reversed %}
+        <div class="talk-item">
+          <div class="talk-header">
+            <h3>{{ post.title }}</h3>
+            <a href="{{ post.url }}" class="view-link" target="_blank">
+              {% if post.type == 'youtube' %}
+                <i class="fab fa-youtube" style="color: rgb(177, 49, 49);"></i> Watch on YouTube
+              {% elsif post.type == 'video' %}
+                <i class="fas fa-video" style="color: rgb(177, 49, 49);"></i> Watch Video
+              {% else %}
+                <i class="fas fa-external-link-alt" style="color: rgb(177, 49, 49);"></i> View Talk
+              {% endif %}
+            </a>
+          </div>
+          
+          <p class="talk-meta">
+            {{ post.venue }} ({{ post.date | date: "%Y" }})
+          </p>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+</div> 

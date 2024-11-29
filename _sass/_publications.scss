@@ -1,0 +1,69 @@
+/* ==========================================================================
+   PUBLICATIONS
+   ========================================================================== */
+
+$mono-font-stack: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+
+.publications-section {
+  margin-bottom: 2em;
+
+  h2 {
+    margin-top: 1.5em;
+    padding-bottom: 0.5em;
+    border-bottom: 1px solid $border-color;
+    color: rgb(177, 49, 49);
+    font-family: $mono-font-stack;
+    font-size: $type-size-4;
+  }
+}
+
+.publication-item {
+  margin-bottom: 2em;
+  padding-bottom: 1em;
+  border-bottom: 1px solid $border-color;
+
+  &:last-child {
+    border-bottom: none;
+  }
+}
+
+.publication-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 1em;
+
+  h3 {
+    margin: 0;
+    font-size: $type-size-5;
+    flex: 1;
+    font-family: $mono-font-stack;
+  }
+}
+
+.view-link {
+  color: $link-color;
+  text-decoration: none;
+  white-space: nowrap;
+  font-size: $type-size-6;
+  font-family: $mono-font-stack;
+
+  &:hover {
+    text-decoration: underline;
+    color: $link-color-hover;
+  }
+}
+
+.publication-meta {
+  color: $gray;
+  font-size: $type-size-6;
+  margin: 0.5em 0;
+  font-family: $mono-font-stack;
+}
+
+.citation {
+  font-size: $type-size-6;
+  color: mix($gray, $text-color, 50%);
+  margin: 0.5em 0;
+  font-family: $mono-font-stack;
+} 

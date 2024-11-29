@@ -1,0 +1,70 @@
+---
+layout: default
+---
+
+<div id="main" role="main">
+  {% include sidebar.html %}
+
+  <div class="archive">
+    {% if page.title %}
+      <h1 class="page__title">{{ page.title }}</h1>
+    {% endif %}
+
+    <!-- Journal Publications Section -->
+    <section class="publications-section">
+      <h2>Journal Articles</h2>
+      {% for pub in site.data.publications.journal_publications %}
+      <div class="publication-item">
+        <div class="publication-header">
+          <h3>{{ pub.title }}</h3>
+          <a href="{{ pub.permalink }}" class="view-link" target="_blank">View Publication</a>
+        </div>
+        <p class="publication-meta">
+          {{ pub.venue }} ({{ pub.date | date: "%Y" }})
+        </p>
+        {% if pub.citation %}
+        <p class="citation">{{ pub.citation }}</p>
+        {% endif %}
+      </div>
+      {% endfor %}
+    </section>
+
+    <!-- Conference Publications Section -->
+    <section class="publications-section">
+      <h2>Conference Papers</h2>
+      {% for pub in site.data.publications.conference_publications %}
+      <div class="publication-item">
+        <div class="publication-header">
+          <h3>{{ pub.title }}</h3>
+          <a href="{{ pub.permalink }}" class="view-link" target="_blank">View Publication</a>
+        </div>
+        <p class="publication-meta">
+          {{ pub.venue }} ({{ pub.date | date: "%Y" }})
+        </p>
+        {% if pub.citation %}
+        <p class="citation">{{ pub.citation }}</p>
+        {% endif %}
+      </div>
+      {% endfor %}
+    </section>
+
+    <!-- Preprints Section -->
+    <section class="publications-section">
+      <h2>Preprints and Working Papers</h2>
+      {% for pub in site.data.publications.preprints %}
+      <div class="publication-item">
+        <div class="publication-header">
+          <h3>{{ pub.title }}</h3>
+          <a href="{{ pub.permalink }}" class="view-link" target="_blank">View Publication</a>
+        </div>
+        <p class="publication-meta">
+          {{ pub.venue }} ({{ pub.date | date: "%Y" }})
+        </p>
+        {% if pub.citation %}
+        <p class="citation">{{ pub.citation }}</p>
+        {% endif %}
+      </div>
+      {% endfor %}
+    </section>
+  </div>
+</div> 

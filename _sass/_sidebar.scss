@@ -156,6 +156,21 @@
       display: none;
     }
   }
+
+  .fas,
+  .fab,
+  .far,
+  .fal {
+    color: rgb(177, 49, 49);  // Меняем цвет всех иконок Font Awesome в сайдбаре
+  }
+
+  // Специально для иконки местоположения
+  .fa-fw {
+    &.fa-map-marker,
+    &.fa-map-marker-alt {
+      color: rgb(177, 49, 49);  // Тот же цвет, что используется в навигации
+    }
+  }
 }
 
 .author__urls {

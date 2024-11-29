@@ -16,6 +16,19 @@
   }
 }
 
+.archive {
+  margin-bottom: 1em;
+
+  @include breakpoint($medium) {
+    @include span(10 of 12);
+  }
+
+  @include breakpoint($large) {
+    @include span(10 of 12 last);
+    @include prefix(0.5 of 12);
+  }
+}
+
 .page {
   @include breakpoint($large) {
     @include span(10 of 12 last);
@@ -104,6 +117,38 @@
   blockquote + .small {
     margin-top: -1.5em;
     padding-left: 1.25rem;
+  }
+
+  table {
+    width: 100%;
+    margin-bottom: 1em;
+    border-collapse: collapse;
+    font-size: $type-size-6;
+    
+    th {
+      padding: 0.5em;
+      background-color: #f8f9fa;
+      border-bottom: 2px solid #dee2e6;
+      text-align: left;
+      font-weight: bold;
+    }
+    
+    td {
+      padding: 0.5em;
+      border-bottom: 1px solid #dee2e6;
+      vertical-align: top;
+    }
+
+    tr:hover {
+      background-color: #f5f5f5;
+    }
+
+    // Для мобильных устройств
+    @media screen and (max-width: $small) {
+      display: block;
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+    }
   }
 }
 
@@ -398,4 +443,37 @@
   margin-bottom: 10px;
   font-size: $type-size-6;
   text-transform: uppercase;
+}
+
+/* Специальные стили для страницы causal-libs */
+.page[itemtype="http://schema.org/BlogPosting"] {
+  .page__content {
+    table {
+      width: 90%;  // Увеличили с 80% до 90%
+      margin: 0 auto;
+      font-size: $type-size-6;
+      
+      th {
+        padding: 0.5em;
+        background-color: #f8f9fa;
+        border-bottom: 2px solid #dee2e6;
+        text-align: left;
+        font-weight: bold;
+      }
+      
+      td {
+        padding: 0.5em;
+        border-bottom: 1px solid #dee2e6;
+        vertical-align: top;
+      }
+
+      tr:hover {
+        background-color: #f5f5f5;
+      }
+    }
+
+    // Увеличили максимальную ширину контента
+    max-width: 900px;  // Увеличили с 700px до 900px
+    margin: 0 auto;
+  }
 }
