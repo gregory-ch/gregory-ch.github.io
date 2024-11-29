@@ -86,70 +86,9 @@
     }
   }
 
-  /* Кнопка мобильного меню */
-  button {
-    position: absolute;
-    height: 100%;
-    right: 0;
-    padding: 0 0.5rem;
-    border: 0;
-    outline: none;
-    background-color: transparent;
-    color: $masthead-link-color;
-    cursor: pointer;
-
-    &.close {
-      .navicon {
-        background: transparent;
-
-        &:before, &:after {
-          transform-origin: 50% 50%;
-          top: 0;
-          width: 21px;
-        }
-
-        &:before {
-          transform: rotate3d(0, 0, 1, 45deg);
-        }
-
-        &:after {
-          transform: rotate3d(0, 0, 1, -45deg);
-        }
-      }
-    }
-  }
-
-  /* Иконка бургера */
-  .navicon {
-    position: relative;
-    width: 18px;
-    height: 2px;
-    background: $masthead-link-color;
-    margin: auto;
-    transition: 0.3s;
-
-    &:before,
-    &:after {
-      content: "";
-      position: absolute;
-      left: 0;
-      width: 18px;
-      height: 2px;
-      background: $masthead-link-color;
-      transition: 0.3s;
-    }
-
-    &:before {
-      top: -8px;
-    }
-
-    &:after {
-      top: 8px;
-    }
-  }
-
-  /* Выпадающее меню */
+  /* Мобильное меню */
   .hidden-links {
+    display: none;
     position: absolute;
     top: 100%;
     right: 0;
@@ -157,9 +96,10 @@
     padding: 5px;
     border: 1px solid $border-color;
     border-radius: $border-radius;
-    background: #fff;
-    box-shadow: 0 0 10px rgba(#000, 0.25);
-    
+    background: $background-color;
+    box-shadow: 0 2px 4px rgba(#000, 0.1);
+    z-index: 20;
+
     &.hidden {
       display: none;
     }
@@ -168,19 +108,214 @@
       margin: 0;
       padding: 10px 20px;
       font-size: $type-size-5;
-
+      
       &:hover {
         color: $masthead-link-color-hover;
-        background: $lighter-gray;
+        background: mix(white, $primary-color, 95%);
       }
     }
 
-    li {
-      display: block;
-      border-bottom: 1px solid $border-color;
+    &:before {
+      content: "";
+      position: absolute;
+      top: -11px;
+      right: 10px;
+      width: 0;
+      border-style: solid;
+      border-width: 0 10px 10px;
+      border-color: $border-color transparent;
+    }
 
-      &:last-child {
-        border-bottom: none;
+    &:after {
+      content: "";
+      position: absolute;
+      top: -10px;
+      right: 10px;
+      width: 0;
+      border-style: solid;
+      border-width: 0 10px 10px;
+      border-color: $background-color transparent;
+    }
+  }
+
+  /* Кнопка бургера */
+  button {
+    position: absolute;
+    height: 100%;
+    right: 0;
+    padding: 0 0.5rem;
+    border: 0;
+    outline: none;
+    background-color: transparent;
+    cursor: pointer;
+    display: block;
+
+    &:hover {
+      background: transparent;
+    }
+
+    .navicon {
+      position: relative;
+      width: 18px;
+      height: 2px;
+      background: $masthead-link-color;
+      margin: auto;
+      transition: 0.3s;
+
+      &:before,
+      &:after {
+        content: "";
+        position: absolute;
+        left: 0;
+        width: 18px;
+        height: 2px;
+        background: $masthead-link-color;
+        transition: 0.3s;
+      }
+
+      &:before { top: -8px; }
+      &:after { top: 8px; }
+    }
+
+    &.close {
+      .navicon {
+        background: transparent;
+
+        &:before {
+          transform: rotate(-45deg);
+          top: 0;
+        }
+
+        &:after {
+          transform: rotate(45deg);
+          top: 0;
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: $medium) {
+  .greedy-nav {
+    .visible-links {
+      display: none;
+      
+      &.show {
+        display: block;
+        position: absolute;
+        top: 100%;
+        right: 0;
+        left: 0;
+        padding: 5px 0;
+        background: $background-color;
+        border: 1px solid $border-color;
+        border-radius: $border-radius;
+        box-shadow: 0 2px 4px rgba(#000, 0.1);
+      }
+      
+      li {
+        display: block;
+        border-right: none;
+        border-bottom: 1px solid $border-color;
+        
+        &:last-child {
+          border-bottom: none;
+        }
+      }
+    }
+    
+    button {
+      display: block;
+    }
+  }
+}
+
+/* Медиа-запрос для мобильных устройств */
+@media screen and (max-width: 768px) {
+  .greedy-nav {
+    button {
+      display: block;
+    }
+
+    .visible-links {
+      display: none;
+      
+      &.show {
+        display: block;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        background: $background-color;
+        border: 1px solid $border-color;
+        
+        li {
+          display: block;
+          border: none;
+          padding: 5px 10px;
+          
+          &:not(:last-child) {
+            border-bottom: 1px solid $border-color;
+          }
+        }
+      }
+    }
+  }
+}
+
+.menu-button {
+  display: none;
+  position: absolute;
+  right: 1rem;
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: pointer;
+  padding: 10px;
+  z-index: 20;
+
+  span {
+    display: block;
+    width: 25px;
+    height: 3px;
+    background-color: $masthead-link-color;
+    margin: 5px 0;
+    transition: 0.3s;
+  }
+
+  &.active {
+    span:nth-child(1) {
+      transform: rotate(-45deg) translate(-5px, 6px);
+    }
+    span:nth-child(2) {
+      opacity: 0;
+    }
+    span:nth-child(3) {
+      transform: rotate(45deg) translate(-5px, -6px);
+    }
+  }
+
+  @media screen and (max-width: $medium) {
+    display: block;
+  }
+}
+
+.visible-links {
+  @media screen and (max-width: $medium) {
+    display: none;
+    
+    &.show {
+      display: block;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      right: 0;
+      background: $background-color;
+      padding: 1rem;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+      
+      li {
+        display: block;
+        margin: 0.5rem 0;
       }
     }
   }
