@@ -27,32 +27,5 @@ main:
   - title: "About"
     url: /about/
 
-
-# main links links
-main:
-  - title: "Publications"
-    url: /publications/
-
-  - title: "Talks"
-    url: /talks/    
-
-  # - title: "Teaching"
-  #   url: /teaching/    
-    
-  # - title: "Portfolio"
-  #   url: /portfolio/
-        
-  # - title: "Блог"
-  #   url: /blog-rus/
-
-  - title: "Blog"
-    url: /blog/ 
-    
-  - title: "CV"
-    url: /cv/
-    
-  # - title: "JMP"
-  #   url: /publication/2023-06-10-data-to-dgp
-    
-  # - title: "About"
-  #   url: /markdown/
+  - title: "Experiment"
+    url: /experiment/
