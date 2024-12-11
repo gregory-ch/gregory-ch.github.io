@@ -60,10 +60,14 @@ author_profile: true
 </div>
 
 <script>
+console.log('Script loaded');
 document.addEventListener('DOMContentLoaded', function() {
+    console.log('DOM loaded');
     const createSessionButton = document.getElementById('createSession');
+    console.log('Button found:', createSessionButton);
     if (createSessionButton) {
         createSessionButton.addEventListener('click', async function() {
+            alert('Button clicked!');
             const button = this;
             const loader = document.getElementById('loader');
             const result = document.getElementById('result');
