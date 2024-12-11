@@ -96,12 +96,26 @@ author_profile: true
 
             try {
                 debug.innerHTML += '<br>Sending request...';
+                debug.innerHTML += '<br>Sending OPTIONS request...';
+                const preflightResponse = await fetch(api_url, {
+                    method: 'OPTIONS',
+                    headers: {
+                        'Access-Control-Request-Method': 'POST',
+                        'Access-Control-Request-Headers': 'content-type, otree-rest-key'
+                    },
+                    mode: 'cors',
+                    credentials: 'omit'
+                });
+                debug.innerHTML += `<br>OPTIONS response status: ${preflightResponse.status}`;
+                
                 const response = await fetch(api_url, {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
                         'otree-rest-key': api_key
                     },
+                    mode: 'cors',
+                    credentials: 'omit',
                     body: JSON.stringify(session_data)
                 });
 
