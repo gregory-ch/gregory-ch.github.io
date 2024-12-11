@@ -8,19 +8,9 @@ author_profile: true
 <script>
 console.log('Script loaded at start');
 
-function initExperiment() {
-    console.log('Init experiment called');
-    const createSessionButton = document.getElementById('createSession');
-    console.log('Button found:', createSessionButton);
-    if (createSessionButton) {
-        createSessionButton.addEventListener('click', handleCreateSession);
-    }
-}
-
-async function handleCreateSession() {
-    console.log('Button clicked');
-    alert('Button clicked!');
-    const button = this;
+window.handleCreateSession = async function() {
+    console.log('handleCreateSession called');
+    const button = document.getElementById('createSession');
     const loader = document.getElementById('loader');
     const result = document.getElementById('result');
     const debug = document.getElementById('debug');
@@ -108,6 +98,18 @@ async function handleCreateSession() {
     }
 }
 
+function initExperiment() {
+    console.log('Init experiment called');
+    const createSessionButton = document.getElementById('createSession');
+    console.log('Button found:', createSessionButton);
+    if (createSessionButton) {
+        createSessionButton.onclick = function() {
+            console.log('Button clicked via onclick');
+            handleCreateSession();
+        };
+    }
+}
+
 // Пробуем разные способы инициализации
 if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', initExperiment);
@@ -164,7 +166,7 @@ if (document.readyState === 'loading') {
 </style>
 
 <div class="experiment-container">
-    <button id="createSession" class="btn btn--primary" onclick="console.log('Direct click'); handleCreateSession();">Create New Session</button>
+    <button id="createSession" class="btn btn--primary" onclick="if(window.handleCreateSession) { console.log('Direct click'); handleCreateSession(); } else { console.log('handleCreateSession not loaded yet'); }">Create New Session</button>
     <div id="loader" class="loader"></div>
     <div id="result" style="margin-top: 20px;"></div>
     <div id="debug" class="debug-info" style="display: none;"></div>
