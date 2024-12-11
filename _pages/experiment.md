@@ -96,10 +96,11 @@ document.getElementById('createSession').addEventListener('click', async functio
         }
 
         // Основной запрос
-        const response = await fetch('/.netlify/functions/create-session', {
+        const response = await fetch(api_url, {
             method: 'POST',
             headers: {
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/json',
+                'otree-rest-key': api_key
             },
             body: JSON.stringify(session_data)
         });
