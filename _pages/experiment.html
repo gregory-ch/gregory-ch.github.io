@@ -5,35 +5,51 @@ permalink: /experiment/
 author_profile: true
 ---
 
-<div style="text-align: center; padding: 20px; height: 473.5px; overflow: hidden;">
+<div style="text-align: center; padding: 20px;">
     <iframe 
         id="experimentFrame"
         src="https://belabeu-e7061ee8ef78.herokuapp.com/demo/dsst?test=1"
-        style="width: 100%; height: 473.5px; border: none; border-radius: 4px; overflow: hidden;"
-        scrolling="no"
+        style="width: 100%; height: 800px; border: none; border-radius: 4px;"
     ></iframe>
 </div>
 
 <script>
-// Очищаем консоль
-console.clear();
-
 // Функция для извлечения кода сессии
 function extractSessionCode(text) {
     const match = text.match(/SessionStartLinks\/([a-z0-9]+)/);
     return match ? match[1] : null;
 }
 
-// Ждем секунду для получения сообщения с кодом сессии
-setTimeout(() => {
-    const testMessage = "Partitioned cookie or storage access was provided to 'https://belabeu-e7061ee8ef78.herokuapp.com/SessionStartLinks/9cuski2h'";
-    const sessionCode = extractSessionCode(testMessage);
-    
-    if (sessionCode) {
-        console.log('Found session code:', sessionCode);
-        const splitScreenUrl = `https://belabeu-e7061ee8ef78.herokuapp.com/SessionSplitScreen/${sessionCode}`;
-        console.log('Opening split screen URL:', splitScreenUrl);
-        frame.src = splitScreenUrl;
+// Слушаем загрузку iframe
+frame.addEventListener('load', function() {
+    // Прокручиваем iframe до нужной позиции
+    try {
+        frame.contentWindow.scrollTo(0, 473.5);
+    } catch(e) {
+        console.log('Cannot scroll iframe');
     }
-}, 1000);
+});
+
+// Ждем сообщение с кодом сессии
+const observer = new MutationObserver((mutations) => {
+    mutations.forEach((mutation) => {
+        mutation.addedNodes.forEach((node) => {
+            if (node.textContent && node.textContent.includes('SessionStartLinks')) {
+                const sessionCode = extractSessionCode(node.textContent);
+                if (sessionCode) {
+                    console.log('Found session code:', sessionCode);
+                    const splitScreenUrl = `https://belabeu-e7061ee8ef78.herokuapp.com/SessionSplitScreen/${sessionCode}`;
+                    frame.src = splitScreenUrl;
+                    observer.disconnect();
+                }
+            }
+        });
+    });
+});
+
+// Начинаем наблюдение за сообщениями
+observer.observe(document.body, {
+    childList: true,
+    subtree: true
+});
 </script> 
