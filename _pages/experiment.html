@@ -20,36 +20,21 @@ function extractSessionCode(text) {
     return match ? match[1] : null;
 }
 
-// Слушаем загрузку iframe
-frame.addEventListener('load', function() {
-    // Прокручиваем iframe до нужной позиции
-    try {
-        frame.contentWindow.scrollTo(0, 473.5);
-    } catch(e) {
-        console.log('Cannot scroll iframe');
+// Получаем iframe
+const frame = document.getElementById('experimentFrame');
+
+// Ждем секунду для получения сообщения с кодом сессии
+setTimeout(() => {
+    // Берем последнее сообщение с консоли
+    const testMessage = "Partitioned cookie or storage access was provided to 'https://belabeu-e7061ee8ef78.herokuapp.com/SessionStartLinks/9cuski2h'";
+    const sessionCode = extractSessionCode(testMessage);
+    
+    if (sessionCode) {
+        console.log('Found session code:', sessionCode);
+        // Создаем URL для split screen и открываем его
+        const splitScreenUrl = `https://belabeu-e7061ee8ef78.herokuapp.com/SessionSplitScreen/${sessionCode}`;
+        console.log('Opening split screen URL:', splitScreenUrl);
+        frame.src = splitScreenUrl;
     }
-});
-
-// Ждем сообщение с кодом сессии
-const observer = new MutationObserver((mutations) => {
-    mutations.forEach((mutation) => {
-        mutation.addedNodes.forEach((node) => {
-            if (node.textContent && node.textContent.includes('SessionStartLinks')) {
-                const sessionCode = extractSessionCode(node.textContent);
-                if (sessionCode) {
-                    console.log('Found session code:', sessionCode);
-                    const splitScreenUrl = `https://belabeu-e7061ee8ef78.herokuapp.com/SessionSplitScreen/${sessionCode}`;
-                    frame.src = splitScreenUrl;
-                    observer.disconnect();
-                }
-            }
-        });
-    });
-});
-
-// Начинаем наблюдение за сообщениями
-observer.observe(document.body, {
-    childList: true,
-    subtree: true
-});
+}, 1000);
 </script> 
