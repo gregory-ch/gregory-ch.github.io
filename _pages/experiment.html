@@ -38,6 +38,22 @@ body {
     0% { transform: rotate(0deg); }
     100% { transform: rotate(360deg); }
 }
+
+.debug-info {
+    position: fixed;
+    bottom: 10px;
+    right: 10px;
+    padding: 10px;
+    background-color: rgba(0, 0, 0, 0.7);
+    color: white;
+    font-size: 12px;
+    max-width: 300px;
+    max-height: 200px;
+    overflow: auto;
+    z-index: 1001;
+    border-radius: 5px;
+    display: none;
+}
 </style>
 
 <div style="text-align: center; padding: 20px;">
@@ -52,14 +68,30 @@ body {
             style="width: 800px; height: 2000px; border: none; border-radius: 4px; position: absolute; top: 0; left: 0;"
         ></iframe>
     </div>
+    <div id="debugInfo" class="debug-info"></div>
 </div>
 
 <script>
+// Включить режим отладки
+const DEBUG = true;
+
+// Функция для добавления отладочных сообщений
+function debug(message) {
+    if (DEBUG) {
+        const debugInfo = document.getElementById('debugInfo');
+        debugInfo.style.display = 'block';
+        const timestamp = new Date().toLocaleTimeString();
+        debugInfo.innerHTML += `<div>${timestamp}: ${message}</div>`;
+        debugInfo.scrollTop = debugInfo.scrollHeight;
+        console.log(`DEBUG: ${message}`);
+    }
+}
+
 // Функция для извлечения session code
 function extractSessionCode(text) {
     const match = text.match(/SessionStartLinks\/([a-z0-9]+)"/);
     if (match) {
-        console.log('Found session code:', match[1]);
+        debug('Found session code: ' + match[1]);
         return match[1];
     }
     return null;
@@ -68,9 +100,10 @@ function extractSessionCode(text) {
 // Функция для поиска session-wide link на странице
 function findSessionWideLink(html) {
     // Ищем ссылку формата https://belabeu-e7061ee8ef78.herokuapp.com/join/xxxxx
+    // Более точное регулярное выражение для поиска
     const joinLinkMatch = html.match(/https:\/\/belabeu-e7061ee8ef78\.herokuapp\.com\/join\/([a-z0-9]+)/);
     if (joinLinkMatch) {
-        console.log('Found session-wide link:', joinLinkMatch[0]);
+        debug('Found session-wide link: ' + joinLinkMatch[0]);
         return joinLinkMatch[0];
     }
     return null;
@@ -80,11 +113,11 @@ function findSessionWideLink(html) {
 function updateStatus(message) {
     const statusElement = document.getElementById('status');
     statusElement.textContent = message;
-    console.log('Status update:', message);
+    debug('Status update: ' + message);
 }
 
 document.addEventListener('DOMContentLoaded', () => {
-    console.log('DOM loaded');
+    debug('DOM loaded, starting experiment');
     
     const frame = document.getElementById('experimentFrame');
     const loadingOverlay = document.getElementById('loadingOverlay');
@@ -92,106 +125,159 @@ document.addEventListener('DOMContentLoaded', () => {
     // Инициализируем пустой iframe
     frame.src = "about:blank";
     
-    // Функция для перехода к эксперименту
-    function navigateToExperiment() {
-        // Сначала загружаем страницу с демо
-        fetch('https://belabeu-e7061ee8ef78.herokuapp.com/demo/dsst?test=1', {
-            method: 'GET',
-            credentials: 'include',
-            headers: {
-                'Accept': 'text/html'
-            }
-        })
-        .then(response => {
-            if (response.ok) {
-                updateStatus('Connected to server, finding experiment link...');
-                return response.text();
-            } else {
-                updateStatus('Connection failed: ' + response.status);
-                throw new Error('Connection failed');
-            }
-        })
-        .then(html => {
-            // Ищем session-wide link на странице
-            const sessionWideLink = findSessionWideLink(html);
+    // Задержка для наблюдения за интерфейсом oTree и клика по ссылке
+    function tryClickSessionWideLink() {
+        try {
+            debug('Attempting to find and click session-wide link in iframe');
+            const iframeDoc = frame.contentDocument || frame.contentWindow.document;
             
-            if (sessionWideLink) {
-                // Если нашли session-wide link, перенаправляем на него
-                updateStatus('Found experiment link, starting...');
-                frame.src = sessionWideLink;
-            } else {
-                // Если не нашли, пробуем извлечь session code
-                const sessionCode = extractSessionCode(html);
+            // Проверяем все ссылки на странице
+            const allLinks = iframeDoc.querySelectorAll('a');
+            debug(`Found ${allLinks.length} links in iframe`);
+            
+            for (const link of allLinks) {
+                debug(`Link text: "${link.textContent}", href: "${link.href}"`);
                 
-                if (sessionCode) {
-                    // Если нашли session code, пробуем использовать его
-                    updateStatus('Found session code: ' + sessionCode);
-                    frame.src = `https://belabeu-e7061ee8ef78.herokuapp.com/SessionStartLinks/${sessionCode}`;
-                } else {
-                    // Если ничего не нашли, просто загружаем демо страницу
-                    updateStatus('Could not find direct link, loading demo page...');
-                    frame.src = 'https://belabeu-e7061ee8ef78.herokuapp.com/demo/dsst?test=1';
+                // Проверяем ссылку на session-wide demo
+                if (link.textContent.includes('Session-wide demo link') || 
+                    link.href.includes('/join/') || 
+                    link.parentElement.textContent.includes('Session-wide demo link')) {
+                    debug('Found target link! Clicking...');
+                    link.click(); // Имитируем клик по ссылке
+                    updateStatus('Clicking on Session-wide demo link...');
+                    return true;
                 }
             }
-        })
-        .catch(error => {
-            updateStatus('Error: ' + error.message);
-            console.error('Error:', error);
-            // В случае ошибки загружаем обычную демо страницу
-            frame.src = 'https://belabeu-e7061ee8ef78.herokuapp.com/demo/dsst?test=1';
-        });
+            
+            // Ищем конкретно по тексту на странице
+            const sessionWideText = iframeDoc.body.innerHTML.indexOf('Session-wide demo link');
+            if (sessionWideText > -1) {
+                debug('Found Session-wide text but could not click link directly');
+                
+                // Извлекаем URL из HTML вокруг этого текста
+                const htmlAroundLink = iframeDoc.body.innerHTML.substring(sessionWideText - 200, sessionWideText + 200);
+                const extractedUrl = findSessionWideLink(htmlAroundLink);
+                
+                if (extractedUrl) {
+                    debug('Extracted URL from HTML: ' + extractedUrl);
+                    frame.src = extractedUrl;
+                    return true;
+                }
+            }
+            
+            debug('Could not find or click session-wide link');
+            return false;
+        } catch (e) {
+            debug('Error in tryClickSessionWideLink: ' + e.message);
+            return false;
+        }
+    }
+    
+    // Функция для перехода к эксперименту
+    function navigateToExperiment() {
+        debug('Starting experiment navigation');
+        
+        // Сначала загружаем страницу с демо
+        frame.src = 'https://belabeu-e7061ee8ef78.herokuapp.com/demo/dsst?test=1';
+        updateStatus('Loading demo page...');
+        
+        // После загрузки фрейма пытаемся найти и кликнуть по нужной ссылке
+        frame.onload = function() {
+            debug('Demo page loaded in iframe');
+            
+            // Проверяем URL - если уже перешли к эксперименту, показываем его
+            if (frame.src.includes('/join/') || frame.src.includes('SessionStartLinks')) {
+                debug('Already redirected to experiment');
+                updateStatus('Experiment loaded successfully');
+                loadingOverlay.style.display = 'none';
+                return;
+            }
+            
+            // Пробуем найти ссылку в iframe и кликнуть по ней
+            const clickSuccess = tryClickSessionWideLink();
+            
+            // Если не смогли кликнуть, пробуем альтернативный метод через fetch
+            if (!clickSuccess) {
+                debug('Click failed, trying fetch method');
+                
+                fetch('https://belabeu-e7061ee8ef78.herokuapp.com/demo/dsst?test=1', {
+                    method: 'GET',
+                    credentials: 'include',
+                    headers: {
+                        'Accept': 'text/html'
+                    }
+                })
+                .then(response => {
+                    debug('Fetch response status: ' + response.status);
+                    if (response.ok) {
+                        return response.text();
+                    } else {
+                        throw new Error('Fetch failed: ' + response.status);
+                    }
+                })
+                .then(html => {
+                    debug('Fetch response received, length: ' + html.length);
+                    
+                    // Ищем session-wide link в ответе
+                    const sessionWideLink = findSessionWideLink(html);
+                    
+                    if (sessionWideLink) {
+                        debug('Found session-wide link in fetch response');
+                        updateStatus('Found experiment link, starting...');
+                        frame.src = sessionWideLink;
+                    } else {
+                        debug('No session-wide link found in fetch response');
+                        
+                        // Если не нашли, пробуем извлечь session code
+                        const sessionCode = extractSessionCode(html);
+                        
+                        if (sessionCode) {
+                            debug('Found session code in fetch response');
+                            updateStatus('Found session code, starting experiment...');
+                            frame.src = `https://belabeu-e7061ee8ef78.herokuapp.com/SessionStartLinks/${sessionCode}`;
+                        } else {
+                            debug('No session code found either, setting manual timeout');
+                            
+                            // Если и это не помогло, устанавливаем таймаут для повторной попытки клика
+                            setTimeout(() => {
+                                debug('Timeout elapsed, trying click again');
+                                if (!tryClickSessionWideLink()) {
+                                    debug('All methods failed, showing demo page');
+                                    loadingOverlay.style.display = 'none';
+                                }
+                            }, 2000);
+                        }
+                    }
+                })
+                .catch(error => {
+                    debug('Fetch error: ' + error.message);
+                    // В случае ошибки, просто оставляем демо страницу
+                    loadingOverlay.style.display = 'none';
+                });
+            }
+        };
     }
     
     // Запускаем навигацию к эксперименту
     navigateToExperiment();
     
-    // Обработчик загрузки iframe
+    // Дополнительный обработчик загрузки iframe
     frame.addEventListener('load', () => {
-        // Если страница загрузилась успешно
-        if (frame.src !== 'about:blank') {
-            // Проверяем, содержит ли URL join или session, что указывает на успешное перенаправление
-            if (frame.src.includes('/join/') || frame.src.includes('SessionStartLinks')) {
-                updateStatus('Experiment loaded successfully');
-                // Скрываем оверлей загрузки
-                loadingOverlay.style.display = 'none';
+        debug('Frame load event triggered: ' + frame.src);
+        
+        // Если страница загрузилась и это ссылка на эксперимент
+        if (frame.src !== 'about:blank' && 
+            (frame.src.includes('/join/') || 
+             frame.src.includes('SessionStartLinks'))) {
+            debug('Experiment URL detected, hiding overlay');
+            updateStatus('Experiment loaded successfully');
+            loadingOverlay.style.display = 'none';
                 
-                // Если это режим split screen, корректируем высоту
-                if (frame.src.includes('SessionSplitScreen')) {
-                    frame.style.height = '1800px';
-                    frame.style.top = '-900.5px';
-                }
-            } else {
-                // Если загруженная страница - это интерфейс oTree
-                try {
-                    const iframeDocument = frame.contentDocument || frame.contentWindow.document;
-                    // Пытаемся найти session-wide link на загруженной странице
-                    if (iframeDocument.body.innerHTML.includes('/join/')) {
-                        const sessionWideLink = findSessionWideLink(iframeDocument.body.innerHTML);
-                        if (sessionWideLink) {
-                            updateStatus('Found session-wide link in loaded page, redirecting...');
-                            frame.src = sessionWideLink;
-                        } else {
-                            // Пытаемся найти кнопку и кликнуть по ней
-                            const links = iframeDocument.querySelectorAll('a');
-                            for (const link of links) {
-                                if (link.textContent.includes('Session-wide') || link.href.includes('/join/')) {
-                                    updateStatus('Found session link, clicking...');
-                                    link.click();
-                                    return;
-                                }
-                            }
-                            // Если не нашли ссылку, скрываем оверлей загрузки
-                            loadingOverlay.style.display = 'none';
-                        }
-                    } else {
-                        // Если не нашли ссылку, скрываем оверлей загрузки
-                        loadingOverlay.style.display = 'none';
-                    }
-                } catch (e) {
-                    // Cross-origin ошибка, просто скрываем оверлей загрузки
-                    console.log('Cannot access iframe content due to same-origin policy:', e);
-                    loadingOverlay.style.display = 'none';
-                }
+            // Если это режим split screen, корректируем высоту
+            if (frame.src.includes('SessionSplitScreen')) {
+                debug('Split screen mode detected, adjusting height');
+                frame.style.height = '1800px';
+                frame.style.top = '-900.5px';
             }
         }
     });
@@ -200,10 +286,11 @@ document.addEventListener('DOMContentLoaded', () => {
     window.addEventListener('message', function(event) {
         // Проверяем источник сообщения
         if (event.origin === "https://belabeu-e7061ee8ef78.herokuapp.com") {
-            console.log('Got message from iframe:', event.data);
+            debug('Got message from iframe: ' + JSON.stringify(event.data));
             
             // Если получили URL или статус ready, скрываем оверлей загрузки
             if (event.data && (event.data.status === 'ready' || event.data.location)) {
+                debug('Received ready status from iframe');
                 loadingOverlay.style.display = 'none';
             }
         }
