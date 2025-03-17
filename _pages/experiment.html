@@ -201,40 +201,6 @@ body {
 }
 </style>
 
-<!-- Define functions in the global scope first to avoid reference errors -->
-<script>
-// Utility functions - defined globally before any HTML tries to use them
-function showTab(tabId) {
-    // Hide all tabs
-    document.querySelectorAll('.tab-content').forEach(tab => {
-        tab.classList.remove('active');
-    });
-    
-    // Show selected tab
-    document.getElementById(tabId).classList.add('active');
-    
-    // Update tab buttons
-    document.querySelectorAll('.tab').forEach(tab => {
-        tab.classList.remove('active');
-    });
-    
-    document.querySelector(`.tab[onclick="showTab('${tabId}')"]`).classList.add('active');
-}
-
-function toggleDebugPanel(panelId) {
-    const panel = document.getElementById(panelId);
-    if (panel.style.display === 'block') {
-        panel.style.display = 'none';
-    } else {
-        panel.style.display = 'block';
-    }
-}
-
-// Make functions available globally
-window.showTab = showTab;
-window.toggleDebugPanel = toggleDebugPanel;
-</script>
-
 <div class="experiment-container">
     <h2>oTree Experiment Debugger</h2>
     
@@ -243,10 +209,10 @@ window.toggleDebugPanel = toggleDebugPanel;
     </div>
     
     <div class="tab-container">
-        <div class="tab active" onclick="showTab('method1')">Method 1: XMLHttpRequest</div>
-        <div class="tab" onclick="showTab('method2')">Method 2: Fetch API</div>
-        <div class="tab" onclick="showTab('method3')">Method 3: Direct Links</div>
-        <div class="tab" onclick="showTab('method4')">Method 4: iFrame Test</div>
+        <button class="tab active" id="tab-method1">Method 1: XMLHttpRequest</button>
+        <button class="tab" id="tab-method2">Method 2: Fetch API</button>
+        <button class="tab" id="tab-method3">Method 3: Direct Links</button>
+        <button class="tab" id="tab-method4">Method 4: iFrame Test</button>
     </div>
     
     <div id="method1" class="tab-content active">
@@ -257,7 +223,7 @@ window.toggleDebugPanel = toggleDebugPanel;
         <button class="experiment-button" id="xhrButton">Get Session Link (XMLHttpRequest)</button>
         <div id="xhrStatus" class="status"></div>
         
-        <span class="debug-toggle" onclick="toggleDebugPanel('xhrDebug')">Show/Hide Debug Panel</span>
+        <button class="debug-toggle" id="toggle-xhrDebug">Show/Hide Debug Panel</button>
         
         <div id="xhrDebug" class="debug-panel">
             <h3>Debug Information (XMLHttpRequest)</h3>
@@ -291,7 +257,7 @@ window.toggleDebugPanel = toggleDebugPanel;
         
         <div id="fetchStatus" class="status"></div>
         
-        <span class="debug-toggle" onclick="toggleDebugPanel('fetchDebug')">Show/Hide Debug Panel</span>
+        <button class="debug-toggle" id="toggle-fetchDebug">Show/Hide Debug Panel</button>
         
         <div id="fetchDebug" class="debug-panel">
             <h3>Debug Information (Fetch)</h3>
@@ -339,7 +305,7 @@ window.toggleDebugPanel = toggleDebugPanel;
             <iframe id="debugIframe" style="width: 100%; height: 100%; border: none;" src="about:blank"></iframe>
         </div>
         
-        <span class="debug-toggle" onclick="toggleDebugPanel('iframeDebug')">Show/Hide Debug Panel</span>
+        <button class="debug-toggle" id="toggle-iframeDebug">Show/Hide Debug Panel</button>
         
         <div id="iframeDebug" class="debug-panel">
             <h3>iFrame Debug Information</h3>
@@ -349,95 +315,174 @@ window.toggleDebugPanel = toggleDebugPanel;
 </div>
 
 <script>
-// Utility functions
-function updateStatus(elementId, message, isLoading = false, isError = false) {
-    const statusEl = document.getElementById(elementId);
+// Simple direct tab switching function - no delegation
+function switchTab(tabId) {
+    console.log('Switching to tab:', tabId);
     
-    if (isLoading) {
-        statusEl.innerHTML = message + ' <span class="loading">⟳</span>';
+    // Hide all tab contents
+    document.querySelectorAll('.tab-content').forEach(content => {
+        content.classList.remove('active');
+    });
+    
+    // Show the selected tab content
+    document.getElementById(tabId).classList.add('active');
+    
+    // Update tab buttons
+    document.querySelectorAll('.tab').forEach(tab => {
+        tab.classList.remove('active');
+    });
+    
+    // Make the clicked tab button active
+    document.getElementById('tab-' + tabId).classList.add('active');
+    
+    console.log('Tab switched to:', tabId);
+}
+
+// Simple toggle function - no delegation
+function togglePanel(panelId) {
+    console.log('Toggling panel:', panelId);
+    
+    const panel = document.getElementById(panelId);
+    if (panel.style.display === 'block') {
+        panel.style.display = 'none';
+        console.log('Panel hidden:', panelId);
     } else {
-        statusEl.textContent = message;
+        panel.style.display = 'block';
+        console.log('Panel shown:', panelId);
     }
-    
-    statusEl.style.color = isError ? '#e74c3c' : '#666';
-    console.log(`[${elementId}] ${message}`);
-}
-
-// Function to extract links using multiple patterns
-function extractLinks(html) {
-    const links = [];
-    
-    // Search for join links
-    const joinLinkRegex = /https:\/\/belabeu-e7061ee8ef78\.herokuapp\.com\/join\/([a-z0-9]+)/g;
-    let match;
-    while ((match = joinLinkRegex.exec(html)) !== null) {
-        links.push({
-            type: 'join',
-            url: match[0],
-            code: match[1]
-        });
-    }
-    
-    // Search for session start links
-    const startLinkRegex = /SessionStartLinks\/([a-z0-9]+)/g;
-    while ((match = startLinkRegex.exec(html)) !== null) {
-        links.push({
-            type: 'session-start',
-            url: `https://belabeu-e7061ee8ef78.herokuapp.com/SessionStartLinks/${match[1]}`,
-            code: match[1]
-        });
-    }
-    
-    // Search for session-wide demo links (with href attribute)
-    const sessionWideDemoRegex = /href=["']([^"']*\/room\/[^"']*)["'][^>]*>Session-wide demo link/g;
-    while ((match = sessionWideDemoRegex.exec(html)) !== null) {
-        links.push({
-            type: 'session-wide-demo',
-            url: match[1],
-            code: 'demo'
-        });
-    }
-    
-    return links;
-}
-
-function highlightInHTML(html, links) {
-    let highlightedHTML = html;
-    
-    // Escape HTML for display
-    highlightedHTML = highlightedHTML
-        .replace(/&/g, '&amp;')
-        .replace(/</g, '&lt;')
-        .replace(/>/g, '&gt;');
-    
-    // Highlight all found links
-    links.forEach(link => {
-        const regex = new RegExp(link.url.replace(/[-\/\\^$*+?.()|[\]{}]/g, '\\$&'), 'g');
-        highlightedHTML = highlightedHTML.replace(regex, `<span class="highlight">${link.url}</span>`);
-    });
-    
-    return highlightedHTML;
-}
-
-function displayLinks(containerElementId, links) {
-    const container = document.getElementById(containerElementId);
-    
-    if (links.length === 0) {
-        container.innerHTML = '<p>No links found in the response.</p>';
-        return;
-    }
-    
-    let html = '<ul>';
-    links.forEach(link => {
-        html += `<li><strong>${link.type}:</strong> <a href="${link.url}" target="_blank">${link.url}</a> (Code: ${link.code})</li>`;
-    });
-    html += '</ul>';
-    
-    container.innerHTML = html;
 }
 
 // Wait for DOM to be fully loaded before attaching event listeners
-document.addEventListener('DOMContentLoaded', function() {
+window.addEventListener('load', function() {
+    console.log('Window loaded, initializing event handlers');
+    
+    // Setup tab switching
+    document.getElementById('tab-method1').addEventListener('click', function() {
+        switchTab('method1');
+    });
+    
+    document.getElementById('tab-method2').addEventListener('click', function() {
+        switchTab('method2');
+    });
+    
+    document.getElementById('tab-method3').addEventListener('click', function() {
+        switchTab('method3');
+    });
+    
+    document.getElementById('tab-method4').addEventListener('click', function() {
+        switchTab('method4');
+    });
+    
+    // Setup debug panel toggles
+    document.getElementById('toggle-xhrDebug').addEventListener('click', function() {
+        togglePanel('xhrDebug');
+    });
+    
+    document.getElementById('toggle-fetchDebug').addEventListener('click', function() {
+        togglePanel('fetchDebug');
+    });
+    
+    document.getElementById('toggle-iframeDebug').addEventListener('click', function() {
+        togglePanel('iframeDebug');
+    });
+    
+    // Utility functions
+    function updateStatus(elementId, message, isLoading = false, isError = false) {
+        const statusEl = document.getElementById(elementId);
+        
+        if (isLoading) {
+            statusEl.innerHTML = message + ' <span class="loading">⟳</span>';
+        } else {
+            statusEl.textContent = message;
+        }
+        
+        statusEl.style.color = isError ? '#e74c3c' : '#666';
+        console.log(`[${elementId}] ${message}`);
+    }
+
+    // Function to extract links using multiple patterns
+    function extractLinks(html) {
+        const links = [];
+        
+        // Search for join links
+        const joinLinkRegex = /https:\/\/belabeu-e7061ee8ef78\.herokuapp\.com\/join\/([a-z0-9]+)/g;
+        let match;
+        while ((match = joinLinkRegex.exec(html)) !== null) {
+            links.push({
+                type: 'join',
+                url: match[0],
+                code: match[1]
+            });
+        }
+        
+        // Search for session start links
+        const startLinkRegex = /SessionStartLinks\/([a-z0-9]+)/g;
+        while ((match = startLinkRegex.exec(html)) !== null) {
+            links.push({
+                type: 'session-start',
+                url: `https://belabeu-e7061ee8ef78.herokuapp.com/SessionStartLinks/${match[1]}`,
+                code: match[1]
+            });
+        }
+        
+        // Search for session-wide demo links (with href attribute)
+        const sessionWideDemoRegex = /href=["']([^"']*\/room\/[^"']*)["'][^>]*>Session-wide demo link/g;
+        while ((match = sessionWideDemoRegex.exec(html)) !== null) {
+            links.push({
+                type: 'session-wide-demo',
+                url: match[1],
+                code: 'demo'
+            });
+        }
+        
+        // Additional regex for other potential link formats
+        const roomRegex = /https:\/\/belabeu-e7061ee8ef78\.herokuapp\.com\/room\/([a-z0-9]+)/g;
+        while ((match = roomRegex.exec(html)) !== null) {
+            links.push({
+                type: 'room',
+                url: match[0],
+                code: match[1]
+            });
+        }
+        
+        return links;
+    }
+
+    function highlightInHTML(html, links) {
+        let highlightedHTML = html;
+        
+        // Escape HTML for display
+        highlightedHTML = highlightedHTML
+            .replace(/&/g, '&amp;')
+            .replace(/</g, '&lt;')
+            .replace(/>/g, '&gt;');
+        
+        // Highlight all found links
+        links.forEach(link => {
+            const regex = new RegExp(link.url.replace(/[-\/\\^$*+?.()|[\]{}]/g, '\\$&'), 'g');
+            highlightedHTML = highlightedHTML.replace(regex, `<span class="highlight">${link.url}</span>`);
+        });
+        
+        return highlightedHTML;
+    }
+
+    function displayLinks(containerElementId, links) {
+        const container = document.getElementById(containerElementId);
+        
+        if (links.length === 0) {
+            container.innerHTML = '<p>No links found in the response.</p>';
+            return;
+        }
+        
+        let html = '<ul>';
+        links.forEach(link => {
+            html += `<li><strong>${link.type}:</strong> <a href="${link.url}" target="_blank">${link.url}</a> (Code: ${link.code})</li>`;
+        });
+        html += '</ul>';
+        
+        container.innerHTML = html;
+    }
+
     // Method 1: XMLHttpRequest
     document.getElementById('xhrButton').addEventListener('click', function() {
         const button = this;
@@ -472,6 +517,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     // If we found a session-wide demo link, create a button to open it
                     const sessionLink = links.find(link => link.type === 'session-wide-demo') || 
                                         links.find(link => link.type === 'join') || 
+                                        links.find(link => link.type === 'room') ||
                                         links[0];
                     
                     if (sessionLink) {
@@ -483,7 +529,7 @@ document.addEventListener('DOMContentLoaded', function() {
                         };
                         
                         const container = document.getElementById('xhrStatus').parentNode;
-                        container.insertBefore(linkButton, document.getElementById('xhrDebug'));
+                        container.insertBefore(linkButton, document.getElementById('toggle-xhrDebug'));
                     }
                 } else {
                     updateStatus('xhrStatus', 'No session links found in the response.', false, true);
@@ -557,6 +603,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 // If we found a session-wide demo link, create a button to open it
                 const sessionLink = links.find(link => link.type === 'session-wide-demo') || 
                                     links.find(link => link.type === 'join') || 
+                                    links.find(link => link.type === 'room') ||
                                     links[0];
                 
                 if (sessionLink) {
@@ -568,7 +615,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     };
                     
                     const container = document.getElementById('fetchStatus').parentNode;
-                    container.insertBefore(linkButton, document.getElementById('fetchDebug'));
+                    container.insertBefore(linkButton, document.getElementById('toggle-fetchDebug'));
                 }
             } else {
                 updateStatus('fetchStatus', 'No session links found in the response.', false, true);
@@ -678,5 +725,7 @@ document.addEventListener('DOMContentLoaded', function() {
             document.getElementById('iframeDebug').style.display = 'block';
         }
     });
+    
+    console.log('All event handlers initialized');
 });
 </script>
