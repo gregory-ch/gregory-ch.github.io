@@ -5,36 +5,179 @@ permalink: /experiment/
 author_profile: true
 ---
 
+<style>
+body {
+    overflow: auto;
+}
+
+.loading-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(255, 255, 255, 0.9);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.spinner {
+    border: 5px solid #f3f3f3;
+    border-top: 5px solid #3498db;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    animation: spin 1s linear infinite;
+    margin-bottom: 20px;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+</style>
+
 <div style="text-align: center; padding: 20px;">
-    <iframe 
-        id="experimentFrame"
-        src="https://belabeu-e7061ee8ef78.herokuapp.com/demo/dsst?test=1"
-        style="width: 100%; height: 800px; border: none; border-radius: 4px;"
-    ></iframe>
+    <div id="frameContainer" style="height: 1400px; overflow: auto; position: relative; width: 800px; margin: 0 auto;">
+        <div id="loadingOverlay" class="loading-overlay">
+            <div class="spinner"></div>
+            <p>Loading experiment...</p>
+            <p id="status">Initialising connection to server...</p>
+        </div>
+        <iframe 
+            id="experimentFrame"
+            src="https://belabeu-e7061ee8ef78.herokuapp.com/demo/dsst?test=1"
+            style="width: 800px; height: 2000px; border: none; border-radius: 4px; position: absolute; top: 0; left: 0;"
+        ></iframe>
+    </div>
 </div>
 
 <script>
-// Функция для извлечения кода сессии
 function extractSessionCode(text) {
-    const match = text.match(/SessionStartLinks\/([a-z0-9]+)/);
-    return match ? match[1] : null;
+    const match = text.match(/SessionStartLinks\/([a-z0-9]+)"/);
+    if (match) {
+        console.log('Found session code:', match[1]);
+        return match[1];
+    }
+    return null;
 }
 
-// Получаем iframe
-const frame = document.getElementById('experimentFrame');
+function updateStatus(message) {
+    const statusElement = document.getElementById('status');
+    statusElement.textContent = message;
+    console.log('Status update:', message);
+}
 
-// Ждем секунду для получения сообщения с кодом сессии
-setTimeout(() => {
-    // Берем последнее сообщение с консоли
-    const testMessage = "Partitioned cookie or storage access was provided to 'https://belabeu-e7061ee8ef78.herokuapp.com/SessionStartLinks/9cuski2h'";
-    const sessionCode = extractSessionCode(testMessage);
+document.addEventListener('DOMContentLoaded', () => {
+    console.log('DOM loaded');
     
-    if (sessionCode) {
-        console.log('Found session code:', sessionCode);
-        // Создаем URL для split screen и открываем его
-        const splitScreenUrl = `https://belabeu-e7061ee8ef78.herokuapp.com/SessionSplitScreen/${sessionCode}`;
-        console.log('Opening split screen URL:', splitScreenUrl);
-        frame.src = splitScreenUrl;
-    }
-}, 1000);
+    const frame = document.getElementById('experimentFrame');
+    const loadingOverlay = document.getElementById('loadingOverlay');
+    let sessionCode = null;
+
+    // Test CORS with a simple fetch request
+    fetch('https://belabeu-e7061ee8ef78.herokuapp.com/demo', {
+        method: 'GET',
+        credentials: 'include',
+        headers: {
+            'Accept': 'text/html'
+        }
+    })
+    .then(response => {
+        if (response.ok) {
+            updateStatus('CORS connection successful!');
+        } else {
+            updateStatus('CORS connection failed: ' + response.status);
+        }
+        return response.text();
+    })
+    .then(html => {
+        const extractedSessionCode = extractSessionCode(html);
+        if (extractedSessionCode) {
+            sessionCode = extractedSessionCode;
+            updateStatus('Found session code: ' + sessionCode);
+            
+            // Redirect iframe to the session
+            frame.src = `https://belabeu-e7061ee8ef78.herokuapp.com/SessionStartLinks/${sessionCode}`;
+        }
+    })
+    .catch(error => {
+        updateStatus('Error connecting to server: ' + error.message);
+        console.error('Fetch error:', error);
+    });
+
+    // Отслеживаем сетевые запросы через Performance API
+    const observer = new PerformanceObserver((list) => {
+        list.getEntries().forEach((entry) => {
+            console.log('Resource loaded:', {
+                name: entry.name,
+                type: entry.entryType,
+                timing: entry.responseStart - entry.requestStart
+            });
+            
+            if (entry.name.includes('SessionStartLinks')) {
+                const extractedSessionCode = extractSessionCode(entry.name);
+                if (extractedSessionCode && !sessionCode) {
+                    sessionCode = extractedSessionCode;
+                    updateStatus('Found session in network request: ' + sessionCode);
+                    
+                    // Redirect iframe to the session
+                    frame.src = `https://belabeu-e7061ee8ef78.herokuapp.com/SessionStartLinks/${sessionCode}`;
+                }
+            }
+        });
+    });
+
+    observer.observe({ entryTypes: ['resource', 'navigation'] });
+
+    frame.addEventListener('load', () => {
+        // Hide loading overlay once frame is loaded
+        loadingOverlay.style.display = 'none';
+        
+        if (frame.src.includes('SessionSplitScreen')) {
+            frame.style.height = '1800px';
+            frame.style.top = '-900.5px';
+        }
+        
+        try {
+            // Try to access iframe content to check if session is available
+            // This might fail due to same-origin policy until CORS is properly set up
+            const iframeDocument = frame.contentDocument || frame.contentWindow.document;
+            const iframeHtml = iframeDocument.documentElement.outerHTML;
+            const extractedSessionCode = extractSessionCode(iframeHtml);
+            
+            if (extractedSessionCode && !sessionCode) {
+                sessionCode = extractedSessionCode;
+                updateStatus('Found session in iframe: ' + sessionCode);
+                
+                // Redirect iframe to the session
+                frame.src = `https://belabeu-e7061ee8ef78.herokuapp.com/SessionStartLinks/${sessionCode}`;
+            }
+        } catch (e) {
+            console.log('Cannot access iframe content due to same-origin policy:', e);
+        }
+    });
+
+    // Слушаем сообщения от iframe
+    window.addEventListener('message', function(event) {
+        // Проверяем источник сообщения
+        if (event.origin === "https://belabeu-e7061ee8ef78.herokuapp.com") {
+            console.log('Got message from iframe:', event.data);
+            
+            // Check if the message contains a session code
+            if (event.data && event.data.sessionCode) {
+                sessionCode = event.data.sessionCode;
+                updateStatus('Received session code from iframe: ' + sessionCode);
+                
+                // Redirect iframe to the session if needed
+                if (!frame.src.includes(sessionCode)) {
+                    frame.src = `https://belabeu-e7061ee8ef78.herokuapp.com/SessionStartLinks/${sessionCode}`;
+                }
+            }
+        }
+    });
+});
 </script> 
