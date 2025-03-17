@@ -63,27 +63,77 @@ body {
     <h2>oTree Experiment</h2>
     
     <div class="explanation">
-        <p>This page provides access to an experimental oTree study hosted on Heroku. Due to browser security policies (CORS), embedding the experiment directly in this page is not possible.</p>
+        <p>This page provides access to an experimental oTree study hosted on Heroku. Click the button below to start the experiment in a new tab.</p>
     </div>
     
-    <button id="startExperiment" class="experiment-button">Open Experiment in New Tab</button>
+    <button id="startExperiment" class="experiment-button" onclick="openExperiment()">Start Experiment Now</button>
     
     <div class="info-block">
-        <h3>What to expect:</h3>
-        <p>When you click the button above, a new tab will open with the oTree demo page. On that page:</p>
-        <ol>
-            <li>Look for the "Session-wide demo link" option</li>
-            <li>Click on that link to start the experiment</li>
-            <li>The experiment will run in full screen in the new tab</li>
-        </ol>
+        <h3>About the experiment:</h3>
+        <p>When you click the button above, a new tab will open with the oTree experiment:</p>
+        <ul>
+            <li>The experiment will load automatically</li>
+            <li>You'll be able to participate in the full-screen interface</li>
+            <li>A new session is created each time you start the experiment</li>
+        </ul>
     </div>
 </div>
 
 <script>
-document.addEventListener('DOMContentLoaded', () => {
-    // Обработчик для кнопки
-    document.getElementById('startExperiment').addEventListener('click', () => {
-        window.open('https://belabeu-e7061ee8ef78.herokuapp.com/demo/dsst?test=1', '_blank');
-    });
+// Функция для открытия эксперимента
+function openExperiment() {
+    console.log("Button clicked, attempting to open experiment...");
+    try {
+        // Создаем новую сессию или открываем существующую
+        fetch('https://belabeu-e7061ee8ef78.herokuapp.com/demo/dsst?test=1', { 
+            method: 'GET',
+            mode: 'no-cors'
+        })
+        .then(() => {
+            // Сначала открываем основную страницу эксперимента
+            var experimentWindow = window.open('https://belabeu-e7061ee8ef78.herokuapp.com/demo/dsst?test=1', '_blank');
+            
+            if (experimentWindow) {
+                console.log("New window opened successfully");
+            } else {
+                console.error("Failed to open window - it may have been blocked by a popup blocker");
+                alert("The experiment window was blocked by your browser. Please allow popups for this site and try again.");
+            }
+        })
+        .catch(e => {
+            console.error("Error in fetch:", e);
+            // Если fetch не сработал, всё равно пробуем открыть окно
+            window.open('https://belabeu-e7061ee8ef78.herokuapp.com/demo/dsst?test=1', '_blank');
+        });
+    } catch (e) {
+        console.error("Error opening experiment:", e);
+        alert("There was an error opening the experiment: " + e.message);
+    }
+}
+
+// Подключаем обработчик и к событию DOMContentLoaded для надежности
+document.addEventListener('DOMContentLoaded', function() {
+    console.log("DOM fully loaded");
+    var button = document.getElementById('startExperiment');
+    
+    if (button) {
+        console.log("Button found, attaching event listener");
+        button.addEventListener('click', openExperiment);
+    } else {
+        console.error("Button with ID 'startExperiment' not found");
+    }
 });
+
+// Дополнительная проверка документа в случае, если DOMContentLoaded уже произошел
+if (document.readyState === 'complete' || document.readyState === 'interactive') {
+    console.log("Document already loaded, state:", document.readyState);
+    var button = document.getElementById('startExperiment');
+    
+    if (button) {
+        console.log("Button found on already loaded page, attaching event listener");
+        button.addEventListener('click', openExperiment);
+    } else {
+        console.error("Button with ID 'startExperiment' not found on already loaded page");
+    }
+}
 </script> 
