@@ -25,6 +25,10 @@ concurrency:
   group: "pages"
   cancel-in-progress: true
 
+env:
+  JEKYLL_ENV: production
+  BUNDLE_GEMFILE: ${{ github.workspace }}/Gemfile
+
 jobs:
   # Build job
   build-and-deploy:
@@ -33,66 +37,79 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
       
-      - name: Setup Ruby
-        uses: ruby/setup-ruby@v1
-        with:
-          ruby-version: '3.2' # Updated from 3.0 to resolve gem compatibility issues
-          bundler-cache: true # runs 'bundle install' and caches installed gems automatically
-          cache-version: 1 # Incremented to refresh the cache with new Ruby version
-      
-      # This step ensures RubyGems is at the latest version
-      - name: Update RubyGems
-        run: |
-          gem update --system
-          echo "RubyGems version: $(gem --version)"
-      
+      # Use the standard GitHub Pages action recommended approach
       - name: Setup Pages
         id: pages
         uses: actions/configure-pages@v4
+        
+      - name: Setup Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: '3.1' # Try a different Ruby version
+          bundler-cache: false # Disable for now, we'll handle manually
       
+      # Diagnostic step - show environment
+      - name: Environment Information
+        run: |
+          echo "Ruby version: $(ruby -v)"
+          echo "Gem version: $(gem -v)"
+          echo "Bundler version: $(bundle -v || echo 'Bundler not found')"
+          echo "Jekyll env: $JEKYLL_ENV"
+          echo "Working directory: $(pwd)"
+          echo "Gemfile location: $BUNDLE_GEMFILE"
+          ls -la
+          
+      # Update RubyGems and Bundler
+      - name: Update RubyGems and Bundler
+        run: |
+          gem update --system
+          gem install bundler -v "~> 2.4.0"
+          echo "Updated RubyGems to: $(gem -v)"
+          echo "Updated Bundler to: $(bundle -v)"
+
+      # Install dependencies with verbose output
+      - name: Install dependencies
+        run: |
+          echo "Installing dependencies..."
+          bundle config path vendor/bundle
+          bundle config set --local without 'development test'
+          bundle install --jobs 4 --retry 3 --verbose
+          echo "Bundle installed successfully"
+          
+      # Build the site
       - name: Build with Jekyll
-        # Outputs to the './_site' directory by default
-        run: bundle exec jekyll build --baseurl "${{ steps.pages.outputs.base_path }}"
-        env:
-          JEKYLL_ENV: production
-      
-      # Create and upload artifact manually
-      - name: Create Pages Artifact
         run: |
-          # Pack the _site directory into a tar archive
-          echo "Creating artifact from _site directory..."
-          tar --dereference --hard-dereference --directory _site/ -cf artifact.tar .
+          echo "Building site..."
+          bundle exec jekyll build --baseurl "${{ steps.pages.outputs.base_path }}" --verbose
+          echo "Site built successfully"
+          ls -la _site
           
-          # List the contents to verify
-          echo "Artifact created. Contents of _site directory:"
-          find _site -type f | sort
-      
-      # Use direct API upload
-      - name: Upload to GitHub Pages
-        id: deployment
+      # Diagnose if website generation failed
+      - name: Check build output
         run: |
-          # Get the current commit SHA
-          COMMIT_SHA=$(git rev-parse HEAD)
-          
-          # Configure deployment
-          echo "Configuring deployment for commit $COMMIT_SHA"
-          
-          # Set environment variables for GitHub Pages deployment
-          echo "GITHUB_SHA=$COMMIT_SHA" >> $GITHUB_ENV
-          echo "GITHUB_PAGES=true" >> $GITHUB_ENV
-          
-          # Prepare artifact for GitHub Pages
-          if [ -f "artifact.tar" ]; then
-            echo "Artifact exists, preparing for deployment"
-            echo "GITHUB_PAGES_ARTIFACT=artifact.tar" >> $GITHUB_ENV
-          else
-            echo "Error: artifact.tar not found!"
+          if [ ! -d "_site" ]; then
+            echo "ERROR: _site directory not created!"
             exit 1
           fi
-          
-          # Trigger GitHub Pages deployment
-          echo "::set-output name=page_url::https://gregory-ch.github.io"
-        
-      # The actual deployment
-      - name: Deploy to GitHub Pages
+          echo "Site files count: $(find _site -type f | wc -l)"
+      
+      # Create artifact
+      - name: Create Pages Artifact
+        run: |
+          echo "Creating artifact from _site directory..."
+          tar --dereference --hard-dereference --directory _site/ -cf artifact.tar .
+          echo "Artifact created successfully"
+      
+      # Optional: List contents of artifact to verify
+      - name: Verify artifact contents
+        run: |
+          echo "Listing artifact contents..."
+          tar -tf artifact.tar | head -n 20
+          echo "Total files in artifact: $(tar -tf artifact.tar | wc -l)"
+      
+      # Deploy to GitHub Pages
+      - name: Upload artifact for deployment
         uses: actions/deploy-pages@v2
+        with:
+          artifact_name: github-pages
+          timeout: 600000 # 10 minutes
