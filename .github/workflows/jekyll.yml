@@ -34,20 +34,19 @@ jobs:
       - name: Setup Ruby
         uses: ruby/setup-ruby@v1
         with:
-          ruby-version: '3.2'  # Using a newer Ruby version that comes with newer RubyGems
-          bundler-cache: false  # Disable bundler cache initially to update RubyGems
+          ruby-version: '3.1'  # Using 3.1 instead of 3.2 for better compatibility
+          bundler-cache: false  # Disable bundler cache initially
       
       - name: Update RubyGems and Bundler
         run: |
           gem update --system
-          gem install bundler
+          gem uninstall bundler --all
+          gem install bundler -v "~> 2.4.0"
           echo "RubyGems version: $(gem --version)"
           echo "Bundler version: $(bundle --version)"
           
       - name: Install Dependencies
-        run: |
-          bundle config set --local path 'vendor/bundle'
-          bundle install
+        run: bundle install
         
       - name: Build with Jekyll
         run: bundle exec jekyll build
