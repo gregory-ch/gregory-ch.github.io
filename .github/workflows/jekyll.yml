@@ -46,9 +46,20 @@ jobs:
         run: bundle exec jekyll build --baseurl "${{ steps.pages.outputs.base_path }}"
         env:
           JEKYLL_ENV: production
-      - name: Upload artifact
-        # Automatically uploads an artifact from the './_site' directory by default
-        uses: actions/upload-pages-artifact@v2
+      # Add explicit upload-artifact step
+      - name: Archive site artifact
+        uses: actions/upload-artifact@v2  # Using v2 instead of v3
+        with:
+          name: github-pages
+          path: ./_site
+          if-no-files-found: error
+      # Use an alternative approach for uploading pages artifact
+      - name: Upload Pages artifact
+        run: |
+          # Pack the _site directory into a tar archive
+          tar --dereference --hard-dereference --directory _site/ -cf artifact.tar .
+          # Upload the tar artifact
+          echo "GITHUB_PAGES_ARTIFACT=artifact.tar" >> $GITHUB_ENV
 
   # Deployment job
   deploy:
