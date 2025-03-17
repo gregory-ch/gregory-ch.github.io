@@ -34,20 +34,24 @@ jobs:
       - name: Setup Ruby
         uses: ruby/setup-ruby@v1
         with:
-          ruby-version: '3.0'  # Using 3.0 for better compatibility
+          ruby-version: '3.1'
           bundler-cache: false  # Disable bundler cache initially
       
       - name: Setup Bundler and Dependencies
         run: |
-          gem update --system
+          gem update --system '3.4.22'  # Specify a version known to work with Ruby 3.1
           gem uninstall bundler --all
-          gem install bundler -v "~> 2.3.0"
+          gem install bundler -v '2.3.26'  # Use a specific version to avoid any uncertainty
           echo "RubyGems version: $(gem --version)"
           echo "Bundler version: $(bundle --version)"
-          bundle install --jobs 4 --retry 3
+          rm -f Gemfile.lock  # Remove lock file to prevent dependency issues
+          bundle config set --local path 'vendor/bundle'
+          bundle install --jobs 4 --retry 3 --binstubs
           
       - name: Build with Jekyll
-        run: bundle exec jekyll build
+        run: |
+          # Use the exact path to Jekyll to avoid version conflicts
+          bundle exec vendor/bundle/ruby/3.1.0/bin/jekyll build
         env:
           JEKYLL_ENV: production
           
