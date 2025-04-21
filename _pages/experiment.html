@@ -106,7 +106,7 @@ body {
     
     <p>Click the button below to generate a new session link for the oTree experiment:</p>
     
-    <button id="generate-button" class="button" onclick="generateExperimentLink()">Generate Session Link</button>
+    <button id="generate-button" class="button">Generate Session Link</button>
     
     <div id="status-message"></div>
     
@@ -115,157 +115,211 @@ body {
     <div id="result-container">
         <h3>Your Session Link:</h3>
         <a id="result-link" href="#" target="_blank" class="result-link"></a>
-        <button id="open-button" class="button green-button" onclick="openInNewTab()">Open in New Tab</button>
+        <button id="open-button" class="button green-button">Open in New Tab</button>
     </div>
 </div>
 
-<script>
-// Глобальная переменная для хранения найденной ссылки
-var sessionUrl = '';
-
-// Функция для установки статуса
-function setStatus(message, loading) {
-    var statusElement = document.getElementById('status-message');
+<script type="text/javascript">
+(function() {
+    // Глобальная переменная для хранения найденной ссылки
+    var sessionUrl = '';
     
-    if (loading) {
-        statusElement.innerHTML = message + ' <span class="spinner"></span>';
-    } else {
-        statusElement.textContent = message;
-    }
-}
-
-// Функция для отображения ошибки
-function showError(message) {
-    var errorElement = document.getElementById('error-message');
-    errorElement.textContent = message;
-    errorElement.style.display = 'block';
-    
-    setStatus('Failed to generate link', false);
-}
-
-// Функция для отображения результата
-function showResult(link) {
-    var resultContainer = document.getElementById('result-container');
-    var resultLink = document.getElementById('result-link');
-    
-    sessionUrl = link;
-    resultLink.href = link;
-    resultLink.textContent = link;
-    resultContainer.style.display = 'block';
-    
-    setStatus('Session link successfully generated!', false);
-}
-
-// Функция для открытия ссылки в новом окне
-function openInNewTab() {
-    if (sessionUrl) {
-        window.open(sessionUrl, '_blank');
-    }
-}
-
-// Функция для поиска ссылки в HTML
-function findLinkInHtml(html) {
-    console.log("Got HTML response, length: " + html.length);
-    console.log("HTML preview: " + html.substring(0, 200));
-    
-    // Попробуем найти ссылку по разным шаблонам
-    var patterns = [
-        /href=["']([^"']*\/room\/[^"']*)["'][^>]*>Session-wide demo link/i,
-        /https:\/\/belabeu-e7061ee8ef78\.herokuapp\.com\/join\/([a-z0-9]+)/i,
-        /https:\/\/belabeu-e7061ee8ef78\.herokuapp\.com\/room\/([a-z0-9]+)/i,
-        /SessionStartLinks\/([a-z0-9]+)/i
-    ];
-    
-    // Проверяем каждый шаблон
-    for (var i = 0; i < patterns.length; i++) {
-        var match = html.match(patterns[i]);
-        if (match) {
-            if (i === 0 && match[1]) { // Session-wide demo link
-                console.log("Found session link (pattern " + i + "): " + match[1]);
-                return match[1];
-            } else if (i === 3 && match[1]) { // SessionStartLinks
-                var fullLink = "https://belabeu-e7061ee8ef78.herokuapp.com/SessionStartLinks/" + match[1];
-                console.log("Found session link (pattern " + i + "): " + fullLink);
-                return fullLink;
-            } else if (match[0]) { // join or room links
-                console.log("Found session link (pattern " + i + "): " + match[0]);
-                return match[0];
-            }
-        }
-    }
-    
-    // Если ничего не нашли, ищем любые URL
-    var urlPattern = /https:\/\/belabeu-e7061ee8ef78\.herokuapp\.com\/[a-z0-9\/\-_?=&]+/gi;
-    var allUrls = html.match(urlPattern);
-    
-    if (allUrls && allUrls.length > 0) {
-        console.log("Found URLs: ", allUrls);
+    // Функция для установки статуса
+    function setStatus(message, loading) {
+        var statusElement = document.getElementById('status-message');
         
-        // Ищем наиболее подходящую ссылку
-        for (var j = 0; j < allUrls.length; j++) {
-            var url = allUrls[j];
-            if (url.includes('/room/') || url.includes('/join/') || url.includes('SessionStartLinks')) {
-                console.log("Selected most relevant URL: " + url);
-                return url;
-            }
-        }
-        
-        // Если не нашли подходящую, берем первую
-        console.log("Taking first URL found: " + allUrls[0]);
-        return allUrls[0];
-    }
-    
-    console.log("No links found in HTML");
-    return null;
-}
-
-// Основная функция для генерации ссылки
-function generateExperimentLink() {
-    // Сбрасываем UI
-    document.getElementById('error-message').style.display = 'none';
-    document.getElementById('result-container').style.display = 'none';
-    
-    // Показываем состояние загрузки
-    setStatus('Connecting to oTree server...', true);
-    
-    // Создаем AJAX-запрос
-    var xhr = new XMLHttpRequest();
-    xhr.open('GET', 'https://belabeu-e7061ee8ef78.herokuapp.com/demo/dsst?test=1', true);
-    
-    // Обработчик ответа
-    xhr.onload = function() {
-        if (xhr.status >= 200 && xhr.status < 300) {
-            console.log("Received response, status: " + xhr.status);
-            
-            // Ищем ссылку в HTML
-            var link = findLinkInHtml(xhr.responseText);
-            
-            if (link) {
-                showResult(link);
+        if (statusElement) {
+            if (loading) {
+                statusElement.innerHTML = message + ' <span class="spinner"></span>';
             } else {
-                showError("Could not find session link in the response.");
+                statusElement.textContent = message;
             }
-        } else {
-            showError("Server returned error: " + xhr.status);
         }
-    };
-    
-    // Обработчик ошибки
-    xhr.onerror = function() {
-        console.error("Network error occurred");
-        showError("Network error occurred. CORS may be blocking the request.");
-    };
-    
-    // Отправляем запрос
-    try {
-        xhr.send();
-        console.log("Request sent to oTree server");
-    } catch (error) {
-        console.error("Error sending request:", error);
-        showError("Error sending request: " + error.message);
     }
-}
-
-// Вывод сообщения при загрузке скрипта
-console.log("oTree experiment script loaded at " + new Date().toISOString());
+    
+    // Функция для отображения ошибки
+    function showError(message) {
+        var errorElement = document.getElementById('error-message');
+        
+        if (errorElement) {
+            errorElement.textContent = message;
+            errorElement.style.display = 'block';
+            
+            setStatus('Failed to generate link', false);
+        }
+    }
+    
+    // Функция для отображения результата
+    function showResult(link) {
+        var resultContainer = document.getElementById('result-container');
+        var resultLink = document.getElementById('result-link');
+        
+        if (resultContainer && resultLink) {
+            sessionUrl = link;
+            resultLink.href = link;
+            resultLink.textContent = link;
+            resultContainer.style.display = 'block';
+            
+            setStatus('Session link successfully generated!', false);
+        }
+    }
+    
+    // Функция для открытия ссылки в новом окне
+    function openInNewTab() {
+        if (sessionUrl) {
+            window.open(sessionUrl, '_blank');
+        }
+    }
+    
+    // Функция для поиска ссылки в HTML
+    function findLinkInHtml(html) {
+        console.log("Got HTML response, length: " + html.length);
+        console.log("HTML preview: " + html.substring(0, 200));
+        
+        // Попробуем найти ссылку по разным шаблонам
+        var patterns = [
+            /href=["']([^"']*\/room\/[^"']*)["'][^>]*>Session-wide demo link/i,
+            /https:\/\/belabeu-e7061ee8ef78\.herokuapp\.com\/join\/([a-z0-9]+)/i,
+            /https:\/\/belabeu-e7061ee8ef78\.herokuapp\.com\/room\/([a-z0-9]+)/i,
+            /SessionStartLinks\/([a-z0-9]+)/i
+        ];
+        
+        // Проверяем каждый шаблон
+        for (var i = 0; i < patterns.length; i++) {
+            var match = html.match(patterns[i]);
+            if (match) {
+                if (i === 0 && match[1]) { // Session-wide demo link
+                    console.log("Found session link (pattern " + i + "): " + match[1]);
+                    return match[1];
+                } else if (i === 3 && match[1]) { // SessionStartLinks
+                    var fullLink = "https://belabeu-e7061ee8ef78.herokuapp.com/SessionStartLinks/" + match[1];
+                    console.log("Found session link (pattern " + i + "): " + fullLink);
+                    return fullLink;
+                } else if (match[0]) { // join or room links
+                    console.log("Found session link (pattern " + i + "): " + match[0]);
+                    return match[0];
+                }
+            }
+        }
+        
+        // Если ничего не нашли, ищем любые URL
+        var urlPattern = /https:\/\/belabeu-e7061ee8ef78\.herokuapp\.com\/[a-z0-9\/\-_?=&]+/gi;
+        var allUrls = html.match(urlPattern);
+        
+        if (allUrls && allUrls.length > 0) {
+            console.log("Found URLs: ", allUrls);
+            
+            // Ищем наиболее подходящую ссылку
+            for (var j = 0; j < allUrls.length; j++) {
+                var url = allUrls[j];
+                if (url.includes('/room/') || url.includes('/join/') || url.includes('SessionStartLinks')) {
+                    console.log("Selected most relevant URL: " + url);
+                    return url;
+                }
+            }
+            
+            // Если не нашли подходящую, берем первую
+            console.log("Taking first URL found: " + allUrls[0]);
+            return allUrls[0];
+        }
+        
+        console.log("No links found in HTML");
+        return null;
+    }
+    
+    // Основная функция для генерации ссылки
+    function generateExperimentLink() {
+        console.log("Generate button clicked");
+        
+        // Сбрасываем UI
+        var errorElement = document.getElementById('error-message');
+        var resultContainer = document.getElementById('result-container');
+        
+        if (errorElement) errorElement.style.display = 'none';
+        if (resultContainer) resultContainer.style.display = 'none';
+        
+        // Показываем состояние загрузки
+        setStatus('Connecting to oTree server...', true);
+        
+        // Создаем AJAX-запрос
+        var xhr = new XMLHttpRequest();
+        xhr.open('GET', 'https://belabeu-e7061ee8ef78.herokuapp.com/demo/dsst?test=1', true);
+        
+        // Обработчик ответа
+        xhr.onload = function() {
+            if (xhr.status >= 200 && xhr.status < 300) {
+                console.log("Received response, status: " + xhr.status);
+                
+                // Ищем ссылку в HTML
+                var link = findLinkInHtml(xhr.responseText);
+                
+                if (link) {
+                    showResult(link);
+                } else {
+                    showError("Could not find session link in the response.");
+                }
+            } else {
+                showError("Server returned error: " + xhr.status);
+            }
+        };
+        
+        // Обработчик ошибки
+        xhr.onerror = function() {
+            console.error("Network error occurred");
+            showError("Network error occurred. CORS may be blocking the request.");
+        };
+        
+        // Отправляем запрос
+        try {
+            xhr.send();
+            console.log("Request sent to oTree server");
+        } catch (error) {
+            console.error("Error sending request:", error);
+            showError("Error sending request: " + error.message);
+        }
+    }
+    
+    // Функция инициализации страницы
+    function initPage() {
+        console.log("Initializing page...");
+        
+        // Добавляем обработчики событий
+        var generateButton = document.getElementById('generate-button');
+        if (generateButton) {
+            generateButton.addEventListener('click', generateExperimentLink);
+            console.log("Added click handler to generate button");
+        } else {
+            console.error("Generate button not found!");
+        }
+        
+        var openButton = document.getElementById('open-button');
+        if (openButton) {
+            openButton.addEventListener('click', openInNewTab);
+            console.log("Added click handler to open button");
+        } else {
+            console.error("Open button not found!");
+        }
+        
+        console.log("Page initialization complete");
+    }
+    
+    // Инициализация страницы
+    if (document.readyState === "complete" || document.readyState === "interactive") {
+        // DOM уже загружен
+        setTimeout(initPage, 1);
+    } else {
+        // DOM еще загружается
+        document.addEventListener("DOMContentLoaded", initPage);
+    }
+    
+    // Устанавливаем функции в глобальную область видимости для отладки
+    window.otreeApp = {
+        generateExperimentLink: generateExperimentLink,
+        findLinkInHtml: findLinkInHtml,
+        showResult: showResult,
+        openInNewTab: openInNewTab
+    };
+    
+    console.log("oTree experiment script loaded at " + new Date().toISOString());
+})();
 </script>
