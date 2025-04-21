@@ -78,11 +78,6 @@ analytics:
     tracking_id          :
 
 
-# JavaScript
-head_scripts:
-  - /assets/js/otree-experiment.js
-
-
 # Site Author
 author:
   name             : "Chernov Gregory"
