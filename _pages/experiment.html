@@ -110,28 +110,41 @@ body {
     margin: 10px 0;
 }
 
-.tab-container {
-    margin-top: 20px;
+.debug-panel {
+    margin: 20px 0;
+    padding: 15px;
+    border: 2px solid #f39c12;
+    border-radius: 6px;
+    background-color: #fffaed;
+    text-align: left;
+    display: none;
+}
+
+.debug-button {
+    background-color: #f39c12;
+    margin: 10px 0;
+}
+
+.debug-button:hover {
+    background-color: #e67e22;
+}
+
+.debug-actions {
     display: flex;
+    gap: 10px;
+    margin: 15px 0;
     flex-wrap: wrap;
 }
 
-.tab {
-    padding: 10px 20px;
-    cursor: pointer;
-    background-color: #f1f1f1;
-    border: 1px solid #ddd;
-    border-radius: 5px 5px 0 0;
-    margin-right: 5px;
+.debug-download {
+    background-color: #34495e;
 }
 
-.tab.active {
-    background-color: white;
-    font-weight: bold;
-    border-bottom: 2px solid #3498db;
+.debug-download:hover {
+    background-color: #2c3e50;
 }
 
-.console-output {
+pre {
     background-color: #2d2d2d;
     color: #f8f8f8;
     font-family: monospace;
@@ -140,25 +153,17 @@ body {
     margin-top: 10px;
     max-height: 300px;
     overflow: auto;
-    text-align: left;
+    font-size: 14px;
+}
+
+.error-message {
+    color: #e74c3c;
+    font-weight: bold;
+    padding: 10px;
+    background-color: #fde2e2;
+    border-radius: 4px;
+    margin: 10px 0;
     display: none;
-}
-
-.console-line {
-    margin: 5px 0;
-    line-height: 1.5;
-}
-
-.console-error {
-    color: #ff6b6b;
-}
-
-.console-success {
-    color: #69db7c;
-}
-
-.console-info {
-    color: #74c0fc;
 }
 </style>
 
@@ -169,9 +174,11 @@ body {
         <p>This page allows you to access an oTree experiment hosted on Heroku. Click the button below to automatically generate a session link:</p>
     </div>
     
-    <button id="generate-session" class="experiment-button">Generate Session Link</button>
+    <button id="generate-button" class="experiment-button">Generate Session Link</button>
     
     <div id="status"></div>
+    
+    <div class="error-message" id="error-message"></div>
     
     <div id="link-container">
         <p>Your experiment session is ready:</p>
@@ -192,34 +199,88 @@ body {
         </ol>
     </div>
     
-    <div class="tab-container">
-        <div id="tab-normal" class="tab active">Normal View</div>
-        <div id="tab-debug" class="tab">Debug View</div>
-    </div>
+    <button id="toggle-debug" class="experiment-button debug-button">Show Debug Information</button>
     
-    <div id="console-output" class="console-output">
-        <div class="console-info console-line">// Debug information will appear here when you generate a session</div>
+    <div id="debug-panel" class="debug-panel">
+        <h3>Debug Information</h3>
+        <div class="debug-actions">
+            <button id="xhr-test" class="experiment-button">Test XMLHttpRequest</button>
+            <button id="fetch-test" class="experiment-button">Test Fetch API</button>
+            <button id="download-logs" class="experiment-button debug-download">Download Debug Logs</button>
+            <button id="clear-logs" class="experiment-button">Clear Logs</button>
+        </div>
+        <h4>Console Output:</h4>
+        <pre id="debug-output">// Debug information will appear here</pre>
     </div>
 </div>
 
 <script>
-// Utility function for logging
-function log(message, type = 'info') {
-    // Add to console output div
-    const consoleOutput = document.getElementById('console-output');
-    const lineElement = document.createElement('div');
-    lineElement.className = `console-${type} console-line`;
-    lineElement.textContent = message;
-    consoleOutput.appendChild(lineElement);
+// Переменная для хранения вывода отладки
+let debugLines = [];
+
+// Функция для добавления отладочной информации
+function debugLog(message, type = 'info') {
+    const time = new Date().toLocaleTimeString();
+    const logMessage = `[${time}] [${type.toUpperCase()}] ${message}`;
     
-    // Auto-scroll to bottom
-    consoleOutput.scrollTop = consoleOutput.scrollHeight;
+    // Добавить сообщение в массив
+    debugLines.push(logMessage);
     
-    // Also log to browser console
-    console[type] ? console[type](message) : console.log(message);
+    // Ограничиваем количество сообщений для производительности
+    if (debugLines.length > 100) {
+        debugLines.shift();
+    }
+    
+    // Обновляем вывод отладки
+    const debugOutput = document.getElementById('debug-output');
+    if (debugOutput) {
+        debugOutput.textContent = debugLines.join('\n');
+        debugOutput.scrollTop = debugOutput.scrollHeight;
+    }
+    
+    // Выводим в консоль браузера с форматированием
+    const consoleStyles = {
+        'info': 'color: #3498db; font-weight: bold;',
+        'success': 'color: #2ecc71; font-weight: bold;',
+        'warn': 'color: #f39c12; font-weight: bold;',
+        'error': 'color: #e74c3c; font-weight: bold;'
+    };
+    
+    const style = consoleStyles[type] || consoleStyles.info;
+    
+    // Добавляем значок для лучшей видимости в консоли
+    const icons = {
+        'info': 'ℹ️',
+        'success': '✅',
+        'warn': '⚠️',
+        'error': '❌'
+    };
+    
+    const icon = icons[type] || icons.info;
+    
+    // Выводим с форматированием в консоль
+    console.log(`%c${icon} ${time} [${type.toUpperCase()}]`, style, message);
+    
+    // Для ошибок и предупреждений дополнительно используем соответствующие методы консоли
+    if (type === 'error') {
+        console.error(message);
+    } else if (type === 'warn') {
+        console.warn(message);
+    }
+    
+    // Возвращаем сообщение для возможности цепочки вызовов
+    return message;
 }
 
-// Function to update status
+// Функция для показа сообщения об ошибке пользователю
+function showError(message) {
+    const errorElement = document.getElementById('error-message');
+    errorElement.textContent = message;
+    errorElement.style.display = 'block';
+    debugLog(message, 'error');
+}
+
+// Функция для обновления статуса
 function updateStatus(message, isLoading = false) {
     const statusEl = document.getElementById('status');
     
@@ -229,164 +290,514 @@ function updateStatus(message, isLoading = false) {
         statusEl.textContent = message;
     }
     
-    log(message);
+    debugLog(message);
 }
 
-// Function to extract session link from HTML
+// Функция для извлечения ссылки на сессию из HTML
 function extractSessionLink(html) {
-    log('Analyzing response to find session link...', 'info');
+    debugLog('Analyzing response to find session link...', 'info');
     
-    // Try different patterns to find links
+    // Выводим часть HTML для отладки с форматированием
+    debugLog(`Response length: ${html.length} characters`, 'info');
+    debugLog(`Response preview: ${html.substring(0, 200).replace(/</g, '&lt;').replace(/>/g, '&gt;')}...`, 'info');
     
-    // First pattern: Session-wide demo link with href
-    let pattern = /href=["']([^"']*\/room\/[^"']*)["'][^>]*>Session-wide demo link/i;
-    let match = html.match(pattern);
-    
-    if (match && match[1]) {
-        log(`Found session-wide demo link: ${match[1]}`, 'success');
-        return match[1];
-    }
-    
-    // Second pattern: join links
-    pattern = /https:\/\/belabeu-e7061ee8ef78\.herokuapp\.com\/join\/([a-z0-9]+)/i;
-    match = html.match(pattern);
-    
-    if (match && match[0]) {
-        log(`Found join link: ${match[0]}`, 'success');
-        return match[0];
-    }
-    
-    // Third pattern: room links
-    pattern = /https:\/\/belabeu-e7061ee8ef78\.herokuapp\.com\/room\/([a-z0-9]+)/i;
-    match = html.match(pattern);
-    
-    if (match && match[0]) {
-        log(`Found room link: ${match[0]}`, 'success');
-        return match[0];
-    }
-    
-    // Fourth pattern: Session start links
-    pattern = /SessionStartLinks\/([a-z0-9]+)/i;
-    match = html.match(pattern);
-    
-    if (match && match[1]) {
-        const fullLink = `https://belabeu-e7061ee8ef78.herokuapp.com/SessionStartLinks/${match[1]}`;
-        log(`Found session start link: ${fullLink}`, 'success');
-        return fullLink;
-    }
-    
-    log('No session link found in the response', 'error');
-    return null;
-}
-
-// Function to retrieve session link
-async function getSessionLink() {
-    updateStatus('Requesting new session from oTree server...', true);
-    log('Sending request to oTree server...', 'info');
+    // Добавляем полный HTML в консоль для более детального анализа
+    console.log('Full HTML response:', html);
     
     try {
-        // Using XMLHttpRequest for better browser compatibility
-        return new Promise((resolve, reject) => {
-            const xhr = new XMLHttpRequest();
-            xhr.open('GET', 'https://belabeu-e7061ee8ef78.herokuapp.com/demo/dsst?test=1', true);
-            xhr.withCredentials = true; // Include cookies for CORS
+        // Шаблон 1: Session-wide demo link с href атрибутом
+        let pattern = /href=["']([^"']*\/room\/[^"']*)["'][^>]*>Session-wide demo link/i;
+        let match = html.match(pattern);
+        
+        if (match && match[1]) {
+            debugLog(`Found session-wide demo link: ${match[1]}`, 'success');
+            return match[1];
+        }
+        
+        // Шаблон 2: join ссылки
+        pattern = /https:\/\/belabeu-e7061ee8ef78\.herokuapp\.com\/join\/([a-z0-9]+)/i;
+        match = html.match(pattern);
+        
+        if (match && match[0]) {
+            debugLog(`Found join link: ${match[0]}`, 'success');
+            return match[0];
+        }
+        
+        // Шаблон 3: room ссылки
+        pattern = /https:\/\/belabeu-e7061ee8ef78\.herokuapp\.com\/room\/([a-z0-9]+)/i;
+        match = html.match(pattern);
+        
+        if (match && match[0]) {
+            debugLog(`Found room link: ${match[0]}`, 'success');
+            return match[0];
+        }
+        
+        // Шаблон 4: Session start ссылки
+        pattern = /SessionStartLinks\/([a-z0-9]+)/i;
+        match = html.match(pattern);
+        
+        if (match && match[1]) {
+            const fullLink = `https://belabeu-e7061ee8ef78.herokuapp.com/SessionStartLinks/${match[1]}`;
+            debugLog(`Found session start link: ${fullLink}`, 'success');
+            return fullLink;
+        }
+        
+        // Шаблон 5: Поиск всех ссылок с определенными ключевыми словами
+        debugLog('Checking all links in the response...', 'info');
+        pattern = /<a[^>]*href=["']([^"']*)["'][^>]*>([^<]*)<\/a>/gi;
+        const links = [];
+        
+        while ((match = pattern.exec(html)) !== null) {
+            const href = match[1];
+            const text = match[2];
+            links.push({ href, text });
+            debugLog(`Found link: ${href} (text: ${text})`, 'info');
+        }
+        
+        // Выводим все найденные ссылки в консоль для анализа
+        console.table(links);
+        
+        // Ищем подходящую ссылку среди всех найденных
+        const experimentLink = links.find(link => 
+            link.href.includes('/join/') || 
+            link.href.includes('/room/') || 
+            link.href.includes('SessionStartLinks') ||
+            link.text.includes('Session-wide') ||
+            link.text.includes('demo')
+        );
+        
+        if (experimentLink) {
+            debugLog(`Selected link based on text/href match: ${experimentLink.href}`, 'success');
+            return experimentLink.href;
+        }
+        
+        debugLog('No session link found in the response using regular patterns', 'warn');
+        
+        // Попробуем отчаянный поиск любых URL в тексте
+        debugLog('Attempting desperate search for any relevant URLs...', 'warn');
+        const urlPattern = /https:\/\/belabeu-e7061ee8ef78\.herokuapp\.com\/[a-z0-9\/\-_?=&]+/gi;
+        const allUrls = html.match(urlPattern) || [];
+        
+        if (allUrls.length > 0) {
+            debugLog(`Found ${allUrls.length} raw URLs in the response`, 'info');
+            console.log('All URLs found:', allUrls);
             
-            xhr.onload = function() {
+            // Ищем наиболее подходящий URL
+            const relevantUrl = allUrls.find(url => 
+                url.includes('/room/') || 
+                url.includes('/join/') || 
+                url.includes('SessionStartLinks')
+            );
+            
+            if (relevantUrl) {
+                debugLog(`Found potentially relevant URL: ${relevantUrl}`, 'success');
+                return relevantUrl;
+            }
+        }
+        
+        return null;
+        
+    } catch (error) {
+        debugLog(`Error while extracting session link: ${error.message}`, 'error');
+        console.error('Extract session link error details:', error);
+        return null;
+    }
+}
+
+// Функция для получения сессионной ссылки через XMLHttpRequest
+function getSessionLinkXHR() {
+    return new Promise((resolve, reject) => {
+        debugLog('Starting XMLHttpRequest to oTree server...', 'info');
+        
+        const xhr = new XMLHttpRequest();
+        xhr.open('GET', 'https://belabeu-e7061ee8ef78.herokuapp.com/demo/dsst?test=1', true);
+        xhr.withCredentials = true; // Включаем передачу куки для CORS
+        
+        // Добавляем заголовки для имитации браузера и повышения шансов на успех
+        debugLog('Setting up XHR headers...', 'info');
+        xhr.setRequestHeader('Accept', 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,*/*;q=0.8');
+        xhr.setRequestHeader('Accept-Language', 'en-US,en;q=0.5');
+        xhr.setRequestHeader('Cache-Control', 'no-cache');
+        xhr.setRequestHeader('Pragma', 'no-cache');
+        console.log('XHR Request headers:', {
+            'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,*/*;q=0.8',
+            'Accept-Language': 'en-US,en;q=0.5',
+            'Cache-Control': 'no-cache',
+            'Pragma': 'no-cache'
+        });
+        
+        xhr.onreadystatechange = function() {
+            debugLog(`XHR readyState changed: ${xhr.readyState}`, 'info');
+            
+            if (xhr.readyState === 2) {
+                debugLog(`XHR headers received, status: ${xhr.status}`, 'info');
+            }
+            
+            if (xhr.readyState === 4) {
                 if (xhr.status >= 200 && xhr.status < 300) {
-                    log(`Received successful response (${xhr.status})`, 'success');
+                    debugLog(`XHR request successful: ${xhr.status} ${xhr.statusText}`, 'success');
                     
-                    // Extract session link from HTML response
-                    const sessionLink = extractSessionLink(xhr.responseText);
+                    // Проверяем тип содержимого
+                    const contentType = xhr.getResponseHeader('Content-Type');
+                    debugLog(`Response Content-Type: ${contentType}`, 'info');
+                    
+                    // Выводим все заголовки ответа
+                    debugLog('Response headers:', 'info');
+                    const headers = xhr.getAllResponseHeaders();
+                    console.log('XHR Response headers:', headers);
+                    
+                    // Проверяем заголовки CORS
+                    const corsHeaders = {
+                        'Access-Control-Allow-Origin': xhr.getResponseHeader('Access-Control-Allow-Origin'),
+                        'Access-Control-Allow-Credentials': xhr.getResponseHeader('Access-Control-Allow-Credentials'),
+                        'Access-Control-Allow-Methods': xhr.getResponseHeader('Access-Control-Allow-Methods')
+                    };
+                    
+                    debugLog('CORS headers in response:', 'info');
+                    console.table(corsHeaders);
+                    
+                    // Извлекаем ссылку из ответа
+                    const responseText = xhr.responseText;
+                    debugLog(`Response length: ${responseText.length} characters`, 'info');
+                    
+                    const sessionLink = extractSessionLink(responseText);
                     
                     if (sessionLink) {
+                        debugLog(`Successfully extracted session link: ${sessionLink}`, 'success');
                         resolve(sessionLink);
                     } else {
-                        // If automatic extraction fails, provide instructions for manual approach
-                        log('Could not automatically extract session link', 'error');
-                        log('Providing full response for direct access instead', 'info');
-                        resolve('https://belabeu-e7061ee8ef78.herokuapp.com/demo/dsst?test=1');
+                        debugLog('Failed to extract session link from response', 'warn');
+                        reject(new Error('Could not find session link in the response'));
                     }
                 } else {
-                    log(`Server returned error status: ${xhr.status}`, 'error');
+                    debugLog(`XHR request failed: ${xhr.status} ${xhr.statusText}`, 'error');
+                    console.error('XHR Error details:', {
+                        status: xhr.status,
+                        statusText: xhr.statusText,
+                        responseType: xhr.responseType,
+                        responseURL: xhr.responseURL
+                    });
                     reject(new Error(`Server responded with status ${xhr.status}`));
                 }
-            };
-            
-            xhr.onerror = function() {
-                log('Network error occurred. This could be a CORS issue.', 'error');
-                log('Checking if CORS is properly configured on the server side...', 'info');
-                reject(new Error('Network error while connecting to oTree server'));
-            };
-            
+            }
+        };
+        
+        xhr.onerror = function() {
+            debugLog('XHR network error occurred. This could be a CORS issue.', 'error');
+            console.error('XHR network error - possible CORS issue');
+            debugLog('Checking browser CORS settings...', 'info');
+            debugLog('Origin: ' + window.location.origin, 'info');
+            reject(new Error('Network error while connecting to oTree server'));
+        };
+        
+        xhr.onabort = function() {
+            debugLog('XHR request was aborted', 'warn');
+            reject(new Error('Request was aborted'));
+        };
+        
+        xhr.timeout = 30000; // 30 секунд таймаут
+        xhr.ontimeout = function() {
+            debugLog('XHR request timeout', 'error');
+            reject(new Error('Request timeout'));
+        };
+        
+        try {
+            debugLog('Sending XHR request...', 'info');
             xhr.send();
+        } catch (error) {
+            debugLog(`Error sending XHR request: ${error.message}`, 'error');
+            console.error('XHR send error:', error);
+            reject(error);
+        }
+    });
+}
+
+// Функция для получения сессионной ссылки через Fetch API
+function getSessionLinkFetch() {
+    debugLog('Starting Fetch request to oTree server...', 'info');
+    
+    // Заголовки запроса
+    const headers = {
+        'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,*/*;q=0.8',
+        'Accept-Language': 'en-US,en;q=0.5',
+        'Connection': 'keep-alive',
+        'Upgrade-Insecure-Requests': '1',
+        'Cache-Control': 'no-cache',
+        'Pragma': 'no-cache'
+    };
+    
+    debugLog('Fetch request headers:', 'info');
+    console.table(headers);
+    
+    return fetch('https://belabeu-e7061ee8ef78.herokuapp.com/demo/dsst?test=1', {
+        method: 'GET',
+        credentials: 'include', // Включаем передачу куки
+        mode: 'cors',           // Явно указываем режим CORS
+        headers: headers
+    })
+    .then(response => {
+        debugLog(`Fetch response received: ${response.status} ${response.statusText}`, response.ok ? 'success' : 'error');
+        
+        // Проверяем и выводим URL ответа
+        debugLog(`Response URL: ${response.url}`, 'info');
+        
+        // Проверяем заголовки ответа
+        debugLog('Response headers:', 'info');
+        const responseHeaders = {};
+        response.headers.forEach((value, name) => {
+            responseHeaders[name] = value;
+            debugLog(`Response header ${name}: ${value}`, 'info');
         });
+        console.table(responseHeaders);
+        
+        // Специально проверяем CORS заголовки
+        const corsHeaders = {
+            'access-control-allow-origin': response.headers.get('access-control-allow-origin'),
+            'access-control-allow-credentials': response.headers.get('access-control-allow-credentials'),
+            'access-control-allow-methods': response.headers.get('access-control-allow-methods')
+        };
+        
+        debugLog('CORS headers in Fetch response:', 'info');
+        console.table(corsHeaders);
+        
+        if (!response.ok) {
+            throw new Error(`Server responded with status ${response.status}`);
+        }
+        
+        debugLog('Getting response text...', 'info');
+        return response.text();
+    })
+    .then(html => {
+        debugLog(`Fetch response text received, length: ${html.length} characters`, 'success');
+        
+        // Извлекаем ссылку на сессию
+        const sessionLink = extractSessionLink(html);
+        
+        if (sessionLink) {
+            debugLog(`Successfully extracted session link: ${sessionLink}`, 'success');
+            return sessionLink;
+        } else {
+            debugLog('Failed to extract session link from response', 'warn');
+            throw new Error('Could not find session link in the response');
+        }
+    })
+    .catch(error => {
+        debugLog(`Fetch error: ${error.message}`, 'error');
+        console.error('Fetch error details:', error);
+        throw error;
+    });
+}
+
+// Главная функция для получения ссылки на эксперимент
+async function getExperimentLink() {
+    // Сбрасываем сообщение об ошибке
+    document.getElementById('error-message').style.display = 'none';
+    
+    // Обновляем статус
+    updateStatus('Requesting new session from oTree server...', true);
+    
+    try {
+        debugLog('Starting experiment link generation process...');
+        
+        // Сначала пробуем XMLHttpRequest как более надежный метод
+        try {
+            debugLog('Trying XMLHttpRequest method first...');
+            const sessionLink = await getSessionLinkXHR();
+            return sessionLink;
+        } catch (xhrError) {
+            debugLog(`XMLHttpRequest method failed: ${xhrError.message}`, 'warn');
+            
+            // Если не сработал XMLHttpRequest, пробуем Fetch API
+            debugLog('Trying Fetch API as fallback...');
+            try {
+                const sessionLink = await getSessionLinkFetch();
+                return sessionLink;
+            } catch (fetchError) {
+                debugLog(`Fetch API method also failed: ${fetchError.message}`, 'error');
+                throw new Error('Both request methods failed. CORS might be blocking access.');
+            }
+        }
+        
     } catch (error) {
-        log(`Error: ${error.message}`, 'error');
-        updateStatus(`Error: ${error.message}. Please try again.`);
+        debugLog(`Error in getExperimentLink: ${error.message}`, 'error');
+        updateStatus('Failed to get experiment link');
+        showError(`Error: ${error.message}. Please try again or check the debug panel.`);
         throw error;
     }
 }
 
-// Initialize page when DOM is loaded
+// Функция для скачивания журнала отладки
+function downloadDebugLogs() {
+    debugLog('Preparing debug logs for download...', 'info');
+    
+    try {
+        // Собираем все логи в один текст
+        const logText = debugLines.join('\n');
+        
+        // Добавляем дополнительную информацию о странице
+        const browserInfo = `
+--------- BROWSER INFORMATION ---------
+User Agent: ${navigator.userAgent}
+Platform: ${navigator.platform}
+Language: ${navigator.language}
+Cookie Enabled: ${navigator.cookieEnabled}
+Window Size: ${window.innerWidth}x${window.innerHeight}
+URL: ${window.location.href}
+Origin: ${window.location.origin}
+--------- END BROWSER INFO ---------
+
+`;
+        
+        const fullLogText = browserInfo + logText;
+        
+        // Создаем Blob с текстом
+        const blob = new Blob([fullLogText], { type: 'text/plain' });
+        
+        // Создаем ссылку для скачивания
+        const link = document.createElement('a');
+        link.href = URL.createObjectURL(blob);
+        
+        // Устанавливаем имя файла с датой и временем
+        const now = new Date();
+        const timestamp = now.toISOString().replace(/[:.]/g, '-');
+        link.download = `otree-debug-logs-${timestamp}.txt`;
+        
+        // Добавляем ссылку в документ, нажимаем и удаляем
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+        
+        debugLog('Debug logs downloaded successfully', 'success');
+    } catch (error) {
+        debugLog(`Error downloading debug logs: ${error.message}`, 'error');
+        console.error('Download logs error:', error);
+    }
+}
+
+// Функция для очистки журнала отладки
+function clearDebugLogs() {
+    debugLog('Clearing debug logs...', 'info');
+    
+    // Очищаем массив логов
+    debugLines = [];
+    
+    // Обновляем отображение
+    const debugOutput = document.getElementById('debug-output');
+    if (debugOutput) {
+        debugOutput.textContent = '// Logs cleared. New debug information will appear here.';
+    }
+    
+    debugLog('Debug logs cleared', 'info');
+}
+
+// Добавляем обработчики событий после полной загрузки DOM
 document.addEventListener('DOMContentLoaded', function() {
-    const generateButton = document.getElementById('generate-session');
-    const openSessionButton = document.getElementById('open-session');
-    const embedSessionButton = document.getElementById('embed-session');
-    const tabNormal = document.getElementById('tab-normal');
-    const tabDebug = document.getElementById('tab-debug');
-    const consoleOutput = document.getElementById('console-output');
+    debugLog('DOM fully loaded, initializing event handlers');
     
-    // Generate session button
-    generateButton.addEventListener('click', async function() {
-        // Reset UI
-        document.getElementById('link-container').style.display = 'none';
-        document.getElementById('experiment-iframe').style.display = 'none';
+    try {
+        // Кнопка генерации ссылки на эксперимент
+        const generateButton = document.getElementById('generate-button');
+        generateButton.addEventListener('click', async function() {
+            debugLog('Generate button clicked');
+            
+            try {
+                // Сбрасываем интерфейс
+                document.getElementById('link-container').style.display = 'none';
+                document.getElementById('experiment-iframe').style.display = 'none';
+                document.getElementById('error-message').style.display = 'none';
+                
+                // Получаем ссылку на эксперимент
+                const sessionLink = await getExperimentLink();
+                
+                if (sessionLink) {
+                    // Обновляем интерфейс с ссылкой
+                    updateStatus('Session link generated successfully!');
+                    document.getElementById('session-link').href = sessionLink;
+                    document.getElementById('session-link').textContent = sessionLink;
+                    document.getElementById('link-container').style.display = 'block';
+                    
+                    // Кнопка открытия в новой вкладке
+                    document.getElementById('open-session').onclick = function() {
+                        debugLog(`Opening session in new tab: ${sessionLink}`);
+                        window.open(sessionLink, '_blank');
+                    };
+                    
+                    // Кнопка загрузки в iframe
+                    document.getElementById('embed-session').onclick = function() {
+                        debugLog(`Loading session in iframe: ${sessionLink}`);
+                        const iframe = document.getElementById('experiment-iframe');
+                        iframe.src = sessionLink;
+                        iframe.style.display = 'block';
+                    };
+                } else {
+                    throw new Error('Failed to generate session link');
+                }
+            } catch (error) {
+                showError(`Error: ${error.message}`);
+                updateStatus('Failed to generate session link');
+            }
+        });
         
-        // Clear previous console output
-        consoleOutput.innerHTML = '';
-        log('Starting session generation process...', 'info');
+        // Кнопка переключения отладочной панели
+        const toggleDebugButton = document.getElementById('toggle-debug');
+        toggleDebugButton.addEventListener('click', function() {
+            const debugPanel = document.getElementById('debug-panel');
+            if (debugPanel.style.display === 'block') {
+                debugPanel.style.display = 'none';
+                toggleDebugButton.textContent = 'Show Debug Information';
+            } else {
+                debugPanel.style.display = 'block';
+                toggleDebugButton.textContent = 'Hide Debug Information';
+            }
+        });
         
-        try {
-            // Get session link
-            const sessionLink = await getSessionLink();
-            
-            // Update UI with link
-            updateStatus('Session link generated successfully!');
-            document.getElementById('session-link').href = sessionLink;
-            document.getElementById('session-link').textContent = sessionLink;
-            document.getElementById('link-container').style.display = 'block';
-            
-            // Setup buttons for the link
-            document.getElementById('open-session').onclick = function() {
-                log(`Opening session in new tab: ${sessionLink}`, 'info');
-                window.open(sessionLink, '_blank');
-            };
-            
-            document.getElementById('embed-session').onclick = function() {
-                log(`Loading session in iframe: ${sessionLink}`, 'info');
-                const iframe = document.getElementById('experiment-iframe');
-                iframe.src = sessionLink;
-                iframe.style.display = 'block';
-            };
-        } catch (error) {
-            updateStatus(`Error: ${error.message}. Please try again.`);
-        }
-    });
-    
-    // Tab switching
-    tabNormal.addEventListener('click', function() {
-        tabNormal.classList.add('active');
-        tabDebug.classList.remove('active');
-        consoleOutput.style.display = 'none';
-    });
-    
-    tabDebug.addEventListener('click', function() {
-        tabDebug.classList.add('active');
-        tabNormal.classList.remove('active');
-        consoleOutput.style.display = 'block';
-    });
-    
-    // Log initial message
-    log('Page loaded. Click "Generate Session Link" to start.', 'info');
+        // Тестовая кнопка для XMLHttpRequest
+        document.getElementById('xhr-test').addEventListener('click', async function() {
+            debugLog('Testing XMLHttpRequest...');
+            try {
+                const link = await getSessionLinkXHR();
+                debugLog(`XHR Test Result: ${link}`, 'info');
+            } catch (error) {
+                debugLog(`XHR Test Failed: ${error.message}`, 'error');
+            }
+        });
+        
+        // Тестовая кнопка для Fetch API
+        document.getElementById('fetch-test').addEventListener('click', async function() {
+            debugLog('Testing Fetch API...');
+            try {
+                const link = await getSessionLinkFetch();
+                debugLog(`Fetch Test Result: ${link}`, 'info');
+            } catch (error) {
+                debugLog(`Fetch Test Failed: ${error.message}`, 'error');
+            }
+        });
+        
+        // Кнопка скачивания логов
+        document.getElementById('download-logs').addEventListener('click', function() {
+            downloadDebugLogs();
+        });
+        
+        // Кнопка очистки логов
+        document.getElementById('clear-logs').addEventListener('click', function() {
+            clearDebugLogs();
+        });
+        
+        debugLog('All event handlers initialized successfully');
+        updateStatus('Ready to generate experiment link');
+        
+        // Для совместимости с поиском в консоли
+        window.getExperimentLink = getExperimentLink;
+        window.getSessionLinkXHR = getSessionLinkXHR;
+        window.getSessionLinkFetch = getSessionLinkFetch;
+        window.extractSessionLink = extractSessionLink;
+        window.debugLog = debugLog;
+        window.downloadDebugLogs = downloadDebugLogs;
+        window.clearDebugLogs = clearDebugLogs;
+        
+    } catch (error) {
+        console.error('Error initializing event handlers:', error);
+        debugLog(`Error initializing page: ${error.message}`, 'error');
+    }
 });
 </script>
