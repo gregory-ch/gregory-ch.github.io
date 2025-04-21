@@ -5,6 +5,8 @@ permalink: /experiment/
 author_profile: true
 ---
 
+{% include base_path %}
+
 <style>
 body {
     overflow: auto;
@@ -106,7 +108,7 @@ body {
     
     <p>Click the button below to generate a new session link for the oTree experiment:</p>
     
-    <button id="generate-button" class="button">Generate Session Link</button>
+    <button id="generate-button" class="button" onclick="otreeApp.generateExperimentLink()">Generate Session Link</button>
     
     <div id="status-message"></div>
     
@@ -115,7 +117,7 @@ body {
     <div id="result-container">
         <h3>Your Session Link:</h3>
         <a id="result-link" href="#" target="_blank" class="result-link"></a>
-        <button id="open-button" class="button green-button">Open in New Tab</button>
+        <button id="open-button" class="button green-button" onclick="otreeApp.openInNewTab()">Open in New Tab</button>
     </div>
 </div>
 
