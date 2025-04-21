@@ -79,9 +79,7 @@ analytics:
 
 
 # JavaScript
-footer_scripts:
-  - /assets/js/main.min.js
-after_footer_scripts:
+head_scripts:
   - /assets/js/otree-experiment.js
 
 
