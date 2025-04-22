@@ -4,6 +4,11 @@ var otreeApp = {};
 // Приватные переменные
 var sessionUrl = '';
 
+// REST API ключ для oTree (закодирован в Base64)
+var _restEncoded = 'ZG9mdmlmam5fMm4yOTEybW5tIQ==';  // Base64
+// Декодируем ключ при выполнении
+var OTREE_REST = atob(_restEncoded);
+
 // Функция для установки статуса
 function setStatus(message, loading) {
     var statusElement = document.getElementById('status-message');
@@ -181,28 +186,28 @@ function getCookie(name) {
     return null;
 }
 
-// Создать новую сессию через oTree API с CSRF-token и куками
+// Создать новую сессию через oTree API с REST 
 function createSession() {
-    console.log('Creating new oTree session via API...');
+    console.log('Creating new oTree session via CSRF cookie...');
     var csrftoken = getCookie('csrftoken');
     fetch('https://belabeu-e7061ee8ef78.herokuapp.com/api/sessions/', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
-            'X-CSRFToken': csrftoken
+            'otree-rest': OTREE_REST
         },
         body: JSON.stringify({
             session_config_name: 'dsst',
             num_participants: 1
         }),
-        credentials: 'include'
+        credentials: 'omit'
     })
     .then(response => {
         if (!response.ok) throw new Error('Network response was not ok: ' + response.status);
         return response.json();
     })
     .then(data => {
-        console.log('Ссылка на сессию:', data.session_wide_url);
+        console.log('Session created:', data);
         showResult(data.session_wide_url);
     })
     .catch(error => {
