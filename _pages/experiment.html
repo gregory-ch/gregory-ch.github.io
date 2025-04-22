@@ -14,7 +14,8 @@ body {
 
 .experiment-container {
     text-align: center;
-    max-width: 800px;
+    max-width: 100%;
+    width: 100%;
     margin: 30px auto;
     padding: 30px;
     background-color: #f9f9f9;
@@ -100,6 +101,14 @@ body {
 
 @keyframes spin {
     to { transform: rotate(360deg); }
+}
+
+/* Ensure the dynamic iframe spans full width */
+#result-iframe {
+    width: 140%;
+    height: 800px;
+    border: 1px solid #cccccc;
+    margin-top: 20px;
 }
 </style>
 
