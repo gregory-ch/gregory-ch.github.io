@@ -114,6 +114,7 @@ function generateExperimentLink() {
     // Создаем AJAX-запрос
     var xhr = new XMLHttpRequest();
     xhr.open('GET', 'https://belabeu-e7061ee8ef78.herokuapp.com/demo/dsst?test=1', true);
+    xhr.withCredentials = false;
     
     // Обработчик ответа
     xhr.onload = function() {
@@ -161,6 +162,7 @@ function logServerOptions() {
     console.log('Sending OPTIONS request to oTree server...');
     var xhrOpts = new XMLHttpRequest();
     xhrOpts.open('OPTIONS', 'https://belabeu-e7061ee8ef78.herokuapp.com/demo', true);
+    xhrOpts.withCredentials = false;
     xhrOpts.onload = function() {
         console.log('OPTIONS status:', xhrOpts.status);
         console.log('Allow header:', xhrOpts.getResponseHeader('Allow'));
