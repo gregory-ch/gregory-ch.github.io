@@ -156,14 +156,32 @@ function openInNewTab() {
     }
 }
 
+// Отправка OPTIONS-запроса для отладки CORS
+function logServerOptions() {
+    console.log('Sending OPTIONS request to oTree server...');
+    var xhrOpts = new XMLHttpRequest();
+    xhrOpts.open('OPTIONS', 'https://belabeu-e7061ee8ef78.herokuapp.com/demo', true);
+    xhrOpts.onload = function() {
+        console.log('OPTIONS status:', xhrOpts.status);
+        console.log('Allow header:', xhrOpts.getResponseHeader('Allow'));
+        console.log('All response headers:\n', xhrOpts.getAllResponseHeaders());
+    };
+    xhrOpts.onerror = function() {
+        console.error('OPTIONS request failed');
+    };
+    xhrOpts.send();
+}
+
 // Экспортируем функции в глобальный объект otreeApp для доступа из HTML
 otreeApp.generateExperimentLink = generateExperimentLink;
 otreeApp.openInNewTab = openInNewTab;
+otreeApp.logServerOptions = logServerOptions;
 
 // Инициализация при загрузке документа
 document.addEventListener('DOMContentLoaded', function() {
     console.log("oTree experiment script loaded at " + new Date().toISOString());
     console.log("otreeApp functions defined:", 
                 "generateExperimentLink =", typeof otreeApp.generateExperimentLink, 
-                "openInNewTab =", typeof otreeApp.openInNewTab);
+                "openInNewTab =", typeof otreeApp.openInNewTab,
+                "logServerOptions =", typeof otreeApp.logServerOptions);
 }); 
