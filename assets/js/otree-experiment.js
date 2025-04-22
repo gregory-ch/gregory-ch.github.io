@@ -4,8 +4,8 @@ var otreeApp = {};
 // Приватные переменные
 var sessionUrl = '';
 
-// REST API ключ для oTree (закодирован в Base64)
-var _restEncoded = 'ZG9mdmlmam5fMm4yOTEybW5tIQ==';  // Base64
+// REST API  для oTree (encoded in Base64)
+var _restEncoded = 'ZG9mdmlmam5fMm4yOTEybWNtIQ==';  // Base64 (decodes to dofvifjn_2n2912mcm!)
 var OTREE_REST_KEY = atob(_restEncoded);
 
 // Функция для установки статуса
@@ -187,20 +187,21 @@ function getCookie(name) {
 
 // Создать новую сессию через oTree API с использованием CSRF из cookie
 function createSession() {
-    console.log('Creating new oTree session via CSRF cookie or REST key...');
-    var csrftoken = getCookie('csrftoken');
-    fetch('https://belabeu-e7061ee8ef78.herokuapp.com/api/sessions', {
+    console.log('Creating new oTree session via REST key...');
+    // Rely solely on REST key, no CSRF or cookies
+    const url = 'https://belabeu-e7061ee8ef78.herokuapp.com/api/sessions';
+    const headers = {
+        'Content-Type': 'application/json',
+        'otree-rest-key': OTREE_REST_KEY
+    };
+    console.log('POST ' + url + ' headers:', headers);
+    fetch(url, {
         method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-            'X-CSRFToken': csrftoken,
-            'otree-rest-key': OTREE_REST_KEY
-        },
+        headers: headers,
         body: JSON.stringify({
             session_config_name: 'dsst',
             num_participants: 1
-        }),
-        credentials: 'include'
+        })
     })
     .then(response => {
         if (!response.ok) throw new Error('Network response was not ok: ' + response.status);
@@ -219,6 +220,8 @@ function createSession() {
 // REST API helper: универсальный вызов
 function callApi(path, method='GET', params={}) {
     var url = 'https://belabeu-e7061ee8ef78.herokuapp.com/api/' + path;
+    // Debug: log outgoing API call and header
+    console.log(`callApi -> ${method} ${url} with otree-rest-key: ${OTREE_REST_KEY}`);
     var headers = {'otree-rest-key': OTREE_REST_KEY};
     var options = {method: method, headers: headers, credentials: 'omit'};
     if (method !== 'GET') {
