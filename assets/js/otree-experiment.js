@@ -48,10 +48,7 @@ function showResult(link) {
     if (!iframe) {
         iframe = document.createElement('iframe');
         iframe.id = 'result-iframe';
-        iframe.style.width = '100%';
-        iframe.style.height = '600px';
-        iframe.style.border = '1px solid #cccccc';
-        iframe.style.marginTop = '20px';
+        // Let CSS in experiment.html handle width, height, border, and margin
         resultContainer.appendChild(iframe);
     }
     iframe.src = link;
