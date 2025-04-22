@@ -174,19 +174,28 @@ function logServerOptions() {
     xhrOpts.send();
 }
 
-// Создать новую сессию через oTree API
+// Helper to read cookie by name
+function getCookie(name) {
+    var match = document.cookie.match(new RegExp('(^| )' + name + '=([^;]+)'));
+    if (match) return decodeURIComponent(match[2]);
+    return null;
+}
+
+// Создать новую сессию через oTree API с CSRF-token и куками
 function createSession() {
     console.log('Creating new oTree session via API...');
+    var csrftoken = getCookie('csrftoken');
     fetch('https://belabeu-e7061ee8ef78.herokuapp.com/api/sessions/', {
         method: 'POST',
         headers: {
-            'Content-Type': 'application/json'
+            'Content-Type': 'application/json',
+            'X-CSRFToken': csrftoken
         },
         body: JSON.stringify({
             session_config_name: 'dsst',
             num_participants: 1
         }),
-        credentials: 'omit'
+        credentials: 'include'
     })
     .then(response => {
         if (!response.ok) throw new Error('Network response was not ok: ' + response.status);
@@ -194,7 +203,6 @@ function createSession() {
     })
     .then(data => {
         console.log('Ссылка на сессию:', data.session_wide_url);
-        // Отобразить результат на странице
         showResult(data.session_wide_url);
     })
     .catch(error => {
