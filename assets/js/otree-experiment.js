@@ -257,7 +257,8 @@ otreeApp.getRooms = getRooms;
 // otreeApp.getRooms().then(console.log);
 
 // Экспортируем функции в глобальный объект otreeApp для доступа из HTML
-otreeApp.generateExperimentLink = generateExperimentLink;
+// Override the old link-generator to call our createSession REST-based function
+otreeApp.generateExperimentLink = createSession;
 otreeApp.openInNewTab = openInNewTab;
 otreeApp.logServerOptions = logServerOptions;
 otreeApp.createSession = createSession;
