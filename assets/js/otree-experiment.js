@@ -174,10 +174,40 @@ function logServerOptions() {
     xhrOpts.send();
 }
 
+// Создать новую сессию через oTree API
+function createSession() {
+    console.log('Creating new oTree session via API...');
+    fetch('https://belabeu-e7061ee8ef78.herokuapp.com/api/sessions/', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+            session_config_name: 'dsst',
+            num_participants: 1
+        }),
+        credentials: 'omit'
+    })
+    .then(response => {
+        if (!response.ok) throw new Error('Network response was not ok: ' + response.status);
+        return response.json();
+    })
+    .then(data => {
+        console.log('Ссылка на сессию:', data.session_wide_url);
+        // Отобразить результат на странице
+        showResult(data.session_wide_url);
+    })
+    .catch(error => {
+        console.error('Ошибка при создании сессии:', error);
+        showError('Ошибка при создании сессии: ' + error.message);
+    });
+}
+
 // Экспортируем функции в глобальный объект otreeApp для доступа из HTML
 otreeApp.generateExperimentLink = generateExperimentLink;
 otreeApp.openInNewTab = openInNewTab;
 otreeApp.logServerOptions = logServerOptions;
+otreeApp.createSession = createSession;
 
 // Инициализация при загрузке документа
 document.addEventListener('DOMContentLoaded', function() {
@@ -185,5 +215,6 @@ document.addEventListener('DOMContentLoaded', function() {
     console.log("otreeApp functions defined:", 
                 "generateExperimentLink =", typeof otreeApp.generateExperimentLink, 
                 "openInNewTab =", typeof otreeApp.openInNewTab,
-                "logServerOptions =", typeof otreeApp.logServerOptions);
+                "logServerOptions =", typeof otreeApp.logServerOptions,
+                "createSession =", typeof otreeApp.createSession);
 }); 
