@@ -216,6 +216,43 @@ function createSession() {
     });
 }
 
+// REST API helper: универсальный вызов
+function callApi(path, method='GET', params={}) {
+    var url = 'https://belabeu-e7061ee8ef78.herokuapp.com/api/' + path + '/';
+    var headers = {'otree-rest': OTREE_REST};
+    var options = {method: method, headers: headers, credentials: 'omit'};
+    if (method !== 'GET') {
+        headers['Content-Type'] = 'application/json';
+        options.body = JSON.stringify(params);
+    }
+    return fetch(url, options)
+        .then(resp => {
+            if (!resp.ok) throw new Error(`API ${path} failed: ${resp.status}`);
+            return resp.json();
+        });
+}
+
+// Обёртки для основных эндпоинтов
+function getOtreeVersion() {
+    return callApi('otree_version');
+}
+otreeApp.getOtreeVersion = getOtreeVersion;
+
+function getSessionConfigs() {
+    return callApi('session_configs');
+}
+otreeApp.getSessionConfigs = getSessionConfigs;
+
+function getRooms() {
+    return callApi('rooms');
+}
+otreeApp.getRooms = getRooms;
+
+// Пример использования в консоли:
+// otreeApp.getOtreeVersion().then(console.log);
+// otreeApp.getSessionConfigs().then(console.log);
+// otreeApp.getRooms().then(console.log);
+
 // Экспортируем функции в глобальный объект otreeApp для доступа из HTML
 otreeApp.generateExperimentLink = generateExperimentLink;
 otreeApp.openInNewTab = openInNewTab;
