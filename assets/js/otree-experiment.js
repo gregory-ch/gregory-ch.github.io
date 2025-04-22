@@ -189,7 +189,7 @@ function getCookie(name) {
 function createSession() {
     console.log('Creating new oTree session via CSRF cookie or REST key...');
     var csrftoken = getCookie('csrftoken');
-    fetch('https://belabeu-e7061ee8ef78.herokuapp.com/api/sessions/', {
+    fetch('https://belabeu-e7061ee8ef78.herokuapp.com/api/sessions', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
@@ -218,7 +218,7 @@ function createSession() {
 
 // REST API helper: универсальный вызов
 function callApi(path, method='GET', params={}) {
-    var url = 'https://belabeu-e7061ee8ef78.herokuapp.com/api/' + path + '/';
+    var url = 'https://belabeu-e7061ee8ef78.herokuapp.com/api/' + path;
     var headers = {'otree-rest-key': OTREE_REST_KEY};
     var options = {method: method, headers: headers, credentials: 'omit'};
     if (method !== 'GET') {
