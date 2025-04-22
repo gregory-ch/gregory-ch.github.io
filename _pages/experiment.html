@@ -68,6 +68,7 @@ body {
     background-color: #f0f8ff;
     text-align: left;
     display: none;
+    overflow: auto;
 }
 
 .result-link {
@@ -103,10 +104,15 @@ body {
     to { transform: rotate(360deg); }
 }
 
-/* Ensure the dynamic iframe spans full width */
+/* Ensure the dynamic iframe spans full width and scales content to fit */
 #result-iframe {
-    width: 50%;
-    height: 800px;
+    /* scale the iframe content to 80% */
+    transform: scale(0.8);
+    transform-origin: top left;
+    /* enlarge container so scaled content fills width */
+    width: calc(100% / 0.8);
+    /* adjust height proportionally */
+    height: calc(800px / 0.8);
     border: 1px solid #cccccc;
     margin-top: 20px;
 }
