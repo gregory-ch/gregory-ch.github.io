@@ -5,7 +5,7 @@ var otreeApp = {};
 var sessionUrl = '';
 
 // REST API  для oTree (encoded in Base64)
-var _restEncoded = 'ZG9mdmlmam5fMm4yOTEybWNtIQ==';  // Base64 (decodes to dofvifjn_2n2912mcm!)
+var _restEncoded = 'ZG9mdmlmam5fMm4yOTEybWNtIQ==';  // Base64 (decodes!)
 var OTREE_REST_KEY = atob(_restEncoded);
 
 // Функция для установки статуса
@@ -43,6 +43,18 @@ function showResult(link) {
     resultContainer.style.display = 'block';
     
     setStatus('Session link successfully generated!', false);
+    // Create or update iframe to display the experiment
+    var iframe = document.getElementById('result-iframe');
+    if (!iframe) {
+        iframe = document.createElement('iframe');
+        iframe.id = 'result-iframe';
+        iframe.style.width = '100%';
+        iframe.style.height = '600px';
+        iframe.style.border = '1px solid #cccccc';
+        iframe.style.marginTop = '20px';
+        resultContainer.appendChild(iframe);
+    }
+    iframe.src = link;
 }
 
 // Функция для поиска ссылки в HTML
