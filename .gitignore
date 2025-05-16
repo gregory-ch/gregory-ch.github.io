@@ -1,2 +1,45 @@
-_site/
+# Do not add these files to git
+_site
+.sass-cache
+.jekyll-metadata
+.jekyll-cache
+.DS_Store
+.bundle
+vendor
+Gemfile.lock
+
+# Local development files
+_config_dev.yml
+_config.dev.yml
+_config_temp.yml
+start-jekyll.ps1
+start-site.ps1
+build-site.ps1
+bin/
+
+# Docker related
+.docker/
+docker-compose.override.yml
+docker-compose.yml
+run-jekyll.sh
+run-jekyll-wsl.sh
+run-jekyll-direct.sh
+run-jekyll.ps1
+run-jekyll.bat
+*.log
+.dockerignore
+
+# System and environment
+.env
+.env.local
+node_modules/
+__pycache__/
+*.py[cod]
+*$py.class
+.sudo_as_admin_successful
+.bash_history
+
+# Jekyll specific
+.sass-cache/
+vendor/
 

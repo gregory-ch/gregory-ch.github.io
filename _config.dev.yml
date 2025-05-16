@@ -1,13 +1,92 @@
-# Develop override settings
-
+# Local development settings - overrides settings in _config.yml
 url: http://localhost:4000
+baseurl: ""
 
-analytics:
-  provider: false
+# Site Settings (kept from main config)
+locale: "en-US"
+title: "About"
+title_separator: "-"
+name: "Chernov Gregory"
+description: "Behavioral scientist personal page"
+repository: "gregory-ch/gregory-ch.github.io"
+teaser:  # filename of teaser fallback teaser image placed in /images/, .e.g. "500x300.png"
+breadcrumbs: false # true, false (default)
+words_per_minute: 160
+future: true
+read_more: "disabled" # if enabled, adds "Read more" links to excerpts
+talkmap_link: false # change to true to add link to talkmap on talks page
 
+# Build settings (optimized for development)
+incremental: true
+livereload: true
+
+# Comments settings (preserved from main config)
 comments:
+  provider: # false (default), "disqus", "discourse", "facebook", "google-plus", "staticman", "custom"
   disqus:
-    shortname            : "mmistakes-dev"
+    shortname:
+  discourse:
+    server: # https://meta.discourse.org/t/embedding-discourse-comments-via-javascript/31963 , e.g.: meta.discourse.org
+  facebook:
+    appid:
+    num_posts: # 5 (default)
+    colorscheme: # "light" (default), "dark"
 
+# Social Sharing (preserved from main config)
+twitter:
+  username: &de_marcacio
+facebook:
+  username:
+  app_id:
+  publisher:
+og_image: # Open Graph/Twitter default site image
+
+# Analytics (preserved from main config)
+analytics:
+  provider: "google-universal" # false (default), "google", "google-universal", "custom"
+  google:
+    tracking_id:
+
+# Disable GitHub metadata to avoid API rate limit errors
+github:
+  source:
+    branch: master
+
+# Outputting (preserved from main config)
+permalink: /:categories/:title/
+timezone: America/Los_Angeles
+
+# Plugins (preserved from main config)
+plugins:
+  - jekyll-paginate
+  - jekyll-gist
+  - jekyll-feed
+  - jekyll-redirect-from
+
+# Debugging options
+verbose: true
+profile: false
+
+# Ensure same Markdown processing
+markdown: kramdown
+highlighter: rouge
+
+# Ensure same SASS/SCSS settings
 sass:
-  style: expanded
+  sass_dir: _sass
+  style: compressed
+
+# Collections (preserved from main config)
+collections:
+  teaching:
+    output: true
+    permalink: /:collection/:path/
+  publications:
+    output: true
+    permalink: /:collection/:path/
+  portfolio:
+    output: true
+    permalink: /:collection/:path/
+  talks:
+    output: true
+    permalink: /:collection/:path/ 
