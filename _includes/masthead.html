@@ -14,14 +14,22 @@
           {% for link in site.data.navigation.main %}
             {% if link.url contains 'http' %}
               {% assign domain = '' %}
-              {% else %}
+            {% else %}
               {% assign domain = base_path %}
             {% endif %}
             <li class="masthead__menu-item"><a href="{{ domain }}{{ link.url }}">{{ link.title }}</a></li>
           {% endfor %}
+          <!-- Theme toggle button as menu item -->
+          <li class="masthead__menu-item theme-toggle-item">
+            <button id="theme-toggle" aria-label="Toggle dark mode" class="theme-toggle-btn">
+              <span id="theme-icon"></span>
+            </button>
+          </li>
         </ul>
         <ul class="hidden-links hidden"></ul>
       </nav>
+
+  
     </div>
   </div>
 </div>

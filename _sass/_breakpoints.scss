@@ -1,0 +1,11 @@
+/* ==========================================================================
+   Breakpoints
+   ========================================================================== */
+
+@include breakpoint-set("to ems", true);
+
+$small                      : 600px !default;
+$medium                     : 768px !default;
+$medium-wide                : 900px !default;
+$large                      : 925px !default;
+$x-large                    : 1000px !default; 

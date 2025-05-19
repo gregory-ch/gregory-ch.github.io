@@ -179,6 +179,11 @@ body:hover .visually-hidden button {
   vertical-align: middle;
 }
 
+html[data-theme="dark"] .icon {
+  color: $dark-link;
+  fill: $dark-link;
+}
+
 /* social icons*/
 
 .social-icons {
@@ -317,6 +322,15 @@ body:hover .visually-hidden button {
   &:after {
     bottom: (-2 * $navicon-height);
   }
+}
+
+html[data-theme="dark"] .navicon {
+  background: $dark-link;
+}
+
+html[data-theme="dark"] .navicon:before,
+html[data-theme="dark"] .navicon:after {
+  background: $dark-link;
 }
 
 .close .navicon {

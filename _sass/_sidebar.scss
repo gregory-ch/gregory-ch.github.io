@@ -161,14 +161,14 @@
   .fab,
   .far,
   .fal {
-    color: rgb(177, 49, 49);  // Меняем цвет всех иконок Font Awesome в сайдбаре
+    color: rgb(177, 49, 49);  // Changed color for all Font Awesome icons in sidebar
   }
 
-  // Специально для иконки местоположения
+  // Special styles for location icon
   .fa-fw {
     &.fa-map-marker,
     &.fa-map-marker-alt {
-      color: rgb(177, 49, 49);  // Тот же цвет, что используется в навигации
+      color: rgb(177, 49, 49);  // Same color as used in navigation
     }
   }
 }
@@ -249,4 +249,32 @@
       text-decoration: underline;
     }
   }
+}
+
+html[data-theme="dark"] .sidebar, body.dark-theme .sidebar {
+  background: $dark-card-bg;
+  color: $dark-text;
+}
+
+html[data-theme="dark"] .author__urls, body.dark-theme .author__urls {
+  background: $dark-card-bg;
+  border-color: $dark-border;
+}
+
+html[data-theme="dark"] .author__urls-wrapper .fas,
+html[data-theme="dark"] .author__urls-wrapper .fab,
+html[data-theme="dark"] .author__urls-wrapper .far,
+html[data-theme="dark"] .author__urls-wrapper .fal,
+body.dark-theme .author__urls-wrapper .fas,
+body.dark-theme .author__urls-wrapper .fab,
+body.dark-theme .author__urls-wrapper .far,
+body.dark-theme .author__urls-wrapper .fal {
+  color: #2abc89;
+}
+
+html[data-theme="dark"] .author__urls-wrapper .fa-fw.fa-map-marker,
+html[data-theme="dark"] .author__urls-wrapper .fa-fw.fa-map-marker-alt,
+body.dark-theme .author__urls-wrapper .fa-fw.fa-map-marker,
+body.dark-theme .author__urls-wrapper .fa-fw.fa-map-marker-alt {
+  color: #2abc89;
 }

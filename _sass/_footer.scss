@@ -52,6 +52,16 @@
   }
 }
 
+html[data-theme="dark"] .page__footer, body.dark-theme .page__footer {
+  background-color: #2abc89;
+  border-top: 1px solid #2abc89;
+  color: $dark-text;
+}
+
+html[data-theme="dark"] .page__footer a, body.dark-theme .page__footer a {
+  color: $dark-link;
+}
+
 .page__footer-copyright {
   font-family: $global-font-family;
   font-size: $type-size-7;

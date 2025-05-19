@@ -21,6 +21,19 @@ body {
   }
 }
 
+html[data-theme="dark"], body.dark-theme {
+  background: $dark-background;
+  color: $dark-text;
+}
+
+html[data-theme="dark"] a, body.dark-theme a {
+  color: $dark-link;
+}
+
+html[data-theme="dark"] hr, body.dark-theme hr {
+  border-top: 1px solid $dark-border;
+}
+
 h1, h2, h3, h4, h5, h6 {
   margin: 2em 0 0.5em;
   line-height: 1.2;

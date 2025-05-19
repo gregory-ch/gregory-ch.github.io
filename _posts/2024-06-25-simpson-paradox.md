@@ -9,7 +9,7 @@ tags:
   - statistics
 ---
 
-A fresh example of Simpson's Paradox in the wild has recently [emerged](https://lnkd.in/epBwsA2E)! Here's the story: some researchers and policymakers argue that the NIH (National Institutes of Health) funds too many "small and crappy" trials, which has been regularly reported in the press.
+A fresh example of Simpson's Paradox in the wild has recently [emerged](https://www.maximum-progress.com/p/the-nih-doesnt-fund-small-crappy)! Here's the story: some researchers and policymakers argue that the NIH (National Institutes of Health) funds too many "small and crappy" trials, which has been regularly reported in the press.
 
 Data from ClinicalTrials.gov shows that the median number of participants in NIH-funded trials is 48, compared to 67 in industry trials and 923 in other trials (mostly university-based). However, when trials are divided by phase, it turns out that the NIH funds the most Phase I trials, yet in each phase, their trials have the highest or second-highest number of participants.
 

@@ -97,3 +97,8 @@
 .notice--danger {
   @include notice($danger-color);
 }
+
+html[data-theme="dark"] .notice, body.dark-theme .notice {
+  background-color: mix($dark-background, $primary-color, 90%);
+  color: $dark-text;
+}

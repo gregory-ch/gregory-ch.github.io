@@ -52,3 +52,25 @@
     font-weight: 700;
   }
 }
+
+html[data-theme="dark"] .masthead, body.dark-theme .masthead {
+  background: $dark-nav-bg;
+  border-bottom: 1px solid $dark-border;
+}
+
+// Profile image theme switching
+.profile-img-light,
+.profile-img-dark {
+  display: none;
+  width: 100%;
+  border-radius: 50%;
+}
+.profile-img-light {
+  display: block;
+}
+html[data-theme="dark"] .profile-img-light {
+  display: none;
+}
+html[data-theme="dark"] .profile-img-dark {
+  display: block;
+}

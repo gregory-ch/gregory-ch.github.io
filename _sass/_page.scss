@@ -477,3 +477,69 @@
     margin: 0 auto;
   }
 }
+
+html[data-theme="dark"] .page__content {
+  color: #e0e0e0;
+}
+
+html[data-theme="dark"] .page__meta {
+  color: #b0b0b0;
+}
+
+html[data-theme="dark"] .page__content h2 {
+  border-bottom: 1px solid $dark-border;
+}
+
+html[data-theme="dark"] .page__content table {
+  background: $dark-card-bg;
+  color: $dark-text;
+  border: 1px solid $dark-border;
+}
+
+html[data-theme="dark"] .page__content th,
+html[data-theme="dark"] .page__content td {
+  border-color: $dark-border;
+}
+
+// Dark theme: headings color
+html[data-theme="dark"] .page__content h1,
+html[data-theme="dark"] .page__content h2,
+html[data-theme="dark"] .page__content h3,
+html[data-theme="dark"] .page__content h4,
+html[data-theme="dark"] .page__content h5,
+html[data-theme="dark"] .page__content h6 {
+  color: $dark-text; // Use $dark-text variable for headings in dark mode
+}
+
+// Dark theme: headings styles
+html[data-theme="dark"] {
+  h1, h2, h3, h4, h5, h6 {
+    color: #e0e0e0; // Light gray color for better readability in dark mode
+    border-color: $dark-border;
+  }
+
+  // Specific styles for h2 which has border-bottom
+  h2 {
+    border-bottom: 1px solid $dark-border;
+  }
+}
+
+// Dark theme: list styles
+html[data-theme="dark"] {
+  .archive ul {
+    color: #e0e0e0; // Light gray color for better readability in dark mode
+    
+    li {
+      color: #e0e0e0;
+      
+      a {
+        color: #4a9eff; // Light blue for links in dark mode
+        
+        &:hover {
+          color: #6fb1ff; // Lighter blue on hover
+          text-decoration: underline;
+        }
+      }
+    }
+  }
+}

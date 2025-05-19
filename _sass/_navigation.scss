@@ -320,3 +320,133 @@
     }
   }
 }
+// _navigation.scss или _buttons.scss
+
+.theme-toggle-btn {
+  background: none;
+  border: none;
+  font-size: 1.3em;
+  cursor: pointer;
+  padding: 0 0.7em;
+  color: $masthead-link-color;
+  transition: color 0.2s, transform 0.2s;
+  vertical-align: middle;
+  margin-left: 0.5em;
+
+  &:hover,
+  &:focus {
+    color: $masthead-link-color-hover;
+    outline: none;
+    transform: scale(1.15) rotate(-10deg);
+  }
+
+  // Если нужна смена иконки для тёмной темы
+  &.dark {
+    // Можно поменять цвет или иконку через content/SVG
+  }
+}
+
+// Для выравнивания с пунктами меню
+.visible-links .theme-toggle-btn {
+  display: block;
+  margin: 0 auto;
+  padding: 0 0.7em;
+  background: transparent;
+  box-shadow: none;
+  font-size: 1.66rem;
+  line-height: 0.8;
+  height: auto;
+  min-height: 0;
+  min-width: 0;
+  vertical-align: top;
+}
+
+.visible-links .theme-toggle-btn span {
+  vertical-align: middle;
+  display: inline-block;
+}
+
+html[data-theme="dark"] .greedy-nav, body.dark-theme .greedy-nav {
+  background: $dark-nav-bg;
+  border-bottom: 1px solid $dark-border;
+}
+
+html[data-theme="dark"] .greedy-nav a, body.dark-theme .greedy-nav a {
+  color: $dark-nav-link;
+}
+
+html[data-theme="dark"] .greedy-nav a:hover, body.dark-theme .greedy-nav a:hover {
+  color: $dark-nav-link-hover;
+}
+
+html[data-theme="dark"] .visible-links,
+html[data-theme="dark"] .hidden-links,
+body.dark-theme .visible-links,
+body.dark-theme .hidden-links {
+  background: $dark-nav-bg;
+  border-color: $dark-border;
+}
+
+html[data-theme="dark"] .menu-button span, body.dark-theme .menu-button span {
+  background-color: $dark-nav-link;
+}
+
+html[data-theme="dark"] .theme-toggle-btn, body.dark-theme .theme-toggle-btn {
+  color: $dark-link;
+}
+
+html[data-theme="dark"] .theme-toggle-btn:hover,
+html[data-theme="dark"] .theme-toggle-btn:focus,
+body.dark-theme .theme-toggle-btn:hover,
+body.dark-theme .theme-toggle-btn:focus {
+  color: $dark-link-hover;
+}
+
+html[data-theme="dark"] .greedy-nav .visible-links li,
+body.dark-theme .greedy-nav .visible-links li {
+  border-right: 2px dashed #2abc89;
+}
+
+html[data-theme="dark"] .greedy-nav .visible-links li:first-child a,
+body.dark-theme .greedy-nav .visible-links li:first-child a {
+  color: #2abc89;
+}
+
+html[data-theme="dark"] .greedy-nav .visible-links li:first-child a:hover,
+body.dark-theme .greedy-nav .visible-links li:first-child a:hover {
+  color: #2abc89;
+}
+
+// Special styling for the theme toggle menu item
+.visible-links .theme-toggle-item {
+  display: table-cell !important;
+  vertical-align: top !important;
+  border-right: none !important;
+  padding: 0 !important;
+  background: none !important;
+  box-shadow: none !important;
+  height: auto !important;
+  min-width: 0 !important;
+  line-height: 0.8 !important;
+}
+
+// Dark theme: dropdown menu
+html[data-theme="dark"] .hidden-links,
+body.dark-theme .hidden-links {
+  background: $dark-nav-bg !important;
+  border-color: $dark-border !important;
+}
+html[data-theme="dark"] .hidden-links a,
+body.dark-theme .hidden-links a {
+  color: #2abc89;
+}
+html[data-theme="dark"] .hidden-links a:hover,
+body.dark-theme .hidden-links a:hover {
+  color: #fff;
+  background: #2abc89;
+}
+html[data-theme="dark"] .greedy-nav .visible-links.show,
+body.dark-theme .greedy-nav .visible-links.show {
+  background: $dark-nav-bg !important;
+  border-color: $dark-border !important;
+}

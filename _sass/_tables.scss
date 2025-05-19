@@ -36,3 +36,16 @@ td {
 tr, td, th {
   vertical-align: middle;
 }
+
+html[data-theme="dark"] table, body.dark-theme table {
+  background: $dark-card-bg;
+  color: $dark-text;
+  border: 1px solid $dark-border;
+}
+
+html[data-theme="dark"] th,
+html[data-theme="dark"] td,
+body.dark-theme th,
+body.dark-theme td {
+  border-color: $dark-border;
+}

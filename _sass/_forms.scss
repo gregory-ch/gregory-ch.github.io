@@ -389,3 +389,14 @@ select:focus {
 #goog-wm-sb {
   @extend .btn;
 }
+
+html[data-theme="dark"] input,
+html[data-theme="dark"] textarea,
+html[data-theme="dark"] select,
+body.dark-theme input,
+body.dark-theme textarea,
+body.dark-theme select {
+  background-color: $dark-card-bg;
+  color: $dark-text;
+  border: 1px solid $dark-border;
+}

@@ -5,13 +5,15 @@
 $mono-font-stack: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
 
 .publications-section {
-  margin-bottom: 2em;
+  margin-top: 2em;
+  padding-top: 2em;
+  border-top: 1px solid $border-color;
 
   h2 {
-    margin-top: 1.5em;
+    color: rgb(177, 49, 49);
+    margin-bottom: 1em;
     padding-bottom: 0.5em;
     border-bottom: 1px solid $border-color;
-    color: rgb(177, 49, 49);
     font-family: $mono-font-stack;
     font-size: $type-size-4;
   }
@@ -66,4 +68,28 @@ $mono-font-stack: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Libera
   color: mix($gray, $text-color, 50%);
   margin: 0.5em 0;
   font-family: $mono-font-stack;
+}
+
+html[data-theme="dark"] .publications-section h2 {
+  color: #2abc89;
+}
+
+html[data-theme="dark"] .publication-item {
+  border-bottom: 1px solid $dark-border;
+}
+
+html[data-theme="dark"] .publication-meta {
+  color: $dark-text;
+}
+
+html[data-theme="dark"] .citation {
+  color: mix($dark-text, $gray, 50%);
+}
+
+html[data-theme="dark"] .view-link {
+  color: #6fffc2;
+}
+
+html[data-theme="dark"] .view-link:hover {
+  color: #2abc89;
 } 

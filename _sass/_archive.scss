@@ -84,6 +84,22 @@
   }
 }
 
+html[data-theme="dark"] .archive__subtitle {
+  color: $dark-link;
+  border-bottom: 1px solid $dark-border;
+}
+
+html[data-theme="dark"] .archive__item-title {
+  color: $dark-text;
+}
+
+html[data-theme="dark"] .archive__item-excerpt {
+  color: $dark-text;
+}
+
+html[data-theme="dark"] .archive__item-teaser {
+  border-radius: $border-radius;
+}
 
 /*
    List view
@@ -242,4 +258,77 @@
       }
     }
   }
+}
+
+.read-post-link {
+  color: rgb(177, 49, 49);
+  text-decoration: underline;
+  transition: color 0.2s;
+}
+
+.read-post-link:hover {
+  color: #2abc89;
+}
+
+html[data-theme="dark"] .read-post-link {
+  color: #6fffc2;
+}
+
+html[data-theme="dark"] .read-post-link:hover {
+  color: #2abc89;
+}
+
+.blog-item .view-link,
+.talk-item .view-link {
+  color: rgb(177, 49, 49);
+  text-decoration: underline;
+  transition: color 0.2s;
+}
+
+.blog-item .view-link:hover,
+.talk-item .view-link:hover {
+  color: #2abc89;
+}
+
+html[data-theme="dark"] .blog-item .view-link,
+html[data-theme="dark"] .talk-item .view-link {
+  color: #6fffc2;
+}
+
+html[data-theme="dark"] .blog-item .view-link:hover,
+html[data-theme="dark"] .talk-item .view-link:hover {
+  color: #2abc89;
+}
+
+html[data-theme="dark"] .talk-item .view-link .fa-external-link-alt {
+  color: #6fffc2;
+}
+
+html[data-theme="dark"] .talk-item .view-link:hover .fa-external-link-alt {
+  color: #2abc89;
+}
+
+html[data-theme="dark"] .view-link .fa-external-link-alt {
+  color: #6fffc2 !important;
+}
+
+html[data-theme="dark"] .view-link:hover .fa-external-link-alt {
+  color: #2abc89 !important;
+}
+
+html[data-theme="dark"] .blog-header .view-link {
+  color: #6fffc2 !important;
+}
+
+html[data-theme="dark"] .blog-header .view-link:hover {
+  color: #2abc89 !important;
+}
+
+html[data-theme="dark"] .blog-item,
+html[data-theme="dark"] .talk-item {
+  color: #d6d6d6;
+}
+
+html[data-theme="dark"] .archive__item-title {
+  color: #e0e0e0;
 }
