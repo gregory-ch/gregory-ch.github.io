@@ -409,7 +409,12 @@ body.dark-theme .greedy-nav .visible-links li {
 
 html[data-theme="dark"] .greedy-nav .visible-links li:first-child a,
 body.dark-theme .greedy-nav .visible-links li:first-child a {
-  color: #2abc89;
+  color: #e0e0e0;
+}
+
+html[data-theme="dark"] .greedy-nav .visible-links li:first-child,
+body.dark-theme .greedy-nav .visible-links li:first-child {
+  border-right: none !important;
 }
 
 html[data-theme="dark"] .greedy-nav .visible-links li:first-child a:hover,

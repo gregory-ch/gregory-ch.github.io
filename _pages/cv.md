@@ -18,7 +18,7 @@ Education
 Work experience
 ======
 * 2024 — 2025: Laboratory Manager and Research Fellow
-  * [UCL's Experimental Laboratory for Finance and Economics (ELFE)](https://uclelfe.github.io/)
+  * UCL's Experimental Laboratory for Finance and Economics (ELFE)
   * Supervisors: Antonio Guarino and Duarte Gonçalves
 
 * 2023 — 2024: Guest researcher
