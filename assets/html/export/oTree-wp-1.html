@@ -1,0 +1,818 @@
+---
+layout: reveal
+title: "My Slides"
+permalink: /assets/html/export/oTree-wp-1.html
+---
+
+<body>
+
+
+          <section >
+              
+              <h1>Introductory Workshop on Programming Experiments with oTree</h1>
+              <p>Gregory Chernov 2025</p>
+  
+          </section>
+      
+  
+  
+  
+      
+  
+              <section >
+              
+              <h2>Workshop Overview</h2>
+  <div style="font-size: 0.65em;">
+  <ul>
+  <li>Duration: 16 Academic Hours</li>
+  <li>No programming experience required</li>
+              <li>Recommended: Basic Python knowledge and oTree tutorials</li>
+              </ul>
+              <h4 id="useful-links-for-otree-and-tools">Useful Links for oTree and Tools</h4>
+              <p>🕹️ Example Code</p>
+              <ul>
+              <li><strong>Guessing Game Code:</strong> <a href="https://github.com/gregory-ch/otree_workshop">github.com/gregory-ch/otree_workshop</a></li>
+              </ul>
+              <p>🧪 Demos</p>
+              <ul>
+              <li><strong>oTree Hub Demo:</strong> <a href="https://public-class-demo-5ecbf9d50b20.herokuapp.com/demo">public-class-demo.herokuapp.com</a>  </li>
+              <li><strong>More Demos:</strong> <a href="https://otree-more-demos.herokuapp.com/demo">otree-more-demos.herokuapp.com</a></li>
+              </ul>
+              <p>🔧 oTree Tools and Projects</p>
+              <ul>
+              <li><strong>oTree3 tools:</strong> <a href="https://github.com/otree-tools/otree_tools">github.com/otree-tools/otree_tools</a>  </li>
+              <li><strong>oTree HR:</strong> <a href="https://github.com/chkgk/otree-hr">github.com/chkgk/otree-hr</a></li>
+              </ul>
+      </section>
+      
+      <section >
+          <p>📚 Guides and Tutorials</p>
+          <ul>
+          <li><a href="https://git-scm.com/doc">Git Guide</a></li>
+          <li><a href="https://www.otreehub.com/">Why Use oTree Hub?</a></li>
+          <li><a href="https://otree.readthedocs.io/en/latest/server/cloud.html">oTree Hub Deployment Tutorial</a></li>
+          <li><a href="https://otree.readthedocs.io/en/latest/server/heroku.html">oTree Heroku Setup Guide</a></li>
+          <li><a href="https://otree.readthedocs.io/">Platforms and Panels for Online Behavioral Research</a></li>
+          <li><p><a href="https://otree.readthedocs.io/en/latest/prolific.html">oTree on Prolific</a></p>
+          <p>🌐 Other Resources</p>
+          </li>
+          <li><a href="https://devcenter.heroku.com/">Heroku Developer Program</a></li>
+          <li><a href="https://www.otreehub.com/">oTree Hub</a></li>
+          </ul>
+      </section>
+  <!-- active links:
+  
+  </div>
+  
+  <div style="text-align: center;">
+  
+  ![oTree Admin Panel](/assets/html/export/images/frame.png)
+  
+  </div>
+  https://goo.su/KMQRkHC -->
+              </section>
+      
+  
+  
+  
+      
+          <section >
+              
+              <h4>Contents</h4>
+  <div class="toc">
+  <style>
+  .toc {
+      font-size: 0.4em;
+      position: relative;
+      width: 100%;
+  }
+  .toc ul {
+      list-style: none;
+      padding-left: 20px;
+  }
+  .toc li {
+      margin: 8px 0;
+      display: flex;
+      align-items: baseline;
+  }
+  .toc li span.title {
+      flex: 1;
+      padding-right: 8px;
+  }
+  .toc li span.dots {
+      border-bottom: 1px dotted #999;
+      flex: 1;
+      margin: 0 4px;
+  }
+  .toc li span.page {
+      flex: 0 0 auto;
+      text-align: right;
+      min-width: 20px;
+  }
+  .toc li.h3 {
+      padding-left: 20px;
+  }
+  </style>
+  <div id="toc"></div>
+  </div>
+  <script>
+  document.addEventListener('DOMContentLoaded', function() {
+      const toc = document.getElementById('toc');
+      const tocList = document.createElement('ul');
+      const headings = document.querySelectorAll('h2, h3');
+      
+      headings.forEach(heading => {
+          if (heading.textContent === 'Contents') return;
+          
+          // Find closest section element (slide)
+          const slide = heading.closest('section');
+          if (!slide) return;
+          
+          // Get slide number from data-slide-number attribute
+          const slideNumber = slide.getAttribute('data-slide-number') || 
+                            Reveal.getIndices(slide).h + 1;
+          
+          const li = document.createElement('li');
+          li.className = heading.tagName.toLowerCase();
+          
+          const titleSpan = document.createElement('span');
+          titleSpan.className = 'title';
+          titleSpan.textContent = heading.textContent;
+          
+          const dotsSpan = document.createElement('span');
+          dotsSpan.className = 'dots';
+          
+          const pageSpan = document.createElement('span');
+          pageSpan.className = 'page';
+          pageSpan.textContent = slideNumber;
+          
+          li.appendChild(titleSpan);
+          li.appendChild(dotsSpan);
+          li.appendChild(pageSpan);
+          tocList.appendChild(li);
+      });
+      
+      toc.appendChild(tocList);
+  });
+  </script>
+  
+              </section>
+      
+  
+  
+  
+      
+          <section >
+              
+              <h2>Programming Experiments Overview</h2>
+  
+              </section>
+      
+  
+  
+  
+      
+          <section >
+              
+              <h3>Popular Platforms for Experimentation</h3>
+  
+              </section>
+      
+  
+  
+  
+      
+          <section >
+              
+              <div style="font-size: 0.65em;">
+  <table>
+  <thead>
+  <tr>
+  <th>Platform</th>
+  <th>Launch</th>
+  <th>Core Components</th>
+  <th>Languages</th>
+  <th>Key Features</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr>
+  <td>oTree</td>
+  <td>2013</td>
+  <td>Django, Starlette</td>
+  <td>Python, JS</td>
+  <td>N-players, real-time, custom UI</td>
+  </tr>
+  <tr>
+  <td>zTree</td>
+  <td>1998</td>
+  <td>Client-server</td>
+  <td>Pascal-like</td>
+  <td>Own simple exp language</td>
+  </tr>
+  <tr>
+  <td>Qualtrics</td>
+  <td>2002</td>
+  <td>Survey engine, js-friendly</td>
+  <td>No coding</td>
+  <td>Advanced surveys, branching logic, self-hosting</td>
+  </tr>
+  <tr>
+  <td>PsychoPy/jsPsych</td>
+  <td>2003/2012</td>
+  <td>Python/JS /assets/html/export/libs</td>
+  <td>Python/JavaScript</td>
+  <td>Precise timing, visual stimuli, online/offline experiments</td>
+  </tr>
+  <tr>
+  <td>G.Forms</td>
+  <td>2008</td>
+  <td>Google Cloud</td>
+  <td>No coding</td>
+  <td>Basic surveys, easy integration</td>
+  </tr>
+  </tbody>
+  </table>
+  </div>
+  <p>Some others: Lioness; Sofi(PHP), etc.</p>
+  
+              </section>
+      
+  
+  
+  
+      
+          <section >
+              
+              <h3>Core Concepts of Coding Experiments</h3>
+  
+              </section>
+      
+  
+  
+  
+      
+          <section >
+              
+              <h4>Any experiment consists of two basic actions:</h4>
+  <div style="font-size: 0.6em;">
+  1. Show something (stimulus)
+  2. Collect reaction (response)
+  </div>
+  <div style="text-align: center; font-family: monospace; white-space: pre; font-size: 0.6em;">
+  ┌──────────────┐     ┌──────────────┐
+  │   STIMULUS   │     │   RESPONSE   │
+  │  Show info   │ --> │   Collect    │
+  │  Display UI  │     │   reaction   │
+  └──────────────┘     └──────────────┘
+          ▲                    │
+          └────────────────────┘
+          Next iteration
+  </div>
+  <div style="font-size: 0.6em;">
+  <p>E.G. show kitten image and ask happiness level</p>
+  <p>Implementation methods:</p>
+  <ul>
+  <li>Pen and paper (+engagement, -UI)</li>
+  <li>Web server (stimulus) ↔ Browser (response)</li>
+  <li>oTree = web framework for this cycle</li>
+  </ul>
+  </div>
+              </section>
+      
+  
+  
+  
+      
+          <section >
+              
+              <h4>Web Application Architecture</h4>
+  <p><img src="/assets/html/export/images/mvc_architecture.png" alt="Web Application Architecture"></p>
+  
+              </section>
+      
+              
+  
+  
+      
+          <section >
+              
+              <h4>oTree overview (MVC Framework)</h4>
+  <ul>
+  <li>Models: Core logic and database (Starlette, SQLite/PostgreSQL)</li>
+  <li>Controller: Page logic, function call order, and event sequence (Starlette, called pages in Django).</li>
+  <li>Views/Templates: Front-end structure
+  <ul>
+  <li>HTML</li>
+  <li>CSS (Bootstrap)</li>
+  <li>JavaScript</li>
+  </ul>
+  </li>
+  </ul>
+  
+              </section>
+      
+  
+  
+  
+      
+          <section >
+              
+              <h4>Platform Comparison</h4>
+  <div style="font-size: 0.75em;">
+  <table>
+  <thead>
+  <tr>
+  <th>Feature</th>
+  <th style="text-align:center">oTree</th>
+  <th style="text-align:center">zTree</th>
+  <th style="text-align:center">Qualtrics</th>
+  <th style="text-align:center">jsPsych</th>
+  <th style="text-align:center">g.forms</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr>
+  <td>Games</td>
+  <td style="text-align:center">✓</td>
+  <td style="text-align:center">✓</td>
+  <td style="text-align:center">✗</td>
+  <td style="text-align:center">!</td>
+  <td style="text-align:center">✗</td>
+  </tr>
+  <tr>
+  <td>N-players</td>
+  <td style="text-align:center">✓</td>
+  <td style="text-align:center">✓</td>
+  <td style="text-align:center">✗</td>
+  <td style="text-align:center">✗</td>
+  <td style="text-align:center">✗</td>
+  </tr>
+  <tr>
+  <td>Online</td>
+  <td style="text-align:center">✓</td>
+  <td style="text-align:center">!</td>
+  <td style="text-align:center">✓</td>
+  <td style="text-align:center">✓</td>
+  <td style="text-align:center">✓</td>
+  </tr>
+  <tr>
+  <td>Code Req.</td>
+  <td style="text-align:center">✓</td>
+  <td style="text-align:center">✓</td>
+  <td style="text-align:center">!</td>
+  <td style="text-align:center">✓</td>
+  <td style="text-align:center">✗</td>
+  </tr>
+  <tr>
+  <td>Custom UI</td>
+  <td style="text-align:center">✓</td>
+  <td style="text-align:center">!</td>
+  <td style="text-align:center">!</td>
+  <td style="text-align:center">✓</td>
+  <td style="text-align:center">✗</td>
+  </tr>
+  <tr>
+  <td>Free</td>
+  <td style="text-align:center">✓</td>
+  <td style="text-align:center">!</td>
+  <td style="text-align:center">✗</td>
+  <td style="text-align:center">✓</td>
+  <td style="text-align:center">✓</td>
+  </tr>
+  <tr>
+  <td>Surveys</td>
+  <td style="text-align:center">✓</td>
+  <td style="text-align:center">!</td>
+  <td style="text-align:center">✓</td>
+  <td style="text-align:center">!</td>
+  <td style="text-align:center">✓</td>
+  </tr>
+  <tr>
+  <td>Mobile</td>
+  <td style="text-align:center">✓</td>
+  <td style="text-align:center">✗</td>
+  <td style="text-align:center">✓</td>
+  <td style="text-align:center">✓</td>
+  <td style="text-align:center">✓</td>
+  </tr>
+  <tr>
+  <td>Self-host</td>
+  <td style="text-align:center">!</td>
+  <td style="text-align:center">✗</td>
+  <td style="text-align:center">✓</td>
+  <td style="text-align:center">✓</td>
+  <td style="text-align:center">✓</td>
+  </tr>
+  <tr>
+  <td>Active community</td>
+  <td style="text-align:center">✓</td>
+  <td style="text-align:center">✓</td>
+  <td style="text-align:center">✗</td>
+  <td style="text-align:center">✗</td>
+  <td style="text-align:center">✗</td>
+  </tr>
+  </tbody>
+  <tbody>
+  <tr>
+  <td>Legend:</td>
+  <td style="text-align:center">✓ Full</td>
+  <td style="text-align:center">! Limited</td>
+  <td style="text-align:center">✗ None</td>
+  </tr>
+  </tbody>
+  </table>
+  </div>
+              </section>
+      
+  
+  
+  
+      
+          <section >
+              
+              <h3>oTree: Conceptual Overview</h3>
+  
+              </section>
+      
+  
+  
+  
+      
+          <section >
+              
+              <h4>oTree Admin Panel</h4>
+  <div style="text-align: center;">
+  <p><img src="/assets/html/export/images/panel.png" alt="oTree Admin Panel"></p>
+  </div>
+  <div style="font-size: 0.6em;">
+  <ul>
+  <li>Session Monitor: Real-time participant progress tracking</li>
+  <li>Data: Live data viewing and CSV/Excel export</li>
+  <li>Links: Participant access URLs (demo/study modes)</li>
+  <li>Payments: Payment calculations and reports</li>
+  <li>Sessions: Create and manage experiment sessions</li>
+  </ul>
+  </div>
+  <p>Demo: <a href="https://otree-more-demos.herokuapp.com/demo">https://otree-more-demos.herokuapp.com/demo</a></p>
+  
+              </section>
+      
+  
+  
+  
+      
+          <section >
+              
+              <h4>oTree: webapp (server) and template</h4>
+  <div style="font-size: 0.75em;">
+  <table>
+  <thead>
+  <tr>
+  <th>About</th>
+  <th>Features &amp; Options</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr>
+  <td>Platform</td>
+  <td>• Standard web server (like Instagram) <br> •  Multiplayer strategy games<br>• Can integrate what other web can</td>
+  </tr>
+  <tr>
+  <td>Development</td>
+  <td>• Standard: Python + text editor<br>• No-code: oTree Studio<br>• Rich documentation &amp; demos</td>
+  </tr>
+  <tr>
+  <td>Technology</td>
+  <td>• Python, Django/Starlette backend<br>• JS/Bootstrap  frontend <br> • SQLite/PostgreSQL</td>
+  </tr>
+  <tr>
+  <td>Deployment</td>
+  <td>• Local server for lab<br>• Cloud hosting (Heroku)<br>• oTree Hub integration</td>
+  </tr>
+  </tbody>
+  </table>
+  </div>
+              </section>
+      
+  
+  
+  
+      
+          <section >
+              
+              <h4>Sample experiment: Guessing Game</h4>
+  <p>Simple game demonstrating core oTree concepts (models, pages, templates)</p>
+  <p>Repository structure:</p>
+  <pre><code>otree_workshop/
+  └── guessing_game/            # Example game
+      ├── _static/              # Static files
+      ├── _templates/           # Global templates
+      ├── guessing_app/         # Game application
+      │   ├── __init__.py      # Game logic
+      │   ├── Instructions.html # Game pages
+      │   ├── MyPage.html
+      │   └── Results.html
+      └── settings.py           # Project settings
+  </code></pre>
+  <p>Code: <a href="https://github.com/gregory-ch/otree_workshop">github.com/gregory-ch/otree_workshop</a></p>
+  
+              </section>
+      
+  
+  
+  
+      
+          <section >
+              
+              <h4>Guess Game: Description</h4>
+  <ul>
+  <li>A player has an endowment</li>
+  <li>Random number is generated within certain limits</li>
+  <li>A player has to guess. The closer is the guess to a real number the larger is the profit</li>
+  <li>Two fields:
+  <ul>
+  <li>what is guessed</li>
+  <li>a player's decision</li>
+  </ul>
+  </li>
+  <li>Three screens:
+  <ul>
+  <li>Intro: instructions</li>
+  <li>Decision with instructions</li>
+  <li>Results</li>
+  </ul>
+  </li>
+  </ul>
+  
+              </section>
+      
+  
+  
+  
+      
+          <section >
+              
+              <h4>Guessing Game: Instructions Page</h4>
+  <div style="transform: scale(1);">
+  <p><img src="/assets/html/export/images/Screenshot1.png" alt=""></p>
+  </div>
+              </section>
+      
+  
+  
+  
+      
+          <section >
+              
+              <h4>Guessing Game: Decision Page</h4>
+  <div style="transform: scale(1);">
+  <p><img src="/assets/html/export/images/screenshot2.png" alt="Main Game Page"></p>
+  </div>
+              </section>
+      
+  
+  
+  
+      
+          <section >
+              
+              <h4>Guessing Game: Results Page:</h4>
+  <div style="transform: scale(1);">
+  <p><img src="/assets/html/export/images/screenshot3.png" alt="Results Page"></p>
+  </div>
+              </section>
+      
+  
+  
+  
+      
+          <section >
+              
+              <p>Introduction to the Model-View-Controller (MVC) framework</p>
+  
+              </section>
+      
+  
+  
+  
+      
+          <section >
+              
+              <h4>oTree 3 vs oTree 5 (Lite)</h4>
+  <div style="font-size: 0.75em; display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+  <div>
+  <ul>
+  <li>oTree 3:
+  <ul>
+  <li>Django-based</li>
+  <li>Slower, more complex</li>
+  <li>Better documented</li>
+  <li>More examples available</li>
+  <li>Some custom moduls available:
+  <ul>
+  <li>oTree tools (<a href="http://github.com/otree-tools/otree_tools">github.com/otree-tools/otree_tools</a>)</li>
+  <li>oTree HR (<a href="http://github.com/chkgk/otree-hr">github.com/chkgk/otree-hr</a>)</li>
+  </ul>
+  </li>
+  </ul>
+  </li>
+  </ul>
+  </div>
+  <div>
+  <ul>
+  <li>oTree 5:
+  <ul>
+  <li>Starlette-based (no-self)</li>
+  <li>Faster, simpler (No redis, no second dynos)</li>
+  <li>Better performance</li>
+  </ul>
+  </li>
+  </ul>
+  </div>
+              </section>
+      
+  
+  
+  
+      
+          <section >
+              
+              <h4>oTree: Object Hierarchy</h4>
+  <div style="font-size: 0.75em;">
+  <p>Session = Event where participants play games/tasks</p>
+  <ul>
+  <li>Example: "Lab session with public goods game + questionnaire"</li>
+  <li>Includes payments, configurations, participant management</li>
+  </ul>
+  <p><br><br/></p>
+  <div style="transform: scale(1.4);">
+  <p><img src="/assets/html/export/images/session_subsession.png" alt="Session and Subsession Structure"></p>
+  </div>
+  </div>
+              </section>
+      
+  
+  
+  
+      
+          <section >
+              
+              <h4>Structure of oTree App</h4>
+  <div style="font-size: 0.75em;">
+  <ol>
+  <li>
+  <p>Pages (Display Logic)</p>
+  <ul>
+  <li>Page classes (Instructions, Game, Results)</li>
+  <li>page_sequence (order of pages)</li>
+  <li>Templates (HTML files)</li>
+  </ul>
+  </li>
+  <li>
+  <p>Models (Data Processing)</p>
+  <ul>
+  <li>Constants: game parameters</li>
+  <li>Player (individual);
+  Group (interaction); <br>Subsession (session-level data &amp; methods)</li>
+  <li>Functions (calculation of payoffs <br> and other properties based on input)</li>
+  </ul>
+  </li>
+  <li>
+  <p>Configuration</p>
+  <ul>
+  <li>App definition in <a href="http://settings.py">settings.py</a></li>
+  <li>Session configs</li>
+  </ul>
+  </li>
+  </ol>
+  </div>
+              </section>
+      
+  
+  
+  
+      
+          <section >
+              
+              <h6>oTree: Initialization Sequence</h6>
+  <div style="font-size: 0.55em; display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+  <div> <!-- Left Column -->
+  <ol>
+  <li>
+  <p>Session Creation (by Admin)</p>
+  <ul>
+  <li>Admin creates session (room/demo/single-use link)</li>
+  <li>Session configs applied</li>
+  <li>Session variables initialized</li>
+  <li>Participants slots created</li>
+  <li>creating_session() runs:
+  <ul>
+  <li>Can initialize participant.vars</li>
+  <li>Can set participant.label</li>
+  <li>Can set initial participant.payoff</li>
+  </ul>
+  </li>
+  <li>Subsessions, Groups, Players created</li>
+  </ul>
+  </li>
+  <li>
+  <p>Waiting for Participants</p>
+  <ul>
+  <li>Links generated and distributed</li>
+  <li>Participants slots with pre-initialized vars wait</li>
+  </ul>
+  </li>
+  </ol>
+  </div>
+  <div> <!-- Right Column -->
+  <ol start="3">
+  <li>
+  <p>Participant Joins</p>
+  <ul>
+  <li>Participant opens link</li>
+  <li>Gets assigned to pre-created slot</li>
+  <li>Accesses their pre-initialized variables</li>
+  <li>Starts first page in page_sequence</li>
+  </ul>
+  </li>
+  <li>
+  <p>Page Flow</p>
+  <ul>
+  <li>
+  <p>Pages execute in order from page_sequence</p>
+  </li>
+  <li>
+  <p>For each page:</p>
+  <ul>
+  <li>BEFORE page is shown:</li>
+  </ul>
+  <pre><code class="language-python">is_displayed() # (should return 
+  # True if page is to be shown)
+  vars_for_template()
+  </code></pre>
+  <ul>
+  <li>AFTER page is shown:</li>
+  </ul>
+  <pre><code class="language-python">before_next_page()
+  app_after_this_page()
+  </code></pre>
+  </li>
+  </ul>
+  </li>
+  </ol>
+  </div>
+  </div>
+              </section>
+      
+  
+  
+  
+      
+          <section >
+              
+              <h4>oTree: Models Object Hierarchy</h4>
+  <div style="font-size: 0.75em;">
+  <pre><code>Session
+      └── Subsession
+          └── Group
+              └── Player
+  </code></pre>
+  <p>Access pattern (bottom-up):</p>
+  <pre><code class="language-python">player.participant  # Access participant from player
+  player.group       # Access group from player
+  player.subsession  # Access subsession from player
+  group.subsession   # Access subsession from group
+  </code></pre>
+  </div>
+              </section>
+      
+  
+  
+  
+      
+          <section >
+              
+              <h4>oTree: Players vs Participants</h4>
+  <div style="transform: scale(1.4);">
+  <p><img src="/assets/html/export/images/participant_player.png" alt="Session and Subsession Structure"></p>
+  </div>
+  <div style="font-size: 0.75em;">
+  Participant = Person playing the experiment
+  - Stays constant throughout session
+  - Has unique participant code
+  - Tracks progress through all games
+  <p>Player = Role in specific subsession</p>
+  <ul>
+  <li>New player instance for each subsession</li>
+  <li>Can have different roles/groups</li>
+  <li>Stores game-specific data</li>
+  </ul>
+  </div>
+</section>
+      
+  
+  
+  
+
+</body>

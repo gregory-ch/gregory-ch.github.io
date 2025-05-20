@@ -1,0 +1,3629 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+
+  <title>Reveal JS presentation</title>
+
+  <meta name="description" content="A framework for easily creating beautiful presentations using HTML">
+  <meta name="author" content="Hakim El Hattab">
+
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <link rel="stylesheet" href="/assets/html/export/libs/reveal.js/4.3.1/reset.css">
+  <link rel="stylesheet" href="/assets/html/export/libs/reveal.js/4.3.1/reveal.css">
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+  <!-- highlight Theme -->
+  
+  <link rel="stylesheet" href="libs/highlight.js/11.3.1/styles/monokai.min.css">
+  
+	
+		
+	<link rel="stylesheet" href="/assets/html/export/libs/reveal.js/4.3.1/plugin/chalkboard/style.css">
+	
+	
+	
+  <link rel="stylesheet" href="/assets/html/export/libs/reveal.js/4.3.1/plugin/customcontrols/style.css">
+  
+	
+
+
+
+  <!-- Revealjs Theme -->
+  
+  <link rel="stylesheet" href="/assets/html/export/libs/reveal.js/4.3.1/theme/night.css" id="theme">
+  
+  
+
+  <link rel="stylesheet" href="libs/styles/tasklist.css">
+	<link rel="stylesheet" href="libs/styles/iota.css">
+	<link rel="stylesheet" href="libs/styles/layout.css">
+
+
+  <!-- Revealjs Theme -->
+  
+
+   <!-- css list -->
+	
+
+   
+
+</head>
+
+<body>
+
+   
+
+  <div class="reveal">
+
+    <!-- Any section element inside of this container is displayed as a slide -->
+    <div class="slides">
+
+      
+
+
+    
+        <section >
+            
+            <h1>Introductory Workshop on Programming Experiments with oTree</h1>
+            <p>Gregory Chernov 2025</p>
+
+        </section>
+    
+
+
+
+    
+
+            <section >
+            
+            <h2>Workshop Overview</h2>
+<div style="font-size: 0.65em;">
+<ul>
+<li>Duration: 16 Academic Hours</li>
+<li>No programming experience required</li>
+            <li>Recommended: Basic Python knowledge and oTree tutorials</li>
+            </ul>
+            <h4 id="useful-links-for-otree-and-tools">Useful Links for oTree and Tools</h4>
+            <p>🕹️ Example Code</p>
+            <ul>
+            <li><strong>Guessing Game Code:</strong> <a href="https://github.com/gregory-ch/otree_workshop">github.com/gregory-ch/otree_workshop</a></li>
+            </ul>
+            <p>🧪 Demos</p>
+            <ul>
+            <li><strong>oTree Hub Demo:</strong> <a href="https://public-class-demo-5ecbf9d50b20.herokuapp.com/demo">public-class-demo.herokuapp.com</a>  </li>
+            <li><strong>More Demos:</strong> <a href="https://otree-more-demos.herokuapp.com/demo">otree-more-demos.herokuapp.com</a></li>
+            </ul>
+            <p>🔧 oTree Tools and Projects</p>
+            <ul>
+            <li><strong>oTree3 tools:</strong> <a href="https://github.com/otree-tools/otree_tools">github.com/otree-tools/otree_tools</a>  </li>
+            <li><strong>oTree HR:</strong> <a href="https://github.com/chkgk/otree-hr">github.com/chkgk/otree-hr</a></li>
+            </ul>
+    </section>
+    
+    <section >
+        <p>📚 Guides and Tutorials</p>
+        <ul>
+        <li><a href="https://git-scm.com/doc">Git Guide</a></li>
+        <li><a href="https://www.otreehub.com/">Why Use oTree Hub?</a></li>
+        <li><a href="https://otree.readthedocs.io/en/latest/server/cloud.html">oTree Hub Deployment Tutorial</a></li>
+        <li><a href="https://otree.readthedocs.io/en/latest/server/heroku.html">oTree Heroku Setup Guide</a></li>
+        <li><a href="https://otree.readthedocs.io/">Platforms and Panels for Online Behavioral Research</a></li>
+        <li><p><a href="https://otree.readthedocs.io/en/latest/prolific.html">oTree on Prolific</a></p>
+        <p>🌐 Other Resources</p>
+        </li>
+        <li><a href="https://devcenter.heroku.com/">Heroku Developer Program</a></li>
+        <li><a href="https://www.otreehub.com/">oTree Hub</a></li>
+        </ul>
+    </section>
+<!-- active links:
+
+</div>
+
+<div style="text-align: center;">
+
+![oTree Admin Panel](/assets/html/export/images/frame.png)
+
+</div>
+https://goo.su/KMQRkHC -->
+            </section>
+    
+
+
+
+    
+        <section >
+            
+            <h4>Contents</h4>
+<div class="toc">
+<style>
+.toc {
+    font-size: 0.4em;
+    position: relative;
+    width: 100%;
+}
+.toc ul {
+    list-style: none;
+    padding-left: 20px;
+}
+.toc li {
+    margin: 8px 0;
+    display: flex;
+    align-items: baseline;
+}
+.toc li span.title {
+    flex: 1;
+    padding-right: 8px;
+}
+.toc li span.dots {
+    border-bottom: 1px dotted #999;
+    flex: 1;
+    margin: 0 4px;
+}
+.toc li span.page {
+    flex: 0 0 auto;
+    text-align: right;
+    min-width: 20px;
+}
+.toc li.h3 {
+    padding-left: 20px;
+}
+</style>
+<div id="toc"></div>
+</div>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const toc = document.getElementById('toc');
+    const tocList = document.createElement('ul');
+    const headings = document.querySelectorAll('h2, h3');
+    
+    headings.forEach(heading => {
+        if (heading.textContent === 'Contents') return;
+        
+        // Find closest section element (slide)
+        const slide = heading.closest('section');
+        if (!slide) return;
+        
+        // Get slide number from data-slide-number attribute
+        const slideNumber = slide.getAttribute('data-slide-number') || 
+                          Reveal.getIndices(slide).h + 1;
+        
+        const li = document.createElement('li');
+        li.className = heading.tagName.toLowerCase();
+        
+        const titleSpan = document.createElement('span');
+        titleSpan.className = 'title';
+        titleSpan.textContent = heading.textContent;
+        
+        const dotsSpan = document.createElement('span');
+        dotsSpan.className = 'dots';
+        
+        const pageSpan = document.createElement('span');
+        pageSpan.className = 'page';
+        pageSpan.textContent = slideNumber;
+        
+        li.appendChild(titleSpan);
+        li.appendChild(dotsSpan);
+        li.appendChild(pageSpan);
+        tocList.appendChild(li);
+    });
+    
+    toc.appendChild(tocList);
+});
+</script>
+
+            </section>
+    
+
+
+
+    
+        <section >
+            
+            <h2>Programming Experiments Overview</h2>
+
+            </section>
+    
+
+
+
+    
+        <section >
+            
+            <h3>Popular Platforms for Experimentation</h3>
+
+            </section>
+    
+
+
+
+    
+        <section >
+            
+            <div style="font-size: 0.65em;">
+<table>
+<thead>
+<tr>
+<th>Platform</th>
+<th>Launch</th>
+<th>Core Components</th>
+<th>Languages</th>
+<th>Key Features</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>oTree</td>
+<td>2013</td>
+<td>Django, Starlette</td>
+<td>Python, JS</td>
+<td>N-players, real-time, custom UI</td>
+</tr>
+<tr>
+<td>zTree</td>
+<td>1998</td>
+<td>Client-server</td>
+<td>Pascal-like</td>
+<td>Own simple exp language</td>
+</tr>
+<tr>
+<td>Qualtrics</td>
+<td>2002</td>
+<td>Survey engine, js-friendly</td>
+<td>No coding</td>
+<td>Advanced surveys, branching logic, self-hosting</td>
+</tr>
+<tr>
+<td>PsychoPy/jsPsych</td>
+<td>2003/2012</td>
+<td>Python/JS /assets/html/export/libs</td>
+<td>Python/JavaScript</td>
+<td>Precise timing, visual stimuli, online/offline experiments</td>
+</tr>
+<tr>
+<td>G.Forms</td>
+<td>2008</td>
+<td>Google Cloud</td>
+<td>No coding</td>
+<td>Basic surveys, easy integration</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Some others: Lioness; Sofi(PHP), etc.</p>
+
+            </section>
+    
+
+
+
+    
+        <section >
+            
+            <h3>Core Concepts of Coding Experiments</h3>
+
+            </section>
+    
+
+
+
+    
+        <section >
+            
+            <h4>Any experiment consists of two basic actions:</h4>
+<div style="font-size: 0.6em;">
+1. Show something (stimulus)
+2. Collect reaction (response)
+</div>
+<div style="text-align: center; font-family: monospace; white-space: pre; font-size: 0.6em;">
+┌──────────────┐     ┌──────────────┐
+│   STIMULUS   │     │   RESPONSE   │
+│  Show info   │ --> │   Collect    │
+│  Display UI  │     │   reaction   │
+└──────────────┘     └──────────────┘
+        ▲                    │
+        └────────────────────┘
+        Next iteration
+</div>
+<div style="font-size: 0.6em;">
+<p>E.G. show kitten image and ask happiness level</p>
+<p>Implementation methods:</p>
+<ul>
+<li>Pen and paper (+engagement, -UI)</li>
+<li>Web server (stimulus) ↔ Browser (response)</li>
+<li>oTree = web framework for this cycle</li>
+</ul>
+</div>
+            </section>
+    
+
+
+
+    
+        <section >
+            
+            <h4>Web Application Architecture</h4>
+<p><img src="/assets/html/export/images/mvc_architecture.png" alt="Web Application Architecture"></p>
+
+            </section>
+    
+            
+
+
+    
+        <section >
+            
+            <h4>oTree overview (MVC Framework)</h4>
+<ul>
+<li>Models: Core logic and database (Starlette, SQLite/PostgreSQL)</li>
+<li>Controller: Page logic, function call order, and event sequence (Starlette, called pages in Django).</li>
+<li>Views/Templates: Front-end structure
+<ul>
+<li>HTML</li>
+<li>CSS (Bootstrap)</li>
+<li>JavaScript</li>
+</ul>
+</li>
+</ul>
+
+            </section>
+    
+
+
+
+    
+        <section >
+            
+            <h4>Platform Comparison</h4>
+<div style="font-size: 0.75em;">
+<table>
+<thead>
+<tr>
+<th>Feature</th>
+<th style="text-align:center">oTree</th>
+<th style="text-align:center">zTree</th>
+<th style="text-align:center">Qualtrics</th>
+<th style="text-align:center">jsPsych</th>
+<th style="text-align:center">g.forms</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Games</td>
+<td style="text-align:center">✓</td>
+<td style="text-align:center">✓</td>
+<td style="text-align:center">✗</td>
+<td style="text-align:center">!</td>
+<td style="text-align:center">✗</td>
+</tr>
+<tr>
+<td>N-players</td>
+<td style="text-align:center">✓</td>
+<td style="text-align:center">✓</td>
+<td style="text-align:center">✗</td>
+<td style="text-align:center">✗</td>
+<td style="text-align:center">✗</td>
+</tr>
+<tr>
+<td>Online</td>
+<td style="text-align:center">✓</td>
+<td style="text-align:center">!</td>
+<td style="text-align:center">✓</td>
+<td style="text-align:center">✓</td>
+<td style="text-align:center">✓</td>
+</tr>
+<tr>
+<td>Code Req.</td>
+<td style="text-align:center">✓</td>
+<td style="text-align:center">✓</td>
+<td style="text-align:center">!</td>
+<td style="text-align:center">✓</td>
+<td style="text-align:center">✗</td>
+</tr>
+<tr>
+<td>Custom UI</td>
+<td style="text-align:center">✓</td>
+<td style="text-align:center">!</td>
+<td style="text-align:center">!</td>
+<td style="text-align:center">✓</td>
+<td style="text-align:center">✗</td>
+</tr>
+<tr>
+<td>Free</td>
+<td style="text-align:center">✓</td>
+<td style="text-align:center">!</td>
+<td style="text-align:center">✗</td>
+<td style="text-align:center">✓</td>
+<td style="text-align:center">✓</td>
+</tr>
+<tr>
+<td>Surveys</td>
+<td style="text-align:center">✓</td>
+<td style="text-align:center">!</td>
+<td style="text-align:center">✓</td>
+<td style="text-align:center">!</td>
+<td style="text-align:center">✓</td>
+</tr>
+<tr>
+<td>Mobile</td>
+<td style="text-align:center">✓</td>
+<td style="text-align:center">✗</td>
+<td style="text-align:center">✓</td>
+<td style="text-align:center">✓</td>
+<td style="text-align:center">✓</td>
+</tr>
+<tr>
+<td>Self-host</td>
+<td style="text-align:center">!</td>
+<td style="text-align:center">✗</td>
+<td style="text-align:center">✓</td>
+<td style="text-align:center">✓</td>
+<td style="text-align:center">✓</td>
+</tr>
+<tr>
+<td>Active community</td>
+<td style="text-align:center">✓</td>
+<td style="text-align:center">✓</td>
+<td style="text-align:center">✗</td>
+<td style="text-align:center">✗</td>
+<td style="text-align:center">✗</td>
+</tr>
+</tbody>
+<tbody>
+<tr>
+<td>Legend:</td>
+<td style="text-align:center">✓ Full</td>
+<td style="text-align:center">! Limited</td>
+<td style="text-align:center">✗ None</td>
+</tr>
+</tbody>
+</table>
+</div>
+            </section>
+    
+
+
+
+    
+        <section >
+            
+            <h3>oTree: Conceptual Overview</h3>
+
+            </section>
+    
+
+
+
+    
+        <section >
+            
+            <h4>oTree Admin Panel</h4>
+<div style="text-align: center;">
+<p><img src="/assets/html/export/images/panel.png" alt="oTree Admin Panel"></p>
+</div>
+<div style="font-size: 0.6em;">
+<ul>
+<li>Session Monitor: Real-time participant progress tracking</li>
+<li>Data: Live data viewing and CSV/Excel export</li>
+<li>Links: Participant access URLs (demo/study modes)</li>
+<li>Payments: Payment calculations and reports</li>
+<li>Sessions: Create and manage experiment sessions</li>
+</ul>
+</div>
+<p>Demo: <a href="https://otree-more-demos.herokuapp.com/demo">https://otree-more-demos.herokuapp.com/demo</a></p>
+
+            </section>
+    
+
+
+
+    
+        <section >
+            
+            <h4>oTree: webapp (server) and template</h4>
+<div style="font-size: 0.75em;">
+<table>
+<thead>
+<tr>
+<th>About</th>
+<th>Features &amp; Options</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Platform</td>
+<td>• Standard web server (like Instagram) <br> •  Multiplayer strategy games<br>• Can integrate what other web can</td>
+</tr>
+<tr>
+<td>Development</td>
+<td>• Standard: Python + text editor<br>• No-code: oTree Studio<br>• Rich documentation &amp; demos</td>
+</tr>
+<tr>
+<td>Technology</td>
+<td>• Python, Django/Starlette backend<br>• JS/Bootstrap  frontend <br> • SQLite/PostgreSQL</td>
+</tr>
+<tr>
+<td>Deployment</td>
+<td>• Local server for lab<br>• Cloud hosting (Heroku)<br>• oTree Hub integration</td>
+</tr>
+</tbody>
+</table>
+</div>
+            </section>
+    
+
+
+
+    
+        <section >
+            
+            <h4>Sample experiment: Guessing Game</h4>
+<p>Simple game demonstrating core oTree concepts (models, pages, templates)</p>
+<p>Repository structure:</p>
+<pre><code>otree_workshop/
+└── guessing_game/            # Example game
+    ├── _static/              # Static files
+    ├── _templates/           # Global templates
+    ├── guessing_app/         # Game application
+    │   ├── __init__.py      # Game logic
+    │   ├── Instructions.html # Game pages
+    │   ├── MyPage.html
+    │   └── Results.html
+    └── settings.py           # Project settings
+</code></pre>
+<p>Code: <a href="https://github.com/gregory-ch/otree_workshop">github.com/gregory-ch/otree_workshop</a></p>
+
+            </section>
+    
+
+
+
+    
+        <section >
+            
+            <h4>Guess Game: Description</h4>
+<ul>
+<li>A player has an endowment</li>
+<li>Random number is generated within certain limits</li>
+<li>A player has to guess. The closer is the guess to a real number the larger is the profit</li>
+<li>Two fields:
+<ul>
+<li>what is guessed</li>
+<li>a player's decision</li>
+</ul>
+</li>
+<li>Three screens:
+<ul>
+<li>Intro: instructions</li>
+<li>Decision with instructions</li>
+<li>Results</li>
+</ul>
+</li>
+</ul>
+
+            </section>
+    
+
+
+
+    
+        <section >
+            
+            <h4>Guessing Game: Instructions Page</h4>
+<div style="transform: scale(1);">
+<p><img src="/assets/html/export/images/Screenshot1.png" alt=""></p>
+</div>
+            </section>
+    
+
+
+
+    
+        <section >
+            
+            <h4>Guessing Game: Decision Page</h4>
+<div style="transform: scale(1);">
+<p><img src="/assets/html/export/images/screenshot2.png" alt="Main Game Page"></p>
+</div>
+            </section>
+    
+
+
+
+    
+        <section >
+            
+            <h4>Guessing Game: Results Page:</h4>
+<div style="transform: scale(1);">
+<p><img src="/assets/html/export/images/screenshot3.png" alt="Results Page"></p>
+</div>
+            </section>
+    
+
+
+
+    
+        <section >
+            
+            <p>Introduction to the Model-View-Controller (MVC) framework</p>
+
+            </section>
+    
+
+
+
+    
+        <section >
+            
+            <h4>oTree 3 vs oTree 5 (Lite)</h4>
+<div style="font-size: 0.75em; display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+<div>
+<ul>
+<li>oTree 3:
+<ul>
+<li>Django-based</li>
+<li>Slower, more complex</li>
+<li>Better documented</li>
+<li>More examples available</li>
+<li>Some custom moduls available:
+<ul>
+<li>oTree tools (<a href="http://github.com/otree-tools/otree_tools">github.com/otree-tools/otree_tools</a>)</li>
+<li>oTree HR (<a href="http://github.com/chkgk/otree-hr">github.com/chkgk/otree-hr</a>)</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+<div>
+<ul>
+<li>oTree 5:
+<ul>
+<li>Starlette-based (no-self)</li>
+<li>Faster, simpler (No redis, no second dynos)</li>
+<li>Better performance</li>
+</ul>
+</li>
+</ul>
+</div>
+            </section>
+    
+
+
+
+    
+        <section >
+            
+            <h4>oTree: Object Hierarchy</h4>
+<div style="font-size: 0.75em;">
+<p>Session = Event where participants play games/tasks</p>
+<ul>
+<li>Example: "Lab session with public goods game + questionnaire"</li>
+<li>Includes payments, configurations, participant management</li>
+</ul>
+<p><br><br/></p>
+<div style="transform: scale(1.4);">
+<p><img src="/assets/html/export/images/session_subsession.png" alt="Session and Subsession Structure"></p>
+</div>
+</div>
+            </section>
+    
+
+
+
+    
+        <section >
+            
+            <h4>Structure of oTree App</h4>
+<div style="font-size: 0.75em;">
+<ol>
+<li>
+<p>Pages (Display Logic)</p>
+<ul>
+<li>Page classes (Instructions, Game, Results)</li>
+<li>page_sequence (order of pages)</li>
+<li>Templates (HTML files)</li>
+</ul>
+</li>
+<li>
+<p>Models (Data Processing)</p>
+<ul>
+<li>Constants: game parameters</li>
+<li>Player (individual);
+Group (interaction); <br>Subsession (session-level data &amp; methods)</li>
+<li>Functions (calculation of payoffs <br> and other properties based on input)</li>
+</ul>
+</li>
+<li>
+<p>Configuration</p>
+<ul>
+<li>App definition in <a href="http://settings.py">settings.py</a></li>
+<li>Session configs</li>
+</ul>
+</li>
+</ol>
+</div>
+            </section>
+    
+
+
+
+    
+        <section >
+            
+            <h6>oTree: Initialization Sequence</h6>
+<div style="font-size: 0.55em; display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+<div> <!-- Left Column -->
+<ol>
+<li>
+<p>Session Creation (by Admin)</p>
+<ul>
+<li>Admin creates session (room/demo/single-use link)</li>
+<li>Session configs applied</li>
+<li>Session variables initialized</li>
+<li>Participants slots created</li>
+<li>creating_session() runs:
+<ul>
+<li>Can initialize participant.vars</li>
+<li>Can set participant.label</li>
+<li>Can set initial participant.payoff</li>
+</ul>
+</li>
+<li>Subsessions, Groups, Players created</li>
+</ul>
+</li>
+<li>
+<p>Waiting for Participants</p>
+<ul>
+<li>Links generated and distributed</li>
+<li>Participants slots with pre-initialized vars wait</li>
+</ul>
+</li>
+</ol>
+</div>
+<div> <!-- Right Column -->
+<ol start="3">
+<li>
+<p>Participant Joins</p>
+<ul>
+<li>Participant opens link</li>
+<li>Gets assigned to pre-created slot</li>
+<li>Accesses their pre-initialized variables</li>
+<li>Starts first page in page_sequence</li>
+</ul>
+</li>
+<li>
+<p>Page Flow</p>
+<ul>
+<li>
+<p>Pages execute in order from page_sequence</p>
+</li>
+<li>
+<p>For each page:</p>
+<ul>
+<li>BEFORE page is shown:</li>
+</ul>
+<pre><code class="language-python">is_displayed() # (should return 
+# True if page is to be shown)
+vars_for_template()
+</code></pre>
+<ul>
+<li>AFTER page is shown:</li>
+</ul>
+<pre><code class="language-python">before_next_page()
+app_after_this_page()
+</code></pre>
+</li>
+</ul>
+</li>
+</ol>
+</div>
+</div>
+            </section>
+    
+
+
+
+    
+        <section >
+            
+            <h4>oTree: Models Object Hierarchy</h4>
+<div style="font-size: 0.75em;">
+<pre><code>Session
+    └── Subsession
+        └── Group
+            └── Player
+</code></pre>
+<p>Access pattern (bottom-up):</p>
+<pre><code class="language-python">player.participant  # Access participant from player
+player.group       # Access group from player
+player.subsession  # Access subsession from player
+group.subsession   # Access subsession from group
+</code></pre>
+</div>
+            </section>
+    
+
+
+
+    
+        <section >
+            
+            <h4>oTree: Players vs Participants</h4>
+<div style="transform: scale(1.4);">
+<p><img src="/assets/html/export/images/participant_player.png" alt="Session and Subsession Structure"></p>
+</div>
+<div style="font-size: 0.75em;">
+Participant = Person playing the experiment
+- Stays constant throughout session
+- Has unique participant code
+- Tracks progress through all games
+<p>Player = Role in specific subsession</p>
+<ul>
+<li>New player instance for each subsession</li>
+<li>Can have different roles/groups</li>
+<li>Stores game-specific data</li>
+</ul>
+</div>
+            </section>
+    
+
+
+
+    
+        <section >
+            
+            <h2>Programming Experiments with oTree</h2>
+
+            </section>
+    
+
+
+
+    
+        <section >
+            
+            <h3>Setting Up the Environment</h3>
+
+            </section>
+    
+
+
+
+    
+        <section >
+            
+            <h4>Quick start: Environment Setup</h4>
+<div style="font-size: 0.6em; display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+<div> <!-- Left Column: Mac/Linux -->
+<p><strong>Mac/Linux:</strong></p>
+<ol>
+<li>Install Python</li>
+</ol>
+<pre><code class="language-bash"># Mac with Homebrew
+brew install python3
+
+# Ubuntu/Debian
+sudo apt install python3 python3-pip
+</code></pre>
+<ol start="2">
+<li>Create and activate virtual environment</li>
+</ol>
+<p>Option 1: venv</p>
+<pre><code class="language-bash">python3 -m venv otree_env
+source otree_env/bin/activate
+</code></pre>
+<p>Option 2: conda</p>
+<pre><code class="language-bash"># Download &amp; install Miniconda from:
+# https://docs.conda.io/en/latest/miniconda.html
+
+conda create -n otree_env python=3.10
+conda activate otree_env
+</code></pre>
+<ol start="3">
+<li>Install oTree</li>
+</ol>
+<pre><code class="language-bash">pip install otree
+</code></pre>
+</div>
+<div> <!-- Right Column: Windows -->
+<p><strong>Windows:</strong></p>
+<ol>
+<li>
+<p>Install Python</p>
+<ul>
+<li>Download from <a href="http://python.org">python.org</a></li>
+<li>Check "Add Python to PATH"</li>
+<li>Open PowerShell/CMD as admin</li>
+</ul>
+</li>
+<li>
+<p>Create and activate virtual environment</p>
+</li>
+</ol>
+<p>Option 1: venv</p>
+<pre><code class="language-powershell">python -m venv otree_env
+.\otree_env\Scripts\activate
+</code></pre>
+<p>Option 2: conda</p>
+<pre><code class="language-powershell"># Download &amp; install Miniconda from:
+# https://docs.conda.io/en/latest/miniconda.html
+
+conda create -n otree_env python=3.10
+conda activate otree_env
+</code></pre>
+<ol start="3">
+<li>Install oTree</li>
+</ol>
+<pre><code class="language-powershell">pip install otree
+</code></pre>
+</div>
+</div>
+            </section>
+    
+
+
+
+    
+        <section >
+            
+            <h4>Quick start: Project Setup</h4>
+<ol>
+<li>Create new project</li>
+</ol>
+<pre><code class="language-bash">otree startproject guessing_game
+cd guessing_game
+otree startapp guessing_app
+</code></pre>
+<ol start="2">
+<li>Run development server</li>
+</ol>
+<pre><code class="language-bash">otree devserver
+</code></pre>
+<p>Database Configuration</p>
+<div style=" display: grid; grid-template-columns: 1fr 1fr; gap: 20px;  font-size: 0.75em;">
+<div>
+<ul>
+<li>By devserver: SQLite
+<ul>
+<li>Created automatically</li>
+<li>Runs on same server as app</li>
+</ul>
+</li>
+</ul>
+</div>
+<div>   
+<ul>
+<li>On Heroku: PostgreSQL
+<ul>
+<li>Runs on separate server</li>
+<li>More reliable, scalable</li>
+<li>Requires additional setup</li>
+</ul>
+</li>
+</ul>
+</div>
+            </section>
+    
+
+
+
+    
+        <section >
+            
+            <h3>Detailed Structure and Workflow in oTree</h3>
+
+            </section>
+    
+
+
+
+    
+        <section >
+            
+            <h4>Main building blocks of any game</h4>
+<ul>
+<li>Data input/collection</li>
+<li>Data processing:
+<ul>
+<li>calculation of payoffs and other properties based on input</li>
+<li>Interaction of data across players (not in all games)</li>
+</ul>
+</li>
+<li>More data collection</li>
+<li>Showing the results and other info</li>
+<li>(Repeat - for multi-round games)</li>
+</ul>
+
+            </section>
+    
+
+
+
+    
+        <section >
+            
+            <h4>Typical Game Blueprint</h4>
+<div style="font-size: 0.6em;">
+<table>
+<thead>
+<tr>
+<th>Blueprint</th>
+<th>Guess Game</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1. How many players?</td>
+<td>1 player</td>
+</tr>
+<tr>
+<td>2. Real-time interaction?</td>
+<td>No interaction</td>
+</tr>
+<tr>
+<td>3. Number of rounds?</td>
+<td>1 round (or more)</td>
+</tr>
+<tr>
+<td>4. Different roles?</td>
+<td>No roles</td>
+</tr>
+<tr>
+<td>5. Main stages?</td>
+<td>Generating random number, letting player guess, show results</td>
+</tr>
+<tr>
+<td>6. When are payoffs calculated?</td>
+<td>After the guess is made</td>
+</tr>
+<tr>
+<td>7. Info needed from other players?</td>
+<td>No info needed</td>
+</tr>
+<tr>
+<td>8. External information needed?</td>
+<td>Pre-generated random number</td>
+</tr>
+<tr>
+<td>9. Treatment variations?</td>
+<td>No treatments</td>
+</tr>
+</tbody>
+</table>
+</div>
+            </section>
+    
+
+
+
+    
+        <section >
+            
+            <h4>Guessing Game: Configuration (<a href="http://settings.py">settings.py</a>)</h4>
+<pre><code class="language-python">SESSION_CONFIGS = [
+    dict(
+        name='guessing_game',
+        app_sequence=['guessing_app'],
+        num_demo_participants=1,
+    ),
+]
+</code></pre>
+<p>File location:</p>
+<pre><code>otree_workshop/
+└── guessing_game/            
+    ├── _static/              
+    ├── _templates/          
+    ├── guessing_app/         
+    │   ├── __init__.py      
+    │   ├── Instructions.html 
+    │   ├── MyPage.html
+    │   └── Results.html
+    └── settings.py ⭐ 
+</code></pre>
+
+            </section>
+    
+
+
+
+    
+        <section >
+            
+            <h4>Data processing: first intro</h4>
+<ol>
+<li>
+<p>Models: where the data is stored</p>
+<ul>
+<li>Player</li>
+<li>Group</li>
+<li>Subsession models</li>
+</ul>
+</li>
+<li>
+<p>Field types</p>
+</li>
+<li>
+<p>Field properties: (doc, verbose_name, max/min, choices, and other field properties)</p>
+</li>
+</ol>
+
+            </section>
+    
+
+
+
+    
+        <section >
+            
+            <h4>Guessing Game: Constants</h4>
+<pre><code class="language-python">class C(BaseConstants):
+    NAME_IN_URL = 'guessing_app'
+    PLAYERS_PER_GROUP = None
+    NUM_ROUNDS = 2
+    ENDOWMENT = cu(100)
+    MIN_NUMBER = 0
+    MAX_NUMBER = 90
+</code></pre>
+<p>File location:</p>
+<pre><code>otree_workshop/
+└── guessing_game/            
+    ├── _static/              
+    ├── _templates/          
+    ├── guessing_app/         
+    │   ├── __init__.py ⭐    
+    │   ├── Instructions.html 
+    │   ├── MyPage.html
+    │   └── Results.html
+    └── settings.py 
+</code></pre>
+
+            </section>
+    
+
+
+
+    
+        <section >
+            
+            <h4>Guessing Game: Player Model</h4>
+<pre><code class="language-python">class Player(BasePlayer):
+    computer_number = models.IntegerField()
+    guess = models.IntegerField(
+        min=C.MIN_NUMBER, 
+        max=C.MAX_NUMBER,
+        label=&quot;Please, insert any number from {} to {}&quot;
+    )
+
+</code></pre>
+<p>File location:</p>
+<pre><code>otree_workshop/
+└── guessing_game/            
+    ├── _static/              
+    ├── _templates/          
+    ├── guessing_app/         
+    │   ├── __init__.py ⭐    
+    │   ├── Instructions.html 
+    │   ├── MyPage.html
+    │   └── Results.html
+    └── settings.py 
+</code></pre>
+
+            </section>
+    
+
+
+
+    
+        <section >
+            
+            <h4>Anatomy of an oTree Page</h4>
+<div style="font-size: 0.75em;">
+<ul>
+<li>
+<p>Page creation:</p>
+<ul>
+<li>class definition</li>
+<li>template</li>
+</ul>
+</li>
+<li>
+<p>When/if/for whom it is</p>
+<ul>
+<li>position in page_sequence</li>
+<li>method</li>
+</ul>
+<pre><code class="language-python">is_displayed 
+</code></pre>
+</li>
+<li>
+<p>What is shown:</p>
+<pre><code class="language-python">vars_for_template
+</code></pre>
+</li>
+<li>
+<p>What to do next:</p>
+<pre><code class="language-python">before_next_page()
+</code></pre>
+</li>
+</ul>
+</div>
+            </section>
+    
+
+
+
+    
+        <section >
+            
+            <h4>Page Creation Basics</h4>
+<div style="font-size: 0.75em;">
+1. Define Page Class
+</div>
+<pre><code class="language-python">class NameOfThePage(Page):
+    pass
+</code></pre>
+<div style="font-size: 0.75em;">
+2. Add to Page Sequence
+</div>
+<pre><code class="language-python">page_sequence = [NameOfThePage]
+</code></pre>
+<div style="font-size: 0.75em;">
+<ol start="3">
+<li>Create Template
+<ul>
+<li>Template name must match page class name</li>
+<li>Example: <code>NameOfThePage.html</code></li>
+<li>Located in same folder as <code>__init__.py</code></li>
+</ul>
+</li>
+</ol>
+</div>
+<div style="font-size: 0.75em;">
+<p>File location:</p>
+<pre><code>otree_workshop/
+└── guessing_game/            
+    ├── _static/              
+    ├── _templates/          
+    ├── guessing_app/         
+    │   ├── __init__.py        ⭐ 
+    ├── ├── Instructions.html 
+    │   ├── NameOfThePage.html ⭐
+    │   └── Results.html
+    └── settings.py 
+</code></pre>
+</div>
+            </section>
+    
+
+
+
+    
+        <section >
+            
+            <h4>Guessing Game: Page Flow</h4>
+<div style="font-size: 0.7em; overflow-x: auto; max-width: 100%;">
+<pre><code class="language-python">class Instructions(Page):
+    @staticmethod
+    def before_next_page(player, timeout_happened):
+        player.computer_number = random.randint(
+            C.MIN_NUMBER, C.MAX_NUMBER
+        )
+
+class MyPage(Page):
+    form_model = 'player'
+    form_fields = ['guess']
+
+    @staticmethod
+    def before_next_page(player, timeout_happened):
+        difference = abs(player.computer_number - player.guess)
+        player.payoff = C.ENDOWMENT - difference
+
+class Results(Page):
+    @staticmethod
+    def vars_for_template(player):
+        guess = player.field_maybe_none('guess')
+        difference = abs(player.computer_number - guess) if guess is not None else 0
+        return {
+            'difference': difference
+        }
+</code></pre>
+</div>
+<p>Page sequence:</p>
+<pre><code class="language-python">page_sequence = [Instructions, MyPage, Results]
+</code></pre>
+
+            </section>
+    
+
+
+
+    
+        <section >
+            
+            <h4>Templates: Using Variables</h4>
+<div style="font-size: 0.7em;">
+<ol>
+<li>From <code>vars_for_template</code>:</li>
+</ol>
+<pre><code class="language-python">@staticmethod
+def vars_for_template(player):
+    return {
+        'my_var': 42,
+        'my_list': [1, 2, 3],
+        'my_dict': {'key': 'value'}
+    }
+</code></pre>
+<pre><code class="language-html">&lt;p&gt;Variable: {{ my_var }}&lt;/p&gt;
+&lt;p&gt;List item: {{ my_list.0 }}&lt;/p&gt;
+&lt;p&gt;Dict value: {{ my_dict.key }}&lt;/p&gt;
+</code></pre>
+<ol start="2">
+<li>Built-in model variables:</li>
+</ol>
+<pre><code class="language-html">&lt;!-- Constants --&gt;
+&lt;p&gt;Endowment: {{ C.ENDOWMENT }}&lt;/p&gt;
+
+&lt;!-- Player variables --&gt;
+&lt;p&gt;Payoff: {{ player.payoff }}&lt;/p&gt;
+&lt;p&gt;ID in group: {{ player.id_in_group }}&lt;/p&gt;
+
+&lt;!-- Group variables --&gt;
+&lt;p&gt;Group ID: {{ group.id }}&lt;/p&gt;
+
+&lt;!-- Subsession variables --&gt;
+&lt;p&gt;Round number: {{ subsession.round_number }}&lt;/p&gt;
+</code></pre>
+</div>
+            </section>
+    
+
+
+
+    
+        <section >
+            
+            <h4>Templates: Including Files &amp; Special Tags</h4>
+<div style="font-size: 0.7em;">
+<ol>
+<li>Including other templates:</li>
+</ol>
+<pre><code class="language-html">&lt;!-- Include entire file --&gt;
+{% include 'app_name/Instructions.html' %}
+
+&lt;!-- Include specific blocks --&gt;
+{% include 'global/Header.html' %}
+</code></pre>
+<ol start="2">
+<li>Special oTree tags:</li>
+</ol>
+<pre><code class="language-html">&lt;!-- Submission buttons --&gt;
+{% next_button %}
+&lt;button&gt;
+    Clicking this will submit the form
+&lt;/button&gt;
+
+&lt;button type=&quot;button&quot;&gt;
+    Clicking this will not submit the form
+&lt;/button&gt;
+
+&lt;!-- Form elements --&gt;
+{% formfields %}
+{{ formfield 'specific_field' }}
+
+&lt;!-- Blocks --&gt;
+{{ block title }}
+    Page Title
+{{ endblock }}
+</code></pre>
+</div>
+            </section>
+    
+
+
+
+    
+        <section >
+            
+            <h4>Guessing Game: Templates</h4>
+<p>Instructions.html:</p>
+<div style="font-size: 0.7em; overflow-x: auto; max-width: 100%;">
+<pre><code class="language-html">{{ block title }}
+    Instructions
+{{ endblock }}
+
+{{ block content }}
+    &lt;div class=&quot;card&quot;&gt;
+        &lt;div class=&quot;card-body&quot;&gt;
+            &lt;p&gt;You have an endowment of {{C.ENDOWMENT}}.&lt;/p&gt;
+            &lt;p&gt;The computer will generate a number from {{C.MIN_NUMBER}} 
+                to {{C.MAX_NUMBER}} .&lt;/p&gt;
+            &lt;p&gt;You have to guess this number.&lt;/p&gt;
+            &lt;p&gt;The closer is your guess the more you will earn.&lt;/p&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+
+    {{ next_button }}
+{{ endblock }} 
+</code></pre>
+</div>
+            </section>
+    
+
+
+
+    
+        <section >
+            
+            <p>MyPage.html (Decision Page):</p>
+<div style="font-size: 0.7em; overflow-x: auto; max-width: 100%;">
+<pre><code class="language-html">{{ block title }}
+    Make your guess
+{{ endblock }}
+
+{{ block content }}
+    &lt;div class=&quot;card&quot;&gt;
+        &lt;div class=&quot;card-body&quot;&gt;
+            &lt;p&gt;You have an endowment of {{C.ENDOWMENT}}.&lt;/p&gt;
+            &lt;p&gt;The computer will generate a number 
+                from {{C.MIN_NUMBER}} to {{C.MAX_NUMBER}}.&lt;/p&gt;
+            &lt;p&gt;You have to guess this number.&lt;/p&gt;
+            &lt;p&gt;The closer is your guess the more you will earn.&lt;/p&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+
+    {{ formfields }}
+    {{ next_button }}
+{{ endblock }}
+</code></pre>
+</div>
+            </section>
+    
+
+
+
+    
+        <section >
+            
+            <p>Results.html:</p>
+<div style="font-size: 0.7em; overflow-x: auto; max-width: 100%;">
+<pre><code class="language-html">{{ block title }}
+    Results
+{{ endblock }}
+
+{{ block content }}
+    &lt;div class=&quot;card&quot;&gt;
+        &lt;div class=&quot;card-body&quot;&gt;
+            &lt;p&gt;The number that computer generated was: 
+                {{ player.computer_number }}&lt;/p&gt;
+            &lt;p&gt;Your guess was: {{ player.guess }}&lt;/p&gt;
+            &lt;p&gt;The difference is: {{ difference }}&lt;/p&gt;
+            &lt;p&gt;Your final earning is: 
+                {{C.ENDOWMENT}} - {{ difference }} points = {{ player.payoff }} &lt;/p&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+
+    {{ next_button }}
+{{ endblock }}
+</code></pre>
+</div>
+            </section>
+    
+
+
+
+    
+        <section >
+            
+            <h3>Hosting and Resources for oTree</h3>
+
+            </section>
+    
+
+
+
+    
+        <section >
+            
+            <h4>Git</h4>
+<div style="font-size: 0.75em;">
+<ol>
+<li>Initialize repository</li>
+</ol>
+<pre><code class="language-bash">git init
+</code></pre>
+<ol start="2">
+<li>Stage &amp; commit changes</li>
+</ol>
+<pre><code class="language-bash">git add .                        # Stage all files
+git commit -m &quot;Commit message&quot;   # Save changes
+</code></pre>
+<ol start="3">
+<li>Connect to remote</li>
+</ol>
+<pre><code class="language-bash">git remote add origin &lt;REPO_URL&gt;
+git push origin master
+</code></pre>
+<ol start="4">
+<li>Undo &amp; sync</li>
+</ol>
+<pre><code class="language-bash"># Rolling back
+git checkout &lt;COMMIT_ID&gt;    # Return to specific commit
+git stash                   # Temporarily store changes
+
+# Get updates
+git pull origin master      # Download &amp; merge changes
+</code></pre>
+<div style="font-size: 0.8em; margin-top: 20px;">
+📚 More info: <a href="http://rogerdudler.github.io/git-guide/">Git Guide</a>
+</div>
+</div>
+<!-- --- -->
+<!-- 
+#### Local vs Cloud
+
+<div style="font-size: 0.75em; display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+
+<div>
+
+**Heroku** 
+- Cloud platform (many tools for deployment and management)
+- Free tier discontinued
+- Requires PostgreSQL
+- Good for:
+  - Online experiments with high working load
+  - Multiple concurrent sessions
+  - Production deployment
+
+</div>
+
+<div>
+
+**Self-hosting**
+- Free (if you have own devise)
+- Need static IP (or use ngrok)
+- Need task manager and dependencies within env
+- Good for:
+  - 20 - 50 participants (depends on your server)
+  - Development
+
+
+</div> -->
+            </section>
+    
+
+
+
+    
+        <section >
+            
+            <h4>Deploying opportunities</h4>
+
+            </section>
+    
+
+
+
+    
+        <section >
+            
+            <div style="font-size: 0.75em; display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+<div>
+<p><strong>1. Heroku/Cloud Services</strong> (up to 500)</p>
+<ul>
+<li>Many tools for deployment and management</li>
+<li>Free tier discontinued</li>
+<li>Multiple concurrent sessions</li>
+</ul>
+<p><strong>2. oTree Hub</strong> (10-50)</p>
+<ul>
+<li>Free tier: 2 sites (addons not free)</li>
+<li>Make your code publically available</li>
+<li>Requires Heroku account</li>
+<li>Good for beginners</li>
+<li>Limited but sufficient for most</li>
+</ul>
+</div>
+<div>
+<p><strong>3. Local + ngrok</strong> (10-30)</p>
+<ul>
+<li>Streaming from your laptop</li>
+<li>Limited by your hardware</li>
+<li>Limited by connection and soft</li>
+<li>need to setup ngrok</li>
+</ul>
+<p><strong>4. Own Server (Advanced)</strong> (40-200)</p>
+<ul>
+<li>Requires server management skills</li>
+<li>Need static IP</li>
+<li>More setup work</li>
+<li>Need task manager and dependencies within env</li>
+</ul>
+</div>
+</div>
+            </section>
+    
+
+
+
+    
+        <section >
+            
+            <h4>Local Deployment with ngrok</h4>
+<div style="font-size: 0.75em; display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+<div> <!-- Left Column -->
+<p><strong>1. Setup ngrok</strong></p>
+<ul>
+<li>Register at <a href="https://ngrok.com">ngrok.com</a></li>
+<li>Get your authtoken from Dashboard</li>
+<li>Install pyngrok:</li>
+</ul>
+<pre><code class="language-bash">pip install pyngrok
+</code></pre>
+<p><strong>2. Configure Environment</strong></p>
+<pre><code class="language-bash"># Set environment variables within environment
+OTREE_AUTH_LEVEL=STUDY
+OTREE_ADMIN_PASSWORD=mypassword
+DATABASE_URL=postgresql://...
+
+</code></pre>
+<p><strong>3. Start oTree Server</strong></p>
+<pre><code class="language-bash"># Start production server
+otree prodserver 8000
+</code></pre>
+</div>
+<div> <!-- Right Column -->
+<p><strong>4. Install pyngrok</strong></p>
+<pre><code class="language-bash"># In activated environment
+pip install pyngrok
+</code></pre>
+<p><strong>5. Create Tunnel</strong></p>
+<pre><code class="language-python"># In Jupyter via VS Code or 
+# via terminal run python commands
+from pyngrok import ngrok
+
+# Set your authtoken
+ngrok.set_auth_token(&quot;your_token_here&quot;)
+
+# Create tunnel
+public_url = ngrok.connect(8000)
+print(f&quot;Public URL: {public_url}&quot;)
+</code></pre>
+<p>💡 <strong>Tips:</strong></p>
+<ul>
+<li>Use same Python environment as oTree</li>
+<li>Keep Jupyter/VS Code running</li>
+<li>URL changes each session</li>
+</ul>
+</div>
+</div>
+            </section>
+    
+
+
+
+    
+        <section >
+            
+            <h4>ngrok Setup: Token &amp; Tunnel</h4>
+<div style="font-size: 0.5em; display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+<div> <!-- Left Column -->
+<p><strong>1. Get Authtoken:</strong></p>
+<ul>
+<li>Go to ngrok Dashboard → "Your Authtoken"</li>
+<li>Copy token for your configuration</li>
+<li>Keep it secure!</li>
+</ul>
+</div>
+<div> <!-- Right Column -->
+<p><strong>2. Run Server &amp; Tunnel:</strong></p>
+<ul>
+<li>Share generated URL with participants</li>
+<li>Don't forget to disconnect tunnel after session</li>
+</ul>
+<pre><code class="language-python">ngrok.disconnect(public_url)
+</code></pre>
+</div>
+</div>
+<div style="text-align: center; margin-top: -110px;">
+<div style="transform: scale(0.7);">
+<p><img src="/assets/html/export/images/screenshot5.png" alt="ngrok Dashboard"></p>
+</div>
+</div>
+
+            </section>
+    
+
+
+
+    
+        <section >
+            
+            <h4>Deploying via oTree Hub (plus heroku)</h4>
+<div style="font-size: 0.75em; display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+<div> <!-- Left Column -->
+<p><strong>1. Local Preparation</strong></p>
+<pre><code class="language-bash"># Inside your project directory
+cd my_otree_app
+
+# Create deployment package
+otree zip
+# Creates: my_otree_app.otreezip
+</code></pre>
+<p><strong>2. Heroku Setup</strong></p>
+<ul>
+<li>Register on <a href="https://heroku.com">heroku.com</a></li>
+<li>Register on <a href="https://blog.heroku.com/github-student-developer-program">heroku Developer Program</a></li>
+<li>Add payment method (required)</li>
+<li>Create new app:
+<ul>
+<li>Go to Dashboard</li>
+<li>Click "Create new app"</li>
+<li>Choose app name</li>
+<li>Select region</li>
+</ul>
+</li>
+</ul>
+</div>
+<div> <!-- Right Column -->
+<p><strong>3. oTree Hub Connection</strong></p>
+<ol>
+<li>Go to <a href="https://www.otreehub.com">oTree Hub</a></li>
+<li>Navigate to "Heroku server deployment"</li>
+<li>Click "Connect oTree Hub to Heroku"</li>
+<li>Find your app in the list</li>
+<li>Click "Register"</li>
+</ol>
+<p>💡 Tip: Free tier includes 2 Heroku sites</p>
+</div>
+</div>
+            </section>
+    
+
+
+
+    
+        <section >
+            
+            <h4>oTree Hub: public (code available to everyone!)</h4>
+<div style="text-align: center;transform: scale(0.8);margin-top: -120px;">
+<p><img src="/assets/html/export/images/hub3.png" alt="oTree Hub Deployment Flow"></p>
+</div>
+<!-- <div style="font-size: 0.75em;">
+Register as public (code available to everyone!)
+<!-- **4. Deploy**
+- Upload .otreezip file
+- Select your Heroku app
+- Click "Deploy"
+- Wait for confirmation
+- Open app URL -->
+<!-- </div>  -->
+
+            </section>
+    
+
+
+
+    
+        <section >
+            
+            <h4>oTree Hub: Upload .otreezip file</h4>
+<!-- <div style="font-size: 0.75em;">
+
+**4. Deploy**
+- Upload .otreezip file
+- Select your Heroku app
+- Click "Deploy"
+- Wait for confirmation
+- Open app URL
+</div> -->
+<div style="text-align: center;transform: scale(0.8);margin-top: -80px;">
+<p><img src="/assets/html/export/images/screenshot4.png" alt="oTree Hub Deployment Flow"></p>
+</div>
+            </section>
+    
+
+
+
+    
+        <section >
+            
+            <h4>oTree Hub: Configuration &amp; Pricing</h4>
+<div style="font-size: 0.75em; display: grid; grid-template-columns: 1fr 1fr;">
+<div> <!-- Left Column -->
+<p><strong>Recommended Setups:</strong></p>
+<ol>
+<li>
+<p>Development &amp; Testing</p>
+<ul>
+<li>Eco Dynos ($5/month)</li>
+<li>Suitable for development</li>
+<li>Good for small test sessions</li>
+<li>Covered by Student Program</li>
+</ul>
+</li>
+<li>
+<p>Load Testing Setup</p>
+<ul>
+<li>Basic Dynos ($5/month)</li>
+<li>PostgreSQL Mini ($5/month)</li>
+<li>Total: $10/month</li>
+<li>Covered by Student Program ($13/month)</li>
+</ul>
+</li>
+</ol>
+</div>
+<div> <!-- Right Column -->
+<p><strong>Why Use oTree Hub?</strong> <a href="https://www.otree.org/blog/why-use-hub-heroku.html">↗</a></p>
+<ul>
+<li>Proper server configuration</li>
+<li>Performance monitoring</li>
+<li>Easier deployment process</li>
+<li>Reduced risk of data loss</li>
+<li>Better error handling</li>
+</ul>
+<p>💡 <strong>Resources:</strong></p>
+<ul>
+<li><a href="https://blog.heroku.com/github-student-developer-program">Student Developer Program</a> ($13/month credit)</li>
+<li><a href="https://youtu.be/H8Do08ub8bM">Deployment Tutorial</a> (older but useful)</li>
+</ul>
+</div>
+</div>
+            </section>
+    
+
+
+
+    
+        <section >
+            
+            <h4>Deploying to Heroku</h4>
+<div style="font-size: 0.75em;">
+<ol>
+<li>Prerequisites:</li>
+</ol>
+<pre><code class="language-bash"># Sign up for Heroku
+# Install Heroku CLI
+# Initialize Git repository (see previous slide)
+</code></pre>
+<ol start="2">
+<li>Create &amp; deploy:</li>
+</ol>
+<pre><code class="language-bash"># Create new Heroku app
+heroku create &lt;APPNAME&gt;
+
+# Deploy code
+git push heroku master
+
+# Reset database
+heroku run otree resetdb
+</code></pre>
+<ol start="3">
+<li>Additional setup:</li>
+</ol>
+<pre><code class="language-bash"># Set config(environment variables, databaseurl, etc)
+heroku config:set OTREE_PRODUCTION=1
+heroku config:set OTREE_AUTH_LEVEL=DEMO
+
+# Check logs if needed
+heroku logs --tail
+</code></pre>
+
+            </section>
+    
+
+
+
+    
+        <section >
+            
+            <h4>Deploying to Heroku 2</h4>
+<div style="font-size: 0.75em;">
+<ol start="4">
+<li>
+<p>If needed: Add PostgreSQL:</p>
+<p>Open Heroku Dashboard → Go to your app
+→ Click "Resources" tab → Under "Add-ons"
+search for "Heroku Postgres" → Select plan:</p>
+<ul>
+<li>Essential-0 ($5/month)</li>
+<li>Essential-1 ($9/month)</li>
+<li>…</li>
+</ul>
+</li>
+</ol>
+</div>
+<div style="font-size: 0.8em; margin-top: 20px;">
+📚 Guide (some parts still relevant): 
+<a href="https://github.com/oTree-org/otree-docs/blob/143a6ab7b61d54ec2be1a8bc09515d78e0b07c71/source/server/heroku.rst#heroku-setup-option-2">oTree Heroku Setup Guide</a>
+</div>
+<div style="font-size: 0.75em;">
+<p>Command line Database configuration:</p>
+<pre><code class="language-bash"># Add PostgreSQL addon (Essential-0 plan)
+heroku addons:create heroku-postgresql:essential-0
+
+# Check database URL
+heroku config:get DATABASE_URL
+</code></pre>
+
+            </section>
+    
+
+
+
+    
+        <section >
+            
+            <h4>oTree Development Tools</h4>
+<p><strong>oTree Studio</strong></p>
+<ul>
+<li>Visual editor, no coding required</li>
+<li>Drag-and-drop interface</li>
+<li>Free tier oTree Hub deployment</li>
+</ul>
+
+            </section>
+    
+
+
+
+    
+        <section >
+            
+            <h4>Database Options for oTree 5</h4>
+<div style="font-size: 0.75em; display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+<div>
+<p><strong>SQLite</strong></p>
+<ul>
+<li>Built-in, no setup needed</li>
+<li>Good for:
+<ul>
+<li>Development</li>
+<li>Small experiments (&lt;40 users)</li>
+<li>Single server setups</li>
+</ul>
+</li>
+<li>Limitations:
+<ul>
+<li>Not for Heroku</li>
+<li>Poor with concurrent users</li>
+<li>Poor live_methods (parallel requests)</li>
+</ul>
+</li>
+</ul>
+</div>
+<div>
+<p><strong>PostgreSQL</strong></p>
+<ul>
+<li>Production-ready database</li>
+<li>Good for:
+<ul>
+<li>Large experiments</li>
+<li>Multiple concurrent users</li>
+<li>Cloud deployment (Heroku)</li>
+</ul>
+</li>
+<li>Features:
+<ul>
+<li>Easy backups</li>
+<li>Remote access</li>
+<li>Better performance</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+            </section>
+    
+
+
+
+    
+        <section >
+            
+            <h4>Summary: Typical oTree Development Workflow</h4>
+<div style="font-size: 0.75em; display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+<div> <!-- Left Column -->
+<ol>
+<li>
+<p>Plan &amp; Design</p>
+<ul>
+<li>Write experiment blueprint</li>
+<li>Define participant flow</li>
+<li>Plan data collection</li>
+<li>Choose hosting solution</li>
+</ul>
+</li>
+<li>
+<p>Setup Environment</p>
+<ul>
+<li>Install Python &amp; oTree</li>
+<li>Configure IDE (PyCharm/VS Code)</li>
+<li>Create virtual environment</li>
+<li>Initialize Git repository</li>
+</ul>
+</li>
+<li>
+<p>Development</p>
+<ul>
+<li>Create project structure</li>
+<li>Write models &amp; constants</li>
+<li>Create pages &amp; templates</li>
+<li>Add game logic</li>
+</ul>
+</li>
+</ol>
+</div>
+<div> <!-- Right Column -->
+<ol start="4">
+<li>
+<p>Local Testing</p>
+<ul>
+<li>Run <code>otree devserver</code></li>
+<li>Test all participant flows</li>
+<li>Debug &amp; fix issues</li>
+<li>Check data recording</li>
+</ul>
+</li>
+<li>
+<p>Version Control</p>
+<pre><code class="language-bash">git add .
+git commit -m "Ready for deployment"
+git push origin main
+</code></pre>
+</li>
+<li>
+<p>Deployment</p>
+<ul>
+<li>Deploy to Heroku</li>
+<li>Deploy to oTree Hub</li>
+<li>Deploy to ngrok</li>
+</ul>
+</li>
+</ol>
+</div>
+</div>
+            </section>
+    
+
+
+
+    
+        <section >
+            
+            <h4>Platforms and Panels for Online Behavioral Research</h4>
+<div style="font-size: 0.75em;">
+<ul>
+<li><a href="https://doi.org/10.3758/s13428-021-01694-3">https://doi.org/10.3758/s13428-021-01694-3</a></li>
+<li>Platforms:
+<ul>
+<li>Prolific</li>
+<li>M-Turk</li>
+<li>Toloka</li>
+<li>Limited acess (sona-systems)</li>
+</ul>
+</li>
+</ul>
+</div>
+            </section>
+    
+
+
+
+    
+        <section >
+            
+            <h4>Prolific Integration: Flow Overview</h4>
+<div style="font-size: 0.75em;">
+<pre><code>Prolific ─────────────&gt; oTree (url) 1-t page ───────&gt; oTree (redirect) last page
+   ↑  ↑__________________________|__________________________|
+   │                             │
+   └ Experimenter (payoffs) ─————┘
+</code></pre>
+<p><strong>Key Points:</strong></p>
+<ol>
+<li>Prolific sends participant via URL with PID</li>
+<li>oTree runs experiment and stores data</li>
+<li>oTree redirects back to Prolific with completion code</li>
+<li>Experimenter downloads data and uploads bonuses</li>
+</ol>
+<p>💡 <strong>URLs:</strong></p>
+<ul>
+<li>url - To oTree:</li>
+</ul>
+<pre><code>`your-app.com/room/study?participant_label={{%PROLIFIC_PID%}}`
+</code></pre>
+<ul>
+<li>redirect - To Prolific:</li>
+</ul>
+<pre><code>`app.prolific.co/submissions/complete?cc=CODE`
+</code></pre>
+</div>
+            </section>
+    
+
+
+
+    
+        <section >
+            
+            <h4>Prolific Integration: Prerequisites</h4>
+<div style="font-size: 0.6em;display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+<div>
+<p><strong>Requirements:</strong></p>
+<ol>
+<li>
+<p>Development:</p>
+<ul>
+<li>IDE setup (PyCharm/VS Code)</li>
+<li>Working oTree project</li>
+<li>Git repository</li>
+</ul>
+</li>
+<li>
+<p>Deployment:</p>
+<ul>
+<li>Heroku account</li>
+<li>PostgreSQL addon</li>
+<li>HTTPS enabled</li>
+</ul>
+</li>
+<li>
+<p>Integration:</p>
+<ul>
+<li>Prolific account</li>
+<li>Room configuration</li>
+<li>Completion codes</li>
+</ul>
+</li>
+</ol>
+</div>
+<div>
+<p><strong>Sides:</strong></p>
+<ol>
+<li>
+<p><strong>Prolific:</strong></p>
+<ul>
+<li>Participant recruitment</li>
+<li>Payment processing</li>
+<li>Study management</li>
+</ul>
+</li>
+<li>
+<p><strong>oTree:</strong></p>
+<ul>
+<li>Experiment hosting</li>
+<li>Data collection</li>
+<li>Session management</li>
+</ul>
+</li>
+<li>
+<p><strong>Experimenter:</strong></p>
+<ul>
+<li>Setup integration</li>
+<li>Monitor sessions</li>
+<li>Process payments</li>
+</ul>
+</li>
+</ol>
+</div>
+            </section>
+    
+
+
+
+    
+        <section >
+            
+            <h4>Prolific Integration: oTree Side</h4>
+<div style="font-size: 0.6em; display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+<div>
+<p><strong>1. Room Configuration</strong> (<code>settings.py</code>):</p>
+<ul>
+<li>Create room for Prolific study</li>
+<li>Set display name</li>
+<li>Remove participant label file</li>
+</ul>
+<p><strong>2. Store Prolific ID</strong> (early app):</p>
+<ul>
+<li>Add prolific_id field to Player model</li>
+<li>Extract ID from participant.label</li>
+<li>Store after consent page</li>
+</ul>
+<p><strong>3. Configure Completion</strong> (<code>settings.py</code>):</p>
+<ul>
+<li>Add completionlink to session config</li>
+<li>Use placeholder until study creation</li>
+<li>Update with real code from Prolific</li>
+</ul>
+</div>
+<div>
+<p><strong>4. Setup Redirect</strong> (final app):</p>
+<ul>
+<li>Configure completion link in last page</li>
+<li>Add JavaScript redirect</li>
+<li>Test redirect flow</li>
+</ul>
+<p>💡 <strong>Important:</strong></p>
+<ul>
+<li>Test complete flow in development</li>
+<li>Verify ID storage</li>
+<li>Check completion redirect</li>
+<li>Validate data export</li>
+</ul>
+<p>Guide with more details: <a href="https://dallasnova.rbind.io/post/running-otree-on-prolific-for-beginners/">Running oTree on Prolific for Beginners</a></p>
+</div>
+</div>  
+            </section>
+    
+
+
+
+    
+        <section >
+            
+            <h4>Prolific Integration: Prolific Side</h4>
+<div style="font-size: 0.6em; display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+<div> <!-- Left Column -->
+<p><strong>1. Configure Study URL:</strong></p>
+<ul>
+<li>Go to "Study Settings"</li>
+<li>Find "How to record Prolific IDs"</li>
+<li>Paste your Heroku room URL</li>
+<li>Select "URL parameters" option</li>
+</ul>
+<p><strong>2. Set URL Parameters:</strong></p>
+<ul>
+<li>Keep <code>participant_label</code> as parameter</li>
+<li>Full URL format:</li>
+</ul>
+<pre><code>your-app.com/room/study?participant_label={{%PROLIFIC_PID%}}
+</code></pre>
+</div>
+<div> <!-- Right Column -->
+<p><strong>3. Completion Setup:</strong></p>
+<ul>
+<li>Get completion code from Prolific</li>
+<li>Update your oTree config:</li>
+</ul>
+<pre><code>completionlink=
+'https://app.prolific.co/submissions/complete?cc=XXXX'
+</code></pre>
+<p>💡 <strong>Important:</strong></p>
+<ul>
+<li>Test URL in Preview mode</li>
+<li>Verify ID recording</li>
+<li>Check completion redirect</li>
+<li>Monitor submissions</li>
+</ul>
+</div>
+</div>
+<div style="text-align: center; margin-top: -110px;">
+<div style="transform: scale(0.7);">
+<p><img src="/assets/html/export/images/record_prolific_id.png" alt="Prolific ID Setup"></p>
+</div>
+</div>
+            </section>
+    
+
+
+
+    
+        <section >
+            
+            <h4>Prolific Integration: Experimenter Side</h4>
+<div style="font-size: 0.6em; display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+<div> <!-- Left Column -->
+<p><strong>1. Data Verification:</strong></p>
+<ul>
+<li>Check completion status</li>
+<li>Verify stored Prolific IDs</li>
+<li>Review recorded bonuses</li>
+<li>Export data from oTree</li>
+</ul>
+<p><strong>2. Payment Processing:</strong></p>
+<ul>
+<li>Return to Prolific study page</li>
+<li>Options for bonus payments:
+<ul>
+<li>Manual approval</li>
+<li>Bulk actions for large studies</li>
+</ul>
+</li>
+</ul>
+</div>
+<div> <!-- Right Column -->
+<p><strong>3. Important Notes:</strong></p>
+<ul>
+<li>Prolific charges processing fee</li>
+<li>Base payment for participation</li>
+<li>Bonuses are additional</li>
+<li>Monitor dropout rates</li>
+</ul>
+<p>💡 <strong>Resources:</strong></p>
+<ul>
+<li><a href="https://dallasnova.rbind.io/post/running-otree-on-prolific-for-beginners/">Prolific Guide</a></li>
+<li><a href="https://hr.otreehub.com/">oTree Hub</a></li>
+</ul>
+</div>
+</div>
+<div style="text-align: center; margin-top: -100px;">
+<div style="transform: scale(0.7);">
+<p><img src="/assets/html/export/images/prolific_payment.png" alt="Prolific Payment"></p>
+</div>
+</div>
+            </section>
+    
+
+
+
+    
+        <section >
+            
+            <h2>Expanding Experiment Capabilities</h2>
+
+            </section>
+    
+
+
+
+    
+        <section >
+            
+            <h3>Brief Overview of Advanced Options in oTree (if have time)</h3>
+
+            </section>
+    
+
+
+
+    
+        <section >
+            
+            <h4>Exercise: Multi-Round Results Table (guessing game)</h4>
+<div style="font-size: 0.75em;">
+<p><strong>Task:</strong> Create a results page showing player's performance across all rounds</p>
+<p>Required table format:</p>
+<pre><code>| Round | Endowment | Difference | Payoff |
+|-------|-----------|------------|---------|
+|   1   |    100    |     5      |   95    |
+|   2   |    100    |    10      |   90    |
+|-------|-----------|------------|---------|
+| Total |    200    |    15      |   185   |
+</code></pre>
+<p>Steps:</p>
+<ol>
+<li>Add <code>NUM_ROUNDS = 3</code> to Constants</li>
+<li>Use <code>in_all_rounds()</code> to get data from previous rounds</li>
+<li>Calculate totals using list comprehension</li>
+<li>Pass data to template using <code>vars_for_template</code></li>
+<li>Create table using template syntax</li>
+</ol>
+</div>
+            </section>
+    
+
+
+
+    
+        <section >
+            
+            <h4>Results Page sample Code</h4>
+<div style="font-size: 0.9em; background-color: #f8f9fa; padding: 10px; border-radius: 5px;">
+<pre><code class="language-python">@staticmethod
+def vars_for_template(player):
+    all_rounds = player.in_all_rounds()
+    total_payoff = sum(p.payoff for p in all_rounds)
+    total_diff = sum(p.difference for p in all_rounds)
+    return {
+        'rounds': all_rounds,
+        'total_payoff': total_payoff,
+        'total_difference': total_diff,
+        'total_endowment': C.ENDOWMENT * C.NUM_ROUNDS
+    }
+</code></pre>
+</div>
+            </section>
+    
+
+
+
+    
+        <section >
+            
+            <h4>Results Template Code</h4>
+<div style="font-size: 0.75em;">
+<pre><code class="language-html">{{ block title }}
+    Results Summary
+{{ endblock }}
+
+{{ block content }}
+&lt;table class=&quot;table&quot;&gt;
+    &lt;thead&gt;
+        &lt;tr&gt;
+            &lt;th&gt;Round&lt;/th&gt;
+            &lt;th&gt;Endowment&lt;/th&gt;
+            &lt;th&gt;Difference&lt;/th&gt;
+            &lt;th&gt;Payoff&lt;/th&gt;
+        &lt;/tr&gt;
+    &lt;/thead&gt;
+    &lt;tbody&gt;
+        {{ for p in rounds }}
+        &lt;tr&gt;
+            &lt;td&gt;{{ p.round_number }}&lt;/td&gt;
+            &lt;td&gt;{{ C.ENDOWMENT }}&lt;/td&gt;
+            &lt;td&gt;{{ p.difference }}&lt;/td&gt;
+            &lt;td&gt;{{ p.payoff }}&lt;/td&gt;
+        &lt;/tr&gt;
+        {{ endfor }}
+        &lt;tr class=&quot;table-active&quot;&gt;
+            &lt;td&gt;&lt;strong&gt;Total&lt;/strong&gt;&lt;/td&gt;
+            &lt;td&gt;{{ total_endowment }}&lt;/td&gt;
+            &lt;td&gt;{{ total_difference }}&lt;/td&gt;
+            &lt;td&gt;{{ total_payoff }}&lt;/td&gt;
+        &lt;/tr&gt;
+    &lt;/tbody&gt;
+&lt;/table&gt;
+
+{{ next_button }}
+{{ endblock }}
+</code></pre>
+<p>💡 Uses Bootstrap's table classes for styling</p>
+</div>
+            </section>
+    
+
+
+
+    
+        <section >
+            
+            <h4>Passing Data Between Rounds and Apps</h4>
+<div style="font-size: 0.6em; display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+<div> <!-- Left Column -->
+<p><strong>Between Rounds:</strong></p>
+<pre><code class="language-python"># Get data from rounds
+player.in_previous_rounds()  # All previous
+player.in_all_rounds()      # Including current
+player.in_rounds(1, 3)      # Specific rounds
+player.in_round(1)         # Single round
+
+# Example:
+total_payoff = sum(p.payoff 
+    for p in player.in_all_rounds())
+</code></pre>
+</div>
+<div> <!-- Right Column -->
+<p><strong>Between Apps:</strong></p>
+<pre><code class="language-python"># Store in participant
+participant.my_data = [1, 2, 3]
+
+# Access in any app
+my_data = participant.my_data
+
+# Note: internally stored in vars
+# participant.xyz is same as
+# participant.vars['xyz']
+</code></pre>
+<p>💡 <strong>Tip:</strong> Use participant vars for
+data that needs to persist across apps</p>
+</div>
+</div>
+            </section>
+    
+
+
+
+    
+        <section >
+            
+            <h4>Form Fields: Basic &amp; Advanced Usage</h4>
+<div style="font-size: 0.6em; display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+<div> <!-- Left Column -->
+<p><strong>Basic Usage:</strong></p>
+<pre><code class="language-html">&lt;!-- Auto-generate all fields --&gt;
+{{ formfields }}
+
+&lt;!-- Single field with custom label --&gt;
+{{ formfield 'bid' label=&quot;Your bid:&quot; }}
+
+&lt;!-- Just field name --&gt;
+{{ formfield 'bid' }}
+</code></pre>
+<p><strong>Manual Rendering:</strong></p>
+<pre><code class="language-html">&lt;!-- Just input element --&gt;
+{{ form.bid }}
+
+&lt;!-- Don't forget errors --&gt;
+{{ formfield_errors 'bid' }}
+</code></pre>
+</div>
+<div> <!-- Right Column -->
+<p><strong>Custom HTML Widgets:</strong></p>
+<pre><code class="language-html">&lt;!-- Checkbox input --&gt;
+&lt;input name=&quot;accept&quot; 
+       type=&quot;checkbox&quot; 
+       class=&quot;form-check-input&quot;/&gt;
+
+&lt;!-- Range slider --&gt;
+&lt;input name=&quot;bid&quot; 
+       type=&quot;range&quot; 
+       min=&quot;0&quot; max=&quot;100&quot;
+       class=&quot;form-range&quot;/&gt;
+
+&lt;!-- Radio buttons --&gt;
+&lt;input name=&quot;choice&quot; 
+       type=&quot;radio&quot; 
+       value=&quot;A&quot;/&gt;
+&lt;input name=&quot;choice&quot; 
+       type=&quot;radio&quot; 
+       value=&quot;B&quot;/&gt;
+
+{{ formfield_errors 'choice' }}
+</code></pre>
+<p>💡 <strong>Note:</strong> Custom widgets lose auto-reload
+data preservation on errors</p>
+</div>
+</div>
+            </section>
+    
+
+
+
+    
+        <section >
+            
+            <h4>Buttons: Form Submission &amp; Actions</h4>
+<div style="font-size: 0.6em; display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+<div> <!-- Left Column -->
+<p><strong>Form Submit Buttons:</strong></p>
+<pre><code class="language-html">&lt;!-- Default next button --&gt;
+{{ next_button }}
+
+&lt;!-- Custom submit buttons --&gt;
+&lt;button name=&quot;offer_accepted&quot; value=&quot;True&quot;&gt;
+    Accept Offer
+&lt;/button&gt;
+&lt;button name=&quot;offer_accepted&quot; value=&quot;False&quot;&gt;
+    Reject Offer
+&lt;/button&gt;
+
+&lt;!-- Works with any field type --&gt;
+&lt;button name=&quot;choice&quot; value=&quot;A&quot;&gt;
+    Option A
+&lt;/button&gt;
+</code></pre>
+</div>
+<div> <!-- Right Column -->
+<p><strong>Action Buttons:</strong></p>
+<pre><code class="language-html">&lt;!-- Non-submitting button --&gt;
+&lt;button type=&quot;button&quot; onclick=&quot;doSomething()&quot;&gt;
+    Calculate
+&lt;/button&gt;
+
+&lt;!-- Styled buttons --&gt;
+&lt;button class=&quot;btn btn-primary&quot; 
+        name=&quot;action&quot; value=&quot;buy&quot;&gt;
+    Buy Now
+&lt;/button&gt;
+
+&lt;!-- Disabled state --&gt;
+&lt;button class=&quot;btn btn-secondary&quot; 
+        disabled&gt;
+    Not Available
+&lt;/button&gt;
+</code></pre>
+<p>💡 <strong>Tip:</strong> Use <code>type=&quot;button&quot;</code> for
+actions that shouldn't submit the form</p>
+</div>
+</div>
+<div style="text-align: center; margin-top: 20px;">
+<div style="transform: scale(0.7);">
+<p>↗️ <a href="https://getbootstrap.com/docs/5.3/components/accordion/">elements styling wth bootstrap</a></p>
+</div>
+</div>
+            </section>
+    
+
+
+
+    
+        <section >
+            
+            <h4>Timeouts: Basic &amp; Advanced Usage</h4>
+<div style="font-size: 0.6em; display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+<div> <!-- Left Column -->
+<p><strong>Basic Setup:</strong></p>
+<pre><code class="language-python">class MyPage(Page):
+    # Fixed timeout
+    timeout_seconds = 60
+    
+    # Dynamic timeout
+    @staticmethod
+    def get_timeout_seconds(player):
+        return player.my_timeout
+        
+    # Handle timeout
+    @staticmethod
+    def before_next_page(player, timeout_happened):
+        if timeout_happened:
+            player.decision = 0
+</code></pre>
+</div>
+<div> <!-- Right Column -->
+<p><strong>Advanced Features:</strong></p>
+<pre><code class="language-html">&lt;!-- Hide timer --&gt;
+&lt;style&gt;
+.otree-timer {
+    display: none;
+}
+&lt;/style&gt;
+
+&lt;!-- Custom timer text --&gt;
+class MyPage(Page):
+    timer_text = 'Time left:'
+
+&lt;!-- Soft timeout (no auto-submit) --&gt;
+&lt;script&gt;
+setTimeout(function() {
+    alert(&quot;Time's up! Please decide.&quot;);
+}, 60*1000);  // 60 seconds
+&lt;/script&gt;
+</code></pre>
+<p>💡 <strong>Tips:</strong></p>
+<ul>
+<li>Use <code>get_timeout_seconds</code> for dynamic times</li>
+<li>Handle timeouts in <code>before_next_page</code></li>
+<li>Consider soft timeouts for flexibility</li>
+</ul>
+</div>
+</div>
+            </section>
+    
+
+
+
+    
+        <section >
+            
+            <h4>Modified Guessing Game (with Groups)</h4>
+<div style="font-size: 0.75em;">
+<p>Game Logic:</p>
+<ul>
+<li>Two players in each group</li>
+<li>Computer generates a random number</li>
+<li>Both players make guesses</li>
+<li>Group payoff: based on average guess accuracy</li>
+<li>Individual bonus: 20% extra for better guess</li>
+</ul>
+<p>Example:</p>
+<pre><code class="language-python"># Computer number: 50
+# Player 1 guess: 45 (diff: 5)
+# Player 2 guess: 60 (diff: 10)
+# Average guess: (45 + 60) / 2 = 52.5
+# Base payoff: 100 - |50 - 52.5| = 97.5
+# P1 final: 97.5 * 1.2 = 117
+# P2 final: 97.5
+</code></pre>
+</div>
+            </section>
+    
+
+
+
+    
+        <section >
+            
+            <h4>Implementation: Constants &amp; Models</h4>
+<div style="font-size: 0.75em;">
+<pre><code class="language-python">from otree.api import *
+
+class C(BaseConstants):
+    NAME_IN_URL = 'group_guessing'
+    PLAYERS_PER_GROUP = 2
+    NUM_ROUNDS = 1
+    ENDOWMENT = cu(100)
+    BONUS_MULTIPLIER = 1.2
+    MIN_NUMBER = 0
+    MAX_NUMBER = 90
+
+class Player(BasePlayer):
+    guess = models.IntegerField(
+        min=C.MIN_NUMBER, max=C.MAX_NUMBER,
+        label=&quot;Your guess&quot;
+    )
+    difference = models.FloatField()  # Individual difference
+
+class Group(BaseGroup):
+    target_number = models.IntegerField()
+    avg_guess = models.FloatField()  # Group's average guess
+    group_difference = models.FloatField()  # Group's accuracy
+
+def creating_session(subsession: Subsession):
+    for group in subsession.get_groups():
+        group.target_number = random.randint(C.MIN_NUMBER, C.MAX_NUMBER)
+</code></pre>
+</div>
+            </section>
+    
+
+
+
+    
+        <section >
+            
+            <h4>Pages and Calculations</h4>
+<div style="font-size: 0.75em;">
+<pre><code class="language-python">class MyPage(Page):
+    form_model = 'player'
+    form_fields = ['guess']
+
+class ResultsWaitPage(WaitPage):
+    @staticmethod
+    def after_all_players_arrive(group: Group):
+        players = group.get_players()
+        # Calculate average guess
+        guesses = [p.guess for p in players]
+        group.avg_guess = sum(guesses) / len(guesses)
+        
+        # Calculate group accuracy
+        group.group_difference = abs(group.target_number - group.avg_guess)
+        
+        # Calculate individual differences
+        for p in players:
+            p.difference = abs(group.target_number - p.guess)
+        
+        # Base payoff from group performance
+        base_payoff = C.ENDOWMENT - group.group_difference
+        
+        # Find best performer
+        best_player = min(players, key=lambda p: p.difference)
+        
+        # Assign payoffs
+        for p in players:
+            if p == best_player:
+                p.payoff = base_payoff * C.BONUS_MULTIPLIER
+            else:
+                p.payoff = base_payoff
+
+page_sequence = [
+    Instructions, MyPage,
+    ResultsWaitPage, # Wait for all guesses
+    Results
+]
+</code></pre>
+</div>
+            </section>
+    
+
+
+
+    
+        <section >
+            
+            <h4>Updated Results Template</h4>
+<div style="font-size: 0.75em;">
+<pre><code class="language-python">class Results(Page):
+    @staticmethod
+    def vars_for_template(player: Player):
+        group = player.group
+        base_payoff = C.ENDOWMENT - group.group_difference
+        is_best_performer = player.payoff > base_payoff
+        return {
+            'base_payoff': base_payoff,
+            'is_best_performer': is_best_performer
+        }
+</code></pre>
+<pre><code class="language-html">{{ block title }}
+    Group Results
+{{ endblock }}
+
+{{ block content }}
+&lt;div class=&quot;card&quot;&gt;
+    &lt;div class=&quot;card-body&quot;&gt;
+        &lt;h5&gt;Target &amp; Guesses&lt;/h5&gt;
+        &lt;p&gt;Target number: {{ group.target_number }}&lt;/p&gt;
+        &lt;p&gt;Your guess: {{ player.guess }}&lt;/p&gt;
+        &lt;p&gt;Group's average guess: {{ group.avg_guess }}&lt;/p&gt;
+        
+        &lt;h5&gt;Performance&lt;/h5&gt;
+        &lt;p&gt;Group's accuracy: {{ group.group_difference }}&lt;/p&gt;
+        &lt;p&gt;Your accuracy: {{ player.difference }}&lt;/p&gt;
+        
+        &lt;h5&gt;Payoffs&lt;/h5&gt;
+        &lt;p&gt;Base group payoff: {{ base_payoff }}&lt;/p&gt;
+        &lt;p&gt;Your final payoff: {{ player.payoff }}
+           {% if is_best_performer %}
+           (including bonus for best guess)
+           {% endif %}
+        &lt;/p&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+
+{{ next_button }}
+{{ endblock }}
+</code></pre>
+</div>
+            </section>
+    
+
+
+
+    
+        <section >
+            
+            <h4>How Live Pages Work</h4>
+<div style="font-size: 0.75em;">
+<ol>
+<li>Live Communication Flow:</li>
+</ol>
+<pre><code>Browser ─────liveSend()────&gt; Server
+   ↑                           │
+   │                           │
+   └────liveRecv()───── live_method()
+</code></pre>
+<ol start="2">
+<li>
+<p>Key Components:</p>
+<ul>
+<li><code>live_method</code>: Server-side function processing updates</li>
+<li><code>liveSend()</code>: JavaScript function sending data to server</li>
+<li><code>liveRecv()</code>: JavaScript callback receiving server response</li>
+</ul>
+</li>
+<li>
+<p>Benefits:</p>
+<ul>
+<li>Real-time updates without page refresh</li>
+<li>Group coordination without wait pages</li>
+<li>Interactive UI elements</li>
+<li>Immediate feedback to users</li>
+</ul>
+</li>
+</ol>
+<p>Try: <a href="https://otree-more-demos.herokuapp.com/demo/go_no_go">https://otree-more-demos.herokuapp.com/demo/go_no_go</a></p>
+</div>
+            </section>
+    
+
+
+
+    
+        <section >
+            
+            <h4>Live Pages in oTree 5 (guessing game)</h4>
+<div style="font-size: 0.75em;">
+<ol>
+<li>Add live method to <code>__init__.py</code>:</li>
+</ol>
+<pre><code class="language-python">class Player(BasePlayer):
+    guess = models.IntegerField(
+        min=C.MIN_NUMBER, max=C.MAX_NUMBER,
+        label=&quot;Your guess&quot;
+    )
+    temp_guess = models.IntegerField(blank=True)  # For live updates
+    partner_guess = models.IntegerField(blank=True)  # Show partner's guess
+    current_average = models.FloatField(blank=True)  # Live average
+
+def live_guess(player: Player, data):
+    group = player.group
+    my_guess = data.get('guess')
+    
+    # Update current player's temp guess
+    player.temp_guess = my_guess
+    
+    # Get partner's guess
+    partner = group.get_player_by_id(3 - player.id_in_group)  # 1-&gt;2, 2-&gt;1
+    
+    response = dict(
+        partner_guess=partner.temp_guess if partner.temp_guess else '?',
+        my_guess=my_guess
+    )
+    
+    # Calculate average if both guesses exist
+    if partner.temp_guess and my_guess:
+        avg = (partner.temp_guess + my_guess) / 2
+        response['average'] = round(avg, 1)
+        player.current_average = avg
+    
+    return {0: response}  # Broadcast to all players
+</code></pre>
+</div>
+            </section>
+    
+
+
+
+    
+        <section >
+            
+            <h4>Updated MyPage Template with Custom Fields</h4>
+<div style="font-size: 0.75em;">
+<pre><code class="language-html">{{ block title }}
+    Your Decision
+{{ endblock }}
+
+{{ block content }}
+&lt;div class=&quot;card&quot;&gt;
+    &lt;div class=&quot;card-body&quot;&gt;
+        &lt;p&gt;Please enter your guess:&lt;/p&gt;
+        
+        &lt;!-- Manual field rendering --&gt;
+        &lt;div class=&quot;form-group&quot;&gt;
+            &lt;label for=&quot;id_guess&quot;&gt;Your guess:&lt;/label&gt;
+
+        &lt;/div&gt;
+        
+        &lt;!-- Error messages for live updates --&gt;
+        &lt;div id=&quot;error-message&quot; class=&quot;alert alert-danger&quot; 
+             style=&quot;display: none;&quot;&gt;
+        &lt;/div&gt;
+        
+        &lt;!-- Live updates --&gt;
+        &lt;div class=&quot;mt-3&quot;&gt;
+            &lt;p&gt;Your current guess: &lt;span id=&quot;my-guess&quot;&gt;not submitted&lt;/span&gt;&lt;/p&gt;
+            &lt;p&gt;Partner's guess: &lt;span id=&quot;partner-guess&quot;&gt;waiting...&lt;/span&gt;&lt;/p&gt;
+            &lt;p&gt;Current average: &lt;span id=&quot;current-average&quot;&gt;-&lt;/span&gt;&lt;/p&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+
+            {{ formfield_errors 'guess' }}
+{{ next_button }}
+{{ endblock }}
+
+{{ block scripts }}
+&lt;script&gt;
+    function liveRecv(data) {
+        document.getElementById('my-guess').textContent = data.my_guess;
+        document.getElementById('partner-guess').textContent = data.partner_guess;
+        if (data.average) {
+            document.getElementById('current-average').textContent = data.average;
+        }
+    }
+    
+    document.getElementById('id_guess').addEventListener('input', function(e) {
+        let value = parseInt(this.value);
+        if (value &gt;= {{ C.MIN_NUMBER }} &amp;&amp; value &lt;= {{ C.MAX_NUMBER }}) {
+            liveSend({'guess': value});
+            document.getElementById('error-message').style.display = 'none';
+        } 
+    });
+&lt;/script&gt;
+
+{{ endblock }}
+</code></pre>
+</div>
+            </section>
+    
+
+
+
+    
+        <section >
+            
+            <h3>Development Patterns (if have time)</h3>
+
+            </section>
+    
+
+
+
+    
+        <section >
+            
+            <h4>Testing with Bots</h4>
+<div style="font-size: 0.6em; display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+<div> <!-- Left Column -->
+<p><strong>Basic Setup:</strong></p>
+<pre><code class="language-python"># tests.py
+def test_basic(self):
+    # Submit pages in sequence
+    yield pages.Introduction
+    yield pages.Decision, dict(
+        guess=50,
+        confidence=7
+    )
+    yield pages.Results
+
+# Run with use_browser_bots=True
+</code></pre>
+<p><strong>Validation Testing:</strong></p>
+<pre><code class="language-python"># Test form validation
+yield SubmissionMustFail(
+    pages.Decision, 
+    dict(guess=150)  # Invalid value
+)
+
+# Test expectations
+expect(player.payoff, '&gt;', 0)
+expect('you won', 'in', self.html)
+</code></pre>
+</div>
+<div> <!-- Right Column -->
+<p><strong>Advanced Features:</strong></p>
+<pre><code class="language-python"># Test different rounds
+if self.round_number == 1:
+    yield pages.Instructions
+    
+# Test player roles
+if self.player.id_in_group == 1:
+    yield pages.Leader, dict(choice='A')
+else:
+    yield pages.Follower, dict(accept=True)
+
+# Test timeouts
+yield Submission(
+    pages.Decision, 
+    dict(guess=50),
+    timeout_happened=True
+)
+</code></pre>
+<p>💡 <strong>Tips:</strong></p>
+<ul>
+<li>Write tests early</li>
+<li>Test edge cases</li>
+<li>Verify form validation</li>
+<li>Check HTML content</li>
+<li>Simulate timeouts</li>
+</ul>
+</div>
+</div>
+            </section>
+    
+
+
+
+    
+        <section >
+            
+            <h4>DRY Principle: Code Reuse Patterns</h4>
+<div style="font-size: 0.6em; display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+<div> <!-- Left Column -->
+<p><strong>1. Page Inheritance:</strong></p>
+<pre><code class="language-python">class BasePage(Page):
+    form_model = 'player'
+    
+    @staticmethod
+    def is_displayed(player):
+        return player.participant.accept
+
+class Page1(BasePage):
+    form_fields = ['choice1']
+
+class Page2(BasePage):
+    form_fields = ['choice2']
+</code></pre>
+<p><strong>2. Field Generation:</strong></p>
+<pre><code class="language-python">def make_field(label):
+    return models.IntegerField(
+        choices=[1,2,3,4,5],
+        label=label,
+        widget=widgets.RadioSelect
+    )
+
+class Player(BasePlayer):
+    q1 = make_field('Question 1')
+    q2 = make_field('Question 2')
+</code></pre>
+</div>
+<div> <!-- Right Column -->
+<p><strong>3. Shared Functions:</strong></p>
+<pre><code class="language-python">def get_timeout(player):
+    return player.participant.expiry - time.time()
+
+class Page1(Page):
+    get_timeout_seconds = get_timeout
+
+class Page2(Page):
+    get_timeout_seconds = get_timeout
+</code></pre>
+<p><strong>4. Error Handling:</strong></p>
+<pre><code class="language-python">@staticmethod
+def error_message(player, values):
+    solutions = {
+        'q1': 42,
+        'q2': 'Ottawa'
+    }
+    return {
+        f: 'Wrong answer'
+        for f, ans in solutions.items()
+        if values[f] != ans
+    }
+</code></pre>
+<p>💡 <strong>Tips:</strong></p>
+<ul>
+<li>Use rounds instead of duplicate pages</li>
+<li>Share common functions</li>
+<li>Generate similar fields</li>
+<li>Centralize validation logic</li>
+</ul>
+</div>
+</div>
+            </section>
+    
+
+
+
+    
+        <section >
+            
+            <h4>Planning &amp; Testing</h4>
+<div style="font-size: 0.6em; display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+<div> <!-- Left Column -->
+<p><strong>1. User Flow Design:</strong></p>
+<pre><code>Welcome Page
+     │
+     ▼
+  Consent? ──No──&gt; Exit
+     │
+    Yes
+     │
+     ▼
+Instructions
+     │
+     ▼
+Practice Round
+     │
+     ▼
+ Main Task(s)
+     │
+     ▼
+  Survey(s)
+     │
+     ▼
+  Payment
+</code></pre>
+</div>
+<div> <!-- Right Column -->
+<p><strong>2. Test Before Coding:</strong></p>
+<pre><code class="language-python"># tests.py
+def test_user_flow(self):
+    # Test consent rejection
+    yield SubmissionMustFail(
+        pages.Consent, dict(accept=False)
+    )
+    
+    # Test normal flow
+    yield pages.Consent, dict(accept=True)
+    yield pages.Instructions
+    yield pages.Practice
+</code></pre>
+<p><strong>3. Test Tips:</strong></p>
+<ul>
+<li>Update pages</li>
+<li>Cognitive load and quizes</li>
+<li>Try think as tester (once sq root of 3 people enter in bar)</li>
+<li>Carefully check dependencies and library call</li>
+</ul>
+</div>
+</div>
+            </section>
+    
+
+
+
+    
+        <section >
+            
+            <h4>Useful Development Tools</h4>
+<div style="font-size: 0.6em; display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+<div> <!-- Left Column -->
+<p><strong>JSFiddle</strong> <a href="https://jsfiddle.net/">@jsfiddle.net</a>:</p>
+<ul>
+<li>Live web code editor</li>
+<li>Instant preview</li>
+<li>HTML/CSS/JS testing</li>
+<li>Isolate frontend issues</li>
+<li>Share code snippets</li>
+</ul>
+<p>💡 <strong>Best for:</strong></p>
+<ul>
+<li>Testing JavaScript code</li>
+<li>Debugging UI components</li>
+<li>Prototyping page elements</li>
+<li>Validating Bootstrap styles</li>
+<li>Sharing solutions</li>
+</ul>
+</div>
+<div> <!-- Right Column -->
+<p><strong>Cursor Editor</strong> <a href="https://cursor.com/">@cursor.com</a>:</p>
+<ul>
+<li>AI-powered code editor</li>
+<li>Multi-file management</li>
+<li>Smart code completion</li>
+<li>Project-wide refactoring</li>
+<li>Composer</li>
+</ul>
+<p>💡 <strong>Best for:</strong></p>
+<ul>
+<li>Managing complex projects</li>
+<li>Working with multiple files</li>
+<li>Understanding code relationships</li>
+<li>Quick code navigation</li>
+<li>AI-assisted development</li>
+</ul>
+</div>
+</div>
+            </section>
+    
+
+
+
+    
+        <section >
+            
+            <h4>JSON Storage in StringField</h4>
+<div style="font-size: 0.6em; display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+<div> <!-- Left Column -->
+<p><strong>1. Model Setup:</strong></p>
+<pre><code class="language-python">import json
+
+class Player(BasePlayer):
+    # Store complex data as JSON
+    choices_made = models.StringField()
+    survey_data = models.StringField()
+    
+# Functions
+def store_choices(player, choices):
+    player.choices_made = json.dumps(choices)
+        
+    
+def get_choices(player):
+    return json.loads(player.choices_made or '[]')
+</code></pre>
+<p><strong>2. Usage Example:</strong></p>
+<pre><code class="language-python"># Store list of choices
+player.store_choices([
+    {'round': 1, 'choice': 'A', 'time': 2.5},
+    {'round': 2, 'choice': 'B', 'time': 1.8}
+])
+
+# Store dictionary
+player.survey_data = json.dumps({
+    'age': 25,
+    'preferences': ['sports', 'music'],
+    'ratings': {'q1': 5, 'q2': 3}
+})
+</code></pre>
+</div>
+<div> <!-- Right Column -->
+<p><strong>3. Data Access:</strong></p>
+<pre><code class="language-python">@staticmethod
+def vars_for_template(player):
+    # Get stored choices
+    choices = json.loads(player.choices_made)
+    last_choice = choices[-1]['choice']
+    
+    # Get survey data
+    survey = json.loads(player.survey_data)
+    preferences = survey['preferences']
+    
+    return dict(
+        last_choice=last_choice,
+        preferences=preferences
+    )
+</code></pre>
+<p>💡 <strong>Tips:</strong></p>
+<ul>
+<li>Always handle empty values</li>
+<li>Use in live methods</li>
+<li>Save in participant.vars what needed only for processing</li>
+</ul>
+</div>
+</div>
+            </section>
+    
+
+
+
+    
+        <section >
+            
+            <h4>Randomizing App Sequence</h4>
+<div style="font-size: 0.75em;">
+<p><strong>Challenge:</strong> Randomize order of apps within session (e.g., C→D or D→C)</p>
+<p><strong>Solution 1: Multiple Session Configs</strong></p>
+<pre><code class="language-python">SESSION_CONFIGS = [
+    dict(
+        name='sequence_CD',
+        app_sequence=['A', 'B', 'C', 'D', 'E'],
+        # ...
+    ),
+    dict(
+        name='sequence_DC',
+        app_sequence=['A', 'B', 'D', 'C', 'E'],
+        # ...
+    ),
+]
+</code></pre>
+<p><strong>Solution 2: Dynamic Routing (Advanced)</strong></p>
+<pre><code class="language-python"># In last page of app B
+@staticmethod
+def app_after_this_page(player):
+    # Random assignment stored in participant.vars
+    if not player.participant.vars.get('app_order'):
+        import random
+        player.participant.vars['app_order'] = random.choice(['CD', 'DC'])
+    
+    order = player.participant.vars['app_order']
+    return 'C' if order == 'CD' else 'D'
+</code></pre>
+</div>
+
+            </section>
+    
+
+
+
+    
+        <section >
+            
+            <p>Thank You!</p>
+<p>Questions &amp; Discussion</p>
+<p>Contacts:</p>
+<ul>
+<li><a href="https://gregory-ch.github.io/">Author's personal webpage</a></li>
+</ul>
+<p>Special thanks to:</p>
+<ul>
+<li><a href="https://chapkovski.github.io/">Ph. Chapkovski</a></li>
+</ul>
+
+            </section>
+    
+
+
+    </div>
+
+
+  </div>
+
+  <div class="line top"></div>
+  <div class="line bottom"></div>
+  <div class="line left"></div>
+  <div class="line right"></div>
+
+    <script src="/assets/html/export/libs/reveal.js/4.3.1/reveal.js"></script>
+    <script src="/assets/html/export/libs/reveal.js/4.3.1/plugin/notes/notes.js"></script>
+    <script src="/assets/html/export/libs/reveal.js/4.3.1/plugin/markdown/markdown.js"></script>
+    <script src="/assets/html/export/libs/reveal.js/4.3.1/plugin/highlight/highlight.js"></script>
+    <script src="/assets/html/export/libs/reveal.js/4.3.1/plugin/math/math.js"></script>
+    <script src="/assets/html/export/libs/reveal.js/4.3.1/plugin/fullscreen/plugin.js"></script>
+    <script src="/assets/html/export/libs/reveal.js/4.3.1/plugin/animate/plugin.js"></script>
+    <script src="/assets/html/export/libs/reveal.js/4.3.1/plugin/animate/svg.min.js"></script>
+    <script src="/assets/html/export/libs/reveal.js/4.3.1/plugin/anything/plugin.js"></script>
+    <script src="/assets/html/export/libs/reveal.js/4.3.1/plugin/anything/Chart.min.js"></script>
+    <script src="/assets/html/export/libs/reveal.js/4.3.1/plugin/anything/d3/d3.v3.min.js"></script>
+    <script src="/assets/html/export/libs/reveal.js/4.3.1/plugin/anything/d3.patch.js"></script>
+    <script src="/assets/html/export/libs/reveal.js/4.3.1/plugin/anything/d3/queue.v1.min.js"></script>
+    <script src="/assets/html/export/libs/reveal.js/4.3.1/plugin/anything/d3/topojson.v1.min.js"></script>
+    <script src="/assets/html/export/libs/reveal.js/4.3.1/plugin/anything/function-plot.js"></script>
+    <script src="/assets/html/export/libs/reveal.js/4.3.1/plugin/customcontrols/plugin.js"></script>
+    <script src="/assets/html/export/libs/reveal.js/4.3.1/plugin/embed-tweet/plugin.js"></script>
+    <script src="/assets/html/export/libs/reveal.js/4.3.1/plugin/chart/chart.min.js"></script>
+    <script src="/assets/html/export/libs/reveal.js/4.3.1/plugin/chart/plugin.js"></script>
+    <script src="/assets/html/export/libs/reveal.js/4.3.1/plugin/verticator/verticator.js"></script>
+    <script src="/assets/html/export/libs/reveal.js/4.3.1/plugin/zoom/zoom.js"></script>
+    <script src="/assets/html/export/libs/reveal.js/4.3.1/plugin/search/search.js"></script>
+    <script src="/assets/html/export/libs/reveal.js/4.3.1/plugin/menu/menu.js"></script>
+    <script src="/assets/html/export/libs/reveal.js/4.3.1/plugin/chalkboard/plugin.js"></script>
+
+    <script>
+  const printPlugins = [
+      RevealNotes,
+      RevealHighlight,
+      RevealMath.MathJax3,
+      RevealAnimate,
+      RevealChalkboard, 
+			RevealEmbedTweet,
+			RevealChart,
+		];
+
+		const plugins =  [...printPlugins,
+		RevealZoom, 
+		RevealSearch, 
+				RevealMarkdown, 
+				RevealMenu, 
+				RevealFullscreen,
+				RevealAnything,
+				//RevealAudioSlideshow,
+				//RevealAudioRecorder,
+				RevealCustomControls, 
+				// poll
+				// question
+				// seminar
+				Verticator 
+				 ]
+
+
+		// Also available as an ES module, see:
+		// https://revealjs.com/initialization/
+		Reveal.initialize({
+			controls: true,
+      controlsTutorial: true,
+      controlsLayout: 'bottom-right',
+      controlsBackArrows: 'faded',
+      progress: true,
+      slideNumber: true,
+      //#showSlideNumber "all" "print" "speaker"
+      hash: true, //# hash: false,
+      //# respondToHashChanges: true,
+      //# history: false,
+      keyboard: true,
+      //#keyboardCondition: null,
+      overview: true,
+      center: true,
+      touch: true,
+      loop: false,
+      rtl: false,
+      //#navigationMode: 'default', linear grid
+      shuffle: false,
+      fragments: true,
+      fragmentInURL: false,
+      embedded: false,
+      help: true,
+      //#pause: true
+      showNotes: false,
+      autoPlayMedia: false, // TODO fix this to a nullable value
+      //#preloadIframes: null. true false
+      //#autoAnimate: true
+      //#autoAnimateMatcher: null,
+      //#autoAnimateEasing: 'ease',
+      //autoAnimateDuration: 1.0,
+      //#autoAnimateUnmatched: true
+      //#autoAnimateStyles: []
+      autoSlide: 0, // TODO fix this to a falseable value
+      autoSlideStoppable: true,
+      autoSlideMethod: '0',
+      defaultTiming: 120,
+      mouseWheel: false,
+      //#previewLinks: false
+      //#postMessage: true, // TODO : this can cause issues with the vscode api ???
+      //#postMessageEvents: false,
+      //#focusBodyOnPageVisibilityChange: true,
+      transition: 'slide',
+      transitionSpeed: 'default',
+      backgroundTransition: 'fade',
+      //#pdfMaxPagesPerSlide: Number.POSITIVE_INFINITY,
+      //#pdfSeparateFragments: true,
+      //#pdfPageHeightOffset: -1,
+      viewDistance: 3,
+      //#mobileViewDistance: 2,
+      display: 'block',
+      //#hideInactiveCursor: true,
+      //#hideCursorTime: 5000
+
+      // Parallax Background
+      parallaxBackgroundImage: '',
+      parallaxBackgroundSize: '',
+      parallaxBackgroundHorizontal: 0,
+      parallaxBackgroundVertical: 0,
+
+      //Presentation Size
+      width: 960,
+			height: 700,
+			margin: 0.04,
+      minScale: 0.2,
+      maxScale: 2,
+      disableLayout: false,
+
+      audio: {
+        prefix: 'audio/', // audio files are stored in the "audio" folder
+        suffix: '.ogg', // audio files have the ".ogg" ending
+        textToSpeechURL: null, // the URL to the text to speech converter
+        defaultNotes: false, // use slide notes as default for the text to speech converter
+        defaultText: false, // use slide text as default for the text to speech converter
+        advance: 0, // advance to next slide after given time in milliseconds after audio has played, use negative value to not advance
+        autoplay: false, // automatically start slideshow
+        defaultDuration: 5, // default duration in seconds if no audio is available
+        defaultAudios: true, // try to play audios with names such as audio/1.2.ogg
+        playerOpacity: 0.05, // opacity value of audio player if unfocused
+        playerStyle: 'position: fixed; bottom: 4px; left: 25%; width: 50%; height:75px; z-index: 33;', // style used for container of audio controls
+        startAtFragment: false, // when moving to a slide, start at the current fragment or at the start of the slide
+      },
+      
+      chalkboard: { // font-awesome.min.css must be available
+        //src: "chalkboard/chalkboard.json",
+        storage: "chalkboard-demo",
+      },
+      
+			customcontrols: {
+					controls: [
+      						{
+						  id: 'toggle-overview',
+						  title: 'Toggle overview (O)',
+						  icon: '<i class="fa fa-th"></i>',
+						  action: 'Reveal.toggleOverview();'
+						}
+						,
+      {
+        icon: '<i class="fa fa-pen-square"></i>',
+        title: 'Toggle chalkboard (B)',
+        action: 'RevealChalkboard.toggleChalkboard();'
+      },
+      {
+        icon: '<i class="fa fa-pen"></i>',
+        title: 'Toggle notes canvas (C)',
+        action: 'RevealChalkboard.toggleNotesCanvas();'
+      }
+      
+				]
+			},
+			chart: {
+					defaults: { 
+						color: 'lightgray', // color of labels
+						scale: { 
+							beginAtZero: true, 
+							ticks: { stepSize: 1 },
+							grid: { color: "lightgray" } , // color of grid lines
+						},
+					},
+					line: { borderColor: [ "rgba(20,220,220,.8)" , "rgba(220,120,120,.8)", "rgba(20,120,220,.8)" ], "borderDash": [ [5,10], [0,0] ] }, 
+					bar: { backgroundColor: [ "rgba(20,220,220,.8)" , "rgba(220,120,120,.8)", "rgba(20,120,220,.8)" ]}, 
+					pie: { backgroundColor: [ ["rgba(0,0,0,.8)" , "rgba(220,20,20,.8)", "rgba(20,220,20,.8)", "rgba(220,220,20,.8)", "rgba(20,20,220,.8)"] ]},
+					radar: { borderColor: [ "rgba(20,220,220,.8)" , "rgba(220,120,120,.8)", "rgba(20,120,220,.8)" ]}, 
+			},
+			math: {
+				mathjax: 'https://cdn.jsdelivr.net/gh/mathjax/mathjax@2.7.8/MathJax.js',
+				config: 'TeX-AMS_HTML-full',
+				// pass other options into `MathJax.Hub.Config()`
+				TeX: { Macros: { RR: "{\\bf R}" } }
+				},
+				anything: [ 
+				{
+		className: "plot",
+		defaults: {width:500, height: 500, grid:true},
+		initialize: (function(container, options){ options.target = "#"+container.id; functionPlot(options) })
+	 },
+	 {
+		className: "chart",  
+		initialize: (function(container, options){ container.chart = new Chart(container.getContext("2d"), options);  })
+	 },
+	 {
+		className: "anything",
+		initialize: (function(container, options){ if (options && options.initialize) { options.initialize(container)} })
+	 },
+					],
+			// Learn about plugins: https://revealjs.com/plugins/
+			plugins: (window.location.search.match(/print-pdf/gi) ? printPlugins : plugins ) 
+		});
+			
+
+
+	    // Change chalkboard theme : 
+		function changeTheme(input) {
+			var config = {};
+			config.theme = input.value;
+			Reveal.getPlugin("RevealChalkboard").configure(config);
+			input.blur();
+		}
+
+		// // Handle the message inside the webview
+        // window.addEventListener('message', event => {
+
+        //     const message = event.data; // The JSON data our extension sent
+
+        //     switch (message.command) {
+        //         case 'refactor':
+        //             Reveal.toggleHelp();
+        //     }
+        // });
+
+		if (window.location.search.match(/print-pdf-now/gi)) {
+      		setTimeout(() => {
+				window.print();
+			  }, 2500);
+			
+    }
+</script>
+
+</body>
+
+</html>
