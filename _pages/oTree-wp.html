@@ -38,7 +38,7 @@ author_profile: true
   color: inherit;
 }
 
-.spoiler.open .spoiler-content {
+.spoiler.open + .spoiler-content {
   display: block;
 }
 </style>
@@ -48,73 +48,73 @@ author_profile: true
 <span class="c1 c11">Introductory Workshop on Programming Experiments with oTree</span></h1><p class="c3"><span class="c1">Workshop Duration:</span><span>&nbsp;Sixteen Academic Hours<br></span><span class="c1">Prerequisites:</span><span>&nbsp;No programming experience required; however, familiarity with basic Python concepts and introductory oTree tutorials is recommended.<br></span><span class="c1 c10">Suggested Pre-Workshop Resources:</span></p><ul class="c8 lst-kix_vc47zqr9l6zg-0 start"><li class="c0 li-bullet-0"><span class="c4"><a class="c2" href="https://www.google.com/url?q=https://learnxinyminutes.com/docs/python/&amp;sa=D&amp;source=editors&amp;ust=1747758844689396&amp;usg=AOvVaw2wzxxtd8mxJtmhC4EoEvi_">Learn Python in X Minutes</a></span></li><li class="c0 li-bullet-0"><span class="c4"><a class="c2" href="https://www.google.com/url?q=https://otree.readthedocs.io/en/latest/&amp;sa=D&amp;source=editors&amp;ust=1747758844689626&amp;usg=AOvVaw36maYThxdwPvAjz4qJFAFF">oTree Documentation and Tutorials</a></span></li><li class="c0 li-bullet-0"><span class="c4"><a class="c2" href="https://www.google.com/url?q=https://www.youtube.com/playlist?list%3DPLBL9eqPcwzGPli11Yighw5LWwzIifEFd_&amp;sa=D&amp;source=editors&amp;ust=1747758844689818&amp;usg=AOvVaw1_9h-Gcx0SLRcTqwAJhHyu">YouTube oTree Tutorial Series</a></span></li><li class="c0 li-bullet-0"><span class="c4">Deploying </span><span class="c4"><a class="c2" href="https://www.google.com/url?q=https://www.youtube.com/watch?v%3DVrPdBEghYEM&amp;sa=D&amp;source=editors&amp;ust=1747758844689995&amp;usg=AOvVaw3FN8w5DA1L_ppqQyyoF6OY">Otree5 Video Tutorial</a></a></span></li></ul><hr><p class="c13"><span class="c5"></span></p><h3 class="c6" id="h.n60zpm3ft49"><span class="c7 c1">Main Program</span></h3><h3 class="c6" id="h.fl3m1mu9w637"><span class="c7 c1">1. Programming Experiments Overview&</span></h3><p class="c3">
     
     <div class="spoiler" onclick="this.classList.toggle('open')">
-        <span>click to see the content</span>
         <div class="spoiler-icon">▼</div>
-        <div class="spoiler-content">
-            <span class="c10 c1">1.1 Popular Tools for Experimentation</span>
-            <ul class="c8 lst-kix_uqc5j3bm1q21-0 start">
-                <li class="c0 li-bullet-0"><span class="c5">Overview of popular platforms: Ztree, Google Forms, jsPsych, Qualtrics, and oTree.</span></li>
-            </ul>
-            <p class="c3"><span class="c10 c1">1.2 Core Concepts of Coding Experiments</span></p><ul class="c8 lst-kix_4q4k7hkfei10-0 start"><li class="c0 li-bullet-0"><span class="c5">Core experimental logic: stimulus presentation and response collection.</span></li><li class="c0 li-bullet-0"><span class="c5">Basics of server-client relationships, including roles of the server (database, task manager, web app) and client (web browser).</span></li></ul><p class="c3"><span class="c10 c1">1.3 oTree Overview </span></p><ul class="c8 lst-kix_g0z312kkisvc-0 start"><li class="c0 li-bullet-0"><span class="c5">Advantages and limitations of oTree for experimental research.</span></li><li class="c0 li-bullet-0"><span class="c5">Demonstration: oTree admin panel and basic settings.</span></li><li class="c0 li-bullet-0"><span>Sample experiment: Guessing Game (Chapkovski example).</span></li></ul><ul class="c8 lst-kix_c70k68cv9wgt-0 start"><li class="c0 li-bullet-0"><span class="c5">Introduction to the Model-View-Controller (MVC) framework:</span></li></ul><ul class="c8 lst-kix_c70k68cv9wgt-1 start"><li class="c3 c15 li-bullet-0"><span class="c1">Models:</span><span class="c5">&nbsp;Core and Database (Starlette, SQLite/PostgreSQL).</span></li><li class="c3 c15 li-bullet-0"><span class="c1">Pages:</span><span class="c5">&nbsp;Page logic and settings (Starlette).</span></li><li class="c3 c15 li-bullet-0"><span class="c1">Templates:</span><span class="c5">&nbsp;Front-end structure with HTML, CSS (quazi-Jinja2, Bootstrap), and JavaScript.</span></li></ul><hr><p class="c13"><span class="c5"></span></p>
-        </div>
+        <div>Click to see the content</div>
     </div>
-    
+    <div class="spoiler-content">
+        <span class="c10 c1">1.1 Popular Tools for Experimentation</span>
+        <ul class="c8 lst-kix_uqc5j3bm1q21-0 start">
+            <li class="c0 li-bullet-0"><span class="c5">Overview of popular platforms: Ztree, Google Forms, jsPsych, Qualtrics, and oTree.</span></li>
+        </ul>
+        <p class="c3"><span class="c10 c1">1.2 Core Concepts of Coding Experiments</span></p><ul class="c8 lst-kix_4q4k7hkfei10-0 start"><li class="c0 li-bullet-0"><span class="c5">Core experimental logic: stimulus presentation and response collection.</span></li><li class="c0 li-bullet-0"><span class="c5">Basics of server-client relationships, including roles of the server (database, task manager, web app) and client (web browser).</span></li></ul><p class="c3"><span class="c10 c1">1.3 oTree Overview </span></p><ul class="c8 lst-kix_g0z312kkisvc-0 start"><li class="c0 li-bullet-0"><span class="c5">Advantages and limitations of oTree for experimental research.</span></li><li class="c0 li-bullet-0"><span class="c5">Demonstration: oTree admin panel and basic settings.</span></li><li class="c0 li-bullet-0"><span>Sample experiment: Guessing Game (Chapkovski example).</span></li></ul><ul class="c8 lst-kix_c70k68cv9wgt-0 start"><li class="c0 li-bullet-0"><span class="c5">Introduction to the Model-View-Controller (MVC) framework:</span></li></ul><ul class="c8 lst-kix_c70k68cv9wgt-1 start"><li class="c3 c15 li-bullet-0"><span class="c1">Models:</span><span class="c5">&nbsp;Core and Database (Starlette, SQLite/PostgreSQL).</span></li><li class="c3 c15 li-bullet-0"><span class="c1">Pages:</span><span class="c5">&nbsp;Page logic and settings (Starlette).</span></li><li class="c3 c15 li-bullet-0"><span class="c1">Templates:</span><span class="c5">&nbsp;Front-end structure with HTML, CSS (quazi-Jinja2, Bootstrap), and JavaScript.</span></li></ul><hr><p class="c13"><span class="c5"></span></p>
+    </div>
+
     <div class="spoiler" onclick="this.classList.toggle('open')">
-        <span>click to see the slides</span>
         <div class="spoiler-icon">▼</div>
-        <div class="spoiler-content">
-            <iframe src="{{ base_path }}/assets/html/export/oTree-wp-1.html" width="100%" height="600" frameborder="0"></iframe>
-        </div>
+        <div>Click to see the slides</div>
+    </div>
+    <div class="spoiler-content">
+        <iframe src="{{ base_path }}/assets/html/export/oTree-wp-1.html" width="100%" height="600" frameborder="0"></iframe>
     </div>
 
     <h3 class="c6" id="h.qohaxwuqkrmb"><span class="c1 c7">2. Programming Experiments with oTree</span></h3>
 
     <div class="spoiler" onclick="this.classList.toggle('open')">
-        <span>click to see the content</span>
         <div class="spoiler-icon">▼</div>
-        <div class="spoiler-content">
-            <p class="c3"><span class="c10 c1">2.1 Setting Up the Environment </span></p><ul class="c8 lst-kix_jq02ivx83843-0 start"><li class="c0 li-bullet-0"><span class="c5">Development setup: Conda, IDEs, (optionally Git and Heroku client).</span></li><li class="c0 li-bullet-0"><span class="c5">Creating virtual environments and starting a new oTree project.</span></li><li class="c0 li-bullet-0"><span class="c5">Local deployment of an oTree app.</span></li></ul><p class="c3"><span class="c10 c1">2.2 Detailed Structure and Workflow in oTree    </span></p><ul class="c8 lst-kix_rj0ocfragfju-0 start"><li class="c0 li-bullet-0"><span class="c5">Building blocks of experimental games.</span></li><li class="c0 li-bullet-0"><span class="c5">Understanding oTree&rsquo;s data processing capabilities.</span></li><li class="c0 li-bullet-0"><span class="c5">Anatomy of an oTree page and available page methods.</span></li><li class="c0 li-bullet-0"><span class="c5">Reviewing the event sequence diagram for experiment flow and oTree instruments (roles, stages, payoffs, etc).</span></li></ul><p class="c3"><span class="c10 c1">2.3 Hosting and Resources for </span></p><ul class="c8 lst-kix_txina89xrga5-0 start"><li class="c0 li-bullet-0"><span class="c5">Comparison of hosting solutions (Heroku vs. self-hosting).</span></li><li class="c0 li-bullet-0"><span class="c5">Brief overview of oTree3 vs. oTree5, oTree Studio, oTree Lite, and oTree Hub.</span></li><li class="c0 li-bullet-0"><span class="c1">Online Recruitment Solutions. </span><span class="c5">Introduction to online recruitment platforms: Toloka, Prolific, and MTurk.</span></li></ul><hr><p class="c13"><span class="c5"></span></p>
-        </div>
+        <div>Click to see the content</div>
+    </div>
+    <div class="spoiler-content">
+        <p class="c3"><span class="c10 c1">2.1 Setting Up the Environment </span></p><ul class="c8 lst-kix_jq02ivx83843-0 start"><li class="c0 li-bullet-0"><span class="c5">Development setup: Conda, IDEs, (optionally Git and Heroku client).</span></li><li class="c0 li-bullet-0"><span class="c5">Creating virtual environments and starting a new oTree project.</span></li><li class="c0 li-bullet-0"><span class="c5">Local deployment of an oTree app.</span></li></ul><p class="c3"><span class="c10 c1">2.2 Detailed Structure and Workflow in oTree    </span></p><ul class="c8 lst-kix_rj0ocfragfju-0 start"><li class="c0 li-bullet-0"><span class="c5">Building blocks of experimental games.</span></li><li class="c0 li-bullet-0"><span class="c5">Understanding oTree&rsquo;s data processing capabilities.</span></li><li class="c0 li-bullet-0"><span class="c5">Anatomy of an oTree page and available page methods.</span></li><li class="c0 li-bullet-0"><span class="c5">Reviewing the event sequence diagram for experiment flow and oTree instruments (roles, stages, payoffs, etc).</span></li></ul><p class="c3"><span class="c10 c1">2.3 Hosting and Resources for </span></p><ul class="c8 lst-kix_txina89xrga5-0 start"><li class="c0 li-bullet-0"><span class="c5">Comparison of hosting solutions (Heroku vs. self-hosting).</span></li><li class="c0 li-bullet-0"><span class="c5">Brief overview of oTree3 vs. oTree5, oTree Studio, oTree Lite, and oTree Hub.</span></li><li class="c0 li-bullet-0"><span class="c1">Online Recruitment Solutions. </span><span class="c5">Introduction to online recruitment platforms: Toloka, Prolific, and MTurk.</span></li></ul><hr><p class="c13"><span class="c5"></span></p>
     </div>
 
     <div class="spoiler" onclick="this.classList.toggle('open')">
-        <span>click to see the slides</span>
         <div class="spoiler-icon">▼</div>
-        <div class="spoiler-content">
-            <iframe src="{{ base_path }}/assets/html/export/oTree-wp-2.html" width="100%" height="600" frameborder="0"></iframe>
-        </div>
+        <div>Click to see the slides</div>
+    </div>
+    <div class="spoiler-content">
+        <iframe src="{{ base_path }}/assets/html/export/oTree-wp-2.html" width="100%" height="600" frameborder="0"></iframe>
     </div>
 
     <h3 class="c6" id="h.bsmrh3x96199"><span class="c7 c1">3. Expanding Experiment Capabilities  </span></h3>    
 
     <div class="spoiler" onclick="this.classList.toggle('open')">
-        <span>click to see the content</span>
         <div class="spoiler-icon">▼</div>
-        <div class="spoiler-content">
-            <p class="c3"><span class="c10 c1">3.1 Brief Overview of Advanced Options in oTree   </span></p><ul class="c8 lst-kix_m4jj6evnxqj6-0 start"><li class="c0 li-bullet-0"><span class="c1">Capabilities and</span><span class="c1 c9">&nbsp;</span><span class="c1">Customization. </span><span>Reviewing g</span><span class="c5">roup-based experiments, live pages, randomization, and custom templates, timeouts, adaptive experimental designs, etc.</span></li></ul><p class="c3"><span class="c10 c1">3.3 Development Patterns (if have time)   </span></p><ul class="c8 lst-kix_u2fz0biil2f9-0 start"><li class="c0 li-bullet-0"><span class="c5">Designing user-flow diagrams and planning user scenarios before coding, Implementing test-first methodologies to verify experiment flow.</span></li><li class="c0 li-bullet-0"><span>Helpers: </span><span class="c4"><a class="c2" href="https://www.google.com/url?q=https://jsfiddle.net/&amp;sa=D&amp;source=editors&amp;ust=1747758844695082&amp;usg=AOvVaw3NLXeWK8GANU_oA48DrLIP">jsfiddle</a></span><span class="c5">, cursor, etc</span></li><li class="c0 li-bullet-0"><span>Function calls, monitoring server workload (</span><span class="c16">Bots, browser bots)</span><span class="c5">, etc.</span></li></ul><p class="c3"><span>&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;</span>
-        </div>
+        <div>Click to see the content</div>
+    </div>
+    <div class="spoiler-content">
+        <p class="c3"><span class="c10 c1">3.1 Brief Overview of Advanced Options in oTree   </span></p><ul class="c8 lst-kix_m4jj6evnxqj6-0 start"><li class="c0 li-bullet-0"><span class="c1">Capabilities and</span><span class="c1 c9">&nbsp;</span><span class="c1">Customization. </span><span>Reviewing g</span><span class="c5">roup-based experiments, live pages, randomization, and custom templates, timeouts, adaptive experimental designs, etc.</span></li></ul><p class="c3"><span class="c10 c1">3.3 Development Patterns (if have time)   </span></p><ul class="c8 lst-kix_u2fz0biil2f9-0 start"><li class="c0 li-bullet-0"><span class="c5">Designing user-flow diagrams and planning user scenarios before coding, Implementing test-first methodologies to verify experiment flow.</span></li><li class="c0 li-bullet-0"><span>Helpers: </span><span class="c4"><a class="c2" href="https://www.google.com/url?q=https://jsfiddle.net/&amp;sa=D&amp;source=editors&amp;ust=1747758844695082&amp;usg=AOvVaw3NLXeWK8GANU_oA48DrLIP">jsfiddle</a></span><span class="c5">, cursor, etc</span></li><li class="c0 li-bullet-0"><span>Function calls, monitoring server workload (</span><span class="c16">Bots, browser bots)</span><span class="c5">, etc.</span></li></ul><p class="c3"><span>&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;</span>
     </div>    
     
    
 
     <div class="spoiler" onclick="this.classList.toggle('open')">
-        <span>click to see the slides</span>
         <div class="spoiler-icon">▼</div>
-        <div class="spoiler-content">
-            <iframe src="{{ base_path }}/assets/html/export/oTree-wp-3.html" width="100%" height="600" frameborder="0"></iframe>
-        </div>
+        <div>Click to see the slides</div>
+    </div>
+    <div class="spoiler-content">
+        <iframe src="{{ base_path }}/assets/html/export/oTree-wp-3.html" width="100%" height="600" frameborder="0"></iframe>
     </div>
 
     <span class="c7 c1">Bonus</span>
     <h3 class="c6" id="h.bsmrh3x96199"><span class="c7 c1">4.  How to integrate oTree into neuroimaging Devices </span></h3>
 
     <div class="spoiler" onclick="this.classList.toggle('open')">
-        <span>click to see the slides</span>
         <div class="spoiler-icon">▼</div>
-        <div class="spoiler-content">
-            <iframe src="{{ base_path }}/assets/html/export/oTree-wp-bonus-1.html" width="100%" height="600" frameborder="0"></iframe>
-        </div>
-      </div>
+        <div>Click to see the slides</div>
+    </div>
+    <div class="spoiler-content">
+        <iframe src="{{ base_path }}/assets/html/export/oTree-wp-bonus-1.html" width="100%" height="600" frameborder="0"></iframe>
+    </div>
     
      <br>  
      <br>    
