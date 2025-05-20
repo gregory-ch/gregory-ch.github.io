@@ -1,0 +1,1337 @@
+<!doctype html>
+<html lang="en">
+  
+
+  <head>
+    <meta charset="utf-8">
+  
+    <title>Reveal JS presentation</title>
+  
+    <meta name="description" content="A framework for easily creating beautiful presentations using HTML">
+    <meta name="author" content="Hakim El Hattab">
+  
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+    <link rel="stylesheet" href="/assets/html/export/libs/reveal.js/4.3.1/reset.css">
+    <link rel="stylesheet" href="/assets/html/export/libs/reveal.js/4.3.1/reveal.css">
+  
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  
+    <!-- highlight Theme -->
+    
+    <link rel="stylesheet" href="libs/highlight.js/11.3.1/styles/monokai.min.css">
+    
+    
+      
+    <link rel="stylesheet" href="/assets/html/export/libs/reveal.js/4.3.1/plugin/chalkboard/style.css">
+    
+    
+    
+    <link rel="stylesheet" href="/assets/html/export/libs/reveal.js/4.3.1/plugin/customcontrols/style.css">
+    
+    
+  
+  
+  
+    <!-- Revealjs Theme -->
+    
+    <link rel="stylesheet" href="/assets/html/export/libs/reveal.js/4.3.1/theme/night.css" id="theme">
+    
+    
+  
+    <link rel="stylesheet" href="libs/styles/tasklist.css">
+    <link rel="stylesheet" href="libs/styles/iota.css">
+    <link rel="stylesheet" href="libs/styles/layout.css">
+  
+  
+    <!-- Revealjs Theme -->
+    
+  
+     <!-- css list -->
+    
+  
+     
+  
+  </head>
+  <body>
+    <body>
+
+   
+
+      <div class="reveal">
+    
+        <!-- Any section element inside of this container is displayed as a slide -->
+        <div class="slides">
+    
+        <body>
+
+
+    
+    <section >
+            
+        <h2>Expanding Experiment Capabilities</h2>
+
+        </section>
+
+
+
+
+
+    <section >
+        
+        <h3>Brief Overview of Advanced Options in oTree (if have time)</h3>
+
+        </section>
+
+
+
+
+
+    <section >
+        
+        <h4>Exercise: Multi-Round Results Table (guessing game)</h4>
+<div style="font-size: 0.75em;">
+<p><strong>Task:</strong> Create a results page showing player's performance across all rounds</p>
+<p>Required table format:</p>
+<pre><code>| Round | Endowment | Difference | Payoff |
+|-------|-----------|------------|---------|
+|   1   |    100    |     5      |   95    |
+|   2   |    100    |    10      |   90    |
+|-------|-----------|------------|---------|
+| Total |    200    |    15      |   185   |
+</code></pre>
+<p>Steps:</p>
+<ol>
+<li>Add <code>NUM_ROUNDS = 3</code> to Constants</li>
+<li>Use <code>in_all_rounds()</code> to get data from previous rounds</li>
+<li>Calculate totals using list comprehension</li>
+<li>Pass data to template using <code>vars_for_template</code></li>
+<li>Create table using template syntax</li>
+</ol>
+</div>
+        </section>
+
+
+
+
+
+    <section >
+        
+        <h4>Results Page sample Code</h4>
+<div style="font-size: 0.9em; background-color: #f8f9fa; padding: 10px; border-radius: 5px;">
+<pre><code class="language-python">@staticmethod
+def vars_for_template(player):
+all_rounds = player.in_all_rounds()
+total_payoff = sum(p.payoff for p in all_rounds)
+total_diff = sum(p.difference for p in all_rounds)
+return {
+    'rounds': all_rounds,
+    'total_payoff': total_payoff,
+    'total_difference': total_diff,
+    'total_endowment': C.ENDOWMENT * C.NUM_ROUNDS
+}
+</code></pre>
+</div>
+        </section>
+
+
+
+
+
+    <section >
+        
+        <h4>Results Template Code</h4>
+<div style="font-size: 0.75em;">
+<pre><code class="language-html">
+Results Summary
+
+
+
+&lt;table class=&quot;table&quot;&gt;
+&lt;thead&gt;
+    &lt;tr&gt;
+        &lt;th&gt;Round&lt;/th&gt;
+        &lt;th&gt;Endowment&lt;/th&gt;
+        &lt;th&gt;Difference&lt;/th&gt;
+        &lt;th&gt;Payoff&lt;/th&gt;
+    &lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+    
+    &lt;tr&gt;
+        &lt;td&gt;&lt;/td&gt;
+        &lt;td&gt;&lt;/td&gt;
+        &lt;td&gt;&lt;/td&gt;
+        &lt;td&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+    
+    &lt;tr class=&quot;table-active&quot;&gt;
+        &lt;td&gt;&lt;strong&gt;Total&lt;/strong&gt;&lt;/td&gt;
+        &lt;td&gt;&lt;/td&gt;
+        &lt;td&gt;&lt;/td&gt;
+        &lt;td&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+
+
+</code></pre>
+<p>💡 Uses Bootstrap's table classes for styling</p>
+</div>
+        </section>
+
+
+
+
+
+    <section >
+        
+        <h4>Passing Data Between Rounds and Apps</h4>
+<div style="font-size: 0.6em; display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+<div> <!-- Left Column -->
+<p><strong>Between Rounds:</strong></p>
+<pre><code class="language-python"># Get data from rounds
+player.in_previous_rounds()  # All previous
+player.in_all_rounds()      # Including current
+player.in_rounds(1, 3)      # Specific rounds
+player.in_round(1)         # Single round
+
+# Example:
+total_payoff = sum(p.payoff 
+for p in player.in_all_rounds())
+</code></pre>
+</div>
+<div> <!-- Right Column -->
+<p><strong>Between Apps:</strong></p>
+<pre><code class="language-python"># Store in participant
+participant.my_data = [1, 2, 3]
+
+# Access in any app
+my_data = participant.my_data
+
+# Note: internally stored in vars
+# participant.xyz is same as
+# participant.vars['xyz']
+</code></pre>
+<p>💡 <strong>Tip:</strong> Use participant vars for
+data that needs to persist across apps</p>
+</div>
+</div>
+        </section>
+
+
+
+
+
+    <section >
+        
+        <h4>Form Fields: Basic &amp; Advanced Usage</h4>
+<div style="font-size: 0.6em; display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+<div> <!-- Left Column -->
+<p><strong>Basic Usage:</strong></p>
+<pre><code class="language-html">&lt;!-- Auto-generate all fields --&gt;
+
+
+&lt;!-- Single field with custom label --&gt;
+
+
+&lt;!-- Just field name --&gt;
+
+</code></pre>
+<p><strong>Manual Rendering:</strong></p>
+<pre><code class="language-html">&lt;!-- Just input element --&gt;
+
+
+&lt;!-- Don't forget errors --&gt;
+
+</code></pre>
+</div>
+<div> <!-- Right Column -->
+<p><strong>Custom HTML Widgets:</strong></p>
+<pre><code class="language-html">&lt;!-- Checkbox input --&gt;
+&lt;input name=&quot;accept&quot; 
+   type=&quot;checkbox&quot; 
+   class=&quot;form-check-input&quot;/&gt;
+
+&lt;!-- Range slider --&gt;
+&lt;input name=&quot;bid&quot; 
+   type=&quot;range&quot; 
+   min=&quot;0&quot; max=&quot;100&quot;
+   class=&quot;form-range&quot;/&gt;
+
+&lt;!-- Radio buttons --&gt;
+&lt;input name=&quot;choice&quot; 
+   type=&quot;radio&quot; 
+   value=&quot;A&quot;/&gt;
+&lt;input name=&quot;choice&quot; 
+   type=&quot;radio&quot; 
+   value=&quot;B&quot;/&gt;
+
+
+</code></pre>
+<p>💡 <strong>Note:</strong> Custom widgets lose auto-reload
+data preservation on errors</p>
+</div>
+</div>
+        </section>
+
+
+
+
+
+    <section >
+        
+        <h4>Buttons: Form Submission &amp; Actions</h4>
+<div style="font-size: 0.6em; display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+<div> <!-- Left Column -->
+<p><strong>Form Submit Buttons:</strong></p>
+<pre><code class="language-html">&lt;!-- Default next button --&gt;
+
+
+&lt;!-- Custom submit buttons --&gt;
+&lt;button name=&quot;offer_accepted&quot; value=&quot;True&quot;&gt;
+Accept Offer
+&lt;/button&gt;
+&lt;button name=&quot;offer_accepted&quot; value=&quot;False&quot;&gt;
+Reject Offer
+&lt;/button&gt;
+
+&lt;!-- Works with any field type --&gt;
+&lt;button name=&quot;choice&quot; value=&quot;A&quot;&gt;
+Option A
+&lt;/button&gt;
+</code></pre>
+</div>
+<div> <!-- Right Column -->
+<p><strong>Action Buttons:</strong></p>
+<pre><code class="language-html">&lt;!-- Non-submitting button --&gt;
+&lt;button type=&quot;button&quot; onclick=&quot;doSomething()&quot;&gt;
+Calculate
+&lt;/button&gt;
+
+&lt;!-- Styled buttons --&gt;
+&lt;button class=&quot;btn btn-primary&quot; 
+    name=&quot;action&quot; value=&quot;buy&quot;&gt;
+Buy Now
+&lt;/button&gt;
+
+&lt;!-- Disabled state --&gt;
+&lt;button class=&quot;btn btn-secondary&quot; 
+    disabled&gt;
+Not Available
+&lt;/button&gt;
+</code></pre>
+<p>💡 <strong>Tip:</strong> Use <code>type=&quot;button&quot;</code> for
+actions that shouldn't submit the form</p>
+</div>
+</div>
+<div style="text-align: center; margin-top: 20px;">
+<div style="transform: scale(0.7);">
+<p>↗️ <a href="https://getbootstrap.com/docs/5.3/components/accordion/">elements styling wth bootstrap</a></p>
+</div>
+</div>
+        </section>
+
+
+
+
+
+    <section >
+        
+        <h4>Timeouts: Basic &amp; Advanced Usage</h4>
+<div style="font-size: 0.6em; display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+<div> <!-- Left Column -->
+<p><strong>Basic Setup:</strong></p>
+<pre><code class="language-python">class MyPage(Page):
+# Fixed timeout
+timeout_seconds = 60
+
+# Dynamic timeout
+@staticmethod
+def get_timeout_seconds(player):
+    return player.my_timeout
+    
+# Handle timeout
+@staticmethod
+def before_next_page(player, timeout_happened):
+    if timeout_happened:
+        player.decision = 0
+</code></pre>
+</div>
+<div> <!-- Right Column -->
+<p><strong>Advanced Features:</strong></p>
+<pre><code class="language-html">&lt;!-- Hide timer --&gt;
+&lt;style&gt;
+.otree-timer {
+display: none;
+}
+&lt;/style&gt;
+
+&lt;!-- Custom timer text --&gt;
+class MyPage(Page):
+timer_text = 'Time left:'
+
+&lt;!-- Soft timeout (no auto-submit) --&gt;
+&lt;script&gt;
+setTimeout(function() {
+alert(&quot;Time's up! Please decide.&quot;);
+}, 60*1000);  // 60 seconds
+&lt;/script&gt;
+</code></pre>
+<p>💡 <strong>Tips:</strong></p>
+<ul>
+<li>Use <code>get_timeout_seconds</code> for dynamic times</li>
+<li>Handle timeouts in <code>before_next_page</code></li>
+<li>Consider soft timeouts for flexibility</li>
+</ul>
+</div>
+</div>
+        </section>
+
+
+
+
+
+    <section >
+        
+        <h4>Modified Guessing Game (with Groups)</h4>
+<div style="font-size: 0.75em;">
+<p>Game Logic:</p>
+<ul>
+<li>Two players in each group</li>
+<li>Computer generates a random number</li>
+<li>Both players make guesses</li>
+<li>Group payoff: based on average guess accuracy</li>
+<li>Individual bonus: 20% extra for better guess</li>
+</ul>
+<p>Example:</p>
+<pre><code class="language-python"># Computer number: 50
+# Player 1 guess: 45 (diff: 5)
+# Player 2 guess: 60 (diff: 10)
+# Average guess: (45 + 60) / 2 = 52.5
+# Base payoff: 100 - |50 - 52.5| = 97.5
+# P1 final: 97.5 * 1.2 = 117
+# P2 final: 97.5
+</code></pre>
+</div>
+        </section>
+
+
+
+
+
+    <section >
+        
+        <h4>Implementation: Constants &amp; Models</h4>
+<div style="font-size: 0.75em;">
+<pre><code class="language-python">from otree.api import *
+
+class C(BaseConstants):
+NAME_IN_URL = 'group_guessing'
+PLAYERS_PER_GROUP = 2
+NUM_ROUNDS = 1
+ENDOWMENT = cu(100)
+BONUS_MULTIPLIER = 1.2
+MIN_NUMBER = 0
+MAX_NUMBER = 90
+
+class Player(BasePlayer):
+guess = models.IntegerField(
+    min=C.MIN_NUMBER, max=C.MAX_NUMBER,
+    label=&quot;Your guess&quot;
+)
+difference = models.FloatField()  # Individual difference
+
+class Group(BaseGroup):
+target_number = models.IntegerField()
+avg_guess = models.FloatField()  # Group's average guess
+group_difference = models.FloatField()  # Group's accuracy
+
+def creating_session(subsession: Subsession):
+for group in subsession.get_groups():
+    group.target_number = random.randint(C.MIN_NUMBER, C.MAX_NUMBER)
+</code></pre>
+</div>
+        </section>
+
+
+
+
+
+    <section >
+        
+        <h4>Pages and Calculations</h4>
+<div style="font-size: 0.75em;">
+<pre><code class="language-python">class MyPage(Page):
+form_model = 'player'
+form_fields = ['guess']
+
+class ResultsWaitPage(WaitPage):
+@staticmethod
+def after_all_players_arrive(group: Group):
+    players = group.get_players()
+    # Calculate average guess
+    guesses = [p.guess for p in players]
+    group.avg_guess = sum(guesses) / len(guesses)
+    
+    # Calculate group accuracy
+    group.group_difference = abs(group.target_number - group.avg_guess)
+    
+    # Calculate individual differences
+    for p in players:
+        p.difference = abs(group.target_number - p.guess)
+    
+    # Base payoff from group performance
+    base_payoff = C.ENDOWMENT - group.group_difference
+    
+    # Find best performer
+    best_player = min(players, key=lambda p: p.difference)
+    
+    # Assign payoffs
+    for p in players:
+        if p == best_player:
+            p.payoff = base_payoff * C.BONUS_MULTIPLIER
+        else:
+            p.payoff = base_payoff
+
+page_sequence = [
+Instructions, MyPage,
+ResultsWaitPage, # Wait for all guesses
+Results
+]
+</code></pre>
+</div>
+        </section>
+
+
+
+
+
+    <section >
+        
+        <h4>Updated Results Template</h4>
+<div style="font-size: 0.75em;">
+<pre><code class="language-python">class Results(Page):
+@staticmethod
+def vars_for_template(player: Player):
+    group = player.group
+    base_payoff = C.ENDOWMENT - group.group_difference
+    is_best_performer = player.payoff > base_payoff
+    return {
+        'base_payoff': base_payoff,
+        'is_best_performer': is_best_performer
+    }
+</code></pre>
+<pre><code class="language-html">
+Group Results
+
+
+
+&lt;div class=&quot;card&quot;&gt;
+&lt;div class=&quot;card-body&quot;&gt;
+    &lt;h5&gt;Target &amp; Guesses&lt;/h5&gt;
+    &lt;p&gt;Target number: &lt;/p&gt;
+    &lt;p&gt;Your guess: &lt;/p&gt;
+    &lt;p&gt;Group's average guess: &lt;/p&gt;
+    
+    &lt;h5&gt;Performance&lt;/h5&gt;
+    &lt;p&gt;Group's accuracy: &lt;/p&gt;
+    &lt;p&gt;Your accuracy: &lt;/p&gt;
+    
+    &lt;h5&gt;Payoffs&lt;/h5&gt;
+    &lt;p&gt;Base group payoff: &lt;/p&gt;
+    &lt;p&gt;Your final payoff: 
+       
+    &lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+
+
+</code></pre>
+</div>
+        </section>
+
+
+
+
+
+    <section >
+        
+        <h4>How Live Pages Work</h4>
+<div style="font-size: 0.75em;">
+<ol>
+<li>Live Communication Flow:</li>
+</ol>
+<pre><code>Browser ─────liveSend()────&gt; Server
+↑                           │
+│                           │
+└────liveRecv()───── live_method()
+</code></pre>
+<ol start="2">
+<li>
+<p>Key Components:</p>
+<ul>
+<li><code>live_method</code>: Server-side function processing updates</li>
+<li><code>liveSend()</code>: JavaScript function sending data to server</li>
+<li><code>liveRecv()</code>: JavaScript callback receiving server response</li>
+</ul>
+</li>
+<li>
+<p>Benefits:</p>
+<ul>
+<li>Real-time updates without page refresh</li>
+<li>Group coordination without wait pages</li>
+<li>Interactive UI elements</li>
+<li>Immediate feedback to users</li>
+</ul>
+</li>
+</ol>
+<p>Try: <a href="https://otree-more-demos.herokuapp.com/demo/go_no_go">https://otree-more-demos.herokuapp.com/demo/go_no_go</a></p>
+</div>
+        </section>
+
+
+
+
+
+    <section >
+        
+        <h4>Live Pages in oTree 5 (guessing game)</h4>
+<div style="font-size: 0.75em;">
+<ol>
+<li>Add live method to <code>__init__.py</code>:</li>
+</ol>
+<pre><code class="language-python">class Player(BasePlayer):
+guess = models.IntegerField(
+    min=C.MIN_NUMBER, max=C.MAX_NUMBER,
+    label=&quot;Your guess&quot;
+)
+temp_guess = models.IntegerField(blank=True)  # For live updates
+partner_guess = models.IntegerField(blank=True)  # Show partner's guess
+current_average = models.FloatField(blank=True)  # Live average
+
+def live_guess(player: Player, data):
+group = player.group
+my_guess = data.get('guess')
+
+# Update current player's temp guess
+player.temp_guess = my_guess
+
+# Get partner's guess
+partner = group.get_player_by_id(3 - player.id_in_group)  # 1-&gt;2, 2-&gt;1
+
+response = dict(
+    partner_guess=partner.temp_guess if partner.temp_guess else '?',
+    my_guess=my_guess
+)
+
+# Calculate average if both guesses exist
+if partner.temp_guess and my_guess:
+    avg = (partner.temp_guess + my_guess) / 2
+    response['average'] = round(avg, 1)
+    player.current_average = avg
+
+return {0: response}  # Broadcast to all players
+</code></pre>
+</div>
+        </section>
+
+
+
+
+
+    <section >
+        
+        <h4>Updated MyPage Template with Custom Fields</h4>
+<div style="font-size: 0.75em;">
+<pre><code class="language-html">
+Your Decision
+
+
+
+&lt;div class=&quot;card&quot;&gt;
+&lt;div class=&quot;card-body&quot;&gt;
+    &lt;p&gt;Please enter your guess:&lt;/p&gt;
+    
+    &lt;!-- Manual field rendering --&gt;
+    &lt;div class=&quot;form-group&quot;&gt;
+        &lt;label for=&quot;id_guess&quot;&gt;Your guess:&lt;/label&gt;
+
+    &lt;/div&gt;
+    
+    &lt;!-- Error messages for live updates --&gt;
+    &lt;div id=&quot;error-message&quot; class=&quot;alert alert-danger&quot; 
+         style=&quot;display: none;&quot;&gt;
+    &lt;/div&gt;
+    
+    &lt;!-- Live updates --&gt;
+    &lt;div class=&quot;mt-3&quot;&gt;
+        &lt;p&gt;Your current guess: &lt;span id=&quot;my-guess&quot;&gt;not submitted&lt;/span&gt;&lt;/p&gt;
+        &lt;p&gt;Partner's guess: &lt;span id=&quot;partner-guess&quot;&gt;waiting...&lt;/span&gt;&lt;/p&gt;
+        &lt;p&gt;Current average: &lt;span id=&quot;current-average&quot;&gt;-&lt;/span&gt;&lt;/p&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+        
+
+
+
+
+&lt;script&gt;
+function liveRecv(data) {
+    document.getElementById('my-guess').textContent = data.my_guess;
+    document.getElementById('partner-guess').textContent = data.partner_guess;
+    if (data.average) {
+        document.getElementById('current-average').textContent = data.average;
+    }
+}
+
+document.getElementById('id_guess').addEventListener('input', function(e) {
+    let value = parseInt(this.value);
+    if (value &gt;=  &amp;&amp; value &lt;= ) {
+        liveSend({'guess': value});
+        document.getElementById('error-message').style.display = 'none';
+    } 
+});
+&lt;/script&gt;
+
+
+</code></pre>
+</div>
+        </section>
+
+
+
+
+
+    <section >
+        
+        <h3>Development Patterns (if have time)</h3>
+
+        </section>
+
+
+
+
+
+    <section >
+        
+        <h4>Testing with Bots</h4>
+<div style="font-size: 0.6em; display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+<div> <!-- Left Column -->
+<p><strong>Basic Setup:</strong></p>
+<pre><code class="language-python"># tests.py
+def test_basic(self):
+# Submit pages in sequence
+yield pages.Introduction
+yield pages.Decision, dict(
+    guess=50,
+    confidence=7
+)
+yield pages.Results
+
+# Run with use_browser_bots=True
+</code></pre>
+<p><strong>Validation Testing:</strong></p>
+<pre><code class="language-python"># Test form validation
+yield SubmissionMustFail(
+pages.Decision, 
+dict(guess=150)  # Invalid value
+)
+
+# Test expectations
+expect(player.payoff, '&gt;', 0)
+expect('you won', 'in', self.html)
+</code></pre>
+</div>
+<div> <!-- Right Column -->
+<p><strong>Advanced Features:</strong></p>
+<pre><code class="language-python"># Test different rounds
+if self.round_number == 1:
+yield pages.Instructions
+
+# Test player roles
+if self.player.id_in_group == 1:
+yield pages.Leader, dict(choice='A')
+else:
+yield pages.Follower, dict(accept=True)
+
+# Test timeouts
+yield Submission(
+pages.Decision, 
+dict(guess=50),
+timeout_happened=True
+)
+</code></pre>
+<p>💡 <strong>Tips:</strong></p>
+<ul>
+<li>Write tests early</li>
+<li>Test edge cases</li>
+<li>Verify form validation</li>
+<li>Check HTML content</li>
+<li>Simulate timeouts</li>
+</ul>
+</div>
+</div>
+        </section>
+
+
+
+
+
+    <section >
+        
+        <h4>DRY Principle: Code Reuse Patterns</h4>
+<div style="font-size: 0.6em; display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+<div> <!-- Left Column -->
+<p><strong>1. Page Inheritance:</strong></p>
+<pre><code class="language-python">class BasePage(Page):
+form_model = 'player'
+
+@staticmethod
+def is_displayed(player):
+    return player.participant.accept
+
+class Page1(BasePage):
+form_fields = ['choice1']
+
+class Page2(BasePage):
+form_fields = ['choice2']
+</code></pre>
+<p><strong>2. Field Generation:</strong></p>
+<pre><code class="language-python">def make_field(label):
+return models.IntegerField(
+    choices=[1,2,3,4,5],
+    label=label,
+    widget=widgets.RadioSelect
+)
+
+class Player(BasePlayer):
+q1 = make_field('Question 1')
+q2 = make_field('Question 2')
+</code></pre>
+</div>
+<div> <!-- Right Column -->
+<p><strong>3. Shared Functions:</strong></p>
+<pre><code class="language-python">def get_timeout(player):
+return player.participant.expiry - time.time()
+
+class Page1(Page):
+get_timeout_seconds = get_timeout
+
+class Page2(Page):
+get_timeout_seconds = get_timeout
+</code></pre>
+<p><strong>4. Error Handling:</strong></p>
+<pre><code class="language-python">@staticmethod
+def error_message(player, values):
+solutions = {
+    'q1': 42,
+    'q2': 'Ottawa'
+}
+return {
+    f: 'Wrong answer'
+    for f, ans in solutions.items()
+    if values[f] != ans
+}
+</code></pre>
+<p>💡 <strong>Tips:</strong></p>
+<ul>
+<li>Use rounds instead of duplicate pages</li>
+<li>Share common functions</li>
+<li>Generate similar fields</li>
+<li>Centralize validation logic</li>
+</ul>
+</div>
+</div>
+        </section>
+
+
+
+
+
+    <section >
+        
+        <h4>Planning &amp; Testing</h4>
+<div style="font-size: 0.6em; display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+<div> <!-- Left Column -->
+<p><strong>1. User Flow Design:</strong></p>
+<pre><code>Welcome Page
+ │
+ ▼
+Consent? ──No──&gt; Exit
+ │
+Yes
+ │
+ ▼
+Instructions
+ │
+ ▼
+Practice Round
+ │
+ ▼
+Main Task(s)
+ │
+ ▼
+Survey(s)
+ │
+ ▼
+Payment
+</code></pre>
+</div>
+<div> <!-- Right Column -->
+<p><strong>2. Test Before Coding:</strong></p>
+<pre><code class="language-python"># tests.py
+def test_user_flow(self):
+# Test consent rejection
+yield SubmissionMustFail(
+    pages.Consent, dict(accept=False)
+)
+
+# Test normal flow
+yield pages.Consent, dict(accept=True)
+yield pages.Instructions
+yield pages.Practice
+</code></pre>
+<p><strong>3. Test Tips:</strong></p>
+<ul>
+<li>Update pages</li>
+<li>Cognitive load and quizes</li>
+<li>Try think as tester (once sq root of 3 people enter in bar)</li>
+<li>Carefully check dependencies and library call</li>
+</ul>
+</div>
+</div>
+        </section>
+
+
+
+
+
+    <section >
+        
+        <h4>Useful Development Tools</h4>
+<div style="font-size: 0.6em; display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+<div> <!-- Left Column -->
+<p><strong>JSFiddle</strong> <a href="https://jsfiddle.net/">@jsfiddle.net</a>:</p>
+<ul>
+<li>Live web code editor</li>
+<li>Instant preview</li>
+<li>HTML/CSS/JS testing</li>
+<li>Isolate frontend issues</li>
+<li>Share code snippets</li>
+</ul>
+<p>💡 <strong>Best for:</strong></p>
+<ul>
+<li>Testing JavaScript code</li>
+<li>Debugging UI components</li>
+<li>Prototyping page elements</li>
+<li>Validating Bootstrap styles</li>
+<li>Sharing solutions</li>
+</ul>
+</div>
+<div> <!-- Right Column -->
+<p><strong>Cursor Editor</strong> <a href="https://cursor.com/">@cursor.com</a>:</p>
+<ul>
+<li>AI-powered code editor</li>
+<li>Multi-file management</li>
+<li>Smart code completion</li>
+<li>Project-wide refactoring</li>
+<li>Composer</li>
+</ul>
+<p>💡 <strong>Best for:</strong></p>
+<ul>
+<li>Managing complex projects</li>
+<li>Working with multiple files</li>
+<li>Understanding code relationships</li>
+<li>Quick code navigation</li>
+<li>AI-assisted development</li>
+</ul>
+</div>
+</div>
+        </section>
+
+
+
+
+
+    <section >
+        
+        <h4>JSON Storage in StringField</h4>
+<div style="font-size: 0.6em; display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+<div> <!-- Left Column -->
+<p><strong>1. Model Setup:</strong></p>
+<pre><code class="language-python">import json
+
+class Player(BasePlayer):
+# Store complex data as JSON
+choices_made = models.StringField()
+survey_data = models.StringField()
+
+# Functions
+def store_choices(player, choices):
+player.choices_made = json.dumps(choices)
+    
+
+def get_choices(player):
+return json.loads(player.choices_made or '[]')
+</code></pre>
+<p><strong>2. Usage Example:</strong></p>
+<pre><code class="language-python"># Store list of choices
+player.store_choices([
+{'round': 1, 'choice': 'A', 'time': 2.5},
+{'round': 2, 'choice': 'B', 'time': 1.8}
+])
+
+# Store dictionary
+player.survey_data = json.dumps({
+'age': 25,
+'preferences': ['sports', 'music'],
+'ratings': {'q1': 5, 'q2': 3}
+})
+</code></pre>
+</div>
+<div> <!-- Right Column -->
+<p><strong>3. Data Access:</strong></p>
+<pre><code class="language-python">@staticmethod
+def vars_for_template(player):
+# Get stored choices
+choices = json.loads(player.choices_made)
+last_choice = choices[-1]['choice']
+
+# Get survey data
+survey = json.loads(player.survey_data)
+preferences = survey['preferences']
+
+return dict(
+    last_choice=last_choice,
+    preferences=preferences
+)
+</code></pre>
+<p>💡 <strong>Tips:</strong></p>
+<ul>
+<li>Always handle empty values</li>
+<li>Use in live methods</li>
+<li>Save in participant.vars what needed only for processing</li>
+</ul>
+</div>
+</div>
+        </section>
+
+
+
+
+
+    <section >
+        
+        <h4>Randomizing App Sequence</h4>
+<div style="font-size: 0.75em;">
+<p><strong>Challenge:</strong> Randomize order of apps within session (e.g., C→D or D→C)</p>
+<p><strong>Solution 1: Multiple Session Configs</strong></p>
+<pre><code class="language-python">SESSION_CONFIGS = [
+dict(
+    name='sequence_CD',
+    app_sequence=['A', 'B', 'C', 'D', 'E'],
+    # ...
+),
+dict(
+    name='sequence_DC',
+    app_sequence=['A', 'B', 'D', 'C', 'E'],
+    # ...
+),
+]
+</code></pre>
+<p><strong>Solution 2: Dynamic Routing (Advanced)</strong></p>
+<pre><code class="language-python"># In last page of app B
+@staticmethod
+def app_after_this_page(player):
+# Random assignment stored in participant.vars
+if not player.participant.vars.get('app_order'):
+    import random
+    player.participant.vars['app_order'] = random.choice(['CD', 'DC'])
+
+order = player.participant.vars['app_order']
+return 'C' if order == 'CD' else 'D'
+</code></pre>
+</div>
+
+        </section>
+
+
+
+
+
+    <section >
+        
+        <p>Thank You!</p>
+<p>Questions &amp; Discussion</p>
+<p>Contacts:</p>
+<ul>
+<li><a href="https://gregory-ch.github.io/">Author's personal webpage</a></li>
+</ul>
+<p>Special thanks to:</p>
+<ul>
+<li><a href="https://chapkovski.github.io/">Ph. Chapkovski</a></li>
+</ul>
+
+        </section>
+
+  
+
+</body>
+   
+
+
+      </div>
+
+
+    </div>
+  
+    <div class="line top"></div>
+    <div class="line bottom"></div>
+    <div class="line left"></div>
+    <div class="line right"></div>
+  
+      <script src="/assets/html/export/libs/reveal.js/4.3.1/reveal.js"></script>
+      <script src="/assets/html/export/libs/reveal.js/4.3.1/plugin/notes/notes.js"></script>
+      <script src="/assets/html/export/libs/reveal.js/4.3.1/plugin/markdown/markdown.js"></script>
+      <script src="/assets/html/export/libs/reveal.js/4.3.1/plugin/highlight/highlight.js"></script>
+      <script src="/assets/html/export/libs/reveal.js/4.3.1/plugin/math/math.js"></script>
+      <script src="/assets/html/export/libs/reveal.js/4.3.1/plugin/fullscreen/plugin.js"></script>
+      <script src="/assets/html/export/libs/reveal.js/4.3.1/plugin/animate/plugin.js"></script>
+      <script src="/assets/html/export/libs/reveal.js/4.3.1/plugin/animate/svg.min.js"></script>
+      <script src="/assets/html/export/libs/reveal.js/4.3.1/plugin/anything/plugin.js"></script>
+      <script src="/assets/html/export/libs/reveal.js/4.3.1/plugin/anything/Chart.min.js"></script>
+      <script src="/assets/html/export/libs/reveal.js/4.3.1/plugin/anything/d3/d3.v3.min.js"></script>
+      <script src="/assets/html/export/libs/reveal.js/4.3.1/plugin/anything/d3.patch.js"></script>
+      <script src="/assets/html/export/libs/reveal.js/4.3.1/plugin/anything/d3/queue.v1.min.js"></script>
+      <script src="/assets/html/export/libs/reveal.js/4.3.1/plugin/anything/d3/topojson.v1.min.js"></script>
+      <script src="/assets/html/export/libs/reveal.js/4.3.1/plugin/anything/function-plot.js"></script>
+      <script src="/assets/html/export/libs/reveal.js/4.3.1/plugin/customcontrols/plugin.js"></script>
+      <script src="/assets/html/export/libs/reveal.js/4.3.1/plugin/embed-tweet/plugin.js"></script>
+      <script src="/assets/html/export/libs/reveal.js/4.3.1/plugin/chart/chart.min.js"></script>
+      <script src="/assets/html/export/libs/reveal.js/4.3.1/plugin/chart/plugin.js"></script>
+      <script src="/assets/html/export/libs/reveal.js/4.3.1/plugin/verticator/verticator.js"></script>
+      <script src="/assets/html/export/libs/reveal.js/4.3.1/plugin/zoom/zoom.js"></script>
+      <script src="/assets/html/export/libs/reveal.js/4.3.1/plugin/search/search.js"></script>
+      <script src="/assets/html/export/libs/reveal.js/4.3.1/plugin/menu/menu.js"></script>
+      <script src="/assets/html/export/libs/reveal.js/4.3.1/plugin/chalkboard/plugin.js"></script>
+  
+      <script>
+    const printPlugins = [
+        RevealNotes,
+        RevealHighlight,
+        RevealMath.MathJax3,
+        RevealAnimate,
+        RevealChalkboard, 
+        RevealEmbedTweet,
+        RevealChart,
+      ];
+  
+      const plugins =  [...printPlugins,
+      RevealZoom, 
+      RevealSearch, 
+          RevealMarkdown, 
+          RevealMenu, 
+          RevealFullscreen,
+          RevealAnything,
+          //RevealAudioSlideshow,
+          //RevealAudioRecorder,
+          RevealCustomControls, 
+          // poll
+          // question
+          // seminar
+          Verticator 
+           ]
+  
+  
+      // Also available as an ES module, see:
+      // https://revealjs.com/initialization/
+      Reveal.initialize({
+        controls: true,
+        controlsTutorial: true,
+        controlsLayout: 'bottom-right',
+        controlsBackArrows: 'faded',
+        progress: true,
+        slideNumber: true,
+        //#showSlideNumber "all" "print" "speaker"
+        hash: true, //# hash: false,
+        //# respondToHashChanges: true,
+        //# history: false,
+        keyboard: true,
+        //#keyboardCondition: null,
+        overview: true,
+        center: true,
+        touch: true,
+        loop: false,
+        rtl: false,
+        //#navigationMode: 'default', linear grid
+        shuffle: false,
+        fragments: true,
+        fragmentInURL: false,
+        embedded: false,
+        help: true,
+        //#pause: true
+        showNotes: false,
+        autoPlayMedia: false, // TODO fix this to a nullable value
+        //#preloadIframes: null. true false
+        //#autoAnimate: true
+        //#autoAnimateMatcher: null,
+        //#autoAnimateEasing: 'ease',
+        //autoAnimateDuration: 1.0,
+        //#autoAnimateUnmatched: true
+        //#autoAnimateStyles: []
+        autoSlide: 0, // TODO fix this to a falseable value
+        autoSlideStoppable: true,
+        autoSlideMethod: '0',
+        defaultTiming: 120,
+        mouseWheel: false,
+        //#previewLinks: false
+        //#postMessage: true, // TODO : this can cause issues with the vscode api ???
+        //#postMessageEvents: false,
+        //#focusBodyOnPageVisibilityChange: true,
+        transition: 'slide',
+        transitionSpeed: 'default',
+        backgroundTransition: 'fade',
+        //#pdfMaxPagesPerSlide: Number.POSITIVE_INFINITY,
+        //#pdfSeparateFragments: true,
+        //#pdfPageHeightOffset: -1,
+        viewDistance: 3,
+        //#mobileViewDistance: 2,
+        display: 'block',
+        //#hideInactiveCursor: true,
+        //#hideCursorTime: 5000
+  
+        // Parallax Background
+        parallaxBackgroundImage: '',
+        parallaxBackgroundSize: '',
+        parallaxBackgroundHorizontal: 0,
+        parallaxBackgroundVertical: 0,
+  
+        //Presentation Size
+        width: 960,
+        height: 700,
+        margin: 0.04,
+        minScale: 0.2,
+        maxScale: 2,
+        disableLayout: false,
+  
+        audio: {
+          prefix: 'audio/', // audio files are stored in the "audio" folder
+          suffix: '.ogg', // audio files have the ".ogg" ending
+          textToSpeechURL: null, // the URL to the text to speech converter
+          defaultNotes: false, // use slide notes as default for the text to speech converter
+          defaultText: false, // use slide text as default for the text to speech converter
+          advance: 0, // advance to next slide after given time in milliseconds after audio has played, use negative value to not advance
+          autoplay: false, // automatically start slideshow
+          defaultDuration: 5, // default duration in seconds if no audio is available
+          defaultAudios: true, // try to play audios with names such as audio/1.2.ogg
+          playerOpacity: 0.05, // opacity value of audio player if unfocused
+          playerStyle: 'position: fixed; bottom: 4px; left: 25%; width: 50%; height:75px; z-index: 33;', // style used for container of audio controls
+          startAtFragment: false, // when moving to a slide, start at the current fragment or at the start of the slide
+        },
+        
+        chalkboard: { // font-awesome.min.css must be available
+          //src: "chalkboard/chalkboard.json",
+          storage: "chalkboard-demo",
+        },
+        
+        customcontrols: {
+            controls: [
+                    {
+                id: 'toggle-overview',
+                title: 'Toggle overview (O)',
+                icon: '<i class="fa fa-th"></i>',
+                action: 'Reveal.toggleOverview();'
+              }
+              ,
+        {
+          icon: '<i class="fa fa-pen-square"></i>',
+          title: 'Toggle chalkboard (B)',
+          action: 'RevealChalkboard.toggleChalkboard();'
+        },
+        {
+          icon: '<i class="fa fa-pen"></i>',
+          title: 'Toggle notes canvas (C)',
+          action: 'RevealChalkboard.toggleNotesCanvas();'
+        }
+        
+          ]
+        },
+        chart: {
+            defaults: { 
+              color: 'lightgray', // color of labels
+              scale: { 
+                beginAtZero: true, 
+                ticks: { stepSize: 1 },
+                grid: { color: "lightgray" } , // color of grid lines
+              },
+            },
+            line: { borderColor: [ "rgba(20,220,220,.8)" , "rgba(220,120,120,.8)", "rgba(20,120,220,.8)" ], "borderDash": [ [5,10], [0,0] ] }, 
+            bar: { backgroundColor: [ "rgba(20,220,220,.8)" , "rgba(220,120,120,.8)", "rgba(20,120,220,.8)" ]}, 
+            pie: { backgroundColor: [ ["rgba(0,0,0,.8)" , "rgba(220,20,20,.8)", "rgba(20,220,20,.8)", "rgba(220,220,20,.8)", "rgba(20,20,220,.8)"] ]},
+            radar: { borderColor: [ "rgba(20,220,220,.8)" , "rgba(220,120,120,.8)", "rgba(20,120,220,.8)" ]}, 
+        },
+        math: {
+          mathjax: 'https://cdn.jsdelivr.net/gh/mathjax/mathjax@2.7.8/MathJax.js',
+          config: 'TeX-AMS_HTML-full',
+          // pass other options into `MathJax.Hub.Config()`
+          TeX: { Macros: { RR: "{\\bf R}" } }
+          },
+          anything: [ 
+          {
+      className: "plot",
+      defaults: {width:500, height: 500, grid:true},
+      initialize: (function(container, options){ options.target = "#"+container.id; functionPlot(options) })
+     },
+     {
+      className: "chart",  
+      initialize: (function(container, options){ container.chart = new Chart(container.getContext("2d"), options);  })
+     },
+     {
+      className: "anything",
+      initialize: (function(container, options){ if (options && options.initialize) { options.initialize(container)} })
+     },
+            ],
+        // Learn about plugins: https://revealjs.com/plugins/
+        plugins: (window.location.search.match(/print-pdf/gi) ? printPlugins : plugins ) 
+      });
+        
+  
+  
+        // Change chalkboard theme : 
+      function changeTheme(input) {
+        var config = {};
+        config.theme = input.value;
+        Reveal.getPlugin("RevealChalkboard").configure(config);
+        input.blur();
+      }
+  
+      // // Handle the message inside the webview
+          // window.addEventListener('message', event => {
+  
+          //     const message = event.data; // The JSON data our extension sent
+  
+          //     switch (message.command) {
+          //         case 'refactor':
+          //             Reveal.toggleHelp();
+          //     }
+          // });
+  
+      if (window.location.search.match(/print-pdf-now/gi)) {
+            setTimeout(() => {
+          window.print();
+          }, 2500);
+        
+      }
+  </script>
+  
+    
+  </body>
+</html>
