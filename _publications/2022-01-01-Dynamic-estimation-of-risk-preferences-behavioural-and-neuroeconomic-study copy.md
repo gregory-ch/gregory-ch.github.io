@@ -1,7 +1,7 @@
 ---
 title: "Dynamic estimation of risk preferences: behavioral and neuroeconomic study"
 collection: publications
-permalink: https://ieeexplore.ieee.org/abstract/document/10017070
+external_url: https://ieeexplore.ieee.org/abstract/document/10017070
 date: 2022-11-13
 pubtype: 'conference'
 venue: 'In the proceedings of 2022 Ural-Siberian Conference on Computational Technologies in Cognitive Science, Genomics and Biomedicine (CSGB)'

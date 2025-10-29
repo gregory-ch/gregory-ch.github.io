@@ -1,7 +1,7 @@
 ---
 title: "Models of learning in games: An overview"
 collection: publications
-permalink: https://gregory-ch.github.io/files/learning_algo_review_eng.pdf
+external_url: https://gregory-ch.github.io/files/learning_algo_review_eng.pdf
 date: 2019-01-01
 pubtype: 'journal'
 venue: 'Journal of the New Economic Association'

@@ -1,7 +1,7 @@
 ---
 title: "Adaptive Directional Learning in Games"
 collection: preprint
-permalink: https://ssrn.com/abstract=4416128
+external_url: https://ssrn.com/abstract=4416128
 date: 2023-04-11
 pubtype: 'preprint'
 venue: 'SSRN'

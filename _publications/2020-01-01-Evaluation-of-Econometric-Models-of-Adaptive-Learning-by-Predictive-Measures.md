@@ -1,7 +1,7 @@
 ---
 title: "Evaluation of Econometric Models of Adaptive Learning by Predictive Measures"
 collection: publications
-permalink: http://dx.doi.org/10.2139/ssrn.3658087
+external_url: http://dx.doi.org/10.2139/ssrn.3658087
 date: 2020-01-01
 pubtype: 'preprint'
 venue: 'SSRN'

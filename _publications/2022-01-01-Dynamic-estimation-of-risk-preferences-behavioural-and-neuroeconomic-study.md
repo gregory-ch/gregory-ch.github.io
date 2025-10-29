@@ -1,7 +1,7 @@
 ---
 title: "EEG Study of Decision-Making in Uncertain and Risky Situations via a Gamified Environment"
 collection: publications
-permalink: https://ieeexplore.ieee.org/abstract/document/10329841
+external_url: https://ieeexplore.ieee.org/abstract/document/10329841
 date: 2022-11-13
 pubtype: 'conference'
 venue: 'IEEE'

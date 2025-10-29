@@ -1,7 +1,7 @@
 ---
 title: "How to Learn to Defeat Noisy Robot in Rock-Paper-Scissors Game:An Exploratory Study"
 collection: publications
-permalink: https://ej.hse.ru/data/2020/12/21/1343632103/Чернов.pdf
+external_url: https://ej.hse.ru/data/2020/12/21/1343632103/Чернов.pdf
 date: 2020-01-01
 pubtype: 'journal'
 venue: 'HSE Economic Journal'

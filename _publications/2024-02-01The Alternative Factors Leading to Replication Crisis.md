@@ -1,7 +1,7 @@
 ---
 title: "The Alternative Factors Leading to Replication Crisis:Prediction and Evaluation"
 collection: publications
-permalink: https://journals.sagepub.com/doi/10.1177/0193841X241229106
+external_url: https://journals.sagepub.com/doi/10.1177/0193841X241229106
 date: 2024-02-01
 pubtype: 'journal'
 venue: 'Evaluation Review'

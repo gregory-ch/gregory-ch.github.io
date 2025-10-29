@@ -1,7 +1,7 @@
 ---
 title: "How We Identify Cause-Effect Relationships Given Evidence: An Exploratory Study"
 collection: preprint
-permalink: https://papers.ssrn.com/sol3/papers.cfm?abstract_id=4657687
+external_url: https://papers.ssrn.com/sol3/papers.cfm?abstract_id=4657687
 date: 2023-12-20
 pubtype: 'preprint'
 venue: 'SSRN'
