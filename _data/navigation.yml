@@ -17,12 +17,14 @@ main:
 
   - title: "Blog"
     url: /blog/ 
+
+  - title: "oTree Workshop Materials"
+    url: /oTree-wp/ 
     
   - title: "CV"
     url: /cv/
 
-  - title: "oTree WP"
-    url: /oTree-wp/ 
+
     
   # - title: "JMP"
   #   url: /publication/2023-06-10-data-to-dgp
