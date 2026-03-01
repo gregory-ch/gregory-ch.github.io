@@ -1,5 +1,11 @@
 # Journal Publications
 journal_publications:
+  - title: "Default mode network activity is related to efficiency in a combined motion error and gambling task: G. Chernov et al."
+    external_url: "https://www.nature.com/articles/s41598-025-34609-9"
+    date: 2026-01-06
+    venue: "Scientific Reports"
+    citation: "Chernov, G. V., Mel'nikov, M. Y., Belianin, A. V., Rudych, P. D., Bezmaternykh, D. D., & Shakhzadayev, R. M. Default mode network activity is related to efficiency in a combined motion error and gambling task. Sci Rep 16, 4422 (2026). https://doi.org/10.1038/s41598-025-34609-9"
+
   - title: "The Alternative Factors Leading to Replication Crisis: Prediction and Evaluation"
     external_url: "https://journals.sagepub.com/doi/10.1177/0193841X241229106"
     date: 2024-02-01
