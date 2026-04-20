@@ -37,8 +37,8 @@
   
   
     <!-- Revealjs Theme -->
-    
-    <link rel="stylesheet" href="/assets/html/export/libs/reveal.js/4.3.1/theme/night.css" id="theme">
+    {% assign reveal_theme = page.theme | default: "night" %}
+    <link rel="stylesheet" href="/assets/html/export/libs/reveal.js/4.3.1/theme/{{ reveal_theme }}.css" id="theme">
     
     
   
@@ -48,7 +48,9 @@
   
   
     <!-- Revealjs Theme -->
-    
+    {% if page.custom_css %}
+    <link rel="stylesheet" href="/assets/html/export/{{ page.custom_css }}">
+    {% endif %}
   
      <!-- css list -->
     

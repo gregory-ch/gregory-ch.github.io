@@ -1,0 +1,3315 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+
+  <title>Reveal JS presentation</title>
+
+  <meta name="description" content="A framework for easily creating beautiful presentations using HTML">
+  <meta name="author" content="Hakim El Hattab">
+
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <link rel="stylesheet" href="libs/reveal.js/4.3.1/reset.css">
+  <link rel="stylesheet" href="libs/reveal.js/4.3.1/reveal.css">
+
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+
+  <!-- highlight Theme -->
+  
+  <link rel="stylesheet" href="libs/highlight.js/11.3.1/styles/solarized-light.min.css">
+  
+	
+		
+	<link rel="stylesheet" href="libs/reveal.js/4.3.1/plugin/chalkboard/style.css">
+	
+	
+	
+  <link rel="stylesheet" href="libs/reveal.js/4.3.1/plugin/customcontrols/style.css">
+  
+	
+
+
+
+  <!-- Revealjs Theme -->
+  
+  <link rel="stylesheet" href="libs/reveal.js/4.3.1/theme/solarized.css" id="theme">
+  
+  
+
+  <link rel="stylesheet" href="libs/styles/tasklist.css">
+	<link rel="stylesheet" href="libs/styles/iota.css">
+	<link rel="stylesheet" href="libs/styles/layout.css">
+
+
+  <!-- Revealjs Theme -->
+  
+  <link rel="stylesheet" href="solarized-green.css">
+  
+
+   <!-- css list -->
+	
+
+   
+
+</head>
+
+<body>
+
+   
+
+  <div class="reveal">
+
+    <!-- Any section element inside of this container is displayed as a slide -->
+    <div class="slides">
+
+      
+
+
+    
+        <section >
+            
+            <h2>Базовые идеи и интуиция</h2>
+<h2>причинно-следственного анализа данных</h2>
+<figure class="c-blockquote">
+<blockquote>
+<p>«Correlation does not even imply correlation. That is, correlation in the data you happen to have does not necessarily imply correlation in the population of interest. Andrew Gelman»</p>
+</blockquote>
+<figcaption class="c-blockquote__attribution">Чернов Григорий — 2026 (с)</figcaption>
+</figure>
+
+            </section>
+    
+
+
+
+    
+        <section >
+            
+            <h1>Блок 1 Мотивационные примеры</h1>
+
+            </section>
+    
+
+
+
+    
+        <section >
+            
+            <img src="images/intro.png" style="max-height: 420px; max-width: 95%; width: auto; height: auto; display: block; margin: 0 auto">
+
+            </section>
+    
+
+
+
+    
+        <section >
+            
+            <img src="images/intro 2.png" style="max-height: 420px; max-width: 95%; width: auto; height: auto; display: block; margin: 0 auto">
+
+            </section>
+    
+
+
+
+    
+        <section >
+            
+            <h2>Два вопроса за одной мантрой</h2>
+<p>«Корреляция не подразумевает причинность» — все слышали.</p>
+<p>Но за этой фразой скрываются <strong>два разных вопроса</strong>:</p>
+<ol>
+<li>
+<p><strong>Что подразумевает причинность?</strong>
+Какие условия нужны, чтобы из данных делать причинные выводы?</p>
+</li>
+<li>
+<p><strong>Что всё же подразумевает корреляция?</strong>
+Правда ли, что статистическая ассоциация «ничего не значит»?</p>
+</li>
+</ol>
+<blockquote>
+<p>На оба вопроса мы ответим — и ответы окажутся неожиданными.</p>
+</blockquote>
+
+            </section>
+    
+
+
+
+    
+    <section>
+        <section >
+            <img src="images/cats1.png" style="height: 380px; display: block; margin: 0 auto">
+
+            </section>
+        
+            <section >
+                <h2>Turn into data</h2>
+<div style="display: flex; justify-content: center; gap: 2em">
+  <img src="images/spuriouscats.png" style="height: 240px; width: 45%; object-fit: cover; object-position: top">
+  <img src="images/spuriouscats.png" style="height: 240px; width: 45%; object-fit: cover; object-position: bottom">
+</div>
+
+            </section>
+        
+            <section style="font-size: 0.8em">
+                <h2>Структура важна не меньше полноты данных</h2>
+<!-- .slide: style="font-size: 0.8em" -->
+<p>Данные: коты $C$, гравитация $G$, удобное место $F$</p>
+<div style="display: flex; gap: 2em; align-items: flex-start; justify-content: center">
+<div>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>C</th>
+<th>F</th>
+<th>G</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+</tr>
+<tr>
+<td>2</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+</tr>
+<tr>
+<td>3</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+</tr>
+<tr>
+<td>4</td>
+<td>1</td>
+<td>1</td>
+<td>0</td>
+</tr>
+<tr>
+<td>5</td>
+<td>1</td>
+<td>1</td>
+<td>0</td>
+</tr>
+<tr>
+<td>6</td>
+<td>1</td>
+<td>1</td>
+<td>0</td>
+</tr>
+<tr>
+<td>7</td>
+<td>0</td>
+<td>1</td>
+<td>1</td>
+</tr>
+<tr>
+<td>8</td>
+<td>0</td>
+<td>1</td>
+<td>0</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>C</th>
+<th>F</th>
+<th>G</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>9</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr>
+<td>10</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr>
+<td>11</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr>
+<td>12</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr>
+<td>13</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr>
+<td>14</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr>
+<td>15</td>
+<td>1</td>
+<td>0</td>
+<td>1</td>
+</tr>
+<tr>
+<td>16</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>Cat</th>
+<th>Not Cat</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Fit</td>
+<td>3/6 (50%)</td>
+<td>1/2 (50%)</td>
+</tr>
+<tr>
+<td>Not</td>
+<td>1/4 (25%)</td>
+<td>1/4 (25%)</td>
+</tr>
+<tr>
+<td><strong>Total</strong></td>
+<td><strong>4/10 (40%)</strong></td>
+<td><strong>2/6 (33%)</strong></td>
+</tr>
+</tbody>
+</table>
+<p>Без $F$: $C$ и $G$ коррелируют.</p>
+<p>С $F$: корреляция <strong>исчезает</strong>.</p>
+<p>$G \rightarrow F \rightarrow C$</p>
+</div>
+</div>
+
+            </section>
+        
+
+    </section>
+    
+
+
+
+    
+    <section>
+        <section >
+            <h1>Блок 2 — Как мы ошибаемся</h1>
+<h2>когнитивные искажения</h2>
+
+            </section>
+        
+            <section >
+                <h2>CogBias: To see an illusion as illusion is not yet to escape it</h2>
+<div style="display: flex; justify-content: center; gap: 1.5em; align-items: center">
+  <img src="images/perseption1.jpg" style="height: 280px">
+</div>
+
+            </section>
+        
+            <section >
+                <h2>CogBias: Mapping abstraction to pattern</h2>
+<div style="display: flex; justify-content: center; gap: 1.5em; align-items: center">
+  <img src="images/perseption2.jpg" style="height: 280px">
+   </div>
+
+            </section>
+        
+            <section >
+                <h2>CogBias: Thatcher effect</h2>
+<div style="display: flex; justify-content: center; gap: 1.5em; align-items: center">
+<img src="images/perseption3.jpg" style="height: 380px; display: block; margin: 0 auto">
+</div>
+
+            </section>
+        
+            <section >
+                <h2>CogBias: Hypothesis confirmation</h2>
+<div style="display: flex; justify-content: center; gap: 1.5em; align-items: center">
+  <img src="images/hypCB2.jpg" style="height: 320px">
+</div>
+
+            </section>
+        
+            <section >
+                <h2>CogBias: Expectations</h2>
+<div style="display: flex; justify-content: center; gap: 1.5em; align-items: center">
+  <img src="images/hypCB1.jpg" style="height: 320px">
+</div>
+
+            </section>
+        
+            <section >
+                <h2>CogBias:Expectaitions matter</h2>
+<div style="display: flex; justify-content: center; gap: 1.5em; align-items: center">
+  <img src="images/pattern1.jpg" style="height: 340px">
+</div>
+
+            </section>
+        
+            <section >
+                <h2>CogBias:Expectaitions matter</h2>
+<div style="display: flex; justify-content: center; gap: 1.5em; align-items: center">
+  <img src="images/pattern2.jpg" style="height: 340px">
+</div>
+
+            </section>
+        
+            <section >
+                <h2>КИ с числами: парадокс вращения монеты</h2>
+<div style="display: flex; gap: 2em; align-items: center; justify-content: center">
+<div style="text-align: left; font-size: 0.9em">
+<p>Радиус окружности <strong>a</strong> в три раза больше радиуса <strong>b</strong>.</p>
+<p>Окружность <strong>b</strong> катится вокруг <strong>a</strong> без проскальзывания.</p>
+<p>Сколько оборотов совершит <strong>b</strong>?</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>a) 3/2</td>
+<td>b) <strong>3</strong></td>
+</tr>
+<tr>
+<td>c) 6</td>
+<td>d) 9/2</td>
+</tr>
+<tr>
+<td>e) 9</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</div>
+<img src="images/coin1.png" style="height: 380px">
+</div>
+
+            </section>
+        
+            <section >
+                <h2>КИ с числами: интуиция говорит «3»</h2>
+<div style="text-align: center">
+  <img id="coin-gif" src="images/coin2.gif" style="height: 420px">
+  <br>
+  <button onclick="var img=document.getElementById('coin-gif'); img.src='images/coin2.gif?t='+Date.now();" style="margin-top: 0.6em; padding: 0.4em 1.4em; font-size: 0.9em; cursor: pointer; border-radius: 6px; background: #586e75; color: #fdf6e3; border: none">▶ Replay</button>
+</div>
+
+            </section>
+        
+            <section >
+                <h2>КИ с числами: правильный ответ — 4</h2>
+<div style="text-align: center">
+  <img id="coin-gif3" src="images/coin3.gif" style="height: 420px">
+  <br>
+  <button onclick="document.getElementById('coin-gif3').src='images/coin3.gif?t='+Date.now();" style="margin-top: 0.6em; padding: 0.4em 1.4em; font-size: 0.9em; cursor: pointer; border-radius: 6px; background: #586e75; color: #fdf6e3; border: none">▶ Replay</button>
+</div>
+
+            </section>
+        
+            <section >
+                <h2>КИ с числами: «пропавший» оборот</h2>
+<div style="display: flex; flex-direction: column; align-items: center; gap: 0.8em">
+<img id="coin-gif4" src="images/coin4.gif" style="height: 320px">
+<div style="text-align: center; font-size: 0.9em">
+<p>Надеюсь, теперь вы увидели «пропавший» оборот. Достаточно было наблюдать за тем, <strong>от чего вас отвлекли</strong> — этот дополнительный оборот это оборот окружности <strong>b</strong> вокруг точки <strong>A</strong>.</p>
+</div>
+<p><button onclick="document.getElementById('coin-gif4').src='images/coin4.gif?t='+Date.now();" style="padding: 0.4em 1.4em; font-size: 0.9em; cursor: pointer; border-radius: 6px; background: #586e75; color: #fdf6e3; border: none">▶ Replay</button></p>
+</div>
+
+            </section>
+        
+            <section >
+                <h2>CogBias: Logic &amp; Consistency ≠ Assumptions</h2>
+<div style="display: flex; justify-content: center; gap: 1.5em; align-items: center">
+  <img src="images/Logic1.jpg" style="height: 340px">
+  <img src="images/Logic2.png" style="height: 340px">
+</div>
+
+            </section>
+        
+            <section style="font-size: 0.85em">
+                <h2>КИ с числами: монета не помнит прошлого</h2>
+<!-- .slide: style="font-size: 0.85em" -->
+<div style="display: flex; gap: 2em; justify-content: center; align-items: flex-start">
+<div>
+<p><strong>Gambler’s Fallacy</strong></p>
+<p><code>H H H H H H H H H</code> → следующий бросок?</p>
+<p>Интуиция: «Решка давно не выпадала — пора!»</p>
+<p>Реальность: $P(\text{T}) = 0.5$ всегда. Монета не помнит.</p>
+</div>
+<div>
+<p><strong>Clustering Illusion</strong></p>
+<p>Какая последовательность «случайнее»?</p>
+<p><code>H T H T H T H T</code> — выглядит подозрительно</p>
+<p><code>H H H T T H H T</code> — выглядит нормально</p>
+<p>Обе одинаково вероятны: $\left(\tfrac{1}{2}\right)^8$</p>
+</div>
+</div>
+
+            </section>
+        
+            <section >
+                <h2>КИ с числами: HH vs HT</h2>
+<p>Сколько бросков нужно в среднем, чтобы <strong>первый раз</strong> получить подряд:</p>
+<table>
+<thead>
+<tr>
+<th>Цель</th>
+<th>Интуиция</th>
+<th>Реальность</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>HT</code> (орёл, решка)</td>
+<td>4</td>
+<td><strong>4</strong></td>
+</tr>
+<tr>
+<td><code>HH</code> (орёл, орёл)</td>
+<td>4</td>
+<td><strong>6</strong></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Почему HH требует больше бросков?</strong></p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>После нужного H выпала «не та» монета</th>
+<th>Что теряем?</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>HH</strong></td>
+<td>H → <strong>T</strong> → старт с нуля</td>
+<td>T бесполезен, предыдущий H потерян</td>
+</tr>
+<tr>
+<td><strong>HT</strong></td>
+<td>H → <strong>H</strong> → остаёмся в «есть H»</td>
+<td>второй H = новый стартовый H</td>
+</tr>
+</tbody>
+</table>
+<p>При цели HT «лишний» H <strong>recycleится</strong> как новая отправная точка.
+При цели HH T полностью сбрасывает прогресс.</p>
+<blockquote>
+<p>Структура мишени определяет, насколько «дорого» ошибиться — это не случайность.</p>
+</blockquote>
+
+            </section>
+        
+            <section style="font-size: 0.88em" id="slide-ki-prof-question">
+                <h2>КИ профессионалов: задача для врача</h2>
+<!-- .slide: style="font-size: 0.88em" id="slide-ki-prof-question" -->
+<p>Вероятность рака молочной железы у женщин после 40 лет — <strong>1%</strong>.</p>
+<p>Маммография: чувствительность <strong>80%</strong>, ложноположительная ставка <strong>9.6%</strong>.</p>
+<p><strong>Результат теста — положительный.</strong></p>
+<blockquote>
+<p>Какова вероятность, что у пациентки действительно рак?</p>
+</blockquote>
+<br>
+<p><em>Сформулируйте ответ, прежде чем листать дальше.</em></p>
+<div style="margin-top: 0.9em; text-align: center">
+  <div class="ki-prof-timer-digit" style="font-size: 2.2em; font-weight: 700; font-variant-numeric: tabular-nums; color: #268bd2; line-height: 1.15">30</div>
+  <div style="font-size: 0.78em; opacity: 0.88; margin-bottom: 0.35em">секунд на размышление</div>
+  <button type="button" onclick="if (window.kiProfTimerRestart) window.kiProfTimerRestart();" style="padding: 0.35em 1.1em; font-size: 0.78em; cursor: pointer; border-radius: 6px; background: #586e75; color: #fdf6e3; border: none">↻ Повторить 30 сек</button>
+</div>
+
+            </section>
+        
+            <section style="font-size: 0.85em">
+                <h2>КИ профессионалов: правильный ответ — 7.8%</h2>
+<!-- .slide: style="font-size: 0.85em" -->
+<div style="display: flex; gap: 2em; align-items: flex-start; justify-content: center">
+<div>
+<p>Из <strong>1000 женщин</strong>:</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>Рак (10)</th>
+<th>Здорова (990)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Тест <strong>+</strong></td>
+<td>8 ✓</td>
+<td>95 ✗</td>
+</tr>
+<tr>
+<td>Тест <strong>−</strong></td>
+<td>2</td>
+<td>895</td>
+</tr>
+</tbody>
+</table>
+<p>Всего положительных: <strong>103</strong></p>
+<p>Из них с раком: <strong>8</strong></p>
+<p>$$P(\text{рак} \mid +) = \tfrac{8}{103} \approx \mathbf{7.8%}$$</p>
+</div>
+<div style="max-width: 380px">
+<p><strong>Большинство врачей отвечают: ~80%</strong></p>
+<p>Они путают $P(+ \mid \text{рак})$ с $P(\text{рак} \mid +)$.</p>
+<p>Это <strong>base rate neglect</strong> — игнорирование априорной вероятности (1%).</p>
+<blockquote>
+<p>Тест «точный» — не значит что диагноз «точный».
+Даже хороший тест теряется в море здоровых при редкой болезни.</p>
+</blockquote>
+</div>
+</div>
+
+            </section>
+        
+            <section >
+                <h2>Парадокс Симпсона: одни данные — разные выводы</h2>
+<p>Смертность от Covid-27:</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>Вакцина Ch27</th>
+<th>Вакцина S27</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Лёгкое течение</td>
+<td><strong>210/1400 (15%)</strong></td>
+<td>5/50 (10%)</td>
+</tr>
+<tr>
+<td>Тяжёлое течение</td>
+<td><strong>30/100 (30%)</strong></td>
+<td>100/500 (20%)</td>
+</tr>
+<tr>
+<td><strong>Итого</strong></td>
+<td>240/1500 (16%)</td>
+<td><strong>105/550 (19%)</strong></td>
+</tr>
+</tbody>
+</table>
+<p>S27 лучше в каждой подгруппе, но хуже в целом. Как такое возможно?</p>
+
+            </section>
+        
+            <section >
+                <h2>Парадокс Симпсона: сценарий 1</h2>
+<p><strong>Состояние C → выбор лечения T → смертность Y</strong></p>
+<div style="display:flex; justify-content:center; margin:0.5em 0 0.2em">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 128" style="max-width:min(100%, 440px); height:auto" role="img" aria-label="C влияет на T и на Y; T влияет на Y">
+  <defs>
+    <marker id="sim-arr1" markerWidth="9" markerHeight="9" refX="8" refY="4.5" orient="auto">
+      <polygon points="0 0, 9 4.5, 0 9" fill="#cb4b16"/>
+    </marker>
+    <marker id="sim-arr1b" markerWidth="9" markerHeight="9" refX="8" refY="4.5" orient="auto">
+      <polygon points="0 0, 9 4.5, 0 9" fill="#268bd2"/>
+    </marker>
+  </defs>
+  <rect x="8" y="22" width="52" height="40" rx="8" fill="#eee8d5" stroke="#586e75" stroke-width="2"/>
+  <text x="34" y="48" text-anchor="middle" font-size="17" font-weight="700" fill="#073642" font-family="system-ui,sans-serif">C</text>
+  <text x="34" y="78" text-anchor="middle" font-size="11" fill="#657b83" font-family="system-ui,sans-serif">состояние</text>
+  <rect x="152" y="22" width="52" height="40" rx="8" fill="#eee8d5" stroke="#586e75" stroke-width="2"/>
+  <text x="178" y="48" text-anchor="middle" font-size="17" font-weight="700" fill="#073642" font-family="system-ui,sans-serif">T</text>
+  <text x="178" y="78" text-anchor="middle" font-size="11" fill="#657b83" font-family="system-ui,sans-serif">лечение</text>
+  <rect x="296" y="22" width="52" height="40" rx="8" fill="#eee8d5" stroke="#586e75" stroke-width="2"/>
+  <text x="322" y="48" text-anchor="middle" font-size="17" font-weight="700" fill="#073642" font-family="system-ui,sans-serif">Y</text>
+  <text x="322" y="78" text-anchor="middle" font-size="11" fill="#657b83" font-family="system-ui,sans-serif">исход</text>
+  <line x1="60" y1="42" x2="150" y2="42" stroke="#cb4b16" stroke-width="2.5" marker-end="url(#sim-arr1)"/>
+  <line x1="204" y1="42" x2="294" y2="42" stroke="#cb4b16" stroke-width="2.5" marker-end="url(#sim-arr1)"/>
+  <path d="M 34 62 Q 178 108 322 62" fill="none" stroke="#268bd2" stroke-width="2.2" stroke-dasharray="7 5" marker-end="url(#sim-arr1b)"/>
+  <text x="200" y="122" text-anchor="middle" font-size="10" fill="#268bd2" font-family="system-ui,sans-serif">ещё и напрямую на Y</text>
+</svg>
+</div>
+<p>Тяжёлым больным чаще назначают S27 (он дороже и ограничен).
+Тяжёлое состояние само по себе повышает смертность.</p>
+<p><strong>Вывод: нужно смотреть внутри подгрупп → S27 лучше.</strong></p>
+
+            </section>
+        
+            <section >
+                <h2>Парадокс Симпсона: сценарий 2</h2>
+<p><strong>Лечение T → состояние C → смертность Y</strong></p>
+<div style="display:flex; justify-content:center; margin:0.5em 0 0.2em">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 128" style="max-width:min(100%, 440px); height:auto" role="img" aria-label="T влияет на C и на Y; C влияет на Y">
+  <defs>
+    <marker id="sim-arr2" markerWidth="9" markerHeight="9" refX="8" refY="4.5" orient="auto">
+      <polygon points="0 0, 9 4.5, 0 9" fill="#cb4b16"/>
+    </marker>
+    <marker id="sim-arr2b" markerWidth="9" markerHeight="9" refX="8" refY="4.5" orient="auto">
+      <polygon points="0 0, 9 4.5, 0 9" fill="#268bd2"/>
+    </marker>
+  </defs>
+  <rect x="8" y="22" width="52" height="40" rx="8" fill="#eee8d5" stroke="#586e75" stroke-width="2"/>
+  <text x="34" y="48" text-anchor="middle" font-size="17" font-weight="700" fill="#073642" font-family="system-ui,sans-serif">T</text>
+  <text x="34" y="78" text-anchor="middle" font-size="11" fill="#657b83" font-family="system-ui,sans-serif">лечение</text>
+  <rect x="152" y="22" width="52" height="40" rx="8" fill="#eee8d5" stroke="#586e75" stroke-width="2"/>
+  <text x="178" y="48" text-anchor="middle" font-size="17" font-weight="700" fill="#073642" font-family="system-ui,sans-serif">C</text>
+  <text x="178" y="78" text-anchor="middle" font-size="11" fill="#657b83" font-family="system-ui,sans-serif">состояние</text>
+  <rect x="296" y="22" width="52" height="40" rx="8" fill="#eee8d5" stroke="#586e75" stroke-width="2"/>
+  <text x="322" y="48" text-anchor="middle" font-size="17" font-weight="700" fill="#073642" font-family="system-ui,sans-serif">Y</text>
+  <text x="322" y="78" text-anchor="middle" font-size="11" fill="#657b83" font-family="system-ui,sans-serif">исход</text>
+  <line x1="60" y1="42" x2="150" y2="42" stroke="#cb4b16" stroke-width="2.5" marker-end="url(#sim-arr2)"/>
+  <line x1="204" y1="42" x2="294" y2="42" stroke="#cb4b16" stroke-width="2.5" marker-end="url(#sim-arr2)"/>
+  <path d="M 34 62 Q 178 108 322 62" fill="none" stroke="#268bd2" stroke-width="2.2" stroke-dasharray="7 5" marker-end="url(#sim-arr2b)"/>
+  <text x="200" y="122" text-anchor="middle" font-size="10" fill="#268bd2" font-family="system-ui,sans-serif">ещё и напрямую на Y</text>
+</svg>
+</div>
+<p>S27 создаёт очередь → пациенты ждут дольше → болезнь прогрессирует.</p>
+<p><strong>Вывод: смотреть в целом → Ch27 лучше.</strong></p>
+<blockquote>
+<p>Парадокс Симпсона — не парадокс, если есть причинная модель.</p>
+</blockquote>
+
+            </section>
+        
+            <section >
+                <img src="images/sys1-2.webp" style="max-height: 520px; max-width: 95%; width: auto; height: auto; display: block; margin: 0 auto" alt="Тип 1 и тип 2: схема">
+
+            </section>
+        
+            <section >
+                <h3>Тип 1 и тип 2</h3>
+<ul>
+<li>Вывод типа 1 и расчёт типа 2 <strong>конкурируют</strong> (типичные задачи на вероятность и логику)</li>
+<li>То, что отрабатывали типом 2, со временем <strong>автоматизируется</strong> и снова приближается к автономному режиму</li>
+<li>Различать типы надёжнее по <strong>автономности и нагрузке на рабочую память</strong>, чем только по длительности: тип 1 <strong>не всегда</strong> «короче по секундам», зато <strong>меньше доступен сознательному контролю</strong></li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>Тип 1</th>
+<th>Тип 2</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Автономный запуск</td>
+<td>Управляемая последовательность</td>
+</tr>
+<tr>
+<td>Низкая нагрузка на РП</td>
+<td>Высокая нагрузка на РП</td>
+</tr>
+<tr>
+<td>Эвристики, привычка, модули</td>
+<td>Декуплинг, симуляция, нормативы</td>
+</tr>
+<tr>
+<td>Ответ «по умолчанию»</td>
+<td>Может <strong>переопределить</strong> тип 1</td>
+</tr>
+</tbody>
+</table>
+<p><small style="color:#657b83">Stanovich, K.E. (2011). <em>Rationality and the Reflective Mind</em>. Oxford UP.</small></p>
+
+            </section>
+        
+            <section style="font-size: 0.78em">
+                <h2>When Do We Actually Use Normative Models?</h2>
+<!-- .slide: style="font-size: 0.78em" -->
+<div style="display: flex; flex-direction: column; align-items: flex-start; padding-left: 3em; gap: 0">
+<div style="display: flex; align-items: center; gap: 1em">
+  <div style="background:#dce6ee; border:2px solidrgb(142, 142, 142); border-radius:8px; padding:0.4em 1em; width:230px; text-align:center"><b>1.</b> Know the normative model?</div>
+  <span style="color:#cb4b16; font-weight:bold">No →</span>
+  <div style="border:1px dashed #aaa; padding:0.3em 0.8em; border-radius:4px; font-style:italic; background:#f5f0e8">intuitive answer</div>
+</div>
+<div style="margin-left:115px; color:#859900; line-height:1">↓ Yes</div>
+<div style="display: flex; align-items: center; gap: 1em">
+  <div style="background:#dce6ee; border:2px solidrgb(176, 176, 176); border-radius:8px; padding:0.4em 1em; width:230px; text-align:center"><b>2.</b> Recognised bias may apply?</div>
+  <span style="color:#cb4b16; font-weight:bold">No →</span>
+  <div style="border:1px dashed #aaa; padding:0.3em 0.8em; border-radius:4px; font-style:italic; background:#f5f0e8">intuitive answer</div>
+</div>
+<div style="margin-left:115px; color:#859900; line-height:1">↓ Yes</div>
+<div style="display: flex; align-items: center; gap: 1em">
+  <div style="background:#dce6ee; border:2px solidhsl(0, 0.00%, 50.20%); border-radius:8px; padding:0.4em 1em; width:230px; text-align:center"><b>3.</b> Trained, has normative answer — does another normative model apply?</div>
+  <span style="color:#cb4b16; font-weight:bold">No →</span>
+  <div style="border:1px dashed #aaa; padding:0.3em 0.8em; border-radius:4px; font-style:italic; background:#f5f0e8">System 1 normative</div>
+</div>
+<div style="margin-left:115px; color:#859900; line-height:1">↓ Yes</div>
+<div style="display: flex; align-items: center; gap: 1em">
+  <div style="background:#dce6ee; border:2px solidhsl(0, 0.00%, 49.80%); border-radius:8px; padding:0.4em 1em; width:230px; text-align:center"><b>4.</b> Enough cognitive resources?</div>
+  <span style="color:#cb4b16; font-weight:bold">No →</span>
+  <div style="border:1px dashed #aaa; padding:0.3em 0.8em; border-radius:4px; font-style:italic; background:#f5f0e8">intuitive answer</div>
+</div>
+<div style="margin-left:115px; color:#859900; line-height:1">↓ Yes</div>
+<div style="background:#859900; color:#fdf6e3; border-radius:8px; padding:0.4em 1em; width:230px; text-align:center; font-weight:bold">System 2 normative answer</div>
+</div>
+<p><small style="color:#888; position:absolute; bottom:0.6em; right:1.5em">Stanovich, K.E. (2011). <em>Rationality and the Reflective Mind</em>. Oxford UP.</small></p>
+
+            </section>
+        
+
+    </section>
+    
+
+
+
+    
+    <section>
+        <section >
+            <h2>Зачем вообще нужна причинность — даже для прогноза?</h2>
+<p>Казалось бы: если цель — прогноз, зачем знать механизм?</p>
+<p>Рассмотрим данные о курении и смертности:</p>
+<img src="images/Pics1columnD.jpeg" style="height: 300px">
+<p><small style="color:#888">Doll &amp; Hill (1954). <em>Mortality in relation to smoking.</em> <a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC437139/" target="_blank">BMJ / PMC437139</a></small></p>
+<p>Что будет, если слепо обучить модель на таких данных?</p>
+
+            </section>
+        
+            <section style="font-size: 0.85em">
+                <h2>Четыре проблемы игнорирования причинности</h2>
+<!-- .slide: style="font-size: 0.85em" -->
+<p><strong>1. Нет объясняющей силы</strong> — модель укажет на курение как защитный фактор.</p>
+<p><strong>2. Неполная информация</strong> — ценные переменные («знает ли пациент о болезни») остаются незамеченными.</p>
+<p><strong>3. Нестабильность оценок</strong> — перегруппировка данных по времени меняет результаты кардинально.</p>
+<p><strong>4. Невозможность трансфера</strong> — данные Скандинавии: информирование и курение кажутся равнозначными. Перенос в Бангладеш — модель ломается.</p>
+
+            </section>
+        
+            <section >
+                <h2>В чём подвох?</h2>
+<p><strong>Обратная причинность</strong>: люди, узнавшие о болезни, бросают курить.</p>
+<img src="images/Smoking.png" style="height: 260px">
+<p>Структура данных, а не сами данные — вот источник ошибки.</p>
+
+            </section>
+        
+
+    </section>
+    
+
+
+
+    
+        <section style="font-size: 0.88em">
+            
+            <h2>Пять расхожих заблуждений о причинности</h2>
+<!-- .slide: style="font-size: 0.88em" -->
+<p>Мы последовательно разберём каждый из них:</p>
+<ol>
+<li>Корреляция не подразумевает причинность, потому что <strong>случайная ассоциация</strong> всегда возможна</li>
+<li>Корреляция не подразумевает причинность, потому что <strong>данные могут быть неполными</strong></li>
+<li><strong>Отсутствие</strong> корреляции означает отсутствие причинности</li>
+<li>Наличие корреляции <strong>вообще ничего</strong> не означает</li>
+<li>Причинность <strong>вообще не выводима</strong> из данных</li>
+</ol>
+
+            </section>
+    
+
+
+
+    
+        <section >
+            
+            <h1>Блок 3 Нормативные модели</h1>
+
+            </section>
+    
+
+
+
+    
+    <section>
+        <section style="font-size: 0.78em">
+            <h2>Нотация: независимость</h2>
+<!-- .slide: style="font-size: 0.78em" -->
+<img src="images/Notation.png" style="max-height: 200px; max-width: 90%; width: auto; height: auto; display: block; margin: 0 auto 0.5em">
+<p><strong>Условная независимость:</strong> $X \perp Y \mid Z ;\Leftrightarrow; P(X,Y \mid Z{=}z) = P(X \mid Z{=}z),P(Y \mid Z{=}z) \quad \forall z$</p>
+<p><strong>Безусловная независимость:</strong> $X \perp Y$ — частный случай ($Z$ пусто).</p>
+<p><strong>Пример зависимости:</strong> $P(X{=}1)=\tfrac12$, $P(Y{=}1 \mid X{=}1)=0{,}9$, $P(Y{=}1 \mid X{=}0)=0{,}3$ → $X \not\perp Y$.</p>
+
+            </section>
+        
+            <section style="font-size: 0.8em">
+                <h2>Интервенция $do(\cdot)$</h2>
+<!-- .slide: style="font-size: 0.8em" -->
+<p><strong>Наблюдаемое условное</strong> $P(Y \mid X{=}x)$ — доля $Y$ среди тех, у кого в данных $X{=}x$ (самовыбор / механизм порождения $X$ сохранён).</p>
+<p><strong>Интервенционное</strong> $P(Y \mid do(X{=}x))$ — распределение $Y$, если <strong>всем</strong> принудительно задали $X{=}x$.</p>
+<p>Если истинная структура $X \rightarrow Y$ <strong>без</strong> скрытых общих причин, совпадает: $P(Y \mid X{=}x) = P(Y \mid do(X{=}x))$.</p>
+
+            </section>
+        
+            <section style="font-size: 0.72em">
+                <h2>Маргинализация: что это такое</h2>
+<!-- .slide: style="font-size: 0.72em" -->
+<p><strong>Идея:</strong> нас интересует только $X$, но данные содержат ещё и $Y$. Чтобы «убрать» $Y$ — суммируем по всем его значениям:</p>
+<p>$$\boxed{P(X) = \sum_{y} P(X, Y{=}y)}$$</p>
+<div style="display: flex; gap: 1.5em; margin-top: 0.5em; align-items: flex-start; justify-content: center">
+<div style="flex:1; background:#eee8d5; border-left:4px solid #586e75; padding:0.35em 0.7em; border-radius:4px">
+<p><strong>Пример: таблица совместного распределения</strong></p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>$Y{=}0$</th>
+<th>$Y{=}1$</th>
+<th>$P(X)$</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>$X{=}0$</td>
+<td>0.20</td>
+<td>0.30</td>
+<td><strong>0.50</strong></td>
+</tr>
+<tr>
+<td>$X{=}1$</td>
+<td>0.15</td>
+<td>0.35</td>
+<td><strong>0.50</strong></td>
+</tr>
+<tr>
+<td>$P(Y)$</td>
+<td><strong>0.35</strong></td>
+<td><strong>0.65</strong></td>
+<td>1.0</td>
+</tr>
+</tbody>
+</table>
+<p>Строка $P(X)$ — сумма по строке. Столбец $P(Y)$ — сумма по столбцу.</p>
+</div>
+<div style="flex:1; background:#dce6ee; border-left:4px solid #268bd2; padding:0.35em 0.7em; border-radius:4px">
+<p><strong>Зачем нужно?</strong></p>
+<ul>
+<li>Совместное $P(X,Y,Z,\ldots)$ хранит всю информацию</li>
+<li>Нас интересует только одна переменная → маргинализуем остальные</li>
+</ul>
+<p><strong>Связь с законом полной вероятности:</strong></p>
+<p>$$P(X) = \sum_y P(X \mid Y{=}y),P(Y{=}y)$$</p>
+</div>
+</div>
+
+            </section>
+        
+            <section >
+                <h2>Маргинализация в DAG: структура</h2>
+<img src="images/tables-marg.webp" style="max-height: 310px; width: auto; display: block; margin: 0 auto">
+<p style="font-size:0.75em; color:#657b83; text-align:center; margin-top:0.3em">Iuliia Averianova — <a href="https://medium.com/nuances-of-programming/%D1%83%D1%81%D0%BB%D0%BE%D0%B2%D0%BD%D0%B0%D1%8F-%D0%BD%D0%B5%D0%B7%D0%B0%D0%B2%D0%B8%D1%81%D0%B8%D0%BC%D0%BE%D1%81%D1%82%D1%8C-%D0%BE%D1%81%D0%BD%D0%BE%D0%B2%D0%B0-%D0%B1%D0%B0%D0%B9%D0%B5%D1%81%D0%BE%D0%B2%D1%81%D0%BA%D0%BE%D0%B9-%D1%81%D0%B5%D1%82%D0%B8-b523a1070a76" target="_blank">«Условная независимость — основа байесовской сети»</a>; Koller & Friedman, PGM (2009)</p>
+
+            </section>
+        
+            <section style="font-size: 0.82em">
+                <h2>Маргинализация ≠ условие</h2>
+<!-- .slide: style="font-size: 0.82em" -->
+<div style="display: flex; gap: 2em; justify-content: center; align-items: flex-start; margin-bottom: 0.5em">
+<div style="flex:1; background:#eee8d5; border-left:4px solid #586e75; padding:0.5em 0.9em; border-radius:4px; text-align:center">
+<p><strong>Маргинализация</strong><br><small>не наблюдаем $Z$, суммируем</small></p>
+<p>$$P(X,Y) = \sum_z P(X,Y,Z{=}z)$$</p>
+</div>
+<div style="flex:1; background:#fff5f5; border-left:4px solid #dc322f; padding:0.5em 0.9em; border-radius:4px; text-align:center">
+<p><strong>Условие</strong><br><small>наблюдаем $Z{=}z$, входим в подвыборку</small></p>
+<p>$$P(X,Y \mid Z{=}z)$$</p>
+</div>
+</div>
+<p>Эффект <strong>противоположный</strong> в зависимости от структуры:</p>
+<table>
+<thead>
+<tr>
+<th>Структура</th>
+<th>Маргинализация по $Z$</th>
+<th>Условие на $Z$</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Коллайдер $X\to Z\leftarrow Y$</td>
+<td>$X \perp Y$ ✓</td>
+<td>$X \not\perp Y$ ✗ (открывает путь)</td>
+</tr>
+<tr>
+<td>Развилка $X\leftarrow Z\to Y$</td>
+<td>$X \not\perp Y$ (смешение)</td>
+<td>$X \perp Y$ ✓ (блокирует)</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>Маргинализация — «не смотреть» на $Z$. Условие — «смотреть». В каузальном анализе это принципиально разные операции.</p>
+</blockquote>
+
+            </section>
+        
+
+    </section>
+    
+
+
+
+    
+    <section>
+        <section >
+            <h2>Условная независимость: как интуиция нас обманывает</h2>
+<div style="display: flex; gap: 2em; align-items: center; justify-content: center">
+<img src="images/Squares.png" style="height: 340px">
+<div style="text-align: left">
+<p>Переменные $Y$ (жёлтая), $R$ (красная), $B$ (синяя).</p>
+<p>Вероятность = доля квадратиков в закрашенной области.</p>
+<p>$R$ и $B$ <strong>зависимы</strong> попарно: $P(B \mid R) \neq P(B)$</p>
+<p>Но <strong>условно независимы</strong> при $Y$:</p>
+<p>$$P(R \cap B \mid Y) = P(R \mid Y) \cdot P(B \mid Y) = \left(\tfrac{1}{3}\right)^2$$</p>
+<p>Добавление $Y$ <strong>полностью меняет</strong> картину.</p>
+</div>
+</div>
+
+            </section>
+        
+            <section style="font-size: 0.85em">
+                <h2>Условная независимость: считаем по квадратикам</h2>
+<!-- .slide: style="font-size: 0.85em" -->
+<div style="display: flex; gap: 2em; align-items: center; justify-content: center">
+<img src="images/Squares.png" style="height: 340px">
+<div style="text-align: left">
+<p>Всего клеток: <strong>36</strong></p>
+<p><strong>Связь R и B (без условия):</strong></p>
+<p>$$P® = \tfrac{13}{36}, \quad P(B \mid R) = \tfrac{4}{13} \neq P(B) = \tfrac{11}{36}$$</p>
+<p>Зависимы — знание о $R$ меняет вероятность $B$.</p>
+<p><strong>Условная независимость при $Y$:</strong></p>
+<p>Внутри жёлтой области ($Y$) — 9 клеток.</p>
+<p>$$P(R \mid Y) = \tfrac{3}{9} = \tfrac{1}{3}, \quad P(B \mid Y) = \tfrac{3}{9} = \tfrac{1}{3}$$</p>
+<p>$$P(R \cap B \mid Y) = \tfrac{1}{9} = \tfrac{1}{3} \cdot \tfrac{1}{3} \checkmark$$</p>
+<blockquote>
+<p>Условие $Y$ «объясняет» связь между $R$ и $B$ — они перестают нести информацию друг о друге.</p>
+</blockquote>
+</div>
+</div>
+
+            </section>
+        
+
+    </section>
+    
+
+
+
+    
+    <section>
+        <section >
+            <h2>Принцип Рейхенбаха</h2>
+<div style="display: flex; gap: 2.5em; align-items: flex-start; justify-content: center; font-size: 0.88em">
+<div style="flex: 1">
+<blockquote>
+<p>Если $A \not\perp B$ — в причинной структуре <strong>обязательно</strong> есть объяснение</p>
+</blockquote>
+<p>Три базовых варианта:</p>
+<div style="display: flex; flex-direction: column; gap: 0.5em; margin-top: 0.4em">
+<div style="background:#eee8d5; border-left: 4px solid #cb4b16; padding: 0.4em 0.8em; border-radius:4px">$A \rightarrow B$ &nbsp; прямая причина</div>
+<div style="background:#eee8d5; border-left: 4px solid #cb4b16; padding: 0.4em 0.8em; border-radius:4px">$B \rightarrow A$ &nbsp; обратная причина</div>
+<div style="background:#eee8d5; border-left: 4px solid #268bd2; padding: 0.4em 0.8em; border-radius:4px">$A \leftarrow C \rightarrow B$ &nbsp; общая причина</div>
+</div>
+<p style="margin-top:0.9em; font-size:0.85em; color:#657b83">+ в расширенном графе: медиаторы, коллайдеры, комбинации — но «просто так» зависимость не возникает</p>
+</div>
+<div style="flex: 1">
+<p><strong>Ограничение:</strong> по одним наблюдениям принцип <strong>не различает</strong> эти случаи — они образуют класс наблюдаемой эквивалентности.</p>
+<div style="margin-top: 0.7em; padding: 0.5em 0.8em; border: 1px dashed #93a1a1; border-radius:6px; font-size:0.85em">
+«Если отбросить всё невозможное, то то, что останется — и будет истиной» &nbsp; <em>— Шерлок Холмс</em>
+</div>
+</div>
+</div>
+
+            </section>
+        
+            <section style="font-size: 0.88em">
+                <h2>Асимметрия причины и следствия</h2>
+<!-- .slide: style="font-size: 0.88em" -->
+<div style="display: flex; gap: 2.5em; align-items: flex-start; justify-content: center">
+<div style="flex: 1">
+<p>Истинный граф: $A \rightarrow B$</p>
+<table>
+<thead>
+<tr>
+<th>Ситуация</th>
+<th style="text-align:center">$A \not\perp B$?</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Наблюдение</td>
+<td style="text-align:center">✓</td>
+</tr>
+<tr>
+<td>$do(A)$ — интервенция на <strong>причину</strong></td>
+<td style="text-align:center">✓</td>
+</tr>
+<tr>
+<td>$do(B)$ — интервенция на <strong>следствие</strong></td>
+<td style="text-align:center">✗</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div style="flex: 1.1">
+<p><strong>Почему так:</strong></p>
+<p>$do(B)$ «отрезает» входящие стрелки в $B$ — информации о $A$ в $B$ больше нет.</p>
+<p>$do(A)$ оставляет стрелку $A \to B$ нетронутой — связь сохраняется.</p>
+<div style="margin-top:0.8em; background:#eee8d5; border-left:4px solid #859900; padding:0.4em 0.9em; border-radius:4px">
+$do(\text{причина})$: зависимости среди следствий — те же.<br>
+$do(\text{следствие})$: связь с причинами — исчезает.
+</div>
+<p style="margin-top:0.7em; font-size:0.85em; color:#657b83">Это делает эксперимент ($do$) главным инструментом проверки направления влияния.</p>
+</div>
+</div>
+
+            </section>
+        
+
+    </section>
+    
+
+
+
+    
+    <section>
+        <section >
+            <h2>Наблюдаемые эквиваленты: завод</h2>
+<p>Новый начальник смены хочет проверить связь <strong>4 тумблеров T</strong> и <strong>4 линий L</strong>.</p>
+<div style="display: flex; gap: 2em; justify-content: center; align-items: flex-start; font-size: 0.9em">
+<div>
+<p><strong>День 1</strong> — приходит в начале смены:</p>
+<table>
+<thead>
+<tr>
+<th>T</th>
+<th>L</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>1</td>
+</tr>
+<tr>
+<td>1</td>
+<td>1</td>
+</tr>
+<tr>
+<td>1</td>
+<td>1</td>
+</tr>
+<tr>
+<td>1</td>
+<td>1</td>
+</tr>
+</tbody>
+</table>
+<p>Все тумблеры включены, все линии работают.</p>
+</div>
+<div>
+<p><strong>День 2</strong> — плановое обслуживание:</p>
+<table>
+<thead>
+<tr>
+<th>T</th>
+<th>L</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr>
+<td>0</td>
+<td>0</td>
+</tr>
+</tbody>
+</table>
+<p>Тумблеры выключены, линии не работают.</p>
+</div>
+<div style="max-width: 300px">
+<p>Что можно заключить?</p>
+<p>Три объяснения — одинаково совместимы с данными:</p>
+<ol>
+<li>$T \rightarrow L$</li>
+<li>$L \rightarrow T$</li>
+<li>$(\cdot) \rightarrow T$ и $(\cdot) \rightarrow L$</li>
+</ol>
+</div>
+</div>
+
+            </section>
+        
+            <section >
+                <h2>Наблюдаемые эквиваленты: иллюзия стула</h2>
+<img src="images/Chair illusion.png" style="height: 400px; display: block; margin: 0 auto">
+<blockquote>
+<p>Ситуации AB и AC — наблюдаемые эквиваленты двух разных механизмов. Различить их можно только сравнив <strong>ненаблюдаемые</strong> состояния.</p>
+</blockquote>
+
+            </section>
+        
+            <section style="font-size: 0.88em">
+                <h2>Различить механизмы: интервенция на T</h2>
+<!-- .slide: style="font-size: 0.88em" -->
+<p>Физически переключим тумблер: $do(T)$</p>
+<div style="display: flex; gap: 2em; justify-content: center; align-items: flex-start">
+<div>
+<p><strong>Case 3:</strong> $do(T=1)$</p>
+<table>
+<thead>
+<tr>
+<th>do(T)</th>
+<th>L</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>1</td>
+</tr>
+<tr>
+<td>1</td>
+<td>1</td>
+</tr>
+<tr>
+<td>1</td>
+<td>1</td>
+</tr>
+<tr>
+<td>1</td>
+<td>1</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div>
+<p><strong>Case 4:</strong> $do(T=0)$</p>
+<table>
+<thead>
+<tr>
+<th>do(T)</th>
+<th>L</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr>
+<td>0</td>
+<td>0</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div style="max-width: 300px">
+<p><strong>Если $T \rightarrow L$</strong>: линия реагирует → Cases 3 &amp; 4 подтверждают.</p>
+<p><strong>Если $L \rightarrow T$</strong>: линия <strong>не реагирует</strong> на переключение тумблера — Cases 3 &amp; 4 будут другими.</p>
+<p>Интервенция на причину <strong>меняет</strong> следствие.</p>
+</div>
+</div>
+
+            </section>
+        
+            <section style="font-size: 0.88em">
+                <h2>Различить механизмы: интервенция на L</h2>
+<!-- .slide: style="font-size: 0.88em" -->
+<p>Теперь принудительно меняем линию: $do(L)$</p>
+<div style="display: flex; gap: 2em; justify-content: center; align-items: flex-start">
+<div>
+<p><strong>Case 5:</strong> $do(L=1)$</p>
+<table>
+<thead>
+<tr>
+<th>T</th>
+<th>do(L)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0</td>
+<td>1</td>
+</tr>
+<tr>
+<td>0</td>
+<td>1</td>
+</tr>
+<tr>
+<td>0</td>
+<td>1</td>
+</tr>
+<tr>
+<td>0</td>
+<td>1</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div>
+<p><strong>Case 6:</strong> $do(L=0)$</p>
+<table>
+<thead>
+<tr>
+<th>T</th>
+<th>do(L)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>0</td>
+</tr>
+<tr>
+<td>1</td>
+<td>0</td>
+</tr>
+<tr>
+<td>1</td>
+<td>0</td>
+</tr>
+<tr>
+<td>1</td>
+<td>0</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div style="max-width: 300px">
+<p>Тумблер <strong>не реагирует</strong> на интервенцию в линию — значит $T \not\leftarrow L$.</p>
+<p><strong>Интервенция на следствие не меняет причину.</strong></p>
+<p>Чтобы однозначно исключить все механизмы — нужны <strong>минимум две</strong> интервенции.</p>
+</div>
+</div>
+
+            </section>
+        
+            <section >
+                <h2>Наблюдаемые эквиваленты: итог</h2>
+<div style="display: flex; flex-direction: column; align-items: center; gap: 1em">
+<div style="display: flex; gap: 2em; justify-content: center; align-items: center">
+<img src="images/equivalent.png" style="height: 220px">
+<div style="font-size: 0.88em">
+<table>
+<thead>
+<tr>
+<th>Механизм</th>
+<th>$do(T)$ меняет $L$?</th>
+<th>$do(L)$ меняет $T$?</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>$T \rightarrow L$</td>
+<td><strong>Да</strong></td>
+<td>Нет</td>
+</tr>
+<tr>
+<td>$L \rightarrow T$</td>
+<td>Нет</td>
+<td><strong>Да</strong></td>
+</tr>
+<tr>
+<td>Общая причина</td>
+<td>Нет</td>
+<td>Нет</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div style="text-align: center; font-size: 0.85em">
+<p>Разным механизмам соответствует <strong>одна проекция</strong> в наблюдаемых данных (Cases 1 &amp; 2), но они различаются в контрфактических состояниях (Cases 3–6).</p>
+<p><strong>Причинно-следственный механизм — это полный набор всех контрфактических состояний системы.</strong></p>
+</div>
+</div>
+
+            </section>
+        
+
+    </section>
+    
+
+
+
+    
+    <section>
+        <section >
+            <h2>Оператор $\text{do}()$ и интервенция</h2>
+<p><strong>Наблюдение</strong>: $P(B \mid A=1)$ — смотрим на B, когда видим A=1</p>
+<p><strong>Интервенция</strong>: $P(B \mid do{A=1})$ — принудительно устанавливаем A=1</p>
+<p>Для истинной структуры $A \rightarrow B$:</p>
+<p>$$P(B) \neq P(B \mid do{A=1}) \quad \text{(A влияет на B)}$$</p>
+<p>$$P(A) = P(A \mid do{B=1}) \quad \text{(B не влияет на A)}$$</p>
+<p><strong>Эта асимметрия и отражает причинно-следственную связь.</strong></p>
+
+            </section>
+        
+            <section >
+                <h2>Контрфактические состояния: от детерминизма к вероятности</h2>
+<div style="display: flex; flex-direction: column; align-items: center; gap: 0.6em">
+<img src="images/datamodel.jpg" style="height: 320px">
+<div style="font-size: 0.72em; text-align: center">
+<table>
+<thead>
+<tr>
+<th></th>
+<th>$P(B \mid do{A})$</th>
+<th>$P(A \mid do{B})$</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>$A \rightarrow B$</td>
+<td>меняется</td>
+<td>не меняется</td>
+</tr>
+<tr>
+<td>$B \rightarrow A$</td>
+<td>не меняется</td>
+<td>меняется</td>
+</tr>
+<tr>
+<td>Общая причина</td>
+<td>не меняется</td>
+<td>не меняется</td>
+</tr>
+</tbody>
+</table>
+<p>Нельзя различить все три по одному набору данных — нужны как минимум <strong>две интервенции</strong>.</p>
+</div>
+</div>
+
+            </section>
+        
+            <section style="font-size: 0.86em">
+                <h2>Что же всё-таки говорит корреляция?</h2>
+<!-- .slide: style="font-size: 0.86em" -->
+<p>Три причины скептицизма:</p>
+<ol>
+<li>В высокоразмерных данных ложноположительные связи неизбежны</li>
+<li>Одним данным соответствует несколько механизмов ($X \to Y$ и $Y \to X$ неразличимы)</li>
+<li>Даже зная направление, не знаем функциональную форму ($y=5x$? $y=x^2-5x$?)</li>
+</ol>
+<p><strong>Но</strong>: это не означает бесполезности корреляции.</p>
+<blockquote>
+<p>Корреляция (ассоциация) <strong>сужает</strong> класс допустимых причинных структур и в ряде случаев позволяет <strong>отбросить</strong> целые семейства графов — см. классы наблюдаемой эквивалентности например, <strong>коллайдер</strong> $X \to Y \leftarrow Z$ (края независимы, оба связаны с $Y$). Зато <strong>цепь</strong> с $Y$ как единственным посредником между $X$ и $Z$ ($X \to Y \to Z$ или $Z \to Y \to X$) при типичных предположениях (<strong>изолированная</strong> тройка, <strong>faithfulness</strong>) с маргинальной $X \perp Z$ <strong>несовместима</strong> — на концах цепи $X$ и $Z$ были бы зависимы.</p>
+</blockquote>
+
+            </section>
+        
+            <section style="font-size: 0.74em">
+                <!-- ## Identification → Estimator → Estimate -->
+<!-- .slide: style="font-size: 0.74em" -->
+<img src="images/direct-inverse.png" style="max-height: 120px; max-width: 70%; width: auto; height: auto; display: block; margin: 0 auto 0.2em">
+<div style="text-align: center; font-size: 0.92em; margin-bottom: 0.2em">
+<p>$$\text{Graphical Model} ;\leftrightarrow; \text{Independence Set} ;\leftrightarrow; \text{Association Set}$$</p>
+<p>$$\downarrow$$</p>
+<p>$$\textbf{Identification} ;\longrightarrow; \textbf{Estimator} ;\longrightarrow; \textbf{Estimate}$$</p>
+</div>
+<div style="display: flex; gap: 1.5em; justify-content: center; font-size: 0.9em">
+<div style="max-width: 240px">
+<p><strong>Identification</strong></p>
+<p>Какие переменные контролировать? Можем ли мы отделить нужный эффект от остальных?</p>
+<p>Ошибка → смещение неустранимо даже при бесконечной выборке.</p>
+</div>
+<div style="max-width: 240px">
+<p><strong>Estimator</strong></p>
+<p>Верная ли функциональная форма? Адекватна ли метрика?</p>
+<p>Ошибка → систематическое смещение оценки.</p>
+</div>
+<div style="max-width: 240px">
+<p><strong>Estimate</strong></p>
+<p>Достаточно ли данных, чтобы отличить сигнал от шума?</p>
+<p>Ошибка → высокая дисперсия, но смещения нет.</p>
+</div>
+</div>
+<div style="font-size: 0.8em; text-align: center; color: #586e75; margin-top: 0.3em">
+<blockquote>
+<p>Ошибки идентификации — самые опасные: не исправляются накоплением данных.</p>
+</blockquote>
+</div>
+
+            </section>
+        
+            <section >
+                <h2>Граф и вероятность: три связи</h2>
+<p>$$\text{Graphical Model} ;\leftrightarrow; \text{Independence Set} ;\leftrightarrow; \text{Association Set}$$</p>
+<div style="display: flex; gap: 2em; justify-content: center; align-items: flex-start; font-size: 0.88em; margin-top: 0.8em">
+<div style="max-width: 280px; text-align: center">
+<p><strong>Граф</strong> задаёт, кто чей родитель.</p>
+<p>Рёбра = разрешённые зависимости.</p>
+<p>Отсутствие ребра = <strong>запрет</strong> прямой связи.</p>
+</div>
+<div style="max-width: 280px; text-align: center">
+<p><strong>Множество независимостей</strong> следует из структуры графа.</p>
+<p>$X \perp Y \mid Z$ — если $Z$ d-разделяет $X$ и $Y$.</p>
+</div>
+<div style="max-width: 280px; text-align: center">
+<p><strong>Статистические ассоциации</strong> — наблюдаемые корреляции.</p>
+<p>Граф определяет, какие из них возможны, а какие — нет.</p>
+</div>
+</div>
+<blockquote>
+<p>DAG делает предположения о зависимостях <strong>явными</strong> и <strong>проверяемыми</strong> по данным.</p>
+</blockquote>
+
+            </section>
+        
+            <section >
+                <h2>Графические модели: язык для причинности</h2>
+<p>DAG (Directed Acyclic Graph) — визуализация причинных связей.</p>
+<p>$$\text{Графическая модель} \leftrightarrow \text{Множество независимостей} \leftrightarrow \text{Статистические ассоциации}$$</p>
+<p>Ключевое свойство — <strong>факторизация</strong>:</p>
+<p>$$P(X_1, \ldots, X_n) = \prod_{i=1}^{n} P(X_i \mid Pa_i)$$</p>
+<p>Где $Pa_i$ — родители (причины) узла $X_i$.</p>
+<blockquote>
+<p>DAG делает предположения о причинности <strong>явными</strong> и <strong>проверяемыми</strong>.</p>
+</blockquote>
+
+            </section>
+        
+            <section style="font-size: 0.88em">
+                <h2>Граф и вероятность: откуда берётся факторизация</h2>
+<!-- .slide: style="font-size: 0.88em" -->
+<div style="display: flex; gap: 2.5em; justify-content: center; align-items: flex-start">
+<div style="flex: 1">
+<p><strong>Шаг 1.</strong> Условная вероятность:</p>
+<p>$$P(A \mid B) = \frac{P(A,B)}{P(B)} ;\Rightarrow; P(A,B) = P(A\mid B),P(B)$$</p>
+<p><strong>Шаг 2.</strong> Правило цепного умножения (для $n$ переменных):</p>
+<p>$$P(q_1,\ldots,q_n) = \prod_{i=1}^{n} P(q_i \mid q_{i-1},\ldots,q_1)$$</p>
+<p>Совместное распределение всегда можно расписать через <strong>последовательные условные</strong>.</p>
+</div>
+<div style="flex: 1">
+<p><strong>Шаг 3.</strong> В DAG родители $Pa_i$ — это <strong>все прямые причины</strong> $X_i$.</p>
+<p>По структуре графа $X_i \perp \text{не-потомки} \mid Pa_i$, поэтому длинное условие сокращается:</p>
+<p>$$P(q_i \mid q_{i-1},\ldots,q_1) ;\longrightarrow; P(X_i \mid Pa_i)$$</p>
+<div style="margin-top:0.8em; background:#eee8d5; border-left:4px solid #859900; padding:0.45em 0.9em; border-radius:4px">
+<p><strong>Обобщённая факторизация:</strong></p>
+<p>$$P(X_1,\ldots,X_n) = \prod_{i=1}^{n} P(X_i \mid Pa_i)$$</p>
+</div>
+</div>
+</div>
+
+            </section>
+        
+            <section >
+                <h2>Граф и вероятность: пример</h2>
+<div style="display: flex; justify-content: center; margin-bottom: 0.3em">
+<svg width="480" height="175" viewBox="0 0 480 175" style="font-family: system-ui, sans-serif; font-size: 15px">
+  <defs>
+    <marker id="arr-f" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+      <path d="M0,0 L0,6 L8,3 z" fill="#586e75"/>
+    </marker>
+  </defs>
+  <circle cx="80"  cy="50" r="24" fill="#eee8d5" stroke="#586e75" stroke-width="1.8"/>
+  <circle cx="210" cy="50" r="24" fill="#eee8d5" stroke="#586e75" stroke-width="1.8"/>
+  <circle cx="340" cy="50" r="24" fill="#eee8d5" stroke="#586e75" stroke-width="1.8"/>
+  <circle cx="160" cy="138" r="24" fill="#dce6ee" stroke="#268bd2" stroke-width="1.8"/>
+  <circle cx="330" cy="138" r="24" fill="#dce6ee" stroke="#268bd2" stroke-width="1.8"/>
+  <text x="80"  y="56"  text-anchor="middle" font-weight="600" fill="#073642">X₁</text>
+  <text x="210" y="56"  text-anchor="middle" font-weight="600" fill="#073642">X₂</text>
+  <text x="340" y="56"  text-anchor="middle" font-weight="600" fill="#073642">X₃</text>
+  <text x="160" y="144" text-anchor="middle" font-weight="600" fill="#073642">X₄</text>
+  <text x="330" y="144" text-anchor="middle" font-weight="600" fill="#073642">X₅</text>
+  <text x="80"  y="83"  text-anchor="middle" font-size="11" fill="#859900">Pa=∅</text>
+  <text x="210" y="83"  text-anchor="middle" font-size="11" fill="#859900">Pa={X₁}</text>
+  <text x="340" y="83"  text-anchor="middle" font-size="11" fill="#859900">Pa=∅</text>
+  <text x="140" y="170" text-anchor="middle" font-size="11" fill="#859900">Pa={X₂,X₃}</text>
+  <text x="345" y="170" text-anchor="middle" font-size="11" fill="#859900">Pa={X₃,X₄}</text>
+  <line x1="104" y1="50" x2="185" y2="50" stroke="#586e75" stroke-width="1.8" marker-end="url(#arr-f)"/>
+  <line x1="198" y1="71" x2="173" y2="114" stroke="#586e75" stroke-width="1.8" marker-end="url(#arr-f)"/>
+  <line x1="326" y1="71" x2="176" y2="114" stroke="#586e75" stroke-width="1.8" marker-end="url(#arr-f)"/>
+  <line x1="344" y1="74" x2="338" y2="113" stroke="#586e75" stroke-width="1.8" marker-end="url(#arr-f)"/>
+  <line x1="184" y1="138" x2="305" y2="138" stroke="#586e75" stroke-width="1.8" marker-end="url(#arr-f)"/>
+</svg>
+</div>
+<div style="text-align: center; font-size: 0.88em">
+<p>$$P(X_1,\ldots,X_5) = P(X_1);P(X_2\mid X_1);P(X_3);P(X_4\mid X_2,X_3);P(X_5\mid X_3,X_4)$$</p>
+<p>$X_1, X_3$ — <strong>корни</strong>: безусловные вероятности.  |  $X_5$ не зависит от $X_1, X_2$ напрямую — граф это <strong>явно</strong> кодирует.</p>
+</div>
+
+            </section>
+        
+            <section style="font-size: 0.88em">
+                <h2>Граф и вероятность: что это даёт</h2>
+<!-- .slide: style="font-size: 0.88em" -->
+<div style="display: flex; gap: 2em; justify-content: center; align-items: flex-start">
+<div style="max-width: 420px">
+<p><strong>Причинная модель</strong> = набор совместных распределений.</p>
+<p>Их всегда <strong>больше</strong>, чем переменных — включают все подмножества с интервенциями:</p>
+<p>$$P(X,Y), \quad P(\text{do}(X), Y), \quad P(X, \text{do}(Y)), \ldots$$</p>
+<p>Граф при интервенции на <strong>причину</strong> вложен в наблюдаемый граф.</p>
+<p>При интервенции на <strong>следствие</strong> — нет. Это и есть асимметрия.</p>
+</div>
+<div style="max-width: 400px">
+<p><strong>Три следствия для практики:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Что знаем</th>
+<th>Что можем</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Граф</td>
+<td>Выписать все допустимые независимости</td>
+</tr>
+<tr>
+<td>Независимости из данных</td>
+<td>Сузить пространство возможных графов</td>
+</tr>
+<tr>
+<td>Граф + данные</td>
+<td>Идентифицировать причинный эффект</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>Граф без данных — предположение. Данные без графа — корреляция.</p>
+</blockquote>
+</div>
+</div>
+
+            </section>
+        
+            <section style="font-size: 0.78em">
+                <h2>обратная задача, Данные наблюдений: X, Y, Z</h2>
+<!-- .slide: style="font-size: 0.78em" -->
+<div style="display: flex; gap: 1.8em; justify-content: center; align-items: flex-start">
+<div id="obs2-table-wrap" style="background:#f5f0e8; border-radius:10px; padding:0.6em 1em; min-width:420px">
+<div style="display:flex; justify-content:flex-end; margin-bottom:0.4em">
+  <button id="obs2-btn-do" onclick="window.obs2DoZ && window.obs2DoZ()" style="padding:0.3em 0.9em; border-radius:6px; background:#268bd2; color:#fdf6e3; border:none; cursor:pointer; font-size:0.9em">Force Z=1 &nbsp;(do Z)</button>
+  <button id="obs2-btn-reset" onclick="window.obs2Reset && window.obs2Reset()" style="margin-left:0.5em; padding:0.3em 0.9em; border-radius:6px; background:#586e75; color:#fdf6e3; border:none; cursor:pointer; font-size:0.9em">Reset</button>
+</div>
+<table id="obs2-tbl" style="width:100%; border-collapse:collapse; font-size:0.92em">
+<thead>
+<tr style="border-bottom:2px solid #93a1a1">
+  <th style="padding:3px 6px; color:#657b83">#</th>
+  <th style="padding:3px 10px">X &nbsp;<label><input type="checkbox" id="obs2-x1" onchange="window.obs2Filter&&window.obs2Filter()" checked> 1</label> <label><input type="checkbox" id="obs2-x0" onchange="window.obs2Filter&&window.obs2Filter()" checked> 0</label></th>
+  <th style="padding:3px 10px">Y &nbsp;<label><input type="checkbox" id="obs2-y1" onchange="window.obs2Filter&&window.obs2Filter()" checked> 1</label> <label><input type="checkbox" id="obs2-y0" onchange="window.obs2Filter&&window.obs2Filter()" checked> 0</label></th>
+  <th style="padding:3px 10px">Z &nbsp;<label><input type="checkbox" id="obs2-z1" onchange="window.obs2Filter&&window.obs2Filter()" checked> 1</label> <label><input type="checkbox" id="obs2-z0" onchange="window.obs2Filter&&window.obs2Filter()" checked> 0</label></th>
+</tr>
+</thead>
+<tbody id="obs2-tbody"></tbody>
+<tfoot id="obs2-tfoot"></tfoot>
+</table>
+</div>
+<div style="max-width:260px; font-size:0.88em; padding-top:0.4em">
+<p>Это те же 16 наблюдений, что в примере с котами ($C, F, G$) — теперь как $X, Y, Z$.</p>
+<p>Реальные данные из задачи на интервенции ($X, Y, Z$ — бинарные события).</p>
+<p><strong>Попробуйте:</strong></p>
+<ul>
+<li>снять галочки, чтобы отфильтровать строки</li>
+<li>нажать <strong>Force Z=1</strong> — это $do(Z{=}1)$: загружается выборка из <strong>интервенционного</strong> распределения</li>
+</ul>
+</div>
+</div>
+<script>
+(function(){
+  // Real data from _4.html (dgptype: twolinks, structure X→Z→Y)
+  // Observational: X=0.12, Y=0.25, Z=0.50
+  // Interventional do(Z=1): X=0.12, Y=0.50, Z=1.0
+  var OBS2 = [
+    [0,1,1],[0,0,0],[1,0,1],[0,0,0],[0,0,1],[0,1,1],[0,0,0],[0,0,1],
+    [1,1,1],[0,0,0],[0,1,1],[0,0,0],[0,0,0],[0,0,0],[0,0,1],[0,0,0]
+  ];
+  var INT2 = [
+    [0,1,1],[0,0,1],[0,1,1],[0,0,1],[1,0,1],[0,0,1],[0,1,1],[0,1,1],
+    [0,0,1],[0,1,1],[0,1,1],[0,0,1],[0,0,1],[1,1,1],[0,0,1],[0,1,1]
+  ];
+  var forced2 = false;
+
+  function pie2(freq, color) {
+    var r=14, cx=16, cy=16;
+    var angle = freq * 2 * Math.PI;
+    var x = cx + r * Math.sin(angle), y = cy - r * Math.cos(angle);
+    var large = freq > 0.5 ? 1 : 0;
+    var path = freq >= 1
+      ? '<circle cx="'+cx+'" cy="'+cy+'" r="'+r+'" fill="'+color+'"/>'
+      : freq <= 0
+        ? '<circle cx="'+cx+'" cy="'+cy+'" r="'+r+'" fill="#ddd"/>'
+        : '<path d="M'+cx+' '+cy+' L'+cx+' '+(cy-r)+' A'+r+' '+r+' 0 '+large+' 1 '+x.toFixed(1)+' '+y.toFixed(1)+' Z" fill="'+color+'"/>'
+          + '<circle cx="'+cx+'" cy="'+cy+'" r="'+r+'" fill="none" stroke="#aaa" stroke-width="1"/>';
+    return '<svg width="32" height="32" viewBox="0 0 32 32">'
+      + '<circle cx="'+cx+'" cy="'+cy+'" r="'+r+'" fill="#ddd"/>' + path + '</svg>';
+  }
+
+  function render2() {
+    var x1 = document.getElementById('obs2-x1') && document.getElementById('obs2-x1').checked;
+    var x0 = document.getElementById('obs2-x0') && document.getElementById('obs2-x0').checked;
+    var y1 = document.getElementById('obs2-y1') && document.getElementById('obs2-y1').checked;
+    var y0 = document.getElementById('obs2-y0') && document.getElementById('obs2-y0').checked;
+    var z1 = document.getElementById('obs2-z1') && document.getElementById('obs2-z1').checked;
+    var z0 = document.getElementById('obs2-z0') && document.getElementById('obs2-z0').checked;
+    var tbody = document.getElementById('obs2-tbody');
+    var tfoot = document.getElementById('obs2-tfoot');
+    if (!tbody) return;
+    tbody.innerHTML = '';
+    var src = forced2 ? INT2 : OBS2;
+    var shown=0, sumX=0, sumY=0, sumZ=0;
+    for (var i=0; i<src.length; i++) {
+      var row = src[i];
+      if (!(row[0]===1?x1:x0) || !(row[1]===1?y1:y0) || !(row[2]===1?z1:z0)) continue;
+      shown++;
+      sumX+=row[0]; sumY+=row[1]; sumZ+=row[2];
+      var bg = (shown%2===0) ? '#ede8da' : '#f5f0e8';
+      var intStyle = forced2 ? 'color:#268bd2;font-weight:700' : '';
+      tbody.innerHTML += '<tr style="background:'+bg+'">'
+        +'<td style="padding:2px 6px;color:#93a1a1">'+(i+1)+'</td>'
+        +'<td style="padding:2px 10px;text-align:center">'+row[0]+'</td>'
+        +'<td style="padding:2px 10px;text-align:center;'+intStyle+'">'+row[1]+'</td>'
+        +'<td style="padding:2px 10px;text-align:center;'+intStyle+'">'+row[2]+'</td></tr>';
+    }
+    if (tfoot) {
+      var fX=shown?(sumX/shown).toFixed(2):'—';
+      var fY=shown?(sumY/shown).toFixed(2):'—';
+      var fZ=shown?(sumZ/shown).toFixed(2):'—';
+      tfoot.innerHTML = '<tr style="border-top:2px solid #93a1a1;font-weight:600">'
+        +'<td style="padding:3px 6px;color:#657b83">freq</td>'
+        +'<td style="padding:3px 10px;text-align:center">'+fX+'</td>'
+        +'<td style="padding:3px 10px;text-align:center">'+fY+'</td>'
+        +'<td style="padding:3px 10px;text-align:center">'+fZ+'</td></tr>'
+        +'<tr><td></td>'
+        +'<td style="text-align:center">'+pie2(shown?sumX/shown:0,'#7ec8e3')+'</td>'
+        +'<td style="text-align:center">'+pie2(shown?sumY/shown:0,'#7ec8e3')+'</td>'
+        +'<td style="text-align:center">'+pie2(shown?sumZ/shown:0,'#7ec8e3')+'</td></tr>';
+    }
+  }
+
+  window.obs2Filter = render2;
+  window.obs2DoZ = function(){ forced2=true; render2(); };
+  window.obs2Reset = function(){ forced2=false; render2(); };
+
+  if (typeof Reveal !== 'undefined' && Reveal.on) {
+    Reveal.on('ready', render2);
+    Reveal.on('slidechanged', render2);
+  } else {
+    document.addEventListener('DOMContentLoaded', render2);
+  }
+})();
+</script>
+
+            </section>
+        
+            <section style="font-size: 0.78em">
+                <h2>Данные наблюдений: X, Y, Z</h2>
+<!-- .slide: style="font-size: 0.78em" -->
+<div style="display: flex; gap: 1.8em; justify-content: center; align-items: flex-start">
+<div id="obs-table-wrap" style="background:#f5f0e8; border-radius:10px; padding:0.6em 1em; min-width:420px">
+<div style="display:flex; justify-content:flex-end; margin-bottom:0.4em">
+  <button id="btn-do-z" onclick="window.obsDoZ && window.obsDoZ()" style="padding:0.3em 0.9em; border-radius:6px; background:#268bd2; color:#fdf6e3; border:none; cursor:pointer; font-size:0.9em">Force Z=1 &nbsp;(do Z)</button>
+  <button id="btn-reset-z" onclick="window.obsResetZ && window.obsResetZ()" style="margin-left:0.5em; padding:0.3em 0.9em; border-radius:6px; background:#586e75; color:#fdf6e3; border:none; cursor:pointer; font-size:0.9em">Reset</button>
+</div>
+<table id="obs-tbl" style="width:100%; border-collapse:collapse; font-size:0.92em">
+<thead>
+<tr style="border-bottom:2px solid #93a1a1">
+  <th style="padding:3px 6px; color:#657b83">#</th>
+  <th style="padding:3px 10px">X &nbsp;<label><input type="checkbox" id="chk-x1" onchange="window.obsFilter&&window.obsFilter()" checked> 1</label> <label><input type="checkbox" id="chk-x0" onchange="window.obsFilter&&window.obsFilter()" checked> 0</label></th>
+  <th style="padding:3px 10px">Y &nbsp;<label><input type="checkbox" id="chk-y1" onchange="window.obsFilter&&window.obsFilter()" checked> 1</label> <label><input type="checkbox" id="chk-y0" onchange="window.obsFilter&&window.obsFilter()" checked> 0</label></th>
+  <th style="padding:3px 10px">Z &nbsp;<label><input type="checkbox" id="chk-z1" onchange="window.obsFilter&&window.obsFilter()" checked> 1</label> <label><input type="checkbox" id="chk-z0" onchange="window.obsFilter&&window.obsFilter()" checked> 0</label></th>
+</tr>
+</thead>
+<tbody id="obs-tbody"></tbody>
+<tfoot id="obs-tfoot"></tfoot>
+</table>
+</div>
+<div style="max-width:260px; font-size:0.88em; padding-top:0.4em">
+<p>Это те же 16 наблюдений, что в примере с котами ($C, F, G$) — теперь как $X, Y, Z$.</p>
+<p><strong>Попробуйте:</strong></p>
+<ul>
+<li>снять галочки, чтобы отфильтровать строки</li>
+<li>нажать <strong>Force Z=1</strong> — это интервенция $do(Z{=}1)$: все значения $Z$ принудительно становятся 1</li>
+</ul>
+<blockquote>
+<p>Частота $Y{=}1$ меняется после $do(Z)$?</p>
+</blockquote>
+</div>
+</div>
+<script>
+(function(){
+  var DATA = [
+    [0,0,0],[0,0,0],[0,1,0],[0,1,0],
+    [1,1,1],[1,1,1],[1,0,0],[1,0,0],
+    [1,1,1],[1,0,0],[1,1,1],[0,0,0],
+    [0,1,0],[0,1,0],[0,0,0],[1,0,0]
+  ];
+  var forced = false;
+
+  function pieSVG(freq, color) {
+    var r = 14, cx = 16, cy = 16;
+    var angle = freq * 2 * Math.PI;
+    var x = cx + r * Math.sin(angle);
+    var y = cy - r * Math.cos(angle);
+    var large = freq > 0.5 ? 1 : 0;
+    var path = freq >= 1
+      ? '<circle cx="'+cx+'" cy="'+cy+'" r="'+r+'" fill="'+color+'"/>'
+      : freq <= 0
+        ? '<circle cx="'+cx+'" cy="'+cy+'" r="'+r+'" fill="#ddd"/>'
+        : '<path d="M'+cx+' '+cy+' L'+cx+' '+(cy-r)+' A'+r+' '+r+' 0 '+large+' 1 '+x.toFixed(1)+' '+y.toFixed(1)+' Z" fill="'+color+'"/>'
+          + '<circle cx="'+cx+'" cy="'+cy+'" r="'+r+'" fill="none" stroke="#aaa" stroke-width="1"/>';
+    return '<svg width="32" height="32" viewBox="0 0 32 32" style="vertical-align:middle">'
+      + '<circle cx="'+cx+'" cy="'+cy+'" r="'+r+'" fill="#ddd"/>'
+      + path + '</svg>';
+  }
+
+  function render() {
+    var x1 = document.getElementById('chk-x1') && document.getElementById('chk-x1').checked;
+    var x0 = document.getElementById('chk-x0') && document.getElementById('chk-x0').checked;
+    var y1 = document.getElementById('chk-y1') && document.getElementById('chk-y1').checked;
+    var y0 = document.getElementById('chk-y0') && document.getElementById('chk-y0').checked;
+    var z1 = document.getElementById('chk-z1') && document.getElementById('chk-z1').checked;
+    var z0 = document.getElementById('chk-z0') && document.getElementById('chk-z0').checked;
+
+    var tbody = document.getElementById('obs-tbody');
+    var tfoot = document.getElementById('obs-tfoot');
+    if (!tbody) return;
+    tbody.innerHTML = '';
+    var shown = 0, sumX = 0, sumY = 0, sumZ = 0;
+    for (var i = 0; i < DATA.length; i++) {
+      var row = DATA[i];
+      var zVal = forced ? 1 : row[2];
+      var xOk = (row[0] === 1 ? x1 : x0);
+      var yOk = (row[1] === 1 ? y1 : y0);
+      var zOk = (zVal === 1 ? z1 : z0);
+      if (!xOk || !yOk || !zOk) continue;
+      shown++;
+      sumX += row[0]; sumY += row[1]; sumZ += zVal;
+      var bg = (shown % 2 === 0) ? '#ede8da' : '#f5f0e8';
+      var zStyle = forced ? 'color:#268bd2; font-weight:700' : '';
+      tbody.innerHTML += '<tr style="background:'+bg+'">'
+        + '<td style="padding:2px 6px; color:#93a1a1">'+(i+1)+'</td>'
+        + '<td style="padding:2px 10px; text-align:center">'+row[0]+'</td>'
+        + '<td style="padding:2px 10px; text-align:center">'+row[1]+'</td>'
+        + '<td style="padding:2px 10px; text-align:center; '+zStyle+'">'+zVal+'</td>'
+        + '</tr>';
+    }
+    if (tfoot) {
+      var fX = shown ? (sumX/shown).toFixed(2) : '—';
+      var fY = shown ? (sumY/shown).toFixed(2) : '—';
+      var fZ = shown ? (sumZ/shown).toFixed(2) : '—';
+      var fXn = shown ? sumX/shown : 0;
+      var fYn = shown ? sumY/shown : 0;
+      var fZn = shown ? sumZ/shown : 0;
+      tfoot.innerHTML = '<tr style="border-top:2px solid #93a1a1; font-weight:600">'
+        + '<td style="padding:3px 6px; color:#657b83">freq</td>'
+        + '<td style="padding:3px 10px; text-align:center">'+fX+'</td>'
+        + '<td style="padding:3px 10px; text-align:center">'+fY+'</td>'
+        + '<td style="padding:3px 10px; text-align:center">'+fZ+'</td>'
+        + '</tr>'
+        + '<tr><td></td>'
+        + '<td style="text-align:center">'+pieSVG(fXn,'#7ec8e3')+'</td>'
+        + '<td style="text-align:center">'+pieSVG(fYn,'#7ec8e3')+'</td>'
+        + '<td style="text-align:center">'+pieSVG(fZn,'#7ec8e3')+'</td>'
+        + '</tr>';
+    }
+  }
+
+  window.obsFilter = render;
+  window.obsDoZ = function() { forced = true; render(); };
+  window.obsResetZ = function() { forced = false; render(); };
+
+  if (typeof Reveal !== 'undefined' && Reveal.on) {
+    Reveal.on('ready', render);
+    Reveal.on('slidechanged', render);
+  } else {
+    document.addEventListener('DOMContentLoaded', render);
+  }
+})();
+</script>
+
+            </section>
+        
+
+    </section>
+    
+
+
+
+    
+        <section >
+            
+            <h1>Блок 4 структура данных</h1>
+<h2>3×3 таксономия, back-door, bad control</h2>
+
+            </section>
+    
+
+
+
+    
+    <section>
+        <section >
+            <h2>Три базовых структуры: таксономия</h2>
+<p>Все возможные связи <strong>трёх</strong> переменных сводятся к двум случаям зависимости:</p>
+<p>$$\text{(1)}\quad X_1 \perp X_3 \quad \text{и} \quad X_1 \not\perp X_3 \mid X_2$$</p>
+<p>$$\text{(2)}\quad X_1 \perp X_3 \mid X_2 \quad \text{и} \quad X_1 \not\perp X_3$$</p>
+<table>
+<thead>
+<tr>
+<th>Структура</th>
+<th>Случай</th>
+<th>Контроль на $X_2$</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Цепочка $X_1 \to X_2 \to X_3$</td>
+<td>(2)</td>
+<td><strong>закрывает</strong> путь</td>
+</tr>
+<tr>
+<td>Развилка $X_1 \leftarrow X_2 \to X_3$</td>
+<td>(2)</td>
+<td><strong>закрывает</strong> путь</td>
+</tr>
+<tr>
+<td>Коллайдер $X_1 \to X_2 \leftarrow X_3$</td>
+<td>(1)</td>
+<td><strong>открывает</strong> путь</td>
+</tr>
+</tbody>
+</table>
+
+            </section>
+        
+            <section >
+                <h2>Цепочка: поток через посредника</h2>
+<p>$$X_1 \longrightarrow X_2 \longrightarrow X_3$$</p>
+<div style="display: flex; gap: 3em; justify-content: center; align-items: flex-start">
+<div>
+<p><strong>Без контроля на $X_2$:</strong></p>
+<p>$X_1 \not\perp X_3$ — коррелируют.</p>
+<p>Информация «течёт» по цепочке.</p>
+</div>
+<div>
+<p><strong>При контроле на $X_2$:</strong></p>
+<p>$X_1 \perp X_3 \mid X_2$ — независимы.</p>
+<p>Посредник «перекрыт» — поток разорван.</p>
+</div>
+</div>
+<blockquote>
+<p><strong>Пример:</strong> рост → вес → давление. Убрав из анализа вес, рост и давление снова «связаны».</p>
+</blockquote>
+
+            </section>
+        
+            <section >
+                <h2>Развилка: общая причина (конфаундер)</h2>
+<p>$$X_1 \longleftarrow X_2 \longrightarrow X_3$$</p>
+<div style="display: flex; gap: 3em; justify-content: center; align-items: flex-start">
+<div>
+<p><strong>Без контроля на $X_2$:</strong></p>
+<p>$X_1 \not\perp X_3$ — коррелируют.</p>
+<p>Общая причина создаёт <strong>ложную</strong> связь.</p>
+</div>
+<div>
+<p><strong>При контроле на $X_2$:</strong></p>
+<p>$X_1 \perp X_3 \mid X_2$ — независимы.</p>
+<p>Конфаундер «нейтрализован».</p>
+</div>
+</div>
+<blockquote>
+<p><strong>Пример:</strong> праздничный сезон → открытки И → украшения. Убрав сезон — связь исчезает.</p>
+</blockquote>
+
+            </section>
+        
+            <section >
+                <h2>Коллайдер: обратная логика</h2>
+<p>$$X_1 \longrightarrow X_2 \longleftarrow X_3$$</p>
+<div style="display: flex; gap: 3em; justify-content: center; align-items: flex-start">
+<div>
+<p><strong>Без контроля на $X_2$:</strong></p>
+<p>$X_1 \perp X_3$ — <strong>не</strong> коррелируют.</p>
+<p>Путь по умолчанию <strong>закрыт</strong>.</p>
+</div>
+<div>
+<p><strong>При контроле на $X_2$:</strong></p>
+<p>$X_1 \not\perp X_3 \mid X_2$ — <strong>начинают</strong> коррелировать!</p>
+<p>Контроль <strong>открывает</strong> ложный путь.</p>
+</div>
+</div>
+<blockquote>
+<p>Единственная структура, где контроль <strong>вредит</strong> — добавление коллайдера в регрессию порождает ложную связь.</p>
+</blockquote>
+
+            </section>
+        
+            <section style="font-size: 0.82em">
+                <h2>Коллайдер: числовой пример (парадокс Берксона)</h2>
+<!-- .slide: style="font-size: 0.82em" -->
+<p>$A$ и $B$ — независимые причины. $AB$ — их общее следствие (коллайдер).</p>
+<div style="display: flex; gap: 3em; justify-content: center; align-items: flex-start">
+<div>
+<p>Ряд $A$: <code>0 1 0 1 0 1 0 1</code></p>
+<p>Ряд $B$: <code>0 0 1 1 0 0 1 1</code></p>
+<p>$A$ и $B$ независимы по построению.</p>
+<p>$AB$: <code>0 0 0 1 0 0 0 1</code> <code>1 1 0 1 1 1 0 1</code></p>
+</div>
+<div>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>$A$</th>
+<th>$\neg A$</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>$B$</td>
+<td>$A \cap B = 1$</td>
+<td>$\neg A \cap B = 0$</td>
+</tr>
+<tr>
+<td>$\neg B$</td>
+<td>$A \cap \neg B = 0$</td>
+<td>$\neg A \cap \neg B = 0$</td>
+</tr>
+</tbody>
+</table>
+<p>При отборе только $AB=1$:</p>
+<p>пары ${1,1}$ и ${1,1}$ — <strong>сильная положит. корреляция</strong></p>
+</div>
+</div>
+<blockquote>
+<p>Отбор по следствию автоматически создаёт корреляцию между независимыми причинами.</p>
+</blockquote>
+
+            </section>
+        
+            <section >
+                <h2>Три базовые структуры: recap</h2>
+<div style="display: flex; justify-content: center; gap: 2em; align-items: flex-start; margin-top: 0.3em; font-size: 0.8em">
+<div style="text-align: center; width: 200px">
+<strong>Chain (цепочка)</strong><br>
+<svg width="160" height="60" viewBox="0 0 160 60" style="display:block;margin:6px auto">
+  <defs><marker id="a1" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L0,6 L8,3 z" fill="#657b83"/></marker></defs>
+  <circle cx="25"  cy="30" r="18" fill="#eee8d5" stroke="#657b83" stroke-width="1.5"/>
+  <circle cx="80"  cy="30" r="18" fill="#eee8d5" stroke="#657b83" stroke-width="1.5"/>
+  <circle cx="135" cy="30" r="18" fill="#eee8d5" stroke="#657b83" stroke-width="1.5"/>
+  <text x="25"  y="35" text-anchor="middle" font-size="13" fill="#073642">X₁</text>
+  <text x="80"  y="35" text-anchor="middle" font-size="13" fill="#073642">X₂</text>
+  <text x="135" y="35" text-anchor="middle" font-size="13" fill="#073642">X₃</text>
+  <line x1="44" y1="30" x2="61" y2="30" stroke="#657b83" stroke-width="1.5" marker-end="url(#a1)"/>
+  <line x1="99" y1="30" x2="116" y2="30" stroke="#657b83" stroke-width="1.5" marker-end="url(#a1)"/>
+</svg>
+\(X_1 \to X_2 \to X_3\)
+<table style="border-collapse:collapse; margin:8px auto; font-size:0.9em">
+  <tr><td style="padding:3px 8px; border:1px solid #93a1a1">безусловно</td><td style="padding:3px 8px; border:1px solid #93a1a1">\(X_1 \not\perp X_3\)</td></tr>
+  <tr><td style="padding:3px 8px; border:1px solid #93a1a1">\(\mid X_2\)</td><td style="padding:3px 8px; border:1px solid #93a1a1">\(X_1 \perp X_3\)</td></tr>
+</table>
+<span style="color:#2aa198">Контроль на X₂ <strong>блокирует</strong></span>
+</div>
+<div style="text-align: center; width: 200px">
+<strong>Fork (развилка)</strong><br>
+<svg width="160" height="75" viewBox="0 0 160 75" style="display:block;margin:6px auto">
+  <defs><marker id="a2" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L0,6 L8,3 z" fill="#657b83"/></marker></defs>
+  <circle cx="80"  cy="15" r="18" fill="#eee8d5" stroke="#657b83" stroke-width="1.5"/>
+  <circle cx="22"  cy="58" r="18" fill="#eee8d5" stroke="#657b83" stroke-width="1.5"/>
+  <circle cx="138" cy="58" r="18" fill="#eee8d5" stroke="#657b83" stroke-width="1.5"/>
+  <text x="80"  y="20" text-anchor="middle" font-size="13" fill="#073642">X₂</text>
+  <text x="22"  y="63" text-anchor="middle" font-size="13" fill="#073642">X₁</text>
+  <text x="138" y="63" text-anchor="middle" font-size="13" fill="#073642">X₃</text>
+  <line x1="64" y1="30" x2="37"  y2="43" stroke="#657b83" stroke-width="1.5" marker-end="url(#a2)"/>
+  <line x1="96" y1="30" x2="123" y2="43" stroke="#657b83" stroke-width="1.5" marker-end="url(#a2)"/>
+</svg>
+\(X_1 \leftarrow X_2 \to X_3\)
+<table style="border-collapse:collapse; margin:8px auto; font-size:0.9em">
+  <tr><td style="padding:3px 8px; border:1px solid #93a1a1">безусловно</td><td style="padding:3px 8px; border:1px solid #93a1a1">\(X_1 \not\perp X_3\)</td></tr>
+  <tr><td style="padding:3px 8px; border:1px solid #93a1a1">\(\mid X_2\)</td><td style="padding:3px 8px; border:1px solid #93a1a1">\(X_1 \perp X_3\)</td></tr>
+</table>
+<span style="color:#2aa198">Контроль на X₂ <strong>блокирует</strong></span>
+</div>
+<div style="text-align: center; width: 200px">
+<strong>Collider (коллайдер)</strong><br>
+<svg width="160" height="75" viewBox="0 0 160 75" style="display:block;margin:6px auto">
+  <defs><marker id="a3" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L0,6 L8,3 z" fill="#657b83"/></marker></defs>
+  <circle cx="22"  cy="15" r="18" fill="#eee8d5" stroke="#657b83" stroke-width="1.5"/>
+  <circle cx="138" cy="15" r="18" fill="#eee8d5" stroke="#657b83" stroke-width="1.5"/>
+  <circle cx="80"  cy="58" r="18" fill="#d6eaf8" stroke="#2980b9" stroke-width="2"/>
+  <text x="22"  y="20" text-anchor="middle" font-size="13" fill="#073642">X₁</text>
+  <text x="138" y="20" text-anchor="middle" font-size="13" fill="#073642">X₃</text>
+  <text x="80"  y="63" text-anchor="middle" font-size="13" fill="#073642">X₂</text>
+  <line x1="37"  y1="30" x2="64"  y2="43" stroke="#657b83" stroke-width="1.5" marker-end="url(#a3)"/>
+  <line x1="123" y1="30" x2="96"  y2="43" stroke="#657b83" stroke-width="1.5" marker-end="url(#a3)"/>
+</svg>
+\(X_1 \to X_2 \leftarrow X_3\)
+<table style="border-collapse:collapse; margin:8px auto; font-size:0.9em">
+  <tr><td style="padding:3px 8px; border:1px solid #93a1a1">безусловно</td><td style="padding:3px 8px; border:1px solid #93a1a1">\(X_1 \perp X_3\)</td></tr>
+  <tr><td style="padding:3px 8px; border:1px solid #93a1a1">\(\mid X_2\)</td><td style="padding:3px 8px; border:1px solid #93a1a1">\(X_1 \not\perp X_3\)</td></tr>
+</table>
+<span style="color:#dc322f">Контроль на X₂ <strong>открывает</strong> путь!</span>
+</div>
+</div>
+<div style="font-size: 0.72em; text-align: center; color: #586e75; margin-top: 0.5em">Chain и Fork — <strong>наблюдательно неразличимы</strong>: одинаковый independence set. Коллайдер — уникален. (Koller &amp; Friedman, 2009)</div>
+
+            </section>
+        
+            <section >
+                <h2>25 возможных графов на трёх переменных</h2>
+<div style="display: flex; flex-direction: column; align-items: center; gap: 1em">
+<img src="images/equiv-class.png" style="height: 360px">
+<div style="text-align: center; font-size: 0.9em">
+<p>Ровно <strong>25 сценариев</strong> для трёх изолированных переменных. Графы в одном прямоугольнике — <strong>неразличимы</strong> по наблюдаемым данным. Коллайдеры и <strong>независимые</strong> пары идентифицируемы всегда. Остальное — нужны предположения или эксперименты.</p>
+</div>
+</div>
+
+            </section>
+        
+
+    </section>
+    
+
+
+
+    
+    <section>
+        <section >
+            <h2>Back-door критерий: от структуры к оценке</h2>
+<p><strong>Проблема</strong>: знания о структуре недостаточно для численной оценки эффекта.</p>
+<p>Нужно выбрать — что включать в контроль:</p>
+<table>
+<thead>
+<tr>
+<th>Тип контроля</th>
+<th>Пример</th>
+<th>Эффект</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Хороший</strong> (конфаундер)</td>
+<td>$Z \rightarrow X$, $Z \rightarrow Y$</td>
+<td>Блокирует ложную связь ✓</td>
+</tr>
+<tr>
+<td><strong>Плохой</strong> (медиатор)</td>
+<td>$X \rightarrow M \rightarrow Y$</td>
+<td>Блокирует причинный путь ✗</td>
+</tr>
+<tr>
+<td><strong>Нейтральный</strong></td>
+<td>$Z \rightarrow X \rightarrow Y$</td>
+<td>Не нужен, не вредит</td>
+</tr>
+</tbody>
+</table>
+
+            </section>
+        
+            <section style="font-size: 0.85em">
+                <h2>Back-door критерий: формулировка</h2>
+<!-- .slide: style="font-size: 0.85em" -->
+<p>$Z$ удовлетворяет <strong>back-door критерию</strong> для $(X, Y)$, если:</p>
+<ol>
+<li>Ни одна переменная из $Z$ не является <strong>потомком</strong> $X$</li>
+<li>$Z$ блокирует все пути со стрелкой, <strong>входящей</strong> в $X$</li>
+</ol>
+<table>
+<thead>
+<tr>
+<th>Паттерн</th>
+<th>Контроль на $B$</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Цепочка $A \to B \to C$</td>
+<td>блокирует ✓</td>
+</tr>
+<tr>
+<td>Развилка $A \leftarrow B \to C$</td>
+<td>блокирует ✓</td>
+</tr>
+<tr>
+<td>Коллайдер $A \to B \leftarrow C$</td>
+<td><strong>открывает</strong> ✗</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>Back-door выполнен → линейная регрессия по скорректированным данным даёт причинный эффект.</p>
+</blockquote>
+
+            </section>
+        
+            <section style="font-size: 0.8em">
+                <h2>Хороший и плохой контроль: обзор</h2>
+<!-- .slide: style="font-size: 0.8em" -->
+<div style="display: flex; gap: 1.6em; justify-content: center; align-items: flex-start">
+<div style="flex:1; background:#f0fff0; border-left:4px solid #859900; padding:0.5em 0.8em; border-radius:4px">
+<p><strong>✓ Хороший контроль</strong></p>
+<p>Блокирует <strong>ложные</strong> (backdoor) пути, не трогая причинный.</p>
+<svg width="200" height="110" style="display:block;margin:0.4em auto">
+  <defs><marker id="ah" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto"><path d="M0,0 L8,3 L0,6 Z" fill="#586e75"/></marker></defs>
+  <ellipse cx="100" cy="20" rx="28" ry="14" fill="#eee8d5" stroke="#586e75"/>
+  <text x="100" y="25" text-anchor="middle" font-size="13" fill="#073642">Z</text>
+  <ellipse cx="40" cy="85" rx="28" ry="14" fill="#eee8d5" stroke="#586e75"/>
+  <text x="40" y="90" text-anchor="middle" font-size="13" fill="#073642">X</text>
+  <ellipse cx="160" cy="85" rx="28" ry="14" fill="#eee8d5" stroke="#586e75"/>
+  <text x="160" y="90" text-anchor="middle" font-size="13" fill="#073642">Y</text>
+  <line x1="80" y1="28" x2="58" y2="72" stroke="#586e75" stroke-width="1.5" marker-end="url(#ah)"/>
+  <line x1="120" y1="28" x2="142" y2="72" stroke="#586e75" stroke-width="1.5" marker-end="url(#ah)"/>
+  <line x1="68" y1="85" x2="132" y2="85" stroke="#268bd2" stroke-width="2" marker-end="url(#ah)"/>
+  <text x="100" y="80" text-anchor="middle" font-size="10" fill="#268bd2">?</text>
+  <rect x="72" y="71" width="56" height="28" fill="none" stroke="#859900" stroke-width="1.5" stroke-dasharray="4,2" rx="4"/>
+  <text x="100" y="108" text-anchor="middle" font-size="10" fill="#586e75">контроль Z блокирует Z→X→…→Y</text>
+</svg>
+<p>Конфаундер $Z$: $Z\to X$, $Z\to Y$. Контроль убирает смешение.</p>
+</div>
+<div style="flex:1; background:#fff5f5; border-left:4px solid #dc322f; padding:0.5em 0.8em; border-radius:4px">
+<p><strong>✗ Плохой контроль: медиатор</strong></p>
+<p>Блокирует <strong>сам</strong> причинный путь.</p>
+<svg width="200" height="110" style="display:block;margin:0.4em auto">
+  <defs><marker id="am" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto"><path d="M0,0 L8,3 L0,6 Z" fill="#586e75"/></marker></defs>
+  <ellipse cx="30" cy="55" rx="24" ry="14" fill="#eee8d5" stroke="#586e75"/>
+  <text x="30" y="60" text-anchor="middle" font-size="13" fill="#073642">X</text>
+  <ellipse cx="100" cy="55" rx="24" ry="14" fill="#ffd0d0" stroke="#dc322f" stroke-width="2"/>
+  <text x="100" y="60" text-anchor="middle" font-size="13" fill="#dc322f">M</text>
+  <ellipse cx="170" cy="55" rx="24" ry="14" fill="#eee8d5" stroke="#586e75"/>
+  <text x="170" y="60" text-anchor="middle" font-size="13" fill="#073642">Y</text>
+  <line x1="54" y1="55" x2="76" y2="55" stroke="#586e75" stroke-width="1.5" marker-end="url(#am)"/>
+  <line x1="124" y1="55" x2="146" y2="55" stroke="#586e75" stroke-width="1.5" marker-end="url(#am)"/>
+  <rect x="76" y="41" width="48" height="28" fill="none" stroke="#dc322f" stroke-width="1.5" stroke-dasharray="4,2" rx="4"/>
+  <text x="100" y="92" text-anchor="middle" font-size="10" fill="#dc322f">контроль M обрезает X→M→Y</text>
+  <line x1="54" y1="48" x2="146" y2="48" stroke="#268bd2" stroke-width="1.5" stroke-dasharray="5,3" marker-end="url(#am)"/>
+  <text x="100" y="43" text-anchor="middle" font-size="9" fill="#268bd2">прямой путь</text>
+</svg>
+<p>$X\to M\to Y$: контроль $M$ занижает или обнуляет $P(Y\mid do(X))$.</p>
+</div>
+<div style="flex:1; background:#fff5f5; border-left:4px solid #dc322f; padding:0.5em 0.8em; border-radius:4px">
+<p><strong>✗ Плохой контроль: коллайдер</strong></p>
+<p>Открывает <strong>ложный</strong> путь между $X$ и $Y$.</p>
+<svg width="200" height="110" style="display:block;margin:0.4em auto">
+  <defs><marker id="ac" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto"><path d="M0,0 L8,3 L0,6 Z" fill="#586e75"/></marker></defs>
+  <ellipse cx="30" cy="30" rx="24" ry="14" fill="#eee8d5" stroke="#586e75"/>
+  <text x="30" y="35" text-anchor="middle" font-size="13" fill="#073642">X</text>
+  <ellipse cx="170" cy="30" rx="24" ry="14" fill="#eee8d5" stroke="#586e75"/>
+  <text x="170" y="35" text-anchor="middle" font-size="13" fill="#073642">Y</text>
+  <ellipse cx="100" cy="85" rx="24" ry="14" fill="#ffd0d0" stroke="#dc322f" stroke-width="2"/>
+  <text x="100" y="90" text-anchor="middle" font-size="13" fill="#dc322f">C</text>
+  <line x1="50" y1="38" x2="82" y2="76" stroke="#586e75" stroke-width="1.5" marker-end="url(#ac)"/>
+  <line x1="150" y1="38" x2="118" y2="76" stroke="#586e75" stroke-width="1.5" marker-end="url(#ac)"/>
+  <rect x="76" y="71" width="48" height="28" fill="none" stroke="#dc322f" stroke-width="1.5" stroke-dasharray="4,2" rx="4"/>
+  <text x="100" y="55" text-anchor="middle" font-size="10" fill="#dc322f">контроль C создаёт X↔C↔Y</text>
+  <line x1="54" y1="30" x2="146" y2="30" stroke="#93a1a1" stroke-width="1.5" stroke-dasharray="3,3"/>
+  <text x="100" y="25" text-anchor="middle" font-size="9" fill="#93a1a1">нет прямой связи</text>
+</svg>
+<p>$X\to C\leftarrow Y$: $X\perp Y$ без контроля, но $X\not\perp Y\mid C$ — ложная связь.</p>
+</div>
+</div>
+<p><small style="color:#657b83; display:block; text-align:right; margin-top:0.3em">Cinelli, C., Forney, A., Pearl, J. <em>A Crash Course in Good and Bad Controls</em> (2022)</small></p>
+
+            </section>
+        
+            <section style="font-size: 0.8em">
+                <h2>Плохой контроль: M-bias и потомок исхода</h2>
+<!-- .slide: style="font-size: 0.8em" -->
+<div style="display: flex; gap: 2em; justify-content: center; align-items: flex-start">
+<div style="flex:1; background:#fff5f5; border-left:4px solid #cb4b16; padding:0.5em 0.8em; border-radius:4px">
+<p><strong>✗ M-bias (бабочка)</strong></p>
+<p>$C$ не конфаундер — но контроль открывает ложный путь.</p>
+<svg width="240" height="130" style="display:block;margin:0.4em auto">
+  <defs><marker id="amb" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto"><path d="M0,0 L8,3 L0,6 Z" fill="#586e75"/></marker></defs>
+  <ellipse cx="20"  cy="65" rx="18" ry="13" fill="#eee8d5" stroke="#586e75"/>
+  <text x="20"  y="70" text-anchor="middle" font-size="12" fill="#073642">A</text>
+  <ellipse cx="90"  cy="20" rx="18" ry="13" fill="#eee8d5" stroke="#586e75"/>
+  <text x="90"  y="25" text-anchor="middle" font-size="12" fill="#073642">X</text>
+  <ellipse cx="120" cy="90" rx="18" ry="13" fill="#ffd0d0" stroke="#cb4b16" stroke-width="2"/>
+  <text x="120" y="95" text-anchor="middle" font-size="12" fill="#cb4b16">C</text>
+  <ellipse cx="150" cy="20" rx="18" ry="13" fill="#eee8d5" stroke="#586e75"/>
+  <text x="150" y="25" text-anchor="middle" font-size="12" fill="#073642">Y</text>
+  <ellipse cx="220" cy="65" rx="18" ry="13" fill="#eee8d5" stroke="#586e75"/>
+  <text x="220" y="70" text-anchor="middle" font-size="12" fill="#073642">B</text>
+  <line x1="34" y1="60" x2="74" y2="30" stroke="#586e75" stroke-width="1.4" marker-end="url(#amb)"/>
+  <line x1="34" y1="70" x2="104" y2="82" stroke="#586e75" stroke-width="1.4" marker-end="url(#amb)"/>
+  <line x1="206" y1="60" x2="166" y2="30" stroke="#586e75" stroke-width="1.4" marker-end="url(#amb)"/>
+  <line x1="206" y1="70" x2="136" y2="82" stroke="#586e75" stroke-width="1.4" marker-end="url(#amb)"/>
+  <rect x="102" y="77" width="36" height="26" fill="none" stroke="#cb4b16" stroke-width="1.5" stroke-dasharray="4,2" rx="4"/>
+  <text x="120" y="118" text-anchor="middle" font-size="9" fill="#cb4b16">контроль C → A↔C↔B → X↔…↔Y</text>
+</svg>
+<p>$A\to X$, $A\to C\leftarrow B$, $B\to Y$. $X$ и $Y$ независимы — контроль $C$ создаёт смешение через $A$ и $B$.</p>
+</div>
+<div style="flex:1; background:#fff5f5; border-left:4px solid #cb4b16; padding:0.5em 0.8em; border-radius:4px">
+<p><strong>✗ Потомок исхода</strong></p>
+<p>Контроль $D$ (потомка $Y$) создаёт обратный поток.</p>
+<svg width="220" height="130" style="display:block;margin:0.4em auto">
+  <defs><marker id="apd" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto"><path d="M0,0 L8,3 L0,6 Z" fill="#586e75"/></marker></defs>
+  <ellipse cx="40"  cy="55" rx="24" ry="14" fill="#eee8d5" stroke="#586e75"/>
+  <text x="40"  y="60" text-anchor="middle" font-size="13" fill="#073642">X</text>
+  <ellipse cx="140" cy="55" rx="24" ry="14" fill="#eee8d5" stroke="#586e75"/>
+  <text x="140" y="60" text-anchor="middle" font-size="13" fill="#073642">Y</text>
+  <ellipse cx="140" cy="105" rx="24" ry="14" fill="#ffd0d0" stroke="#cb4b16" stroke-width="2"/>
+  <text x="140" y="110" text-anchor="middle" font-size="13" fill="#cb4b16">D</text>
+  <ellipse cx="90"  cy="15" rx="24" ry="14" fill="#eee8d5" stroke="#586e75"/>
+  <text x="90"  y="20" text-anchor="middle" font-size="13" fill="#073642">Z</text>
+  <line x1="64" y1="55" x2="116" y2="55" stroke="#268bd2" stroke-width="2" marker-end="url(#apd)"/>
+  <line x1="72" y1="20" x2="116" y2="47" stroke="#586e75" stroke-width="1.4" marker-end="url(#apd)"/>
+  <line x1="68" y1="20" x2="52" y2="43" stroke="#586e75" stroke-width="1.4" marker-end="url(#apd)"/>
+  <line x1="140" y1="69" x2="140" y2="91" stroke="#586e75" stroke-width="1.4" marker-end="url(#apd)"/>
+  <rect x="116" y="91" width="48" height="28" fill="none" stroke="#cb4b16" stroke-width="1.5" stroke-dasharray="4,2" rx="4"/>
+  <text x="140" y="125" text-anchor="middle" font-size="9" fill="#cb4b16">контроль D блокирует вариацию Y</text>
+</svg>
+<p>$Y\to D$: контроль $D$ частично обусловливает $Y$ → смещает оценку $X\to Y$.</p>
+</div>
+<div style="flex:1; background:#f0fff0; border-left:4px solid #859900; padding:0.5em 0.8em; border-radius:4px">
+<p><strong>Практическое правило</strong></p>
+<table>
+<thead>
+<tr>
+<th>Тип</th>
+<th>Контролировать?</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Конфаундер $Z\to X$, $Z\to Y$</td>
+<td>✓ Да</td>
+</tr>
+<tr>
+<td>Медиатор $X\to M\to Y$</td>
+<td>✗ Нет</td>
+</tr>
+<tr>
+<td>Коллайдер $X\to C\leftarrow Y$</td>
+<td>✗ Нет</td>
+</tr>
+<tr>
+<td>Потомок коллайдера</td>
+<td>✗ Нет</td>
+</tr>
+<tr>
+<td>M-bias узел $C$</td>
+<td>✗ Нет</td>
+</tr>
+<tr>
+<td>Потомок $Y$</td>
+<td>✗ Нет</td>
+</tr>
+<tr>
+<td>Инструментальная переменная</td>
+<td>○ Зависит</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p><small style="color:#657b83; display:block; text-align:right; margin-top:0.3em">Cinelli, C., Forney, A., Pearl, J. <em>A Crash Course in Good and Bad Controls</em> (2022)</small></p>
+
+            </section>
+        
+
+    </section>
+    
+
+
+
+    
+        <section >
+            
+            <h1>Блок 5 — Recap</h1>
+
+            </section>
+    
+
+
+
+    
+    <section>
+        <section >
+            <h2>Фундаментальная проблема причинно-следственного вывода</h2>
+<img src="images/venn hierar.png" style="height: 220px; float: right; margin-left: 1em">
+<p>Мы не можем одновременно наблюдать все альтернативные состояния.</p>
+<p>$$Y_i(1) - Y_i(0) \text{ — ненаблюдаем напрямую}$$</p>
+<p>Нужны <strong>предположения</strong>:</p>
+<ul>
+<li>Интервенции независимы друг от друга</li>
+<li>Идентичные объекты реагируют одинаково (SUTVA)</li>
+<li>Нет скрытых общих причин</li>
+</ul>
+<img src="images/Ladder.png" style="height: 160px">
+
+            </section>
+        
+            <section style="font-size: 0.66em; width: 108%; margin-left: -4%">
+                <h2>Стратегии идентификации: обзор</h2>
+<!-- .slide: style="font-size: 0.66em; width: 108%; margin-left: -4%" -->
+<div style="display: grid; grid-template-columns: 1.35fr 1.25fr 1fr 1fr; gap: 0.8em; align-items: flex-start">
+<div style="background:#eee8d5; border-left:4px solid #859900; padding:0.3em 0.6em; border-radius:4px">
+<p><strong><span class="material-icons" style="font-size:1em;vertical-align:middle">science</span> Эксперименты</strong><br>
+<em style="font-size:0.9em">рандомизация устраняет конфаундинг</em></p>
+<ul>
+<li>RCT, естественные эксперименты</li>
+<li>Ортогональный дизайн</li>
+<li>Факторный дизайн</li>
+<li>Discovery + интервенции</li>
+<li>Адаптивные: бандиты, sequential testing, sample-efficient</li>
+</ul>
+</div>
+<div style="background:#eee8d5; border-left:4px solid #268bd2; padding:0.3em 0.6em; border-radius:4px">
+<p><strong><span class="material-icons" style="font-size:1em;vertical-align:middle">analytics</span> Matching</strong><br>
+<em style="font-size:0.9em">контрфактуал из наблюдений</em></p>
+<ul>
+<li>Propensity score / IPW</li>
+<li>Matching (NN, exact…)</li>
+<li>Synthetic control</li>
+<li>Diff-in-differences (DiD)</li>
+<li>Instrumental variables (IV)</li>
+<li>Regression discontinuity</li>
+</ul>
+</div>
+<div style="background:#eee8d5; border-left:4px solid #cb4b16; padding:0.3em 0.6em; border-radius:4px">
+<p><strong><span class="material-icons" style="font-size:1em;vertical-align:middle">engineering</span> Структурные</strong><br>
+<em style="font-size:0.9em">ограничиваем класс моделей</em></p>
+<ul>
+<li>LiNGAM</li>
+<li>SEM / econometrics</li>
+<li>Additive noise (ANM)</li>
+</ul>
+</div>
+<div style="background:#eee8d5; border-left:4px solid #586e75; padding:0.3em 0.6em; border-radius:4px">
+<p><strong><span class="material-icons" style="font-size:1em;vertical-align:middle">manage_search</span> Частичная</strong><br>
+<em style="font-size:0.9em">bounds вместо точки</em></p>
+<ul>
+<li>Causal Discovery</li>
+<li>Bound estimation</li>
+<li>Sensitivity analysis</li>
+<li>«Не знаем» — тоже ответ</li>
+</ul>
+</div>
+</div>
+<p style="font-size:0.85em; margin-top:0.5em">› Выбор стратегии — это <strong>дизайн исследования</strong> и <strong>допустимые предположения</strong>, а не объём данных.</p>
+
+            </section>
+        
+            <section style="font-size: 0.82em">
+                <h2>Иерархия ошибок: три уровня</h2>
+<!-- .slide: style="font-size: 0.82em" -->
+<table>
+<thead>
+<tr>
+<th>Уровень</th>
+<th>Что нарушено</th>
+<th>Пример ошибки</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Верхняя онтология</strong></td>
+<td>правила причинного вывода</td>
+<td>включили коллайдер в регрессию</td>
+</tr>
+<tr>
+<td><strong>Средняя онтология</strong></td>
+<td>модель конкретного механизма</td>
+<td>предположили аддитивность там, где её нет</td>
+</tr>
+<tr>
+<td><strong>Нижняя онтология</strong></td>
+<td>качество измерений</td>
+<td>повторных покупателей посчитали новыми</td>
+</tr>
+</tbody>
+</table>
+<p>Верхняя онтология — <strong>логическая</strong> ошибка: не зависит от данных и не исправляется их накоплением.</p>
+<p>Средняя — ошибка <strong>контекста</strong>: неверно выбран гипотетический механизм.</p>
+<p>Нижняя — ошибка <strong>данных</strong>: можно исправить протоколом сбора.</p>
+
+            </section>
+        
+            <section style="font-size: 0.72em">
+                <h2>Типичные ошибки причинного мышления</h2>
+<!-- .slide: style="font-size: 0.72em" -->
+<div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 0.8em">
+<div style="background:#fff5f5; border-left:4px solid #dc322f; padding:0.35em 0.7em; border-radius:4px">
+<strong>Обратная причинность</strong><br>
+<em style="font-size:0.88em">Reverse causation</em><br>
+Путаем направление: $B$ вызывает $A$, а мы думаем что $A\to B$.<br>
+<small>Пример: низкий холестерин → смерть? Нет — болезнь снижает холестерин <em>и</em> убивает.</small>
+</div>
+<div style="background:#fff5f5; border-left:4px solid #dc322f; padding:0.35em 0.7em; border-radius:4px">
+<strong>Медиатор как причина</strong><br>
+<em style="font-size:0.88em">Mediation confusion</em><br>
+Контролируем медиатор $M$ на пути $X\to M\to Y$ и «теряем» эффект.<br>
+<small>Пример: контроль на зарплату при изучении влияния образования на доход.</small>
+</div>
+<div style="background:#fff5f5; border-left:4px solid #cb4b16; padding:0.35em 0.7em; border-radius:4px">
+<strong>Парадокс Берксона</strong><br>
+<em style="font-size:0.88em">Collider / selection bias</em><br>
+Выборка через коллайдер создаёт ложную отрицательную корреляцию.<br>
+<small>Пример: в больнице диабет и холецистит выглядят связанными — хотя независимы в популяции.</small>
+</div>
+<div style="background:#eee8d5; border-left:4px solid #586e75; padding:0.35em 0.7em; border-radius:4px">
+<strong>Предвзятость пропорций</strong><br>
+<em style="font-size:0.88em">Proportionality bias</em><br>
+«Большое событие — большая причина». Малые причины больших событий кажутся неправдоподобными.<br>
+<small>Пример: смерть принцессы Дианы → теория заговора вместо случайной аварии.</small>
+</div>
+<div style="background:#eee8d5; border-left:4px solid #586e75; padding:0.35em 0.7em; border-radius:4px">
+<strong>Ошибка регрессии</strong><br>
+<em style="font-size:0.88em">Regression fallacy</em><br>
+Регрессия к среднему принимается за эффект вмешательства.<br>
+<small>Пример: боль уменьшилась после врача — но она и так должна была уменьшиться.</small>
+</div>
+<div style="background:#eee8d5; border-left:4px solid #586e75; padding:0.35em 0.7em; border-radius:4px">
+<strong>Единственная причина</strong><br>
+<em style="font-size:0.88em">Single cause fallacy</em><br>
+Ищем одну причину там, где их несколько и они совместно достаточны.<br>
+<small>Пример: «COVID вызвала вакцина» — игнорируя все остальные факторы.</small>
+</div>
+</div>
+<p style="font-size:0.8em; margin-top:0.4em; text-align:center; color:#586e75">Все шесть ошибок — следствие игнорирования структуры.</p>
+
+            </section>
+        
+
+    </section>
+    
+
+
+
+    
+        <section style="font-size: 0.6em; width: 110%; margin-left: -5%">
+            
+            <h2>Таксономия ошибок причинного вывода</h2>
+<!-- .slide: style="font-size: 0.6em; width: 110%; margin-left: -5%" -->
+<div style="display: grid; grid-template-columns: 1fr 1fr 1fr 1fr; gap: 0.6em; align-items: flex-start">
+<div style="background:#eee8d5; border-top:4px solid #586e75; padding:0.4em 0.65em; border-radius:4px">
+<strong style="display:block; margin-bottom:0.3em; font-size:1.05em"><span class="material-icons" style="font-size:1em;vertical-align:middle">menu_book</span> Знания и теория</strong>
+<em style="font-size:0.9em; color:#657b83">Knowledge background</em>
+<ul style="margin:0.3em 0 0; padding-left:1.1em">
+<li>Слабая идентификация</li>
+<li>Опущенные переменные</li>
+<li>(1) Confounding</li>
+<li>(2) Обратная причинность</li>
+<li>(3) Lord's paradox</li>
+<li>(4) Collider / Berkson</li>
+<li>(5) Proximate vs ultimate</li>
+<li>(6) Simpson's paradox</li>
+<li>(9) Телеология</li>
+<li>(14) Proportionality bias</li>
+<li>(15) Single cause fallacy</li>
+<li>(16) Regression fallacy</li>
+</ul>
+</div>
+<div style="background:#eee8d5; border-top:4px solid #268bd2; padding:0.4em 0.65em; border-radius:4px">
+<strong style="display:block; margin-bottom:0.3em; font-size:1.05em"><span class="material-icons" style="font-size:1em;vertical-align:middle">tune</span> Дизайн и выборка</strong>
+<em style="font-size:0.9em; color:#657b83">Object / measure / hypothesizing</em>
+<ul style="margin:0.3em 0 0; padding-left:1.1em">
+<li>(7) Post hoc ergo propter hoc</li>
+<li>(8) Survivorship bias</li>
+<li>(10) Hawthorne effect</li>
+<li>(11) Ecological fallacy</li>
+<li>(12) Gambler's fallacy</li>
+<li>(13) Texas sharpshooter</li>
+<li>(17) Outcome bias</li>
+<li>(19) Unit heterogeneity</li>
+<li>(21) Рандомизация кластеров</li>
+<li>(22) Non-random assignment</li>
+<li>(23) Perfect oracle assumption</li>
+<li>Path neglect bias</li>
+</ul>
+</div>
+<div style="background:#eee8d5; border-top:4px solid #cb4b16; padding:0.4em 0.65em; border-radius:4px">
+<strong style="display:block; margin-bottom:0.3em; font-size:1.05em"><span class="material-icons" style="font-size:1em;vertical-align:middle">biotech</span> Данные и сбор</strong>
+<em style="font-size:0.9em; color:#657b83">Measurements</em>
+<ul style="margin:0.3em 0 0; padding-left:1.1em">
+<li>Selection bias</li>
+<li>Assignment violation</li>
+<li>Exchangeability violation</li>
+<li>SUTVA violation</li>
+<li>(20) Mediation / moderation</li>
+<li>(24) Fat tails</li>
+<li>(25) Small samples</li>
+<li>(26) Interference</li>
+<li>(27) Noncompliance / attrition</li>
+<li>(28) Misreport / contamination</li>
+<li>(29) Network effect</li>
+<li>(30) Spillover</li>
+</ul>
+</div>
+<div style="background:#eee8d5; border-top:4px solid #859900; padding:0.4em 0.65em; border-radius:4px">
+<strong style="display:block; margin-bottom:0.3em; font-size:1.05em"><span class="material-icons" style="font-size:1em;vertical-align:middle">query_stats</span> Анализ и выводы</strong>
+<em style="font-size:0.9em; color:#657b83">Data & Results</em>
+<ul style="margin:0.3em 0 0; padding-left:1.1em">
+<li>Narrative bias</li>
+<li>Protocol violation</li>
+<li>(18) Recession shapes</li>
+<li>(31) Multiple comparisons</li>
+<li>(32) Overcontrol bias</li>
+<li>(33) Level of measurement</li>
+<li>(34) Model misspecification</li>
+<li>(35) Data dredging</li>
+<li>(36) NHST misinterpretation</li>
+<li>(37) HARKing / preregistration</li>
+<li>Bad standards & incentives</li>
+</ul>
+</div>
+</div>
+
+            </section>
+    
+
+
+
+    
+    <section>
+        <section >
+            <h2>Что данные могут сказать сами: PC-алгоритм</h2>
+<p>Алгоритм Peter-Clark восстанавливает структуру DAG <strong>только из наблюдений</strong> — без экспериментов.</p>
+<img src="images/PC.png" style="height: 340px; display: block; margin: 0.5em auto">
+
+            </section>
+        
+            <section style="font-size: 0.88em">
+                <h2>PC-алгоритм: шаги</h2>
+<!-- .slide: style="font-size: 0.88em" -->
+<table>
+<thead>
+<tr>
+<th>Шаг</th>
+<th>Действие</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td><strong>Полный граф</strong> — соединить все переменные</td>
+</tr>
+<tr>
+<td>2</td>
+<td><strong>Попарная независимость</strong> — удалить рёбра между независимыми парами</td>
+</tr>
+<tr>
+<td>3</td>
+<td><strong>Условная независимость</strong> — удалить рёбра, если $X \perp Y \mid Z$</td>
+</tr>
+<tr>
+<td>4</td>
+<td><strong>Ориентировать коллайдеры</strong>: если $X - Z - Y$ и $Z \notin Sep(X,Y)$, то $X \to Z \leftarrow Y$</td>
+</tr>
+<tr>
+<td>5</td>
+<td><strong>Ограничения</strong>: нет новых коллайдеров, нет циклов</td>
+</tr>
+<tr>
+<td>6</td>
+<td><strong>Результат</strong>: частично ориентированный граф</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>Данные сужают пространство возможных механизмов даже без экспериментов.</p>
+</blockquote>
+
+            </section>
+        
+
+    </section>
+    
+
+
+
+    
+    <section>
+        <section >
+            <!-- 
+
+            </section>
+        
+            <section >
+                <h2>[placeholder] Adjustment формула</h2>
+<p><em>Контент — в разработке</em></p>
+
+            </section>
+        
+
+    </section>
+    
+
+
+
+    
+    <section>
+        <section >
+            <h1>Блок 6 <em>(если успеем)</em></h1>
+<h2>Роль рандомизации</h2>
+
+            </section>
+        
+            <section >
+                <h2>[placeholder] Fisher randomization</h2>
+<p><em>Контент — в разработке</em></p>
+
+            </section>
+        
+            <section >
+                <h2>[placeholder] Rubin model и adjustment</h2>
+<p><em>Контент — в разработке</em></p>
+
+            </section>
+        
+            <section >
+                <h2>[placeholder] Quasi-experiments</h2>
+<p><em>Контент — в разработке</em></p>
+
+            </section>
+        
+            <section >
+                <h2>[placeholder] Discovery: evidential vs hypothetical · observational vs interventional</h2>
+<p><em>Контент — в разработке</em>****</p>
+<p>— --&gt;</p>
+<h1>Блок 7</h1>
+<h2>Recap: нормативные модели и таксономия ошибок</h2>
+
+            </section>
+        
+
+    </section>
+    
+
+
+
+    
+        <section >
+            
+            <h2>Компромисс: надёжность против точности</h2>
+<img src="images/Lattice.JPG" style="height: 300px; float: right; margin-left: 1em">
+<ul>
+<li><strong>«No causation without manipulation»</strong> (Rubin, Angrist): нет манипуляции — нет вывода</li>
+<li><strong>«No inference without assumption»</strong> (Pearl, Glymour): предположения неизбежны, вопрос в их явности</li>
+</ul>
+<blockquote>
+<p>Истина посередине: тип предположений и их надёжность важнее, чем их отсутствие.</p>
+</blockquote>
+
+            </section>
+    
+
+
+
+    
+        <section style="font-size: 0.85em">
+            
+            <h2>Итоги лекции</h2>
+<!-- .slide: style="font-size: 0.85em" -->
+<p><strong>Что подразумевает причинность:</strong>
+контрфактические состояния, оператор $do()$, предположения о структуре, интервенции как наиболее надёжный источник свидетельств</p>
+<p><strong>Что говорит корреляция:</strong>
+исключает механизмы, идентифицирует коллайдеры и независимости, при минимальных предположениях восстанавливает структуру</p>
+<p><strong>Нормативные фреймворки:</strong>
+Наблюдаемый эквивалент, условная независимость, ассиметрия и контрфактические состояния</p>
+
+            </section>
+    
+
+
+
+    
+        <section style="font-size: 0.78em">
+            
+            <h2>When Do We Actually Use Normative Models?</h2>
+<!-- .slide: style="font-size: 0.78em" -->
+<div style="display: flex; flex-direction: column; align-items: flex-start; padding-left: 3em; gap: 0">
+<div style="display: flex; align-items: center; gap: 1em">
+  <div style="background:#dce6ee; border:2px solid rgb(142, 142, 142); border-radius:8px; padding:0.4em 1em; width:230px; text-align:center"><b>1.</b> Know the normative model?</div>
+  <span style="color:#cb4b16; font-weight:bold">No →</span>
+  <div style="border:1px dashed #aaa; padding:0.3em 0.8em; border-radius:4px; font-style:italic; background:#f5f0e8">intuitive answer</div>
+</div>
+<div style="margin-left:115px; color:#859900; line-height:1">↓ Yes</div>
+<div style="display: flex; align-items: center; gap: 1em">
+  <div style="background:#dce6ee; border:2px solid rgb(176, 176, 176); border-radius:8px; padding:0.4em 1em; width:230px; text-align:center"><b>2.</b> Recognised bias may apply?</div>
+  <span style="color:#cb4b16; font-weight:bold">No →</span>
+  <div style="border:1px dashed #aaa; padding:0.3em 0.8em; border-radius:4px; font-style:italic; background:#f5f0e8">intuitive answer</div>
+</div>
+<div style="margin-left:115px; color:#859900; line-height:1">↓ Yes</div>
+<div style="display: flex; align-items: center; gap: 1em">
+  <div style="background:#dce6ee; border:2px solid hsl(0, 0%, 50%); border-radius:8px; padding:0.4em 1em; width:230px; text-align:center"><b>3.</b> Trained, has normative answer — does another normative model apply?</div>
+  <span style="color:#cb4b16; font-weight:bold">No →</span>
+  <div style="border:1px dashed #aaa; padding:0.3em 0.8em; border-radius:4px; font-style:italic; background:#f5f0e8">System 1 normative</div>
+</div>
+<div style="margin-left:115px; color:#859900; line-height:1">↓ Yes</div>
+<div style="display: flex; align-items: center; gap: 1em">
+  <div style="background:#dce6ee; border:2px solid hsl(0, 0%, 50%); border-radius:8px; padding:0.4em 1em; width:230px; text-align:center"><b>4.</b> Enough cognitive resources?</div>
+  <span style="color:#cb4b16; font-weight:bold">No →</span>
+  <div style="border:1px dashed #aaa; padding:0.3em 0.8em; border-radius:4px; font-style:italic; background:#f5f0e8">intuitive answer</div>
+</div>
+<div style="margin-left:115px; color:#859900; line-height:1">↓ Yes</div>
+<div style="background:#859900; color:#fdf6e3; border-radius:8px; padding:0.4em 1em; width:230px; text-align:center; font-weight:bold">System 2 normative answer</div>
+</div>
+<p><small style="color:#888; position:absolute; bottom:0.6em; right:1.5em">Stanovich, K.E. (2011). <em>Rationality and the Reflective Mind</em>. Oxford UP.</small></p>
+
+            </section>
+    
+
+
+
+    
+        <section style="font-size: 0.68em; width: 110%; margin-left: -5%">
+            
+            <h2>Рекап: нормативные фреймворки</h2>
+<!-- .slide: style="font-size: 0.68em; width: 110%; margin-left: -5%" -->
+<div style="display: flex; gap: 1.6em; justify-content: center; align-items: flex-start; width: 100%">
+<div style="flex: 1; display: flex; flex-direction: column; gap: 0.55em">
+<div style="background:#eee8d5; border-left:4px solid #586e75; padding:0.35em 0.75em; border-radius:4px">
+<strong>Наблюдаемый эквивалент</strong><br>
+Разные причинные структуры → одно наблюдаемое распределение. Различить можно только через контрфактические состояния или интервенции.
+</div>
+<div style="background:#eee8d5; border-left:4px solid #586e75; padding:0.35em 0.75em; border-radius:4px">
+<strong>DAG: родители, дети, факторизация</strong><br>
+$Pa_i$ — прямые причины. Совместное распределение: $P(X_1,\ldots,X_n)=\prod P(X_i \mid Pa_i)$.<br>
+Граф кодирует структуру независимостей — не числа, а топологию.
+</div>
+<div style="background:#eee8d5; border-left:4px solid #cb4b16; padding:0.35em 0.75em; border-radius:4px">
+<strong>Graphical Model ↔ Independence Set ↔ Association Set</strong><br>
+Граф → набор условных независимостей → допустимые ассоциации. Изменение любого звена меняет всю цепь.
+</div>
+<div style="background:#eee8d5; border-left:4px solid #268bd2; padding:0.35em 0.75em; border-radius:4px">
+<strong>Identification  → Estimation → Estimate</strong><br>
+Сначала — условие идентификации (back-door / front-door). Затем — метод. Только потом — число.
+</div>
+</div>
+<div style="flex: 1; display: flex; flex-direction: column; gap: 0.55em">
+<div style="background:#eee8d5; border-left:4px solid #586e75; padding:0.35em 0.75em; border-radius:4px">
+<strong>Таксономия (Koller & Friedman)</strong><br>
+<em>Цепочка</em> $X_1\to X_2\to X_3$: $X_1\not\perp X_3$, но $X_1\perp X_3\mid X_2$.<br>
+<em>Развилка</em> $X_1\leftarrow X_2\to X_3$: то же independence set — неразличимы по наблюдениям.<br>
+<em>Коллайдер</em> $X_1\to X_2\leftarrow X_3$: $X_1\perp X_3$, но $X_1\not\perp X_3\mid X_2$ — уникален, идентифицируем.
+</div>
+<div style="background:#eee8d5; border-left:4px solid #cb4b16; padding:0.35em 0.75em; border-radius:4px">
+<strong>Асимметрия причины и следствия</strong><br>
+$do(\text{причина})$: зависимости среди следствий сохраняются.<br>
+$do(\text{следствие})$: связь с причиной исчезает.<br>
+Граф следствий после $do(\text{причина})$ = наблюдаемому графу — не наоборот.
+</div>
+<div style="background:#eee8d5; border-left:4px solid #268bd2; padding:0.35em 0.75em; border-radius:4px">
+<strong>Наследование DAG: obs → int</strong><br>
+Наблюдаемый граф ($I{=}\emptyset$) вложен в интервенционный граф ($I{=}\{X\}$) при интервенции на причину.<br>
+При интервенции на следствие — вложенности нет. Это делает эксперимент принципиально информативнее наблюдения.
+</div>
+</div>
+</div>
+
+            </section>
+    
+
+
+
+    
+        <section style="font-size: 0.64em">
+            
+            <h2>Источники</h2>
+<!-- .slide: style="font-size: 0.64em" -->
+<div style="display: flex; gap: 2em; align-items: flex-start; justify-content: center">
+<div style="flex: 1">
+<img src="images/credible hulk.png" style="max-height: 200px; width: auto; border-radius: 6px; display: block; margin: 0 auto 0.6em">
+<p><strong>Книги и курсы</strong></p>
+<ul>
+<li>Pearl, J. <em>The Book of Why</em> (2018)</li>
+<li>Cunningham, S. <em>Causal Inference: The Mixtape</em> — онлайн</li>
+<li>Neal, B. <em>Introduction to Causal Inference</em> (2020) — <a href="https://www.bradyneal.com/Introduction_to_Causal_Inference-Dec17_2020-Neal.pdf">курс</a></li>
+<li>Koller, D. &amp; Friedman, N. <em>Probabilistic Graphical Models</em> (2009)</li>
+<li>Peters, J., Janzing, D., Schölkopf, B. <em>Elements of Causal Inference</em> (2017)</li>
+<li>Spirtes, P. et al. <em>Causation, Prediction, and Search</em> (2000)</li>
+<li>Montgomery, D. / Box, G. &amp; Hunter, J. — классические учебники по DOE</li>
+</ul>
+<p><strong>Иллюстрации и блоги</strong></p>
+<ul>
+<li>Talebi, S. <em><a href="https://medium.com/data-science/causal-discovery-6858f9af6dcb">Causal Discovery: Learning causation from data</a></em> — иллюстрации PC</li>
+<li>Averianova, I. / Kim, A. <em><a href="https://medium.com/nuances-of-programming/%D1%83%D1%81%D0%BB%D0%BE%D0%B2%D0%BD%D0%B0%D1%8F-%D0%BD%D0%B5%D0%B7%D0%B0%D0%B2%D0%B8%D1%81%D0%B8%D0%BC%D0%BE%D1%81%D1%82%D1%8C-%D0%BE%D1%81%D0%BD%D0%BE%D0%B2%D0%B0-%D0%B1%D0%B0%D0%B9%D0%B5%D1%81%D0%BE%D0%B2%D1%81%D0%BA%D0%BE%D0%B9-%D1%81%D0%B5%D1%82%D0%B8-b523a1070a76">Условная независимость — основа байесовской сети</a></em> — маргинализация и условная независимость</li>
+</ul>
+</div>
+<div style="flex: 1">
+<p><strong>Статьи</strong></p>
+<ul>
+<li>Cinelli, C., Forney, A., Pearl, J. <em>A Crash Course in Good and Bad Controls</em> (2022)</li>
+<li>Eberhardt, F., Glymour, C., Scheines, R. <em>On the number of experiments…</em> (2012)</li>
+<li>Eberhardt, F. <em>Introduction to the Foundations of Causal Discovery</em> (2017)</li>
+<li>Glymour, C., Zhang, K., Spirtes, P. <em>Review of Causal Discovery Methods</em> (2019)</li>
+<li>Vowels, M. J. et al. <em>D’ya Like DAGs? A Survey on Structure Learning</em> (2022)</li>
+<li>Heinze-Deml, C., Maathuis, M. H., Meinshausen, N. <em>Causal Structure Learning</em> (2018)</li>
+<li>Nogueira, A. R. et al. <em>Causal Discovery in Machine Learning</em> (2022)</li>
+<li>Hitchcock, C. &amp; Rédei, M. <em>Reichenbach’s Common Cause Principle</em> (2020)</li>
+<li>Sabbaghi, A. &amp; Rubin, D. B. <em>Comments on the Neyman–Fisher Controversy</em></li>
+<li>Eberhardt, F. <em>Causality: From Aristotle to Zebrafish</em> (2019)</li>
+</ul>
+</div>
+</div>
+
+            </section>
+    
+
+
+
+    
+        <section >
+            
+            <h1>Спасибо</h1>
+<h3>Вопросы?</h3>
+<figure class="c-blockquote">
+<blockquote>
+<p>«Если отбросить всё невозможное, то то, что останется, каким бы невероятным оно ни казалось, и будет истиной.»</p>
+</blockquote>
+<figcaption class="c-blockquote__attribution">Sherlock Holmes</figcaption>
+</figure>
+<script>
+(function () {
+  var iv = null;
+  var QUESTION_ID = 'slide-ki-prof-question';
+
+  function clearKiProfTimer() {
+    if (iv) {
+      clearInterval(iv);
+      iv = null;
+    }
+  }
+
+  function startKiProfTimer(slide) {
+    clearKiProfTimer();
+    if (!slide) return;
+    var el = slide.querySelector('.ki-prof-timer-digit');
+    if (!el) return;
+    var sec = 30;
+    el.textContent = String(sec);
+    iv = setInterval(function () {
+      sec -= 1;
+      el.textContent = String(Math.max(0, sec));
+      if (sec <= 0) clearKiProfTimer();
+    }, 1000);
+  }
+
+  window.kiProfTimerRestart = function () {
+    var slide = document.getElementById(QUESTION_ID);
+    startKiProfTimer(slide);
+  };
+
+  function onSlide(slide) {
+    clearKiProfTimer();
+    if (slide && slide.id === QUESTION_ID) startKiProfTimer(slide);
+  }
+
+  if (typeof Reveal !== 'undefined' && Reveal.on) {
+    Reveal.on('ready', function () {
+      onSlide(Reveal.getCurrentSlide());
+    });
+    Reveal.on('slidechanged', function (e) {
+      onSlide(e.currentSlide);
+    });
+  }
+})();
+</script>
+<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+<script>
+// Section navbar: collect h1/h2 headings and render clickable markers on a top bar
+(function () {
+  function buildNav() {
+    if (typeof Reveal === 'undefined') return;
+
+    var bar = document.createElement('div');
+    bar.id = 'section-navbar';
+    bar.style.cssText = [
+      'position:fixed', 'top:0', 'left:0', 'width:100%', 'z-index:9999',
+      'background:rgba(0,43,54,0.82)', 'backdrop-filter:blur(4px)',
+      'display:flex', 'align-items:center', 'gap:0',
+      'padding:0 0.5em', 'box-sizing:border-box',
+      'height:28px', 'font-size:11px', 'font-family:sans-serif',
+      'overflow:hidden', 'white-space:nowrap'
+    ].join(';');
+
+    // Collect only h1 slides (top-level blocks)
+    var slides = Reveal.getSlides();
+    var sections = [];
+    slides.forEach(function (slide, idx) {
+      var h = slide.querySelector('h1');
+      if (h) {
+        sections.push({ idx: idx, text: h.textContent.trim() });
+      }
+    });
+
+    sections.forEach(function (sec) {
+      var btn = document.createElement('button');
+      btn.dataset.idx = sec.idx;
+      btn.textContent = sec.text;
+      btn.style.cssText = [
+        'background:none', 'border:none', 'color:#93a1a1',
+        'cursor:pointer', 'padding:0 0.55em', 'height:100%',
+        'font-size:10.5px', 'white-space:nowrap',
+        'border-right:1px solid rgba(255,255,255,0.08)',
+        'transition:color 0.15s, background 0.15s',
+        'flex-shrink:0'
+      ].join(';');
+      btn.addEventListener('mouseenter', function () {
+        if (!btn.classList.contains('nav-active')) btn.style.color = '#fdf6e3';
+      });
+      btn.addEventListener('mouseleave', function () {
+        if (!btn.classList.contains('nav-active')) btn.style.color = '#93a1a1';
+      });
+      btn.addEventListener('click', function () {
+        var indices = Reveal.getIndices(Reveal.getSlides()[sec.idx]);
+        Reveal.slide(indices.h, indices.v);
+      });
+      bar.appendChild(btn);
+    });
+
+    document.body.appendChild(bar);
+
+    // Push reveal viewport down so bar doesn't overlap slides
+    var viewport = document.querySelector('.reveal');
+    if (viewport) {
+      viewport.style.top = '28px';
+      viewport.style.height = 'calc(100% - 28px)';
+    }
+
+    function updateActive() {
+      var cur = Reveal.getSlidePastCount ? Reveal.getSlidePastCount() : 0;
+      var curSlide = Reveal.getCurrentSlide();
+      var curIdx = Reveal.getSlides().indexOf(curSlide);
+
+      // Find last section at or before curIdx
+      var activeIdx = -1;
+      sections.forEach(function (sec) {
+        if (sec.idx <= curIdx) activeIdx = sec.idx;
+      });
+
+      bar.querySelectorAll('button').forEach(function (btn) {
+        var isActive = parseInt(btn.dataset.idx) === activeIdx;
+        btn.classList.toggle('nav-active', isActive);
+        btn.style.color = isActive ? '#b58900' : '#93a1a1';
+        btn.style.background = isActive ? 'rgba(181,137,0,0.15)' : 'none';
+        btn.style.fontWeight = isActive ? 'bold' : 'normal';
+      });
+    }
+
+    Reveal.on('ready', updateActive);
+    Reveal.on('slidechanged', updateActive);
+  }
+
+  if (typeof Reveal !== 'undefined' && Reveal.isReady && Reveal.isReady()) {
+    buildNav();
+  } else if (typeof Reveal !== 'undefined') {
+    Reveal.on('ready', buildNav);
+  } else {
+    document.addEventListener('DOMContentLoaded', function () {
+      var t = setInterval(function () {
+        if (typeof Reveal !== 'undefined') { clearInterval(t); buildNav(); }
+      }, 200);
+    });
+  }
+})();
+</script>
+
+            </section>
+    
+
+
+    </div>
+
+
+  </div>
+
+  <div class="line top"></div>
+  <div class="line bottom"></div>
+  <div class="line left"></div>
+  <div class="line right"></div>
+
+  <script src="libs/reveal.js/4.3.1/reveal.js"></script>
+<script src="libs/reveal.js/4.3.1/plugin/notes/notes.js"></script>
+<script src="libs/reveal.js/4.3.1/plugin/markdown/markdown.js"></script>
+<script src="libs/reveal.js/4.3.1/plugin/highlight/highlight.js"></script>
+<script src="libs/reveal.js/4.3.1/plugin/math/math.js"></script>
+<script src="libs/reveal.js/4.3.1/plugin/fullscreen/plugin.js"></script>
+<script src="libs/reveal.js/4.3.1/plugin/animate/plugin.js"></script>
+<script src="libs/reveal.js/4.3.1/plugin/animate/svg.min.js"></script>
+<script src="libs/reveal.js/4.3.1/plugin/anything/plugin.js"></script>
+<script src="libs/reveal.js/4.3.1/plugin/anything/Chart.min.js"></script>
+<script src="libs/reveal.js/4.3.1/plugin/anything/d3/d3.v3.min.js"></script>
+<script src="libs/reveal.js/4.3.1/plugin/anything/d3.patch.js"></script>
+<script src="libs/reveal.js/4.3.1/plugin/anything/d3/queue.v1.min.js"></script>
+<script src="libs/reveal.js/4.3.1/plugin/anything/d3/topojson.v1.min.js"></script>
+<script src="libs/reveal.js/4.3.1/plugin/anything/function-plot.js"></script>
+<script src="libs/reveal.js/4.3.1/plugin/customcontrols/plugin.js"></script>
+<script src="libs/reveal.js/4.3.1/plugin/embed-tweet/plugin.js"></script>
+<script src="libs/reveal.js/4.3.1/plugin/chart/chart.min.js"></script>
+<script src="libs/reveal.js/4.3.1/plugin/chart/plugin.js"></script>
+<script src="libs/reveal.js/4.3.1/plugin/verticator/verticator.js"></script>
+
+<script src="libs/reveal.js/4.3.1/plugin/zoom/zoom.js"></script>
+<script src="libs/reveal.js/4.3.1/plugin/search/search.js"></script>
+<script src="libs/reveal.js/4.3.1/plugin/menu/menu.js"></script>
+<script src="libs/reveal.js/4.3.1/plugin/chalkboard/plugin.js"></script>
+
+<!--	<script src="libs/reveal.js/4.3.1/plugin/audio-slideshow/plugin.js"></script>  -->
+<!--	<script src="libs/reveal.js/4.3.1/plugin/audio-slideshow/recorder.js"></script>-->
+<!--	<script src="libs/reveal.js/4.3.1/plugin/audio-slideshow/RecordRTC.js"></script>-->
+
+  
+
+<script>
+  const printPlugins = [
+      RevealNotes,
+      RevealHighlight,
+      RevealMath.MathJax3,
+      RevealAnimate,
+      RevealChalkboard, 
+			RevealEmbedTweet,
+			RevealChart,
+		];
+
+		const plugins =  [...printPlugins,
+		RevealZoom, 
+		RevealSearch, 
+				RevealMarkdown, 
+				RevealMenu, 
+				RevealFullscreen,
+				RevealAnything,
+				//RevealAudioSlideshow,
+				//RevealAudioRecorder,
+				RevealCustomControls, 
+				// poll
+				// question
+				// seminar
+				Verticator 
+				 ]
+
+
+		// Also available as an ES module, see:
+		// https://revealjs.com/initialization/
+		Reveal.initialize({
+			controls: true,
+      controlsTutorial: true,
+      controlsLayout: 'bottom-right',
+      controlsBackArrows: 'faded',
+      progress: true,
+      slideNumber: false,
+      //#showSlideNumber "all" "print" "speaker"
+      hash: true, //# hash: false,
+      //# respondToHashChanges: true,
+      //# history: false,
+      keyboard: true,
+      //#keyboardCondition: null,
+      overview: true,
+      center: true,
+      touch: true,
+      loop: false,
+      rtl: false,
+      //#navigationMode: 'default', linear grid
+      shuffle: false,
+      fragments: true,
+      fragmentInURL: false,
+      embedded: false,
+      help: true,
+      //#pause: true
+      showNotes: false,
+      autoPlayMedia: false, // TODO fix this to a nullable value
+      //#preloadIframes: null. true false
+      //#autoAnimate: true
+      //#autoAnimateMatcher: null,
+      //#autoAnimateEasing: 'ease',
+      //autoAnimateDuration: 1.0,
+      //#autoAnimateUnmatched: true
+      //#autoAnimateStyles: []
+      autoSlide: 0, // TODO fix this to a falseable value
+      autoSlideStoppable: true,
+      autoSlideMethod: '0',
+      defaultTiming: 120,
+      mouseWheel: false,
+      //#previewLinks: false
+      //#postMessage: true, // TODO : this can cause issues with the vscode api ???
+      //#postMessageEvents: false,
+      //#focusBodyOnPageVisibilityChange: true,
+      transition: 'slide',
+      transitionSpeed: 'default',
+      backgroundTransition: 'fade',
+      //#pdfMaxPagesPerSlide: Number.POSITIVE_INFINITY,
+      //#pdfSeparateFragments: true,
+      //#pdfPageHeightOffset: -1,
+      viewDistance: 3,
+      //#mobileViewDistance: 2,
+      display: 'block',
+      //#hideInactiveCursor: true,
+      //#hideCursorTime: 5000
+
+      // Parallax Background
+      parallaxBackgroundImage: '',
+      parallaxBackgroundSize: '',
+      parallaxBackgroundHorizontal: 0,
+      parallaxBackgroundVertical: 0,
+
+      //Presentation Size
+      width: 960,
+			height: 700,
+			margin: 0.04,
+      minScale: 0.2,
+      maxScale: 2,
+      disableLayout: false,
+
+      audio: {
+        prefix: 'audio/', // audio files are stored in the "audio" folder
+        suffix: '.ogg', // audio files have the ".ogg" ending
+        textToSpeechURL: null, // the URL to the text to speech converter
+        defaultNotes: false, // use slide notes as default for the text to speech converter
+        defaultText: false, // use slide text as default for the text to speech converter
+        advance: 0, // advance to next slide after given time in milliseconds after audio has played, use negative value to not advance
+        autoplay: false, // automatically start slideshow
+        defaultDuration: 5, // default duration in seconds if no audio is available
+        defaultAudios: true, // try to play audios with names such as audio/1.2.ogg
+        playerOpacity: 0.05, // opacity value of audio player if unfocused
+        playerStyle: 'position: fixed; bottom: 4px; left: 25%; width: 50%; height:75px; z-index: 33;', // style used for container of audio controls
+        startAtFragment: false, // when moving to a slide, start at the current fragment or at the start of the slide
+      },
+      
+      chalkboard: { // font-awesome.min.css must be available
+        //src: "chalkboard/chalkboard.json",
+        storage: "chalkboard-demo",
+      },
+      
+			customcontrols: {
+					controls: [
+      						{
+						  id: 'toggle-overview',
+						  title: 'Toggle overview (O)',
+						  icon: '<i class="fa fa-th"></i>',
+						  action: 'Reveal.toggleOverview();'
+						}
+						,
+      {
+        icon: '<i class="fa fa-pen-square"></i>',
+        title: 'Toggle chalkboard (B)',
+        action: 'RevealChalkboard.toggleChalkboard();'
+      },
+      {
+        icon: '<i class="fa fa-pen"></i>',
+        title: 'Toggle notes canvas (C)',
+        action: 'RevealChalkboard.toggleNotesCanvas();'
+      }
+      
+				]
+			},
+			chart: {
+					defaults: { 
+						color: 'lightgray', // color of labels
+						scale: { 
+							beginAtZero: true, 
+							ticks: { stepSize: 1 },
+							grid: { color: "lightgray" } , // color of grid lines
+						},
+					},
+					line: { borderColor: [ "rgba(20,220,220,.8)" , "rgba(220,120,120,.8)", "rgba(20,120,220,.8)" ], "borderDash": [ [5,10], [0,0] ] }, 
+					bar: { backgroundColor: [ "rgba(20,220,220,.8)" , "rgba(220,120,120,.8)", "rgba(20,120,220,.8)" ]}, 
+					pie: { backgroundColor: [ ["rgba(0,0,0,.8)" , "rgba(220,20,20,.8)", "rgba(20,220,20,.8)", "rgba(220,220,20,.8)", "rgba(20,20,220,.8)"] ]},
+					radar: { borderColor: [ "rgba(20,220,220,.8)" , "rgba(220,120,120,.8)", "rgba(20,120,220,.8)" ]}, 
+			},
+			math: {
+				mathjax: 'https://cdn.jsdelivr.net/gh/mathjax/mathjax@2.7.8/MathJax.js',
+				config: 'TeX-AMS_HTML-full',
+				// pass other options into `MathJax.Hub.Config()`
+				TeX: { Macros: { RR: "{\\bf R}" } }
+				},
+				anything: [ 
+				{
+		className: "plot",
+		defaults: {width:500, height: 500, grid:true},
+		initialize: (function(container, options){ options.target = "#"+container.id; functionPlot(options) })
+	 },
+	 {
+		className: "chart",  
+		initialize: (function(container, options){ container.chart = new Chart(container.getContext("2d"), options);  })
+	 },
+	 {
+		className: "anything",
+		initialize: (function(container, options){ if (options && options.initialize) { options.initialize(container)} })
+	 },
+					],
+			// Learn about plugins: https://revealjs.com/plugins/
+			plugins: (window.location.search.match(/print-pdf/gi) ? printPlugins : plugins ) 
+		});
+			
+
+
+	    // Change chalkboard theme : 
+		function changeTheme(input) {
+			var config = {};
+			config.theme = input.value;
+			Reveal.getPlugin("RevealChalkboard").configure(config);
+			input.blur();
+		}
+
+		// // Handle the message inside the webview
+        // window.addEventListener('message', event => {
+
+        //     const message = event.data; // The JSON data our extension sent
+
+        //     switch (message.command) {
+        //         case 'refactor':
+        //             Reveal.toggleHelp();
+        //     }
+        // });
+
+		if (window.location.search.match(/print-pdf-now/gi)) {
+      		setTimeout(() => {
+				window.print();
+			  }, 2500);
+			
+    }
+</script>
+
+</body>
+
+</html>

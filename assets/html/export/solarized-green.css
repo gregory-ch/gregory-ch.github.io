@@ -1,0 +1,61 @@
+/**
+ * Custom text colors aligned with Solarized palette (Ethan Schoonover).
+ * Loaded after the built-in solarized theme via customTheme in front matter.
+ */
+
+/* Scale down all slide text globally (default is 40px) */
+.reveal .slides {
+  font-size: 28px;
+}
+
+/* Scale down headings specifically */
+.reveal h1 { font-size: 1.8em !important; }
+.reveal h2 { font-size: 1.3em !important; }
+.reveal h3 { font-size: 1.1em !important; }
+
+/* Main slide text: readable green-tinted gray (between base00 and base0) */
+.reveal .slides section,
+.reveal .slides section > * {
+  color: #6f8578 !important;
+}
+
+/* Headings: Solarized green */
+.reveal h1,
+.reveal h2,
+.reveal h3,
+.reveal h4,
+.reveal h5,
+.reveal h6 {
+  color: #859900 !important;
+}
+
+/* Emphasis */
+.reveal strong {
+  color: #719e07 !important;
+}
+
+/* Lists */
+.reveal ul,
+.reveal ol {
+  color: #6f8578 !important;
+}
+
+/* Block quotes: slightly darker green-gray */
+.reveal blockquote {
+  color: #586e75 !important;
+  border-left-color: #859900 !important;
+}
+
+/* Links: Solarized cyan (pairs well with green body text) */
+.reveal a {
+  color: #2aa198 !important;
+}
+
+.reveal a:hover {
+  color: #268bd2 !important;
+}
+
+/* Slide numbers in footer if shown */
+.reveal .slide-number {
+  color: #93a1a1 !important;
+}
